@@ -54,4 +54,13 @@ Especificações
    -  Height 15.5 mm (.6”)
    -  Length 81.5 mm (3.2”)
    
+-  **Itens inclusos**
+   -  1 x SanDisk Ultra micro SD Card (8GB).
+   -  1 x MRC0225- Cable [3-Pins DF-13] to Switch+LED.
+   -  1 x MRC0224- Cable [2-Pins DF-13] to Buzzer.
+   -  1 x I2C Splitter.
+   -  2 x MRC0213- Cable [6-Pins JST-GH] to [6-Pins DF-13], (Telemetry Radio, Power module and Extra).
+   -  1 x MRC0216- Cable [6-Pins DF-13] to [6-Pins DF-13], (For legacy products).
+   -  4 x Damping Foams.
+   -  3 x Decals "APM Rover", "APM Copter" and "APM Plane".
 
