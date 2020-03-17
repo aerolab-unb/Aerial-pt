@@ -10,11 +10,12 @@ Piwhawk 1
 Introdução
 ~~~~~~~~
 
-O Pixhawk® 1 é um piloto automático que serve como um controlador de voo de uso geral baseado no projeto de hardware aberto FMUv2 que roda o PX4 no sistema operacional NuttX. 
-O Pixhawk é uma plataforma completa de hardware e software, responsável pela aquisição, condicionamento e processamento de sinais provenientes dos sensores da aeronave e pelo controle dos atuadores da aeronave. Ele oferece um ambiente de programação compatível com sistemas Unix e Linux, facilitando o desenvolvimento de aplicações de software. O sistema Pixhawk possui capacidade de multithreading, ou seja, pode executar várias tarefas simultaneamente sem que uma interfira na outra através do compartilhamento de recursos do processo. Além disso, ele possui funções de piloto automático integrado com logs detalhados de missões e comportamento de voo. [TG1 do Eduardo Moura]
+O Pixhawk® 1 é um piloto automático que serve como um controlador de voo de uso geral baseado no projeto de hardware aberto FMUv2 que roda o PX4 no sistema operacional NuttX. O Pixhawk é uma plataforma completa de hardware e software, responsável pela aquisição, condicionamento e processamento de sinais provenientes dos sensores da aeronave e pelo controle dos atuadores da aeronave. 
+
+Ele oferece um ambiente de programação compatível com sistemas Unix e Linux, facilitando o desenvolvimento de aplicações de software. O sistema Pixhawk possui capacidade de multithreading, ou seja, pode executar várias tarefas simultaneamente sem que uma interfira na outra através do compartilhamento de recursos do processo. Além disso, ele possui funções de piloto automático integrado com logs detalhados de missões e comportamento de voo. [TG1 do Eduardo Moura]
 
 Especificações
-===============
+~~~~~~~~~~~~
 
 -  **Processador**
 
@@ -55,12 +56,14 @@ Especificações
    -  Length 81.5 mm (3.2”)
    
 -  **Itens inclusos**
-   -  1 x SanDisk Ultra micro SD Card (8GB).
-   -  1 x MRC0225- Cable [3-Pins DF-13] to Switch+LED.
-   -  1 x MRC0224- Cable [2-Pins DF-13] to Buzzer.
-   -  1 x I2C Splitter.
-   -  2 x MRC0213- Cable [6-Pins JST-GH] to [6-Pins DF-13], (Telemetry Radio, Power module and Extra).
-   -  1 x MRC0216- Cable [6-Pins DF-13] to [6-Pins DF-13], (For legacy products).
-   -  4 x Damping Foams.
-   -  3 x Decals "APM Rover", "APM Copter" and "APM Plane".
+
+   -  1 x SanDisk Ultra micro SD Card (8GB)
+   -  1 x MRC0225- Cable [3-Pins DF-13] to Switch+LED
+   -  1 x MRC0224- Cable [2-Pins DF-13] to Buzzer
+   -  1 x I2C Splitter
+   -  2 x MRC0213- Cable [6-Pins JST-GH] to [6-Pins DF-13], (Telemetry Radio, Power module and Extra)
+   -  1 x MRC0216- Cable [6-Pins DF-13] to [6-Pins DF-13], (For legacy products)
+   -  4 x Damping Foams
+   -  3 x Decals "APM Rover", "APM Copter" and "APM Plane"
+
 
