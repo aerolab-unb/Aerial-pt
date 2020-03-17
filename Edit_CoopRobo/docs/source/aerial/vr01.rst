@@ -15,12 +15,19 @@ VR-01
    :caption: Piloto Automático
 
    vr01/hard/pixhawk1
+   vr01/hard/pixhawk3
 	
 .. toctree::
    :maxdepth: 2
    :caption: Computador Embarcado
 
    vr01/soft/QGroundControl
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Modelagem
+
+   vr01/model/Ranger
 
 .. toctree::
    :maxdepth: 2
