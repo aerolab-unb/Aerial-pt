@@ -25,13 +25,13 @@ A preparação do Pixhawk para voo consiste principalmente em instalar o firmwar
 
 Esta seção contém os tópicos de configuração:
 
+.. Criar um topico linkado
 
 .. toctree::
    :maxdepth: 2
-.. Criar um topico linkado
 
+   config/firmware
 
-config/firmware.rst
  
 
 
