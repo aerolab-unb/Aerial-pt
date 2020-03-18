@@ -1,4 +1,4 @@
-Piwhawk 1
+Piwhawk
 =========
 
 .. Colocar a imagem do pixhawk aqui (tirar a foto no lab)
@@ -8,14 +8,36 @@ Piwhawk 1
 
 
 Introdução
-~~~~~~~~
+~~~~~~~~~~~
 
-O Pixhawk® 1 é um piloto automático que serve como um controlador de voo de uso geral baseado no projeto de hardware aberto FMUv2 que roda o PX4 no sistema operacional NuttX. O Pixhawk é uma plataforma completa de hardware e software, responsável pela aquisição, condicionamento e processamento de sinais provenientes dos sensores da aeronave e pelo controle dos atuadores da aeronave. 
+O Pixhawk® 1 é um piloto automático professional, desenvolvido tanto pelo meio industrial quanto pela classe academica e apoiado pela comunidade mundial ativa. O Pixhawk atua em diversos tipos de veiculos, desde de drones de corrida e carga à veiculos terrestres e submersíveis.
+
+Neste trabalho iremos focar na aplicação em aeronaves, onde o Pixhawk atua como um controlador de voo de uso geral, responsável pela aquisição, condicionamento e processamento de sinais provenientes dos sensores da aeronave e pelo controle dos atuadores da aeronave. 
 
 Ele oferece um ambiente de programação compatível com sistemas Unix e Linux, facilitando o desenvolvimento de aplicações de software. O sistema Pixhawk possui capacidade de multithreading, ou seja, pode executar várias tarefas simultaneamente sem que uma interfira na outra através do compartilhamento de recursos do processo. Além disso, ele possui funções de piloto automático integrado com logs detalhados de missões e comportamento de voo. [TG1 do Eduardo Moura]
 
+Configuração
+~~~~~~~~~~~~~~~~~~~~
+
+.. https://docs.px4.io/v1.9.0/en/config/
+
+A preparação do Pixhawk para voo consiste principalmente em instalar o firmware no dispositivo, ligar os sensores e calibrar os mesmos. 
+
+Esta seção contém os tópicos de configuração:
+
+
+.. toctree::
+   :maxdepth: 2
+.. Criar um topico linkado
+
+
+config/firmware.rst
+ 
+
+
+
 Especificações
-~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 -  **Processador**
 
