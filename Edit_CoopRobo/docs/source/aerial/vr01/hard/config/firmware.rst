@@ -46,10 +46,8 @@ Mais informações
 
 * `PX4 user guide > Firmware`_.
 .. _PX4 user guide > Firmware: https://docs.px4.io/v1.9.0/en/config/firmware.html  
-
 * `QGroundControl user guide > Firmware`_.
 .. _QGroundControl user guide > Firmware: https://docs.qgroundcontrol.com/en/SetupView/Firmware.html
-
 * `PX4 Setup Video`_ (Youtube)
 .. _PX4 Setup Video: https://www.youtube.com/watch?v=91VGmdSlbo4&feature=youtu.be
 
