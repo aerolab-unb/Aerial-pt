@@ -61,14 +61,41 @@ Os controladores da série Pixhawk já vem com um conjunto minimo de sensores in
 GPS e bússula
 -------------
 
+O PX4 suporta vários receptores e bússulas (magnetômetros) do Sistema de Navegação Global por Satélite  (Global Navigation Satellite System - GNSS). Além de suportar os `Receptores GPS Real-time Kinematic`_ (RTK), otimizando os sistemas de GPS à uma precisão em nivel de centímetros. 
 
+.. Note:: 
+   Os controladores da série Pixhawk incluem uma bússula interna, porém recomendamos o uso de um módulo externo de bússula/GPS (*compass/GPS), sendo este montado o mais longe possível dos cabos de alimentação dos motores.
+
+O PX4 suporta a conecção de até 4 magnetômetros internos ou externos, embora apenas um seja realmente utilizado para orientação. O sistema escolhe de forma automatica a melhor bússula disponivel com base em sua prioridade (bússulas externas têm maior prioridade). Se a bússula principal vier a falhar durante o vôo, o sistema seleciona a proxima maior prioridade. Caso a falha ocorra antes do voo, o carregamento plano de voo será negado.
+
+Mais informações e a lista de GPS/bússula suportados pode ser encontradas em `GPS/Bússula`_.
+
+.. adicionar imagem do gps
+
+.. _Receptores GPS Real-time Kinematic: https://docs.px4.io/v1.9.0/en/gps_compass/rtk_gps.html
+.. _GPS/Bússula: https://docs.px4.io/v1.9.0/en/gps_compass/
 Velocidade do ar
-----------------
+------------------
 
+.. Tip::
+   Os sensores de velocidade do ar são altamente recomendados para o funcionamento seguro de um VANT asa fixa e VTOL (*Vertical Take-Off and Landing* - Decolagem e Aterragem Vertical).
 
-Distância
-----------
+O VANT asa fixa depende da velocidade do ar, já que é estre que garante sua sustentação em vôo e não a velocidade em relação ao solo. O piloto automático não possui outros meios para detectar a paralisação da aeronave em vôo, por este motivo os sensores de velocidade do ar são muito importantes.
 
+Mais informações e a lista de sensores de velocidade do ar suportados pode ser encontradas em `Sensores de velocidade do ar`_.
+
+.. _Sensores de velocidade do ar: https://docs.px4.io/v1.9.0/en/sensor/airspeed.html
+.. adicionar imagem do sensor
+
+Distância (telêmetros)
+-----------------------
+
+Os sensores de distancia fornecem medição de distância em tempo real. Podendo ser óptico, quando baseado em um mecanismo de focalização, ou ultrassônico (ecotelêmetro ou telêmetro acústico), quando utiliza reflexões sonoras. Eles são utilizados para melhorar a precisão do pouso, previnir colisões, acompanhar o terreno, aviso de limites de altura, etc.  
+
+O PX4 suporta uma grande variedade de sensores de distância, usando tecnologias diferentes e oferecendo suporte a diferentes recursos. Mais informações e a lista de sensores de distancia suportados pode ser encontrada em `Sensores de distância`_.
+
+.. _Sensores de distância: https://docs.px4.io/v1.9.0/en/sensor/rangefinders.html
+.. adicionar imagem do sensor
 
 Fluxo optico
 -------------
