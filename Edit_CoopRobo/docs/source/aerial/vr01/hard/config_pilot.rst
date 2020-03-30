@@ -14,3 +14,4 @@ Esta seção contém os tópicos de configuração:
 
    config/firmware
    config/airframe 
+   config/orientation 
