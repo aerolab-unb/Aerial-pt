@@ -93,7 +93,7 @@ O PX4 suporta vários receptores e bússolas (magnetômetros) do Sistema de Nave
 .. The PX4 supports several receivers and compasses (magnetometers) of the Global Navigation Satellite System (GNSS). It also supports Real Time Kinematic (RTK) GPS Receivers, optimizing GPS systems to centimeter level accuracy.
 
 .. Note:: 
-   Os controladores da série Pixhawk incluem uma bússola *interna, porém recomendamos o uso de um módulo externo de bússola + GPS (*compass/GPS*), sendo este montado o mais longe possível dos cabos de alimentação dos motores para reduzir a interferência eletromagnética.
+   Os controladores da série Pixhawk incluem uma bússola *interna*, porém recomendamos o uso de um módulo externo de bússola + GPS (*compass/GPS*), sendo este montado o mais longe possível dos cabos de alimentação dos motores para reduzir a interferência eletromagnética.
 
 .. 
    .. Note:: 
@@ -127,7 +127,7 @@ Velocidade do ar
 
 O voo de um VANT asa fixa depende da velocidade do ar, já que é este que garante sua sustentação em voo e não a velocidade em relação ao solo. O piloto automático não possui outros meios para detectar estol (perda de sustentação da aeronave em voo), por este motivo os sensores de velocidade do ar são muito importantes.
 
-.. The flight of a fixed wing UAV depends on the airspeed, since it is this that guarantees its support in flight and not the speed in relation to the ground. The autopilot has no other means to detect stall (loss of lift of the aircraft), for this reason air speed sensors are highly recommended.
+.. The flight of a fixed wing UAV depends on the airspeed, since this guarantees its support in flight and not  the speed in relation to the ground. The autopilot has no other means to detect stall (loss of lift of the aircraft), for this reason air speed sensors are highly recommended.
 
 Mais informações e a lista de sensores de velocidade do ar suportados pode ser encontradas em `Airspeed sensors`_.
 

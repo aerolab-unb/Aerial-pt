@@ -1,5 +1,5 @@
-Orientação dos sensores
-========================
+Orientação do piloto automático
+================================
 
 Por padrão, o controlador de voo e a bússola externa, se houver, devem ser colocados no chassi da aeronave orientados de modo que a seta aponte para a frente do veículo. Se a placa ou a bússola externa estiver em qualquer outra orientação, será necessario ajustar a orientação no firmware.
 
