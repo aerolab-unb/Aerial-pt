@@ -36,12 +36,6 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
 
    vr01/model/Ranger
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Tutorials
-
-   vr01/tuto/lab1
-
 
 .. References
 
