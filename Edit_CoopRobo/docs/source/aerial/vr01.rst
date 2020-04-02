@@ -3,6 +3,7 @@ VR-01
 
 .. figure:: /img/Aerial/vr01.png
    :align: center
+   :width: 450px
 
    Aeronave Ranger EX Volatex RC
 
@@ -22,15 +23,15 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
    :maxdepth: 2
    :caption: Piloto automatico
 
-   vr01/hard/pilot
-   vr01/hard/config_pilot
+   vr01/autopilot/pilot
+   vr01/autopilot/config_pilot
 
 	
 .. toctree::
    :maxdepth: 2
    :caption: Computador Embarcado
 
-   vr01/soft/QGroundControl
+   vr01/embedded_system/system
 
 .. toctree::
    :maxdepth: 2

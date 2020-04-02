@@ -5,7 +5,7 @@ Aerial Robots
    :align: center
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Robots
 
    aerial/vr01

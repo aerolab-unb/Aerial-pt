@@ -1,10 +1,17 @@
+Montando o Pixhawk
+==================
+
+.. substituir as imagens por imagens do lab
+
+Este topico tem como objetivo mostrar como montar o controlador de voo 3DR Pixhawk e seus principais perifericos.
+
 Orientação do piloto automático
-================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Por padrão, o controlador de voo e a bússola externa, se houver, devem ser colocados no chassi da aeronave orientados de modo que a seta aponte para a frente do veículo. Se a placa ou a bússola externa estiver em qualquer outra orientação, será necessario ajustar a orientação no firmware.
 
 Cálculo de orientação
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 As compensações dos angulos de rotação `YAW, PITCH e / ou ROLL`_ são calculados em relação a orientação vertical apontando para a frente (rotação no sentido horário em torno dos eixos Z, Y e X, respectivamente). Esse diagrama é chamado de *body frame* (diagrama de corpo) e a orientação padrão é dada por ``ROTATION_NOME``.
 
@@ -18,7 +25,7 @@ Por exemplo, a imagem abaixo apresenta rotações de aeronaves em torno do eixo 
     :align: center
 
 Definindo a orientação
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 Para definir as orientações no firmware: 
 
@@ -42,6 +49,29 @@ Para definir as orientações no firmware:
 
 5. Pressione **OK**.
 
+.. adicionar imagem da seta
+
+.. Tip::
+   A documentação completa sobre como ajustar a orientação do piloto automatico está disponivel em `Orientação do piloto automático`_.
+
+.. _Orientação do piloto automático: https://docs.px4.io/v1.9.0/en/config/flight_controller_orientation.html
+
+Isolamento de vibrações
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+As placas Pixhawk possuem acelerometros e giroscopios embutidos, sendo sensiveis a vibrações. Altos niveis de vibração podem causar uma serie de problemas, incluindo redução do desempenho de voo, voos mais curtos e maior desgaste do veiculo. Em casos extremos, a vibração pode levar a falhas dos sensores, resultando em falhas de estimativa ou até mesmo a interrupção do voo.
+
+Por essa razão, o Pixhawk vem com *espumas de amortecimento de vibrações*. 
+
+.. adicionar imagem 
+
+O Pixhawk deve ser montado na aeronave utilizando as espumas antivibratórias incluidas no kit. Ele deve ser posicionado o mais proximo possivel do centro de gravidade do veiculo.
+
+.. Tip::
+   Para determinar se os niveis de vibração estão muito altos e utilizar algumas tecnicas para melhorar as caracteristicas de vibração, recomenda-se o topico `PX4 user guide > Vibration Isolation`_.
+
+.. _PX4 user guide > Vibration Isolation: https://docs.px4.io/v1.9.0/en/assembly/vibration_isolation.html#vibration-isolation
+
 
 Mais informações
 ----------------
@@ -52,5 +82,17 @@ Mais informações
 .. _PX4 user guide > Sensor Orientation: https://docs.px4.io/v1.9.0/en/config/flight_controller_orientation.html  
 * `QGroundControl user guide > Sensors`_.
 .. _QGroundControl user guide > Sensors: https://docs.qgroundcontrol.com/en/SetupView/sensors_px4.html#flight_controller_orientation
+* `PX4 user guide > Vibration Isolation`_.
+.. _PX4 user guide > Vibration Isolation: https://docs.px4.io/v1.9.0/en/assembly/vibration_isolation.html#vibration-isolation
+
+
+
+
+
+
+
+
+
+
 
 
