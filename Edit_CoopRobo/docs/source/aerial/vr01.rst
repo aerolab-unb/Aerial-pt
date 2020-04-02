@@ -1,8 +1,10 @@
 VR-01
 ======
 
-.. image:: /img/Aerial/vr01.png
-    :align: center
+.. figure:: /img/Aerial/vr01.png
+   :align: center
+
+   Aeronave Ranger EX Volatex RC
 
 .. [Trecho do TG1 do Eduardo Moura]
 

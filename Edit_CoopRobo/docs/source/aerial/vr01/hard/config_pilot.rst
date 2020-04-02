@@ -20,3 +20,6 @@ Esta seção contém os principais tópicos de configuração e montagem:
    config/airframe 
    config/mounting
    config/orientation 
+   config/connection
+   config/automatic_landing
+
