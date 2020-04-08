@@ -1,2 +1,0 @@
-Gazebo Simulator
-================

@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kinematics &mdash; CoopRobo 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Probabilistic Kinematics" href="probmotion.html" />
+    <link rel="prev" title="Pioneer" href="../../pioneer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Robots</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../aerial.html">Aerial Robots</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../mobile.html">Mobile Robots</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../pioneer.html">Pioneer</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Kinematics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#wheels-and-its-constraints">Wheels and its constraints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#differential-drive-model">Differential Drive Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kinematic-model">Kinematic Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="probmotion.html">Probabilistic Kinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hard/pioneer-robots.html">Robots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hard/pioneer-computer.html">Computer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hard/pioneer-sonars.html">Sonars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hard/pioneer-cameras.html">Cameras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hard/pioneer-batteries.html">Batteries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hard/pioneer-gps.html">GPS Receiver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hard/pioneer-imu.html">IMU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../soft/ros.html">ROS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../soft/gazebo.html">Gazebo Simulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../soft/p2os.html">P2OS Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../soft/move-base.html">Move Base Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../soft/archsystem.html">System's Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tuto/lab1.html">Mobile Robotics Lab 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tuto/lab2.html">Mobile Robotics Lab 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tuto/lab3.html">Mobile Robotics Lab 3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manipulators.html">Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs-ref.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../camera.html">Camera</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CoopRobo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../mobile.html">Mobile Robots</a> &raquo;</li>
+        
+          <li><a href="../../pioneer.html">Pioneer</a> &raquo;</li>
+        
+      <li>Kinematics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/mobile/pioneer/model/kinematics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="kinematics">
+<h1>Kinematics<a class="headerlink" href="#kinematics" title="Permalink to this headline">¶</a></h1>
+<p>Kinematics, in classical mechanics, study the description of the motion of points, bodies (objects), and groups of bodies without considering the forces that cause them to move.
+In mobile robotics, kinematics helps us to understand and quantify the constraints about the robot design, which implies restrictions in its movement.
+Also, we can draw the paths and trajectories that the robot can do.
+Here, the text focus on wheeled robots, which can only move in 2D space.</p>
+<div class="figure align-left" id="id11">
+<a class="reference internal image-reference" href="../../../_images/p3-dx.jpg"><img alt="../../../_images/p3-dx.jpg" src="../../../_images/p3-dx.jpg" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Pioneer P3-DX</span></p>
+</div>
+<div class="figure align-right" id="id12">
+<a class="reference internal image-reference" href="../../../_images/p3-at.jpg"><img alt="../../../_images/p3-at.jpg" src="../../../_images/p3-at.jpg" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Pioneer P3-AT</span></p>
+</div>
+<p>The P3-DX is a two-wheel-drive and P3-AT is a four-wheel-drive.
+The <a class="reference external" href="http://www.mobilerobots.com/Mobile_Robots.aspx">Omron Adept MobileRobots</a> considers in its manual the P3-DX as a differential drive robot and the P3-AT as a skid/slip drive robot.
+For our sake, both are modeled as differential drive vehicles because the exact center of rotation in a skid/slip drive is unpredictable <a class="footnote-reference" href="#id7" id="id1">[1]</a>.</p>
+<p>In order to represent the motion of a mobile robot, we must define the reference frames and determine their position.
+There are two essential frames to a robot if we consider the robot as a rigid body.
+They are the global reference frame, that is world fixed, and the local reference frame, which is robot fixed.</p>
+<div class="figure align-left" id="id13" style="width: 320px">
+<a class="reference internal image-reference" href="../../../_images/robot_frames.png"><img alt="The global reference frame and the robot local reference frame." src="../../../_images/robot_frames.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-text">The global reference frame and the robot local reference frame. Figure from <a class="footnote-reference" href="#id7" id="id2">[1]</a>.</span></p>
+</div>
+<p>The figure shows a robot and its reference frames.
+Where the <span class="math notranslate nohighlight">\(X_I\)</span> and <span class="math notranslate nohighlight">\(Y_I\)</span> defines the global reference frame, also known as the inertial frame, and <span class="math notranslate nohighlight">\(X_R\)</span> and <span class="math notranslate nohighlight">\(Y_R\)</span> defines the local reference frame or the robot frame.
+The coordinates <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> represent the robot's position in the global reference frame, point P, whereas <span class="math notranslate nohighlight">\(\theta\)</span> is the angular difference among the global and the local reference frames.
+Thus, we represent the robot's pose as the vector with these three components.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\xi_I = \left[ \begin{array}{c} x \\ y \\ \theta \end{array} \right]\end{split}\]</div>
+<p>We can now utilize this definition to describe elements represented in the local frame in the global frame and vice-versa.
+For example, we can map the motion calculated in the global frame to motion in the robot's local frame.
+Or, we can map obstacles sensed by the robot in terms of the global reference frame.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R(\theta) = \left[ \begin{array}{c} cos \theta &amp; sin \theta &amp; 0 \\
+                                   -sin \theta &amp; cos \theta &amp; 0 \\
+                                         0     &amp;      0     &amp; 1 \end{array} \right]\end{split}\]</div>
+<p>The <em>orthogonal rotation matrix</em> does the map between these frames as a function of the robot's current pose.</p>
+<div class="math notranslate nohighlight">
+\[\dot{\xi_R} = R(\theta) \dot{\xi_I}\]</div>
+<div class="section" id="wheels-and-its-constraints">
+<h2>Wheels and its constraints<a class="headerlink" href="#wheels-and-its-constraints" title="Permalink to this headline">¶</a></h2>
+<p>&quot;Wheeled Mobile Robots (WMR) constitute a class of mechanical systems characterized by kinematics constraints that are not integrable and cannot, therefore, be eliminated from the model equations&quot; <a class="footnote-reference" href="#id8" id="id3">[2]</a>.
+If we want to study and describe a robot motion, we also must specify which are the hypotheses and constraints of the wheels.
+There are three essential hypotheses about the kinematics model of the wheeled robot during the motion; they are:</p>
+<ul class="simple">
+<li>Each wheel remain perpendicular about its plane;</li>
+<li>There is only one contact point between plane and wheel;</li>
+<li>There is only rolling without slipping;</li>
+</ul>
+<p>And two constraints:</p>
+<ul class="simple">
+<li>About rolling: the motion component along the wheel plane is equal to the rotation velocity of the wheel;</li>
+<li>About slipping: the motion component along the orthogonal direction is equal to zero;</li>
+</ul>
+<p>Some authors may call these constraints as &quot;the pure rolling and rotation condition&quot;.</p>
+</div>
+<div class="section" id="differential-drive-model">
+<h2>Differential Drive Model<a class="headerlink" href="#differential-drive-model" title="Permalink to this headline">¶</a></h2>
+<p>Now we delve into modeling of a differential drive kinematic.
+Dudek et al. say that the differential drive consists of two wheels mounted in the same axis with separated motors <a class="footnote-reference" href="#id9" id="id4">[3]</a>.
+Each wheel contributes to the robot motion, so to fully describe the robot motion, we must compute each contribution.</p>
+<div class="figure align-right" id="id14" style="width: 420px">
+<a class="reference internal image-reference" href="../../../_images/wheel_vel.png"><img alt="The global reference frame and the robot local reference frame." src="../../../_images/wheel_vel.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Wheel velocities and the robot frame.</span></p>
+</div>
+<p>The image shows the robot, the wheel velocities, and the local frame.
+<span class="math notranslate nohighlight">\(\dot{\phi}_1\)</span> and <span class="math notranslate nohighlight">\(\dot{\phi}_2\)</span> is the spin speed of the left wheel and right wheel.
+<span class="math notranslate nohighlight">\(r\)</span> is the wheel radius, while the distance between the two wheels is <span class="math notranslate nohighlight">\(l\)</span>.
+While <span class="math notranslate nohighlight">\(v_1\)</span> is the left wheel velocity along the ground and <span class="math notranslate nohighlight">\(v_2\)</span> the right wheel velocity.
+As the wheels contribute independently to the robot motion, we can analyze each contribution separately.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}
+   v_i   = \frac{\dot{\phi}_i r}{2} \\
+\omega_i = (-1^i)\frac{\dot{\phi}_i r}{2 l} \\
+   \text{where } i = \{1, 2\}
+\end{array}\end{split}\]</div>
+<p>Point <span class="math notranslate nohighlight">\(P\)</span> is halfway between the two wheels, so each wheel contributes with half of the linear speed of the robot in the direction of <span class="math notranslate nohighlight">\(X_R\)</span>.
+Each wheel also adds a new component to the angular speed of the robot.
+<span class="math notranslate nohighlight">\(v_1\)</span> moves the robot counter-clockwise around point <span class="math notranslate nohighlight">\(P\)</span> while <span class="math notranslate nohighlight">\(v_2\)</span> moves it clockwise.
+That is why they differ in their sign.
+And, using the equation which relates the angular speed of disk with its linear speed, we have the above equations.</p>
+<p>Using the superposition theorem, we have the equations for the linear velocity in the direction of <span class="math notranslate nohighlight">\(X_R\)</span> and the angular velocity in the direction of <span class="math notranslate nohighlight">\(Z_R\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}
+v      &amp; = &amp;   v_1 + v_2 \\
+\omega &amp; = &amp; -\omega_1 + \omega_2
+\end{array}\end{split}\]</div>
+<p>In the local frame, we have the following kinematic equation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dot{\xi_R} &amp; = &amp;
+\left[ \begin{array}{c} \frac{r}{2} &amp;  \frac{r}{2} \\
+                              0       &amp;        0 \\
+                      -\frac{r}{2 l}  &amp; \frac{r}{2 l}  \end{array} \right] \left[ \begin{array}{c} \dot{\phi}_1 \\ \dot{\phi}_2 \end{array} \right]\end{split}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the robot frame, there is no velocity in the direction of <span class="math notranslate nohighlight">\(Y_R\)</span>. Because we assumed the pure rolling and rotation condition. And yet he can reach any point in the global frame.</p>
+</div>
+<div class="section" id="forward-kinematics">
+<h3>Forward Kinematics<a class="headerlink" href="#forward-kinematics" title="Permalink to this headline">¶</a></h3>
+<p>The forward kinematics problem tries to solve the problem when we have the control inputs, and we must know where the robot goes in the global frame.
+As we have seen, to solve this question, we should know five parameters of the robot — two parameters about the robot geometry, <span class="math notranslate nohighlight">\(l\)</span> and <span class="math notranslate nohighlight">\(r\)</span>, the current robot orientation, <span class="math notranslate nohighlight">\(\theta\)</span>, and, at least, the two inputs, <span class="math notranslate nohighlight">\(\dot{\phi}_1\)</span> and <span class="math notranslate nohighlight">\(\dot{\phi}_2\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dot{\xi_I} = \left[ \begin{array}{c} \dot{x} \\ \dot{y} \\ \dot{\theta} \end{array} \right] = f(l, r, \theta, \dot{\phi_1}, \dot{\phi_2})\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(f\)</span> is the function that solves the forward kinematics problem.
+To map between the parameter vector, <span class="math notranslate nohighlight">\(\{l, r, \theta, \phi_1, \phi_2\}\)</span>, and the state of the robot in the inertial frame.
+We should use the matrix, which links the spin speed and the derivative of the robot state in the local frame.
+Then, we can transform the robot velocities in the local frame to the global frame utilizing the inverse of the rotation matrix.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}
+ R(\theta)^{-1} = \left[ \begin{array}{c} cos \theta &amp;-sin \theta &amp; 0 \\
+                                          sin \theta &amp; cos \theta &amp; 0 \\
+                                               0     &amp;      0     &amp; 1 \end{array} \right], &amp;
+\dot{\xi_I} = R(\theta)^{-1} \dot{\xi_R}, &amp;
+\dot{\xi_R} =
+\left[ \begin{array}{c} \frac{r}{2} &amp;  \frac{r}{2} \\
+                              0       &amp;        0 \\
+                      -\frac{r}{2 l}  &amp; \frac{r}{2 l}  \end{array} \right] \left[ \begin{array}{c} \dot{\phi}_1 \\ \dot{\phi}_2 \end{array} \right]
+\end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dot{\xi_I} &amp; = &amp; R(\theta)^{-1}
+\left[ \begin{array}{c} \frac{r}{2} &amp;  \frac{r}{2} \\
+                              0       &amp;        0 \\
+                      -\frac{r}{2 l}  &amp; \frac{r}{2 l}  \end{array} \right]
+\left[ \begin{array}{c} \dot{\phi}_1 \\ \dot{\phi}_2 \end{array} \right]\end{split}\]</div>
+<p>Then,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(l, r, \theta, \dot{\phi_1}, \dot{\phi_2}) &amp; = &amp;
+\left[ \begin{array}{c} cos \theta &amp;-sin \theta &amp; 0 \\
+                        sin \theta &amp; cos \theta &amp; 0 \\
+                             0     &amp;      0     &amp; 1 \end{array} \right]
+\left[ \begin{array}{c} \frac{r}{2} &amp;  \frac{r}{2} \\
+                              0       &amp;        0 \\
+                      -\frac{r}{2 l}  &amp; \frac{r}{2 l}  \end{array} \right]
+\left[ \begin{array}{c} \dot{\phi}_1 \\ \dot{\phi}_2 \end{array} \right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(l, r, \theta, \dot{\phi_1}, \dot{\phi_2}) &amp; = &amp;
+\left[ \begin{array}{c} \frac{r cos \theta}{2} &amp;  \frac{r cos \theta}{2} \\
+                        \frac{r sin \theta}{2} &amp;  \frac{r sin \theta}{2} \\
+                       -\frac{r}{2 l}          &amp;  \frac{r}{2 l}    \end{array} \right]
+\left[ \begin{array}{c} \dot{\phi}_1 \\ \dot{\phi}_2 \end{array} \right]\end{split}\]</div>
+<p>Or</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dot{\xi_I} &amp; = &amp;
+\left[ \begin{array}{c} \frac{r cos \theta}{2} &amp;  \frac{r cos \theta}{2} \\
+                        \frac{r sin \theta}{2} &amp;  \frac{r sin \theta}{2} \\
+                       -\frac{r}{2 l}          &amp;  \frac{r}{2 l}    \end{array} \right]
+\left[ \begin{array}{c} \dot{\phi}_1 \\ \dot{\phi}_2 \end{array} \right]\end{split}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The matrix which maps spin speed to the robot velocities is commonly known as <strong>Jacobian Matrix</strong>.</p>
+</div>
+<p>Well, we know the relationship between spin speeds and robot velocities, but what about the robot pose in the global frame?</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\xi_I = \int_{0}^{t}
+\left[ \begin{array}{c} \frac{r cos \theta}{2} &amp;  \frac{r cos \theta}{2} \\
+                        \frac{r sin \theta}{2} &amp;  \frac{r sin \theta}{2} \\
+                       -\frac{r}{2 l}          &amp;  \frac{r}{2 l}    \end{array} \right]
+\left[ \begin{array}{c} \dot{\phi}_1 \\ \dot{\phi}_2 \end{array} \right]
+dt\end{split}\]</div>
+<p>Or</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+x(t) = \frac{r}{2} \int_{0}^{t} (\dot{\phi_1}(t) + \dot{\phi_2}(t)) cos (\theta(t)) dt \\
+y(t) = \frac{r}{2} \int_{0}^{t} (\dot{\phi_1}(t) + \dot{\phi_2}(t)) sin (\theta(t)) dt \\
+\theta(t) = \frac{r}{2 l} \int_{0}^{t} (\dot{\phi_2}(t) - \dot{\phi_1}(t)) dt
+\end{cases}\end{split}\]</div>
+</div>
+<div class="section" id="inverse-kinematics">
+<h3>Inverse Kinematics<a class="headerlink" href="#inverse-kinematics" title="Permalink to this headline">¶</a></h3>
+<p>The inverse kinematics problem is the opposite of the forward problem.
+The problem aims to solve the following question: &quot;What are the controls needed to reach the desired pose?&quot;.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[ \begin{array}{c} \dot{\phi_1} \\ \dot{\phi_2}\end{array} \right] = g(\dot{\xi_I})\end{split}\]</div>
+<p>The function <span class="math notranslate nohighlight">\(g\)</span> is the mathematical inverse of the function <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g = f^{-1} =
+\left[ \begin{array}{c} \frac{r cos \theta}{2} &amp;  \frac{r cos \theta}{2} \\
+                       \frac{r sin \theta}{2} &amp;  \frac{r sin \theta}{2} \\
+                      -\frac{r}{2 l}          &amp;  \frac{r}{2 l}    \end{array} \right]^{-1}\end{split}\]</div>
+<p>As we can see, the matrix which represents the function <span class="math notranslate nohighlight">\(f\)</span> is not invertible.
+The forward kinematics is an easy problem because we have one and only one solution.
+Nevertheless, the inverse kinematics is often not analytically solvable; commonly, we have more than one solution or none.
+However, we can try to solve the problem, limiting the possibles solutions like <span class="math notranslate nohighlight">\(\dot{\phi}_1 = \dot{\phi}_2\)</span> or <span class="math notranslate nohighlight">\(\dot{\phi}_1 = -\dot{\phi}_2\)</span>.</p>
+<div class="section" id="straight-line">
+<h4>Straight Line<a class="headerlink" href="#straight-line" title="Permalink to this headline">¶</a></h4>
+<p>If we limit the solution to <span class="math notranslate nohighlight">\(\dot{\phi}_1 = \dot{\phi}_2 = \dot{\phi}\)</span>, with <span class="math notranslate nohighlight">\(\dot{\phi} &gt; 0\)</span>, the robot should move along a straight line.
+Then, the robot motion simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\xi_I = \left[ \begin{array}{c} x' \\ y' \\ \theta' \end{array} \right] =
+\left[ \begin{array}{c} x + v cos (\theta) \delta t \\ y + v sin (\theta) \delta t \\ \theta \end{array} \right]\end{split}\]</div>
+</div>
+<div class="section" id="rotaion-in-place">
+<h4>Rotaion in place<a class="headerlink" href="#rotaion-in-place" title="Permalink to this headline">¶</a></h4>
+<p>Similarly, if we limit the solution to <span class="math notranslate nohighlight">\(-\dot{\phi}_1 = \dot{\phi}_2\)</span>, with <span class="math notranslate nohighlight">\(\dot{\phi}_2 &gt; 0\)</span>, the robot should rotate in the place around the point P.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\xi_I = \left[ \begin{array}{c} x' \\ y' \\ \theta' \end{array} \right] =
+\left[ \begin{array}{c} x \\ y \\ \theta + \frac{2 v}{l} \delta t \end{array} \right]\end{split}\]</div>
+<div class="figure" id="id15">
+<img alt="A differential-drive robot in its global reference frame." src="../../../_images/diff_drive.png" />
+<p class="caption"><span class="caption-text">A differential-drive robot in its global reference frame. Figure from <a class="footnote-reference" href="#id7" id="id5">[1]</a>.</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="kinematic-model">
+<h2>Kinematic Model<a class="headerlink" href="#kinematic-model" title="Permalink to this headline">¶</a></h2>
+<p>The kinematics of a differential-drive mobile robot described in the inertial frame <span class="math notranslate nohighlight">\(\{ X_I , Y_I , θ \}\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[ \begin{array}{c} \dot{x} \\ \dot{y} \\ \dot{\theta} \end{array} \right] &amp; = &amp;
+\left[ \begin{array}{c} v \cos \theta \\ v \sin \theta \\ \omega \end{array} \right] &amp; = &amp;
+\left[ \begin{array}{c} \cos \theta &amp; 0 \\ \sin \theta &amp; 0 \\ 0 &amp; 1 \end{array} \right] \left[ \begin{array}{c} v \\ \omega \end{array} \right]\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(\theta\)</span> are the coordinates of the robot in the global frame and <span class="math notranslate nohighlight">\(u = (v, \omega)\)</span> is the control vector.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A differential drive robot has a major problem which is...
+Feng et al. <a class="footnote-reference" href="#id10" id="id6">[4]</a> develops in 1993 a motion controller which...</p>
+</div>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>, <a class="fn-backref" href="#id5">3</a>)</em> Roland Siegwart and Illah R. Nourbakhsh. 2004. Introduction to Autonomous Mobile Robots. Bradford Company, USA.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><ol class="first last upperalpha simple" start="7">
+<li>Campion, G. Bastin and B. Dandrea-Novel, &quot;<a class="reference external" href="https://ieeexplore.ieee.org/document/481750">Structural properties and classification of kinematic and dynamic models of wheeled mobile robots</a>,&quot; in IEEE Transactions on Robotics and Automation, vol. 12, no. 1, pp. 47-62, Feb. 1996.</li>
+</ol>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Gregory Dudek and Michael Jenkin. 2010. Computational Principles of Mobile Robotics (2nd. ed.). Cambridge University Press, USA.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[4]</a></td><td><ol class="first last upperalpha simple" start="12">
+<li>Feng, Y. Koren and J. Borenstein, &quot;<a class="reference external" href="https://ieeexplore.ieee.org/document/248002/">Cross-coupling motion controller for mobile robots</a>,&quot; in IEEE Control Systems Magazine, vol. 13, no. 6, pp. 35-43, Dec. 1993.</li>
+</ol>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="probmotion.html" class="btn btn-neutral float-right" title="Probabilistic Kinematics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../pioneer.html" class="btn btn-neutral float-left" title="Pioneer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Gabriel Araujo
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
