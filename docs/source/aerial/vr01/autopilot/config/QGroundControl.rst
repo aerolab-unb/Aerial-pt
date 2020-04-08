@@ -39,11 +39,31 @@ Installation
       3. Move your the $ QGroundControl application to your Application folder
 
 -  **For Ubuntu**
-
+   
    - Before installing QGroundControl for the first time:
+
     1. On the command prompt type:
+       
+      
+       ::
+         
+           sudo usermod -a -G dialout $USER
+           sudo apt-get remove modemmanager -y
+           sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav -y
 
-                                                         
+    2. Logout and login again to enable the change to user permissions.
 
+   -  To install QGroundControl for Ubuntu Linux 16.04 LTS or later:
 
+    1. Download `QGroundControl.AppImage <https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.AppImage>`_
+    2. Install and run Install using the terminal commands:
 
+       ::
+         
+           cd Downloads
+           chmod +x ./QGroundControl.AppImage
+           ./QGroundControl.AppImage
+
+.. Tip::
+   The last command block is not necessary if the user goes to the file explorer and searches for the downloaded QGroundControl file and double-clicks it
+  
