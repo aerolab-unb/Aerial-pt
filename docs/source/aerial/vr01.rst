@@ -7,6 +7,13 @@ VR-01
 
    Aeronave Ranger EX Volatex RC
 
+.. http://www2.ene.unb.br/henrique/oportunidades.html
+
+
+Este trabalho busca o estudo, documentação e desenvolvimento de tecnicas de controle cooperativo de veiculos aereos não tripulados. 
+
+O uso de múltiplos veículos aéreos não tripulados em missões como de vigilância e monitoramento pode torná-las mais rápidas e com maiores chances de sucesso. Para isso, torna-se necessário que os VANTs comuniquem-se entre si e tenham uma estratégia de controle que determine o que cada um deles deve fazer. Esse projeto inclui três VANTs de asa fixa que estão disponíveis no Laboratório de Robótica Aérea da UnB e deverão ser estudas e implementadas técnicas de controle cooperativo no hardware e software embarcados.
+
 .. [Trecho do TG1 do Eduardo Moura]
 
 O sistema completo é constituído por quatro sub-sistemas: três aeronaves e uma estação base. A comunicação entre tais sub-sistemas é realizada através de rádios de comunicação. Cada sub-sistema possui seu próprio modem de comunicação e tem a capacidade de comunicar-se diretamente com qualquer outro sub-sistema [1]_.

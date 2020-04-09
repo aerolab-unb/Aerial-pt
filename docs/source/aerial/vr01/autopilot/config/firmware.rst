@@ -1,15 +1,9 @@
 Firmware
 =========
 
-A instalação do *firmware* no hardware do controlador de voo pode ser efetuada de duas formas, pelo uso de um programa de Estação de Controle Terrestre (ECT) ou diretamente pelo uso de ferramentas de desenvolvedor sem o uso de um programa auxiliar. Uma ECT é uma aplicação de *software* que roda em um computador terrestre e se comunica com o veículo pelo uso de telemetria sem fio [1]_. 
+A instalação do *firmware* no hardware do controlador de voo pode ser efetuada de duas formas, pelo uso de um programa de Estação de Controle Terrestre (ECT) ou diretamente pelo uso de ferramentas de desenvolvedor sem o uso de um programa auxiliar. 
 
-.. The installation of the firmware on the flight controller hardware can be done in two ways, by using an Ground Control Station (GCS) program or directly by using developer tools without using an auxiliary program. An GCS is a software application that runs on a ground computer and communicates with the vehicle through the use of wireless telemetry.
-
-As principais ECT's disponíveis são Mission Planner, APM Planner 2, MAVProxy, QGroundControl e UgCS.
-Para aplicar neste projeto, escolheu-se o QGroundControl por fornecer uso facil e direto para iniciantes, boa documentação, programa mais estável em relação aos demais e ainda oferecer recursos avançados para usuários experientes.
-
-.. The main GCS's available are Mission Planner, APM Planner 2, MAVProxy, QGroundControl and UgCS. To implement this project, QGroundControl was chosen because it provides easy and direct use for beginners, good documentation, a more stable program in relation to the others and also offers advanced features for experienced users.
-
+.. The installation of the firmware on the flight controller hardware can be done in two ways, by using an Ground Control Station (GCS) program or directly by using developer tools without using an auxiliary program. 
 
 .. Tip::
    Antes de iniciar esta seção, recomenda-se o download e instalação do QGroundControl em seu computador. 
@@ -24,8 +18,8 @@ Para aplicar neste projeto, escolheu-se o QGroundControl por fornecer uso facil 
 
 .. _QGroundControl: https://docs.qgroundcontrol.com/en/
 
-Instalação estável
-~~~~~~~~~~~~~~~~~~~
+Instalação 
+~~~~~~~~~~~
 
 Recomenda-se a instalação da versão mais recente do PX4, a fim de obter as correções de bug e as melhores e mais recentes funções.
 

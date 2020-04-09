@@ -55,10 +55,23 @@ O “cérebro” de um drone é chamado de piloto automático, um instrumento re
 
 .. The "brain" of a drone is called autopilot, an instrument responsible for controlling the aircraft's flight path. Referring to UAVs, the autopilot consists of flight control software running on specific hardware for the same function.
 
+Estação de Controle em Solo (ECS)
+---------------------------------
+
+.. TRADUZIR
+
+Uma **Estação de Controle em Solo** (ECS), do inglês *Ground Control Station* (GCS), é uma plataforma de controle, normalmente uma aplicação de *software* sendo executada em um computador em solo, que se comunica com os VANTs por telemetria sem fio e provê aos operadores humanos o controle das aeronaves.
+
+A estação em solo entrega ao controlador diversos dados em tempo real sobre o desempenho e posição dos VANTs e até pode servir como um "cockpit virtual", fornecendo muitos dos mesmos instrumentos que um piloto teria caso estivesse pilotando um avião. Porém, um *software* de Controle em solo é tipicamente utilizado para o planejamento, carregamento das missões de voo e definição de parâmetros.
+
+Existem mais de dez estações de controle em solo diferentes. Na área de controle de VANTs, os principais controladores são Mission Planner, APM Planner 2, MAVProxy, QGroundControl e UgCS. Para Tablet/Smartphone, há Tower (DroidPlanner 3), MAVPilot, AndroPilot e SidePilot. [4]_
+
+.. https://ardupilot.org/copter/docs/common-choosing-a-ground-station.html#overview
+
 Plataforma Dronecode
 ---------------------
 
-O PX4 faz parte da `Dronecode Plataform`_, uma plataforma completa para desenvolvimento de drones, sob uma licença de código aberto a comunidade. Incluindo, entre outras, os controladores `PX4`_, a estação de controle terrestre `QGroundControl`_, o `Dronecode SDK`_ e o `Dronecode Camera Manager`_. [4]_
+O PX4 faz parte da `Dronecode Plataform`_, uma plataforma completa para desenvolvimento de drones, sob uma licença de código aberto a comunidade. Incluindo, entre outras, os controladores `PX4`_, a estação de controle terrestre `QGroundControl`_, o `Dronecode SDK`_ e o `Dronecode Camera Manager`_. [5]_
 
 .. PX4 is part of the `Dronecode Plataform`_, a complete platform for drone development, under an open source license the community. It includes, among other things, the `PX4`_ flight stack, `QGroundControl`_ ground control station, the `Dronecode SDK`_ and the `Dronecode Camera Manager`_. [4]_
 
@@ -163,8 +176,8 @@ A maior parte de suas aplicações é direcionada a aeronaves de asas rotativas.
 
 .. Most of its applications are directed to rotary-wing aircraft.
 
-Especificações do PixHawk1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Especificações do Pixhawk 1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  **Processador**
 
@@ -217,7 +230,7 @@ Especificações do PixHawk1
 
  .. References
 
-.. [1] `PX4 Autopilot User Guide`_.
+.. [1] `PX4 Autopilot User Guide`_. docs.px4.io
 .. _PX4 Autopilot User Guide: https://docs.px4.io/v1.9.0/en/
 
 .. [2] Para mais informações a respeito de `Multithreading (arquitetura computacional)`_.
@@ -225,7 +238,10 @@ Especificações do PixHawk1
 
 .. [3] Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.
 
-.. [4] `Dronecode Platform, Basic Concepts, PX4 Autopilot User Guide`_. 
+.. [4] `Choosing a Ground Station - Conter documentation`_. ardupilot.org 
+.. _Choosing a Ground Station - Conter documentation: https://ardupilot.org/copter/docs/common-choosing-a-ground-station.html#choosing-a-ground-station
+
+.. [5] `Dronecode Platform, Basic Concepts, PX4 Autopilot User Guide`_. docs.px4.io
 .. _Dronecode Platform, Basic Concepts, PX4 Autopilot User Guide: https://docs.px4.io/v1.9.0/en/getting_started/px4_basic_concepts.html#dronecode
 
 
