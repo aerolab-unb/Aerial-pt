@@ -13,26 +13,29 @@ Piloto Automatico
 Introdução
 ~~~~~~~~~~~
 
-O PX4 é um piloto automático profissional de código aberto, desenvolvido tanto pelo meio industrial quanto pela classe acadêmica e apoiado pela comunidade mundial ativa. O PX4 pode ser executado em várias placas controladoras de voo. Merecendo destaque os controladores de voo de *hardware* aberto da série `PixHawk`_, executando o PX4 no `NuttX OS`_ [1]_.
+.. este topico foi mudado e precisa ser traduzido
+
+O PX4 é um piloto automático profissional de código aberto, desenvolvido tanto para atividades industriais quanto pela classe acadêmica, sendo apoiado pela comunidade mundial ativa. O PX4 pode ser executado em várias placas controladoras de voo. Merecendo destaque os controladores de voo de *hardware* aberto da série `PixHawk`_, executando o PX4 no `NuttX OS`_ [1]_.
 
 .. PX4 is the professional open source autopilot, developed by both world-class developers from industry and academia, and supported by the active world wide community. The PX4 can run on multiple flight controll boards. Deserving highlight flight open hardware controllers of the `PixHawk`_ series, running PX4 on `NuttX OS`_ [1]_.  
+
+Dadas as opções de placas controladoras de voo disponíveis no mercado, escolheu-se o Pixhawk1 como piloto automático por seu melhor custo beneficio para o projeto.
+
+.. Given the options available on the market, Pixhawk 1 was chosen as an autopilot for its best cost benefit for the project.
+
 
 .. _Pixhawk: https://pixhawk.org
 .. _NuttX OS: https://nuttx.apache.org/
 
 .. Adicionar imagem do pixhawk do lado
 
-O Pixhawk atua em diversos tipos de veículos, desde drones de corrida e carga a veículos terrestres e submersíveis. Neste artigo, focaremos na aplicação em aeronaves, onde o Pixhawk atua como um controlador de voo de uso geral, responsável pela aquisição, condicionamento e processamento de sinais provenientes dos sensores da aeronave e pelo controle dos atuadores da aeronave. 
+O Pixhawk atua em diversos tipos de veículos, desde drones de corrida, monitoramento e carga a veículos terrestres e submersíveis para os mais diversos fins. Nesta documentação, focaremos na aplicação em aeronaves, onde o Pixhawk atua como um controlador de voo de uso geral, responsável pela aquisição, condicionamento e processamento de sinais provenientes dos sensores da aeronave e pelo controle dos atuadores da aeronave. 
 
 .. The Pixhawk operate in several types of vehicle, from racing drones and cargo to land and submersible vehicles. In this article we will focus on aircraft application, where the Pixhawk operate as a general use flight controller, responsible for the acquisition, conditioning and processing of signals from the aircraft's sensors and for controlling the aircraft's actuators.
 
 Ele oferece um ambiente de desenvolvimento compatível com sistemas Unix e Linux, facilitando o desenvolvimento de aplicações de software. O sistema Pixhawk possui capacidade de *multithreading* [2]_, ou seja, pode executar várias tarefas simultaneamente sem que uma interfira na outra através do compartilhamento de recursos do processo. Além disso, ele possui funções de piloto automático integrado com logs detalhados de missões e comportamento de voo [3]_.
 
 .. Pixhawk offers a development environment compatible with Unix and Linux systems, favoring the development of software applications. The Pixhawk system has multithreading capabilities, that is, it can perform several tasks simultaneously without interfering with the other through the sharing of process resources. Moreover, it has integrated autopilot functions with detailed logs missions and flight behavior [2]_.
-
-Dado as opções disponíveis no mercado, escolheu-se o Pixhawk1 como piloto automático por seu melhor custo beneficio para o projeto.
-
-.. Given the options available on the market, Pixhawk 1 was chosen as an autopilot for its best cost benefit for the project.
 
 Conceitos Básicos
 ~~~~~~~~~~~~~~~~~

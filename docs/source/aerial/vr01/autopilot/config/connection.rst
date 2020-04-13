@@ -3,6 +3,8 @@ Conexões
 
 A imagem abaixo apresenta as conexões dos sensores e demais itens inclusos no Pixhawk. Cada parte será analisada com mais detalhes nas seções a seguir.
 
+.. The image below shows the connections of the sensors and other items included in the Pixhawk. Each part will be analyzed in more detail in the following sections.
+
 .. Adicionar imagem das conexões do pixhawk (não esquecer do airspeed)
 
 
@@ -11,10 +13,16 @@ Campainha e interruptor de segurança
 
 A campainha fornece sinais sonoros que indicam a situação do VANT. Enquanto o interruptor atua na segurança da aeronave, bloqueando e desbloqueando os motores.
 
+.. The buzzer provides audible signals that indicate the situation of the UAV. While the switch operates in the safety of the aircraft, locking and unlocking the engines.
+
 .. Note::
    O interruptor de segurança é ativado por padrão e quando ativado, não permite o voo, bloqueando os motores. Para desativar o modo de segurança, pressione e segure o interruptor por 1 segundo. Você pode ativar o modo de segurança novamente pressionando o interruptor.
 
+.. The safety switch is activated by default and when activated, it does not allow flight, blocking the engines. To disable safe mode, press and hold the switch for 1 second. You can activate safe mode again by pressing the switch.
+
 Para conectar a campainha e o interruptor de segurança (itens obrigatórios), basta liga-lós ao Pixhawk como mostrado abaixo.
+
+.. To connect the buzzer and the safety switch (required items), simply connect them to the Pixhawk as shown below.
 
 .. image:: /img/Aerial/px1_buzzer_and_safety_switch.jpg
     :align: center
@@ -24,32 +32,48 @@ Divisor I2C
 
 O *slitter* I2C expande a quantidade de portas I2C permitindo a conexão de até quatro periféricos ao Piwhawk. Utilize um cabo de 4 fios para conectar o *slitter* I2C e para alimentar uma bússola externa, um display LED, um sensor de velocidade do ar digital e/ou qualquer outro periférico compatível ao veículo.
 
+.. The I2C slitter expands the number of I2C ports allowing the connection of up to four peripherals to the Piwhawk. Use a 4-wire cable to connect the I2C slitter and to power an external compass, an LED display, a digital air speed sensor and/or any other peripheral compatible to the vehicle.
+
 Sensor de velocidade do ar
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-. . . 
+Em edição...
+
+.. verificar no laboratorio 
 
 GPS + Compass 
 ~~~~~~~~~~~~~~
 
 O GPS, outro dispositivo obrigatório, deve ser conectado à porta GPS (6 pinos) usando o cabo de 6 fios fornecidos no kit. A conexão da bússola é opcional, porém recomendamos fortemente sua utilização. Para conecta-lá, ligue um cabo de 4 fios a uma porta I2C do *slitter* I2C, como mostrado abaixo.
 
+.. The GPS, another indispensable device, must be connected to the GPS port (6-pin) using the 6-wire cable provided in the kit.  The compass connection is optional, but strongly recommend its use. To connect it, connect a 4-wire cable to an I2C port on the I2C slitter, as shown below.
+
 .. adicionar imagem do GPS/bussola
 
 .. Note::
    O GPS/bússola deve ser montado no chassi da aeronave o mais longe possível de outros componentes eletrônicos, com a seta indicadora voltada para a frente e o mais alinhada possível com o Pixhawk.
 
+.. The GPS / compass should be mounted on the aircraft's chassis as far away from other electronic components as possible, with the indicator arrow facing forward and as aligned as possible with the Pixhawk.
+
 Rádio controle 
 ~~~~~~~~~~~~~~~
 
-O sistema de rádio com controle remoto (RC) é necessário caso deseje controlar manualmente seu veículo, já que o PX4 não requer um sistema de rádio para modos de voo autônomo.
+O sistema de rádio controle (RC) é necessário caso deseje controlar manualmente seu veículo, dado que o Pixhawk não requer um sistema de rádio para modos de voo autônomo.
+
+.. The radio control (RC) system is necessary if you want to manually control your vehicle, as the Pixhawk does not require a radio system for autonomous flight modes.
 
 Para conectar o sistema de rádio controle, será necessário selecionar um transmissor/receptor compatível e depois vinculá-lo para que eles se comuniquem. 
+
+.. To connect the radio control system, is necessary need to select a compatible transmitter / receiver and then link it up so that they can communicate.
 
 .. Tip::
    Leia as instruções que acompanham seu transmissor/receptor.
 
+.. Read the instructions that came with your transmitter / receiver.
+
 As instruções a seguir mostram como conectar os diferentes tipos de receptores ao Pixhawk:
+
+.. The following instructions show how to connect the different types of receivers to the Pixhawk:
 
 * Os receptores Spektrum e DSM se conectam à entrada SPKT/DSM . 
 
@@ -63,12 +87,18 @@ As instruções a seguir mostram como conectar os diferentes tipos de receptores
 
 Para obter mais informações sobre a seleção de um sistema de rádio, a compatibilidade do receptor e a ligação do seu par transmissor e receptor, consulte: `Transmissores e receptores de controle remoto`_.
 
+.. The PPM and PWM receivers that have an individual wire for each channel must connect to the RC port via a PPM encoder (PPM-Sum receivers use a single signal wire for all channels).
+
+.. For more information on selecting a radio system, receiver compatibility, and connecting your transmitter and receiver pair, see: `Remote control transmitters and receivers`_.
+
 .. _Transmissores e receptores de controle remoto: https://docs.px4.io/v1.9.0/en/getting_started/rc_transmitter_receiver.html
 
 Telemetria 
 ~~~~~~~~~~~
 
 Os modens de telemetria podem ser usados ​​para comunicar e controlar um veículo em voo a partir de uma estação terrestre (por exemplo, você pode direcionar o VANT para uma posição específica ou carregar uma nova missão). Um modem deve ser conectado ao seu veículo, como mostrado abaixo. O outro modem deverá ser conectado ao computador da estação terrestre ou dispositivo móvel (geralmente por uma porta USB).
+
+.. Telemetry modems can be used to communicate and control a vehicle in flight from an ground station (for example, you can direct the UAV to a specific position or load a new mission). A modem must be connected to your vehicle, as shown below. Another modem must be connected to the ground station computer or mobile device (usually via a USB port).
 
 .. image:: /img/Aerial/pixhawk_3dr_telemetry_radio.jpg
 
@@ -77,7 +107,11 @@ Módulo de energia
 
 O módulo de energia (*Power module* - PM) fornece energia ao controlador de voo da bateria e também envia informações sobre a corrente analógica e a tensão fornecida pelo módulo (incluindo a energia do controlador de voo e dos motores, etc.).
 
+.. The **Power module** (PM) supplies power to the battery flight controller and also sends information about the analog current and voltage supplied by the module (including power to the flight controller and motors, etc.).
+
 A saída do modulo de energia (PM) deve ser conectada à porta **POWER** do Pixhawk usando um cabo de 6 fios, como apresentado na imagem. A entrada do modulo deverá ser conectada a uma bateria de LiPo, enquanto a saída principal será responsável por fornecer energia aos ESCs e motores da aeronave (possivelmente através de uma placa de distribuição de energia, a depender da aeronave).
+
+.. The output of the power module (PM) must be connected to the Pixhawk ** POWER ** port using a 6-wire cable, as shown in the image. The input module must be connected to a battery Po, while the main output will be responsible for supplying power to the ESCs and the aircraft engine (possibly through a power distribution board, depending on the aircraft).
 
 .. image:: /img/Aerial/pixhawk_3dr_power_module.jpg
 
