@@ -58,13 +58,17 @@ O “cérebro” de um drone é chamado de piloto automático, um instrumento re
 Estação de Controle em Solo (ECS)
 ---------------------------------
 
-.. TRADUZIR
-
 Uma **Estação de Controle em Solo** (ECS), do inglês *Ground Control Station* (GCS), é uma plataforma de controle, normalmente uma aplicação de *software* sendo executada em um computador em solo, que se comunica com os VANTs por telemetria sem fio e provê aos operadores humanos o controle das aeronaves.
 
-A estação em solo entrega ao controlador diversos dados em tempo real sobre o desempenho e posição dos VANTs e até pode servir como um "cockpit virtual", fornecendo muitos dos mesmos instrumentos que um piloto teria caso estivesse pilotando um avião. Porém, um *software* de Controle em solo é tipicamente utilizado para o planejamento, carregamento das missões de voo e definição de parâmetros.
+.. A Ground Control Station (GCS) is a control platform, usually a software application running on a computer on the ground, which communicates with UAVs for wireless telemetry and provides human operators control of the aircraft.
+
+A estação em solo entrega ao controlador diversos dados em tempo real sobre o desempenho e posição dos VANTs e pode até servir como um "cockpit virtual", fornecendo muitos dos mesmos instrumentos que um piloto teria caso estivesse pilotando um avião. Contudo, um *software* de Controle em solo é normalmente utilizado para o planejamento, envio das missões de voo e definição de parâmetros de voo.
+
+.. The ground station delivers to the controller several data in real time on the performance and position of UAVs and can even serve as a "virtual cockpit", providing many of the same instruments that a pilot would have if he were flying an airplane. However, Ground Control  software * is normally used for planning, uploading flight missions and defining flight parameters.
 
 Existem mais de dez estações de controle em solo diferentes. Na área de controle de VANTs, os principais controladores são Mission Planner, APM Planner 2, MAVProxy, QGroundControl e UgCS. Para Tablet/Smartphone, há Tower (DroidPlanner 3), MAVPilot, AndroPilot e SidePilot. [4]_
+
+.. There are more than ten different ground control stations. In the area of UAV control, the main controllers are Mission Planner, APM Planner 2, MAVProxy, QGroundControl e UgCS. Para Tablet/Smartphone, há Tower (DroidPlanner 3), MAVPilot, AndroPilot e SidePilot. [4]_
 
 .. https://ardupilot.org/copter/docs/common-choosing-a-ground-station.html#overview
 

@@ -165,13 +165,13 @@
             
   <div class="section" id="vr-01">
 <h1>VR-01<a class="headerlink" href="#vr-01" title="Permalink to this headline">¶</a></h1>
-<div class="figure align-center" id="id3">
+<div class="figure align-center" id="id5">
 <a class="reference internal image-reference" href="../_images/vr01.png"><img alt="../_images/vr01.png" src="../_images/vr01.png" style="width: 450px;" /></a>
 <p class="caption"><span class="caption-text">Aeronave Ranger EX Volatex RC</span></p>
 </div>
-<p>Este trabalho busca o estudo, documentação e desenvolvimento de tecnicas de controle cooperativo de veiculos aereos não tripulados.</p>
-<p>O uso de múltiplos veículos aéreos não tripulados em missões como de vigilância e monitoramento pode torná-las mais rápidas e com maiores chances de sucesso. Para isso, torna-se necessário que os VANTs comuniquem-se entre si e tenham uma estratégia de controle que determine o que cada um deles deve fazer. Esse projeto inclui três VANTs de asa fixa que estão disponíveis no Laboratório de Robótica Aérea da UnB e deverão ser estudas e implementadas técnicas de controle cooperativo no hardware e software embarcados.</p>
-<p>O sistema completo é constituído por quatro sub-sistemas: três aeronaves e uma estação base. A comunicação entre tais sub-sistemas é realizada através de rádios de comunicação. Cada sub-sistema possui seu próprio modem de comunicação e tem a capacidade de comunicar-se diretamente com qualquer outro sub-sistema <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<p>Este trabalho busca o estudo, documentação e desenvolvimento de técnicas de controle cooperativo de veículos aéreos não tripulados a fim de possibilitar que três aeronaves de asa fixa voem, autonomamente, em formação de esquadrilha.</p>
+<p>O uso de múltiplos veículos aéreos não tripulados em missões como de vigilância e monitoramento pode torná-las mais rápidas e com maiores chances de sucesso. Para tal, é necessário que os VANTs comuniquem-se entre si e tenham uma estratégia de controle que determine o que cada um deles deve fazer. Esse projeto inclui três VANTs de asa fixa que disponíveis no Laboratório de Robótica Aérea da UnB e deverão ser estudadas e implementadas técnicas de controle cooperativo no hardware e software embarcados.</p>
+<p>O sistema completo é constituído por quatro sub-sistemas: três aeronaves e uma estação base. A comunicação entre tais sub-sistemas é realizada através de rádios de comunicação. Cada sub-sistema possui seu próprio modem de comunicação e tem a capacidade de comunicar-se diretamente com qualquer outro sub-sistema.</p>
 <p>Cada aeronave possui dois componentes principais que merecem destaque. Um deles é o piloto automático, dispositivo responsável pela aquisição, condicionamento e processamento de sinais provenientes dos sensores da aeronave e pelo controle dos atuadores do avião. O outro é o computador embarcado. Ele é responsável pelo processamento de dados, controle dos aviões (controle individual de cada avião ou controle cooperativo entre os três aviões) e pela comunicação com os outros sub-sistemas por meio dos rádios de comunicação.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Piloto automatico</span></p>
@@ -197,7 +197,10 @@
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Computador Embarcado</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="vr01/embedded_system/system.html">Computador Embarcado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vr01/embedded_system/system.html">Computador Embarcado</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vr01/embedded_system/system.html#overo-waterstorm">Overo WaterStorm</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -206,10 +209,28 @@
 <li class="toctree-l1"><a class="reference internal" href="vr01/model/Ranger.html">Ranger EX Volatex RC</a></li>
 </ul>
 </div>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.</td></tr>
+</tbody>
+</table>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.</td></tr>
+<tr><td class="label">[2]</td><td>ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td>CORDEIRO, T. F. K. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2018.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td>PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.</td></tr>
 </tbody>
 </table>
 </div>

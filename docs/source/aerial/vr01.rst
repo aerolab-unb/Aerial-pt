@@ -13,17 +13,20 @@ VR-01
 
 Este trabalho busca o estudo, documentação e desenvolvimento de técnicas de controle cooperativo de veículos aéreos não tripulados a fim de possibilitar que três aeronaves de asa fixa voem, autonomamente, em formação de esquadrilha.
 
-O uso de múltiplos veículos aéreos não tripulados em missões como de vigilância e monitoramento pode torná-las mais rápidas e com maiores chances de sucesso. Para isso, torna-se necessário que os VANTs comuniquem-se entre si e tenham uma estratégia de controle que determine o que cada um deles deve fazer. Esse projeto inclui três VANTs de asa fixa que disponíveis no Laboratório de Robótica Aérea da UnB e deverão ser estudadas e implementadas técnicas de controle cooperativo no hardware e software embarcados.
+.. This work seeks the study, documentation and development of cooperative control techniques for unmanned aerial vehicles in order to enable three fixed-wing aircraft to fly, autonomously, in squadron formation.
 
-O sistema completo é constituído por quatro sub-sistemas: três aeronaves e uma estação base. A comunicação entre tais sub-sistemas é realizada através de rádios de comunicação. Cada sub-sistema possui seu próprio modem de comunicação e tem a capacidade de comunicar-se diretamente com qualquer outro sub-sistema [1]_.
+O uso de múltiplos veículos aéreos não tripulados em missões como vigilância, monitoramento e buscas pode torná-las mais rápidas e com maiores chances de sucesso. Para tal, é necessário que os VANTs comuniquem-se entre si e tenham uma estratégia de controle que determine o que cada um deles deve fazer. Esse projeto inclui três VANTs de asa fixa disponíveis no Laboratório de Robótica Aérea da Universidade de Brasília e deverão ser estudadas e implementadas técnicas de controle cooperativo no hardware e software embarcado.
 
-.. The complete system is constituted by four sub-systems: three aircraft and a base station. The communication between those sub-systems is carried out through communication radios. Each subsystem has its own communication modem and has the ability to communicate directly with any other subsystem [1]_.
+.. The use of multiple unmanned aerial vehicles in missions such as surveillance, monitoring and searches can make them faster and more likely to succeed. For this, it is necessary that the UAVs communicate with each other and have a control strategy that determines what each one should do. This project includes three fixed-wing UAVs available at the Laboratory of Aerial Robotics at the University of Brasilia, which should be studied and implemented cooperative control techniques in the embedded hardware and software.
 
-Cada aeronave possui dois componentes principais que merecem destaque. Um deles é o piloto automático, dispositivo responsável pela aquisição, condicionamento e processamento de sinais provenientes dos sensores da aeronave e pelo controle dos atuadores do avião. O outro é o computador embarcado. Ele é responsável pelo processamento de dados, controle dos aviões (controle individual de cada avião ou controle cooperativo entre os três aviões) e pela comunicação com os outros sub-sistemas por meio dos rádios de comunicação.
+O sistema completo é constituído por quatro sub-sistemas: três aeronaves e uma estação base. A comunicação entre tais sub-sistemas é realizada através de rádios de comunicação. Cada sub-sistema possui seu próprio modem de comunicação e tem a capacidade de comunicar-se diretamente com qualquer outro sub-sistema.
 
-.. Each aircraft has two main components that are worth mentioning. One of them is the autopilot, a device responsible for the acquisition, conditioning and processing of signals from the aircraft's sensors and for controlling the aircraft's actuators. The other is the embedded computer. He is responsible for data processing, control of the planes (individual control of each plane or cooperative control between the three planes) and for communication with the others sub-systems through the communication radios.
+.. The complete system is constituted by four sub-systems: three aircraft and a base station. The communication between those sub-systems is carried out through communication radios. Each subsystem has its own communication modem and has the ability to communicate directly with any other subsystem.
 
-.. Já as leis de controle responsaveis pelo controle das aeronaves em voo são baseadas em um projeto de controle de realimentação interna e externa. Desta forma, a malha interna gerencia os aspectos da dinâmica da aeronave, enquanto a malha externa controla sua posição com relação ao líder virtual. Logo. foram elaborados controladores para que as aeronaves possam acompanhar uma outra aeronave líder evitando colisão enquanto a formação a qual estão contidas se altera, ou não, no tempo. É importante destacar que as informações relativas aos dados do líder são conhecidas por todos os outros aviões porém os outros aviões não precisam de comunicação bidirecional com todas as outras aeronaves.
+Cada aeronave possui dois componentes principais que merecem destaque. Um deles é o piloto automático, dispositivo responsável pela aquisição, condicionamento e processamento de sinais provenientes dos sensores da aeronave e pelo controle dos atuadores do avião. O outro é o computador embarcado, responsável pelo processamento de dados, controle dos aviões (controle individual de cada avião ou controle cooperativo entre os três aviões) e pela comunicação com os outros sub-sistemas por meio dos rádios de comunicação.
+
+.. Each aircraft has two main components that are worth mentioning. One of them is the autopilot, a device responsible for the acquisition, conditioning and processing of signals from the aircraft's sensors and for controlling the aircraft's actuators. The other is the embedded computer, responsible for data processing, control of the planes (individual control of each plane or cooperative control between the three planes) and for communication with the others sub-systems through the communication radios.
+
 	
 .. toctree::
    :maxdepth: 2
@@ -49,8 +52,8 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
 
 .. [1] Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.
 
-.. ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.
+.. [2] ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.
 
-.. CORDEIRO, T. F. K. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+.. [3] CORDEIRO, T. F. K. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2018.
 
-.. PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+.. [4] PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
