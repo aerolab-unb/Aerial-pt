@@ -97,6 +97,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../embedded_system/system.html">Computador Embarcado</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../model/Ranger.html">Ranger EX Volatex RC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vr01.html#referencias">Referências</a></li>
 </ul>
 </li>
 </ul>
@@ -194,7 +195,7 @@
 </div>
 <div class="section" id="sensor-de-velocidade-do-ar">
 <h2>Sensor de velocidade do ar<a class="headerlink" href="#sensor-de-velocidade-do-ar" title="Permalink to this headline">¶</a></h2>
-<p>. . .</p>
+<p>Em edição...</p>
 </div>
 <div class="section" id="gps-compass">
 <h2>GPS + Compass<a class="headerlink" href="#gps-compass" title="Permalink to this headline">¶</a></h2>
@@ -206,7 +207,7 @@
 </div>
 <div class="section" id="radio-controle">
 <h2>Rádio controle<a class="headerlink" href="#radio-controle" title="Permalink to this headline">¶</a></h2>
-<p>O sistema de rádio com controle remoto (RC) é necessário caso deseje controlar manualmente seu veículo, já que o PX4 não requer um sistema de rádio para modos de voo autônomo.</p>
+<p>O sistema de rádio controle (RC) é necessário caso deseje controlar manualmente seu veículo, dado que o Pixhawk não requer um sistema de rádio para modos de voo autônomo.</p>
 <p>Para conectar o sistema de rádio controle, será necessário selecionar um transmissor/receptor compatível e depois vinculá-lo para que eles se comuniquem.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
@@ -239,12 +240,12 @@
 </div>
 <div class="section" id="sensor-de-distancia">
 <h2>Sensor de distancia<a class="headerlink" href="#sensor-de-distancia" title="Permalink to this headline">¶</a></h2>
-<p>O Pixhawk suporta vários sensores de distância diferentes, incluindo os Lidars (que usam lasers ou raios infravermelhos para medições de distância) e Sonars (que usam som ultrassônico), e também incluem os buscadores de alcance LED Maxbotix Sonar e Pulsed Light. Dessa forma, a instalação varia de dispositivo para dispositivo. Mais informações a respeito da configuração dos sensores pode ser visualizada em <a class="reference external" href="https://ardupilot.org/copter/docs/common-rangefinder-landingpage.html#rangefinders-landing-page">Rangefinders</a>.</p>
+<p>O Pixhawk suporta vários sensores de distância diferentes, incluindo os Lidars (que usam lasers ou raios infravermelhos para medições de distância) e Sonars (que utilizam som ultrassônico), e também incluem os buscadores de alcance LED Maxbotix Sonar e Pulsed Light. Dessa forma, a instalação varia de dispositivo para dispositivo. Mais informações a respeito da configuração dos sensores pode ser visualizada em <a class="reference external" href="https://ardupilot.org/copter/docs/common-rangefinder-landingpage.html#rangefinders-landing-page">Rangefinders</a>.</p>
 <div class="figure align-center" id="id3">
 <img alt="../../../../_images/RangeFinder_LandingPageImage_4.jpg" src="../../../../_images/RangeFinder_LandingPageImage_4.jpg" />
 <p class="caption"><span class="caption-text">Exemplo de alguns sensores de distância compatíveis</span></p>
 </div>
-<p>Para implementar o projeto, escolheu-se o sensor Lidar para habilitar a função de pouso automático. O sensor lidar pode ser conectado ao Pixhawk de duas formas, pelo protocolo I2C na porta I2C (ou I2C <em>slitter</em>) ou por pulse-width-modulation (PWM) na trilha PWM.</p>
+<p>Para implementar o projeto, escolheu-se o sensor Lidar para habilitar a função de pouso automático devido sua maior precisão em relação aos demais. O sensor lidar pode ser conectado ao Pixhawk de duas formas, através do protocolo I2C na porta I2C (ou I2C <em>slitter</em>) ou por <em>pulse-width-modulation</em> (PWM) na trilha PWM.</p>
 <p>De acordo com a documentação do Pixhawk, o lidar utilizado apresenta problemas de interferência com outros dispositivos quando conectado na porta I2C. Assim, escolheu-se a conexão por PWM. Um diagrama de conexão pode ser vista na tabela abaixo e o esquema de montagem pode ser visto na figura a seguir, onde o valor do resistor pode variar entre 200Ω e 1kΩ <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
 <table border="1" class="docutils" id="id4">
 <caption><span class="caption-text">Diagrama de conexão entre o Lidar e o Pixhawk</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
@@ -282,12 +283,27 @@
 <img alt="../../../../_images/pixhawk_lidar_connection.png" src="../../../../_images/pixhawk_lidar_connection.png" />
 </div>
 <p>Mais detalhes sobre a conexão podem ser encontrados em <a class="reference external" href="https://ardupilot.org/copter/docs/common-rangefinder-lidarlite.html?highlight=lidar#lidar-lite-rangefinder">LIDAR-Lite Rangefinder</a>.</p>
+<div class="section" id="mais-informacoes-e-referencias">
+<h3>Mais informações e referências<a class="headerlink" href="#mais-informacoes-e-referencias" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.px4.io/v1.9.0/en/assembly/quick_start_pixhawk.html">Pixhawk Wiring Quick Start - PX4 User Guide</a></li>
+</ul>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.px4.io/v1.9.0/en/assembly/">Basic Assembly - PX4 User Guide</a></li>
+</ul>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.px4.io/v1.9.0/en/flight_controller/pixhawk_series.html">Pixhawk Series - PX4 User Guide</a></li>
+</ul>
+<ul class="simple">
+<li><a class="reference external" href="https://ardupilot.org/copter/docs/common-optional-hardware.html">Peripheral Hardware - Ardupilot Docs</a></li>
+</ul>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil</td></tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 

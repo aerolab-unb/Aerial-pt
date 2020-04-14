@@ -48,12 +48,26 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
 
    vr01/model/Ranger
 
-.. References
+Referências
+-----------
 
-.. [1] Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.
+	- Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.
 
-.. [2] ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.
+	* ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.
 
-.. [3] CORDEIRO, T. F. K. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+	- CORDEIRO, T. F. K. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2018.
 
-.. [4] PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+	- `PX4 Autopilot User Guide`_ - docs.px4.io
+.. _PX4 Autopilot User Guide: https://docs.px4.io/master/en/index.html
+
+	* `QGroundControl User Guide`_ - qgroundcontrol.com
+.. _QGroundControl User Guide: https://docs.qgroundcontrol.com/en/
+
+	- `Ardupilot Docs`_ - ardupilot.org
+.. _Ardupilot Docs: https://ardupilot.org/copter/index.html
+
+
+
+

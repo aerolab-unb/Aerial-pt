@@ -118,7 +118,9 @@ A saída do modulo de energia (PM) deve ser conectada à porta **POWER** do Pixh
 Sensor de distancia
 ~~~~~~~~~~~~~~~~~~~~
 
-O Pixhawk suporta vários sensores de distância diferentes, incluindo os Lidars (que usam lasers ou raios infravermelhos para medições de distância) e Sonars (que usam som ultrassônico), e também incluem os buscadores de alcance LED Maxbotix Sonar e Pulsed Light. Dessa forma, a instalação varia de dispositivo para dispositivo. Mais informações a respeito da configuração dos sensores pode ser visualizada em `Rangefinders`_.
+O Pixhawk suporta vários sensores de distância diferentes, incluindo os Lidars (que usam lasers ou raios infravermelhos para medições de distância) e Sonars (que utilizam som ultrassônico), e também incluem os buscadores de alcance LED Maxbotix Sonar e Pulsed Light. Dessa forma, a instalação varia de dispositivo para dispositivo. Mais informações a respeito da configuração dos sensores pode ser visualizada em `Rangefinders`_.
+
+.. Pixhawk supports several different distance sensors, including Lidars (which use lasers or infrared rays for distance measurements) and Sonars (which use ultrasonic waves), and also include the Maxbotix Sonar and Pulsed Light LED range finders. Therefore, the installation varies from device to device. More information about the sensor configuration can be seen in `Rangefinders`_.
 
 .. _Rangefinders: https://ardupilot.org/copter/docs/common-rangefinder-landingpage.html#rangefinders-landing-page
 
@@ -129,9 +131,13 @@ O Pixhawk suporta vários sensores de distância diferentes, incluindo os Lidars
 
 .. explicar pq escolheu o lidar
 
-Para implementar o projeto, escolheu-se o sensor Lidar para habilitar a função de pouso automático. O sensor lidar pode ser conectado ao Pixhawk de duas formas, pelo protocolo I2C na porta I2C (ou I2C *slitter*) ou por pulse-width-modulation (PWM) na trilha PWM. 
+Para implementar o projeto, escolheu-se o sensor Lidar para habilitar a função de pouso automático devido sua maior precisão em relação aos demais. O sensor lidar pode ser conectado ao Pixhawk de duas formas, através do protocolo I2C na porta I2C (ou I2C *slitter*) ou por *pulse-width-modulation* (PWM) na trilha PWM. 
+
+.. To implement the project, the Lidar sensor was chosen to enable the automatic landing function due to its greater accuracy compared to the others. Lidar sensor can be connected to the Pixhawk in two ways, via the I2C protocol on the I2C port (or I2C slitter) or by pulse-width-modulation (PWM) on the PWM track.
 
 De acordo com a documentação do Pixhawk, o lidar utilizado apresenta problemas de interferência com outros dispositivos quando conectado na porta I2C. Assim, escolheu-se a conexão por PWM. Um diagrama de conexão pode ser vista na tabela abaixo e o esquema de montagem pode ser visto na figura a seguir, onde o valor do resistor pode variar entre 200Ω e 1kΩ [1]_.
+
+.. According to the Pixhawk documentation, the Lidar used presents interference problems with other devices when connected to the I2C port. Thus, the PWM connection was chosen. A connection diagram can be seen in the table below and the assembly diagram can be seen in the following figure, where the value of the resistor can vary between 200Ω and 1kΩ [1] _.
 
 .. table:: Diagrama de conexão entre o Lidar e o Pixhawk
 
@@ -151,11 +157,31 @@ De acordo com a documentação do Pixhawk, o lidar utilizado apresenta problemas
     
 Mais detalhes sobre a conexão podem ser encontrados em `LIDAR-Lite Rangefinder`_.
 
+.. More details about the connection can be found in `LIDAR-Lite Rangefinder`_.
+
 .. _LIDAR-Lite Rangefinder: https://ardupilot.org/copter/docs/common-rangefinder-lidarlite.html?highlight=lidar#lidar-lite-rangefinder
 
+
+Mais informações e referências
+------------------------------
+
+* `Pixhawk Wiring Quick Start - PX4 User Guide`_
+.. _Pixhawk Wiring Quick Start - PX4 User Guide: https://docs.px4.io/v1.9.0/en/assembly/quick_start_pixhawk.html
+
+* `Basic Assembly - PX4 User Guide`_
+.. _Basic Assembly - PX4 User Guide: https://docs.px4.io/v1.9.0/en/assembly/
+
+* `Pixhawk Series - PX4 User Guide`_
+.. _Pixhawk Series - PX4 User Guide: https://docs.px4.io/v1.9.0/en/flight_controller/pixhawk_series.html
+
+* `Peripheral Hardware - Ardupilot Docs`_
+.. _Peripheral Hardware - Ardupilot Docs: https://ardupilot.org/copter/docs/common-optional-hardware.html
 
 .. References
 
 .. [1] Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil
+
+
+
 
 
