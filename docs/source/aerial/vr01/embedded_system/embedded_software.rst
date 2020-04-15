@@ -7,7 +7,7 @@ Qualquer computador digital com alguma complexidade que exija administração de
 
 O primeiro passo para a utilização desse computador, é a configuração e criação de uma imagem de sistema operacional que atende aos requisitos do projeto. São eles: compatibilidade com o computador utilizado, Overo COM, e suporte para aplicações em tempo real.
 
-Existem duas abordagens para a execução de aplicações de tempo real em Linux, uso de ferramentas que implementam um kernel duplo ou o uso de RTL (Real-time Linux). 
+Um Sistema Operacional de Tempo Real ou RTOS (Real Time Operating Systems)  é um sistema operacional destinado à execução de múltiplas tarefas com tempo de resposta a um evento (externo ou interno) pré-definido;. Existem duas abordagens para a execução de aplicações de tempo real em Linux, uso de ferramentas que implementam um kernel duplo ou o uso de RTL (Real-time Linux). 
 
 RT-Mag
 ~~~~~~~
