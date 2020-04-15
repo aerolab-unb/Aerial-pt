@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Computador Embarcado &mdash; CoopRobo 1.0.0 documentation</title>
+  <title>Sistema Embarcado &mdash; CoopRobo 1.0.0 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Ranger EX Volatex RC" href="../model/Ranger.html" />
+    <link rel="next" title="Computador Embarcado - Overo WaterStorm" href="embedded_hardware.html" />
     <link rel="prev" title="Pouso automático" href="../autopilot/config/automatic_landing.html" /> 
 </head>
 
@@ -87,8 +87,9 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../vr01.html">VR-01</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../autopilot/pilot.html">Piloto Automatico</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../autopilot/config_pilot.html">Configuração do Piloto Automatico</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Computador Embarcado</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#overo-waterstorm">Overo WaterStorm</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Sistema Embarcado</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="embedded_hardware.html">Computador Embarcado - Overo WaterStorm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="embedded_software.html">Sistema Operacional</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../model/Ranger.html">Ranger EX Volatex RC</a></li>
@@ -150,7 +151,7 @@
         
           <li><a href="../../vr01.html">VR-01</a> &raquo;</li>
         
-      <li>Computador Embarcado</li>
+      <li>Sistema Embarcado</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -169,24 +170,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="computador-embarcado">
-<h1>Computador Embarcado<a class="headerlink" href="#computador-embarcado" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><strong>TESTE com trechos do tg do pita e moura</strong></p>
-</div>
-<p>O computador embarcado será adicionado à aeronave de modo a comunicar-se com a Pixhawk e um modem que transmitirá informações de outros computadores embarcados que estarão em situações semelhantes em outras aeronaves. O microprocessador deverá processar as informações obtidas através do modem e repassar instruções ao piloto automático Pixhawk. Neste capítulo será explicitado os primeiros passos e procedimentos que tiveram de ser realizados para operar o microprocessador.</p>
-<p>Computadores embarcados são processadores digitais acoplados a diversos periféricos com o objetivo de tratar uma atividade pré determinada. A pré determinação da sua atividade permite que os computadores embarcados possuam menor tamanho, peso, preço e capacidade de processamento do que computadores comuns que desempenham funções similares.</p>
-<p>Contudo existem desvantagens para sua aplicação causadas pelo mesmo motivo que os tornam atrativos. Por serem bem específicos geralmente estes dispositivos não podem ter sua função inicial alterada sem mudar boa parte de seu software ou estrutura do hardware, em alguns casos estes dispositivos chegam a não apresentar interface com o usuário.</p>
-<div class="section" id="overo-waterstorm">
-<h2>Overo WaterStorm<a class="headerlink" href="#overo-waterstorm" title="Permalink to this headline">¶</a></h2>
-<p>Em nosso caso mais especificamente o computador embarcado escolhido foi o Overo WaterStorm Computer-On-Module(COM), esse sistema embarcado apresenta um processador DM3730 com arquitetura ARM Cortex-A8 e clock de base do processador de até 1 GHz. Além disso, esse computador está acoplado a uma placa de expansão Tobi que acrescenta ao computador embarcado conexões do tipo display DVI, Ethernet, USB Host, USB OTG, USB console, áudio Stereo e um segmento com 40 pin-headers que podem ser utilizados para a mais diversas funções, como modulação PWM, GPIO, alimentação, conversão analógico digital e comunicação serial.</p>
-<p>Acoplou-se também ao sistema uma câmera Caspa VL, capaz de capturar imagens coloridas com dimensão de 752 x 480 pixels em uma frequência de 60 imagens por segundo. Esses três componentes, que podem ser vistos na figura 2.8, são produzidos pela empresa Gumstix, fabricante de hardware especializada em computadores pequenos do tipo computador-em-módulo (COM - computer-on-module), muito utilizados para
-sistemas embarcados.</p>
-<p>Apesar do tamanho pequeno, a combinação da Overo COM com a placa de extensão TOBI possui o mesmo desempenho do que um computador Linux completo de tamanho normal, maior do que outros sistemas desse tipo encontrados no mercado, como, por exemplo, o computador Raspberry Pi.</p>
-<div class="section" id="especificacoes">
-<h3>Especificações<a class="headerlink" href="#especificacoes" title="Permalink to this headline">¶</a></h3>
-</div>
+  <div class="section" id="sistema-embarcado">
+<h1>Sistema Embarcado<a class="headerlink" href="#sistema-embarcado" title="Permalink to this headline">¶</a></h1>
+<p>Um computador embarcado deverá adicionado à cada aeronave de modo a comunicar-se com o piloto automático Pixhawk e com os computadores embarcados nas demais aeronaves através de um modem responsável por receber e transmitir informações. O microprocessador deverá processar as informações obtidas através do modem e repassar instruções ao piloto automático Pixhawk.</p>
+<p>Computadores embarcados são sistemas microprocessados digitais no qual o computador é inteiramente encapsulado ou dedicado ao sistema que ele controla. Diferentemente de computadores de finalidade geral, como o computador pessoal, um sistema embarcado realiza um conjunto de tarefas predefinidas, geralmente com requisitos específicos. A predefinição das atividades a serem realizadas permite que os computadores embarcados possuam menor tamanho, peso, preço e capacidade de processamento do que computadores comuns que desempenham funções similares.</p>
+<p>Entretanto, existem desvantagens em sua aplicação devido o mesmo motivo que os tornam atrativos. Por serem bem específicos geralmente estes dispositivos não podem ter sua função inicial alterada sem mudar boa parte de seu software ou estrutura do hardware, em alguns casos estes dispositivos chegam a não apresentar interface com o usuário.</p>
+<p>Neste capítulo será explicitado os primeiros passos e procedimentos que tiveram de ser realizados para operar o microprocessador.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="embedded_hardware.html">Computador Embarcado - Overo WaterStorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="embedded_hardware.html#especificacoes">Especificações</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="embedded_software.html">Sistema Operacional</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="embedded_software.html#rt-mag">RT-Mag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_software.html#projeto-yocto">Projeto Yocto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_software.html#obtencao-de-imagens-do-so">Obtenção de imagens do SO</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -198,7 +200,7 @@ sistemas embarcados.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../model/Ranger.html" class="btn btn-neutral float-right" title="Ranger EX Volatex RC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="embedded_hardware.html" class="btn btn-neutral float-right" title="Computador Embarcado - Overo WaterStorm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../autopilot/config/automatic_landing.html" class="btn btn-neutral float-left" title="Pouso automático" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

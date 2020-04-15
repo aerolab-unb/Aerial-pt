@@ -183,7 +183,7 @@ A maior parte de suas aplicações é direcionada a aeronaves de asas rotativas.
 
 .. Most of its applications are directed to rotary-wing aircraft.
 
-Especificações do Pixhawk 1
+Especificações do Pixhawk
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  **Processador**

@@ -21,5 +21,6 @@ Esta seção contém os principais tópicos de configuração e montagem:
    config/airframe
    config/connection 
    config/mounting
+   config/Compass
    config/automatic_landing
 
