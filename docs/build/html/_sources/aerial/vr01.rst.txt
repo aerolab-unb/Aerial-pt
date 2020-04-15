@@ -30,7 +30,7 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
 	
 .. toctree::
    :maxdepth: 2
-   :caption: Piloto automatico
+   :caption: Piloto Automático
 
    vr01/autopilot/pilot
    vr01/autopilot/config_pilot
@@ -38,7 +38,7 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
 	
 .. toctree::
    :maxdepth: 2
-   :caption: Computador Embarcado
+   :caption: Sistema Embarcado
 
    vr01/embedded_system/system
 
@@ -50,8 +50,6 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
 
 Referências
 -----------
-
-	- Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.
 
 	* ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.
 
