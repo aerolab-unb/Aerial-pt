@@ -22,5 +22,7 @@ Esta seção contém os principais tópicos de configuração e montagem:
    config/connection 
    config/mounting
    config/Compass
+   config/gyroscope
    config/automatic_landing
+
 
