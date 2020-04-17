@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Calibração da bússola &mdash; CoopRobo 1.0.0 documentation</title>
+  <title>Calibração do giroscópio &mdash; CoopRobo 1.0.0 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Calibração do giroscópio" href="gyroscope.html" />
-    <link rel="prev" title="Montando o Pixhawk" href="mounting.html" /> 
+    <link rel="next" title="Pouso automático" href="automatic_landing.html" />
+    <link rel="prev" title="Calibração da bússola" href="Compass.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,8 +92,8 @@
 <li class="toctree-l4"><a class="reference internal" href="airframe.html">Estrutura da aeronave</a></li>
 <li class="toctree-l4"><a class="reference internal" href="connection.html">Conexões</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mounting.html">Montando o Pixhawk</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Calibração da bússola</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gyroscope.html">Calibração do giroscópio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Compass.html">Calibração da bússola</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Calibração do giroscópio</a></li>
 <li class="toctree-l4"><a class="reference internal" href="automatic_landing.html">Pouso automático</a></li>
 </ul>
 </li>
@@ -159,13 +159,13 @@
         
           <li><a href="../config_pilot.html">Configuração do Piloto Automatico</a> &raquo;</li>
         
-      <li>Calibração da bússola</li>
+      <li>Calibração do giroscópio</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../../_sources/aerial/vr01/autopilot/config/Compass.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../_sources/aerial/vr01/autopilot/config/gyroscope.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -178,29 +178,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="calibracao-da-bussola">
-<h1>Calibração da bússola<a class="headerlink" href="#calibracao-da-bussola" title="Permalink to this headline">¶</a></h1>
-<p>Todos os magnetômetros internos e externos conectados ao Pixhawk serão configurados no processo de calibração da bússola</p>
-<div class="section" id="etapas-de-calibracao">
-<h2>Etapas de calibração<a class="headerlink" href="#etapas-de-calibracao" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>Abra o aplicativo QGroundControl e conecte o veículo pelo fio ao usb do computador.</li>
-<li>Selecione o ícone <strong>Engrenagem</strong> (Configuração do veículo) na barra de ferramentas superior e, em seguida, <strong>Sensores</strong> na barra lateral.</li>
-<li>Clique no botão do sensor da <strong>Bússola</strong>.</li>
+  <div class="section" id="calibracao-do-giroscopio">
+<h1>Calibração do giroscópio<a class="headerlink" href="#calibracao-do-giroscopio" title="Permalink to this headline">¶</a></h1>
+<p>Pelo aplicativo QGroundControl será orientado a posicionar o veículo em uma local com uma superfície plana e mantê-lo imóvel na posiçao determinada.</p>
+<div class="section" id="etapas-da-calibracao">
+<h2>Etapas da calibração<a class="headerlink" href="#etapas-da-calibracao" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Clique no botão do sensor do <strong>Giroscópio</strong>.</li>
+<li>Posicione o veículo sobre a superfície plana e mantenha-o na posição.</li>
 <li>Clique <strong>OK</strong> para começar a calibração.</li>
-<li>Coloque o veículo em umas das posições indicadas em vermelho (não calibrada), mantenha essa posição escolhida por alguns instantes. Uma vez solicitado ( a imagem de orientação fica amarela), gire o veículo em torno do eixo especificado nas duas direções. Quando a calibração estiver concluída para a orientação atual, a imagem associada na tela ficará verde.</li>
-<li>Repita o processo de calibração para todas as orientações do veículo.</li>
+<li>Quando finalizado, o aplicativo QGroundControl mostrará uma barra verde completa e uma contorno verde ao redor da imagem do veículo.</li>
 </ol>
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Caso ocorra algum movimento no veículo, o aplicativo QGroundControl irá automaticamente reiniciar o processo de calibração do giroscópio.</p>
+</div>
 <div class="section" id="mais-informacoes">
 <h3>Mais informações<a class="headerlink" href="#mais-informacoes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="https://docs.px4.io/v1.9.0/en/config/compass.html">PX4 user guide &gt; Firmware</a>.</li>
-</ul>
-<ul class="simple">
-<li><a class="reference external" href="https://docs.qgroundcontrol.com/en/SetupView/sensors_px4.html">QGroundControl user guide &gt; Sensors</a>.</li>
-</ul>
-<ul class="simple">
-<li><a class="reference external" href="https://www.youtube.com/watch?v=91VGmdSlbo4&amp;feature=youtu.be&amp;t=2m38s">PX4 Setup Video</a> (Youtube)</li>
+<li><a class="reference external" href="https://docs.qgroundcontrol.com/en/SetupView/sensors_px4.html#gyroscope">QGroundControl user guide &gt; Gyroscope</a>.</li>
 </ul>
 </div>
 </div>
@@ -214,10 +212,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="gyroscope.html" class="btn btn-neutral float-right" title="Calibração do giroscópio" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="automatic_landing.html" class="btn btn-neutral float-right" title="Pouso automático" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mounting.html" class="btn btn-neutral float-left" title="Montando o Pixhawk" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Compass.html" class="btn btn-neutral float-left" title="Calibração da bússola" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
