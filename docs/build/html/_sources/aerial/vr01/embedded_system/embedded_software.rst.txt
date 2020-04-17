@@ -18,7 +18,7 @@ O projeto RT-MaG (*Real-Time - Marseille Grenoble Project*) é um projeto desenv
 
 Essas ferramentas consistem em um conjunto de blocos simulink que fornecem acesso direto às entradas e saídas do computador. Os modelos Simulink são convertidos automaticamente em aplicações em tempo real. O uso dessas ferramentas é totalmente gratuito. Além disso, atualmente, o Gumstix Overo COM é totalmente compatatível com o sistema RT-MaG.
 
-Entretanto, a ferramenta RT-MaG toma para si muitas das operações necessárias para a operação do nosso sistema, o que impossibilita utiliza-lo da maneira que ele foi idealizado, em consequência disto a demasiada simplificação da etapa poderia prejudicar aplicações futuras. Com essa ferramenta seria inviavel utilizar o protocolo de comunicação *MAVLink* do piloto automático para comunicação entre os dispositivos ou aeronaves, por exemplo.
+Entretanto, a ferramenta RT-MaG toma para si muitas das operações necessárias para a operação do nosso sistema, o que impossibilita utiliza-lo da maneira que ele foi idealizado, em consequência disto a demasiada simplificação da etapa poderia prejudicar aplicações futuras. Com essa ferramenta seria inviavel utilizar o protocolo de comunicação "MAVLink"do piloto automático para comunicação entre os dispositivos ou aeronaves, por exemplo.
 
 Destaca-se ainda a documentação desatualizada, que dificultou a instalação dos componentes da ferramenta como a toolbox do Matlab, que nunca chegou a funcionar, e o sistema operacional do computador embarcado. A complexidade na utilização do sistema aumentava a cada etapa enquanto mesmo as etapas iniciais mais simples ainda não funcionavam adequadamente.
 
@@ -27,6 +27,7 @@ Mais detalhes do projeto RT-MaG podem ser encontrados em `Projet RT-MaG`_.
 .. _Projet RT-MaG: http://www.gipsa-lab.fr/projet/RT-MaG/#
 
 Chegamos a instalar a ferramenta no sistema embarcado, entretanto, devido a complicações posteriores à instalação do sistema operacional, optou-se por não mais utilizar essa ferramenta.
+
 
 Projeto Yocto
 ~~~~~~~~~~~~~~
