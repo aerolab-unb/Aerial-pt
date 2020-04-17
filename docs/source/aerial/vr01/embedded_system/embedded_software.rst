@@ -28,14 +28,28 @@ Mais detalhes do projeto RT-MaG podem ser encontrados em `Projet RT-MaG`_.
 
 Chegamos a instalar a ferramenta no sistema embarcado, entretanto, devido a complicações posteriores à instalação do sistema operacional, optou-se por não mais utilizar essa ferramenta.
 
-Projeto Yocto
-~~~~~~~~~~~~~~
+Linux
+~~~~~~
 
-Em seguida, decidiu-se utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado utilizado por nós e recomendado pela fabricante. O projeto Yocto é um projeto de colaboração open source da `Linux Foundation`_, cujo objetico é produzir e fornecer metadados, ferramentas e processos para ajudar seus usuários a criar distribuições baseados em Linux para *softwares* embarcados, independentemente da arquitetura do sistema. 
+O Linux é um sistema operacional popurlamente utilizado em sistemas embarcados. Além de fornecer suporte para mais arquiteturas cumputacionais que qualquer outro sistema, ele ainda é leve e possui codigo aberto, minimizando os custos de implementação. Dos diferentes sistemas operacionais suportados pelas placas Gumstix Overo, destacam-se os sistemas baseados em Linux. Sendo o **Ubuntu** e o **Yocto Project** os principais, além de serem recomendados pelo proprio fabricante.
+
+Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado. Todavia, realizamos a instalação Ubuntu em um dos computadores embarcados com o intuito de analisar as diferenças entre as duas principais opções de sistemas operacionais. 
+
+Outra opção viável apresentada durante os trabalhos do laboratório foi a utilização do sistema operacional Ubuntu.
+Realizamos a instalação deste sistema em um dos computadores embarcados com o intuito de analisar as diferenças entre as duas principais opções de sistemas operacionais.  O sistema Ubuntu instalado foi o `Ubuntu 15.04`_ por ser uma versão estável e adaptada para o sistema em questão.
+
+Projeto Yocto
+--------------
+
+O projeto Yocto é um projeto de colaboração open source da `Linux Foundation`_, cujo objetico é produzir e fornecer metadados, ferramentas e processos para ajudar seus usuários a criar distribuições baseados em Linux para *softwares* embarcados, independentemente da arquitetura do sistema. 
 
 .. _Linux Foundation: https://www.linuxfoundation.org/
 
 Um elemento a ser destacado dentre os componentes do Projeto Yocto é o sistema de compilação baseado na arquiterura `OpenEmbedded`_, que permite que os desenvolvedores criem suas propria distribuição Linux especifica para seu ambiente, de acordo com suas proprias necessidades. 
+
+Outra ferramenta importante do Yocto Project é o sistema de compilação por referencia Poky. Ele contém a ferramenta BitBake, que permite a compilação cruzada independente da plataforma. Além disso, o BitBake gerencia todos os arquivos de configuração e dados e tenta reduzir o tempo de compilação usando todos os recursos de processamento disponíveis.
+
+Infelizmente, com a ampla versatilidade do Projeto Yocto, a complexidade do processo de criação de uma distribuição personalizada também está aumentando.
 
 .. _OpenEmbedded: https://www.openembedded.org/wiki/Main_Page
 
@@ -45,11 +59,18 @@ Mais detalhes do projeto Yocto podem ser encontrados em `yoctoproject.org`_.
 
 
 Ubuntu
-~~~~~~~
+--------
 
-Outra opção viável apresentada durante os trabalhos do laboratório foi a utilização do sistema operacional Ubuntu. A vantagem de se utilizar o sistema Ubuntu é que esse é um sistema operacional a partir do núcleo Linux muito difundido que já contém diversos softwares que podem ser úteis para algumas aplicações futuras, ele contém, por exemplo, um compilador o que facilita a criação e execução de códigos simples para testes rápidos. 
+A vantagem de se utilizar o sistema Ubuntu é que esse é um sistema operacional a partir do núcleo Linux muito difundido que já contém diversos softwares que podem ser úteis para algumas aplicações futuras, ele contém, por exemplo, um compilador o que facilita a criação e execução de códigos simples para testes rápidos. 
 
-A desvantagem de se utilizar este sistema operacional é que podem ser executadas muitas tarefas paralelas desnecessárias que diminuem a especificidade e o desempenho do computador embarcado. Realizamos a instalação deste sistema em um dos computadores embarcados com o intuito de analisar as diferenças entre as duas principais opções de sistemas operacionais. O sistema Ubuntu instalado foi o `Ubuntu 15.04`_ por ser uma versão estável e adaptada para o sistema em questão.
+A desvantagem de se utilizar este sistema operacional é que podem ser executadas muitas tarefas paralelas desnecessárias que diminuem a especificidade e o desempenho do computador embarcado. 
+
+ O sistema Ubuntu instalado foi o `Ubuntu 15.04`_ por ser uma versão estável e adaptada para o sistema em questão.
 
 .. _Ubuntu 15.04: http://old-releases.ubuntu.com/releases/15.04/
+
+
+.. references::
+
+.. https://www.gumstix.com/images/1241515-1.pdf
 
