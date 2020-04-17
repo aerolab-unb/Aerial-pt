@@ -1,7 +1,5 @@
 Sistema Operacional 
 ====================
-.. Note::
-   **TESTE**
 
 Um computador digital com determinada complexidade que exige o gerenciamento dos recursos do sistema e tais funções primárias necessitam de um sistema operacional. O núcleo ou kernel é a parte mais importante e de nível mais baixo de um sistema operacional, ele tem a função de definir qual programa recebe atenção do processador, gerenciar memória, criar um sistema de arquivos, gerenciar o sistema de comunicação, etc.
 
@@ -35,9 +33,6 @@ O Linux é um sistema operacional popurlamente utilizado em sistemas embarcados.
 
 Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado. Todavia, realizamos a instalação Ubuntu em um dos computadores embarcados com o intuito de analisar as diferenças entre as duas principais opções de sistemas operacionais. 
 
-Outra opção viável apresentada durante os trabalhos do laboratório foi a utilização do sistema operacional Ubuntu.
-Realizamos a instalação deste sistema em um dos computadores embarcados com o intuito de analisar as diferenças entre as duas principais opções de sistemas operacionais.  O sistema Ubuntu instalado foi o `Ubuntu 15.04`_ por ser uma versão estável e adaptada para o sistema em questão.
-
 Projeto Yocto
 --------------
 
@@ -53,19 +48,21 @@ Infelizmente, com a ampla versatilidade do Projeto Yocto, a complexidade do proc
 
 .. _OpenEmbedded: https://www.openembedded.org/wiki/Main_Page
 
-Mais detalhes do projeto Yocto podem ser encontrados em `yoctoproject.org`_.
+
+.. Note::
+   Mais detalhes do projeto Yocto podem ser encontrados em `yoctoproject.org`_.
 
 .. _yoctoproject.org: https://www.yoctoproject.org/
 
 
 Ubuntu
---------
+------
 
 A vantagem de se utilizar o sistema Ubuntu é que esse é um sistema operacional a partir do núcleo Linux muito difundido que já contém diversos softwares que podem ser úteis para algumas aplicações futuras, ele contém, por exemplo, um compilador o que facilita a criação e execução de códigos simples para testes rápidos. 
 
 A desvantagem de se utilizar este sistema operacional é que podem ser executadas muitas tarefas paralelas desnecessárias que diminuem a especificidade e o desempenho do computador embarcado. 
 
- O sistema Ubuntu instalado foi o `Ubuntu 15.04`_ por ser uma versão estável e adaptada para o sistema em questão.
+O sistema Ubuntu instalado foi o `Ubuntu 15.04`_ por ser uma versão estável e adaptada para o sistema em questão.
 
 .. _Ubuntu 15.04: http://old-releases.ubuntu.com/releases/15.04/
 
