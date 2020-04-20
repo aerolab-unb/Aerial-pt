@@ -166,22 +166,18 @@ Mais informações e referências
 ------------------------------
 
 * `Pixhawk Wiring Quick Start - PX4 User Guide`_
-.. _Pixhawk Wiring Quick Start - PX4 User Guide: https://docs.px4.io/v1.9.0/en/assembly/quick_start_pixhawk.html
 
 * `Basic Assembly - PX4 User Guide`_
-.. _Basic Assembly - PX4 User Guide: https://docs.px4.io/v1.9.0/en/assembly/
 
 * `Pixhawk Series - PX4 User Guide`_
-.. _Pixhawk Series - PX4 User Guide: https://docs.px4.io/v1.9.0/en/flight_controller/pixhawk_series.html
 
 * `Peripheral Hardware - Ardupilot Docs`_
-.. _Peripheral Hardware - Ardupilot Docs: https://ardupilot.org/copter/docs/common-optional-hardware.html
 
 .. References
 
 .. [1] Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil
 
-
-
-
-
+.. _Pixhawk Wiring Quick Start - PX4 User Guide: https://docs.px4.io/v1.9.0/en/assembly/quick_start_pixhawk.html
+.. _Basic Assembly - PX4 User Guide: https://docs.px4.io/v1.9.0/en/assembly/
+.. _Pixhawk Series - PX4 User Guide: https://docs.px4.io/v1.9.0/en/flight_controller/pixhawk_series.html
+.. _Peripheral Hardware - Ardupilot Docs: https://ardupilot.org/copter/docs/common-optional-hardware.html

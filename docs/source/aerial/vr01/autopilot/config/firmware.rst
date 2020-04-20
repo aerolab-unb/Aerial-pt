@@ -1,7 +1,7 @@
 Firmware
 =========
 
-A instalação do *firmware* no hardware do controlador de voo pode ser efetuada de duas formas, pelo uso de um programa de Estação de Controle Terrestre (ECT) ou diretamente pelo uso de ferramentas de desenvolvedor sem o uso de um programa auxiliar. 
+A instalação do *firmware* no hardware do controlador de voo pode ser efetuada de duas formas, pelo uso de um programa de Estação de Controle Terrestre (ECT) ou diretamente pelo uso de ferramentas de desenvolvedor sem o uso de um programa auxiliar [1]_. 
 
 .. The installation of the firmware on the flight controller hardware can be done in two ways, by using an Ground Control Station (GCS) program or directly by using developer tools without using an auxiliary program. 
 
@@ -68,12 +68,14 @@ Assim que a instalação acabar e o firmware estiver instalado, o controlador se
 Mais informações
 ----------------
 
-
 * `PX4 user guide > Firmware`_.
-.. _PX4 user guide > Firmware: https://docs.px4.io/v1.9.0/en/config/firmware.html
+
 * `QGroundControl user guide > Firmware`_.
-.. _QGroundControl user guide > Firmware: https://docs.qgroundcontrol.com/en/SetupView/Firmware.html
+
 * `PX4 Setup Video`_ (Youtube)
+
+.. _PX4 user guide > Firmware: https://docs.px4.io/v1.9.0/en/config/firmware.html
+.. _QGroundControl user guide > Firmware: https://docs.qgroundcontrol.com/en/SetupView/Firmware.html
 .. _PX4 Setup Video: https://www.youtube.com/watch?v=91VGmdSlbo4&feature=youtu.be
 
 .. References

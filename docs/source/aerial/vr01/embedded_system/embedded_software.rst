@@ -104,7 +104,8 @@ Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser espec�
 
 .. _Ubuntu 15.04: http://old-releases.ubuntu.com/releases/15.04/
 
-.. references::
+Referencias
+------------
 
 .. https://www.gumstix.com/images/1241515-1.pdf
 

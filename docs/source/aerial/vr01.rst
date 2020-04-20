@@ -58,14 +58,11 @@ Referências
 	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
 
 	- `PX4 Autopilot User Guide`_ - docs.px4.io
-.. _PX4 Autopilot User Guide: https://docs.px4.io/master/en/index.html
 
 	* `QGroundControl User Guide`_ - qgroundcontrol.com
-.. _QGroundControl User Guide: https://docs.qgroundcontrol.com/en/
 
 	- `Ardupilot Docs`_ - ardupilot.org
+
+.. _PX4 Autopilot User Guide: https://docs.px4.io/master/en/index.html
+.. _QGroundControl User Guide: https://docs.qgroundcontrol.com/en/
 .. _Ardupilot Docs: https://ardupilot.org/copter/index.html
-
-
-
-
