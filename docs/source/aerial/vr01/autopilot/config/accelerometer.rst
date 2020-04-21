@@ -23,15 +23,10 @@ Mais informações
 
 * `PX4 user guide > Accelerometer`_.
 
-.. _PX4 user guide > Accelerometer: https://docs.px4.io/v1.9.0/en/config/accelerometer.html
-
-
 * `QGroundControl user guide > Sensors`_.
-
-.. _QGroundControl user guide > Sensors: https://docs.qgroundcontrol.com/en/SetupView/sensors_px4.html
 
 * `PX4 Setup Video`_ (Youtube)
 
+.. _PX4 user guide > Accelerometer: https://docs.px4.io/v1.9.0/en/config/accelerometer.html
+.. _QGroundControl user guide > Sensors: https://docs.qgroundcontrol.com/en/SetupView/sensors_px4.html
 .. _PX4 Setup Video: https://www.youtube.com/watch?v=91VGmdSlbo4&feature=youtu.be&t=1m46s
-
-
