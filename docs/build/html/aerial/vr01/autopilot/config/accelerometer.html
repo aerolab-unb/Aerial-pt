@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pouso automático &mdash; CoopRobo 1.0.0 documentation</title>
+  <title>Calibração do Acelerometro &mdash; CoopRobo 1.0.0 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Sistema Embarcado" href="../../embedded_system/system.html" />
-    <link rel="prev" title="Calibração do Acelerometro" href="accelerometer.html" /> 
+    <link rel="next" title="Pouso automático" href="automatic_landing.html" />
+    <link rel="prev" title="Calibração do giroscópio" href="gyroscope.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,8 +94,8 @@
 <li class="toctree-l4"><a class="reference internal" href="mounting.html">Montando o Pixhawk</a></li>
 <li class="toctree-l4"><a class="reference internal" href="Compass.html">Calibração da bússola</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gyroscope.html">Calibração do giroscópio</a></li>
-<li class="toctree-l4"><a class="reference internal" href="accelerometer.html">Calibração do Acelerometro</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Pouso automático</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Calibração do Acelerometro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="automatic_landing.html">Pouso automático</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../embedded_system/system.html">Sistema Embarcado</a></li>
@@ -160,13 +160,13 @@
         
           <li><a href="../config_pilot.html">Configuração do Piloto Automatico</a> &raquo;</li>
         
-      <li>Pouso automático</li>
+      <li>Calibração do Acelerometro</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../../_sources/aerial/vr01/autopilot/config/automatic_landing.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../_sources/aerial/vr01/autopilot/config/accelerometer.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -179,17 +179,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pouso-automatico">
-<h1>Pouso automático<a class="headerlink" href="#pouso-automatico" title="Permalink to this headline">¶</a></h1>
-<p>Após a conexão do Lidar ao sistema via PWM, alguns parâmetros do piloto automático devem ser alterados para que ele reconheça o sensor. Esses parâmetros podem ser facilmente alterados através do QGroundControl. São eles:</p>
+  <div class="section" id="calibracao-do-acelerometro">
+<h1>Calibração do Acelerometro<a class="headerlink" href="#calibracao-do-acelerometro" title="Permalink to this headline">¶</a></h1>
+<p>O aplicativo QGroundControl mostrará todos os passos para colocar e segurar o veículo em diversas orientações.</p>
+<div class="section" id="calibration-steps">
+<h2>Calibration Steps<a class="headerlink" href="#calibration-steps" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">É necessário ter a orientação do piloto automático definida para prosseguir com as etapas de calibração do acelerômetro. Caso contrário, entre na aba <strong>Mountig the Pixhawk</strong> e execute as etapas na subaba <strong>Setting the Orientation</strong>.</p>
+</div>
+<ol class="arabic simple">
+<li>Abra o aplicativo QGroundControl e conecte o veículo pelo fio ao usb do computador.</li>
+<li>Selecione o ícone <strong>Engrenagem</strong> (Configuração do veículo) na barra de ferramentas superior e, em seguida, <strong>Sensores</strong> na barra lateral.</li>
+<li>Clique no botão do sensor do <strong>Acelerometro</strong>.</li>
+<li>Clique <strong>OK</strong> para começar a calibração.</li>
+<li>Coloque o veículo nas posições mostradas pela imagem que aparece na tela do aplicativo. Quando a posição é solicitada, a imagem de orientação fica amarela, deixe-a nessa posição (sem mover o veículo) até que a calibração seja concluída. A imagem ficará verde quando a calibração estiver concluída.</li>
+<li>Repita o processo de calibração para todas as orientações do veículo.</li>
+</ol>
+<div class="section" id="mais-informacoes">
+<h3>Mais informações<a class="headerlink" href="#mais-informacoes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>RNG_FND = 5, indica que a conexão ocorre via PWM.</li>
-<li>RNDFND_MAX_CM = 4000, representa a distância máxima em que o sensor é confiável.</li>
-<li>RNDFND_STOP_PIN = 55, indica o pino conectado ao sinal de ativação do Lidar. Permite que o dispositivo reinicie o sensor caso ele para de fornecer dados.</li>
-<li>Os parâmetros RNDFND_SCALING e RNDFND_OFFSET devem ser ajustados de forma a se calibrar o sensor (costumam ser aproximadamente 0 e 1, respectivamente).</li>
+<li><a class="reference external" href="https://docs.px4.io/v1.9.0/en/config/accelerometer.html">PX4 user guide &gt; Accelerometer</a>.</li>
 </ul>
-<p>O sensor pode ser testado pelo QGroundControl, onde as leituras podem ser observadas no campo <strong>Sonar Range</strong>. Após a configuração do sensor, o piloto automático será capaz de pousar a aeronave de forma muito mais rápida e precisa. O pouso ocorre pelo envio do comando <strong>Land</strong> ao controlador, mas para que ele ocorra corretamente deve-se definir a posição da pista de pouso e deve-se ajustar os parâmetros de pouso, como, por exemplo, a velocidade com que o avião deve pousar.</p>
-<p>A documentação detalhada sobre pousos automáticos pode ser encontrada em <a class="reference external" href=".http://ardupilot.org/plane/docs/automatic-landing.html.">Automatic Landing</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.qgroundcontrol.com/en/SetupView/sensors_px4.html">QGroundControl user guide &gt; Sensors</a>.</li>
+</ul>
+<ul class="simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?v=91VGmdSlbo4&amp;feature=youtu.be&amp;t=1m46s">PX4 Setup Video</a> (Youtube)</li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -200,10 +219,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../embedded_system/system.html" class="btn btn-neutral float-right" title="Sistema Embarcado" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="automatic_landing.html" class="btn btn-neutral float-right" title="Pouso automático" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="accelerometer.html" class="btn btn-neutral float-left" title="Calibração do Acelerometro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="gyroscope.html" class="btn btn-neutral float-left" title="Calibração do giroscópio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

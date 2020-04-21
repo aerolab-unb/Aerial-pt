@@ -1,5 +1,5 @@
 Configuração do Piloto Automatico
-==================================
+=================================
 
 .. https://docs.px4.io/v1.9.0/en/config/
 

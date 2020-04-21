@@ -7,7 +7,7 @@ Todos os magnetômetros internos e externos conectados ao Pixhawk serão configu
 
 
 Etapas de calibração
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 1. Abra o aplicativo QGroundControl e conecte o veículo pelo fio ao usb do computador.
 2. Selecione o ícone **Engrenagem** (Configuração do veículo) na barra de ferramentas superior e, em seguida, **Sensores** na barra lateral.
@@ -18,7 +18,7 @@ Etapas de calibração
 
 
 Mais informações
------------------
+----------------
 
 * `PX4 user guide > Firmware`_.
 

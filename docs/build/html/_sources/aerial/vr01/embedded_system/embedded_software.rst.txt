@@ -1,5 +1,5 @@
-Sistema Operacional 
-====================
+Sistema Operacional
+===================
 
 Um computador digital com determinada complexidade que exige o gerenciamento dos recursos do sistema e tais funções primárias necessitam de um sistema operacional. O núcleo ou kernel é a parte mais importante e de nível mais baixo de um sistema operacional, ele tem a função de definir qual programa recebe atenção do processador, gerenciar memória, criar um sistema de arquivos, gerenciar o sistema de comunicação, etc.
 
@@ -8,7 +8,7 @@ O primeiro passo para a utilização desse computador, é a criação e configur
 Um Sistema Operacional de Tempo Real ou RTOS (*Real Time Operating Systems*) é um sistema operacional destinado à execução de múltiplas tarefas com tempo de resposta a um evento (externo ou interno) pré-definido. Existem duas abordagens para a execução de aplicações de tempo real em Linux, uso de ferramentas que implementam um kernel duplo ou o uso de RTL (Real-time Linux). 
 
 RT-Mag
-~~~~~~~
+~~~~~~
 
 Inicialmente, foi decidido a utilização da ferramenta RT-MaG como sistema operacional do sistema embarcado. 
 
@@ -35,7 +35,7 @@ Destaca-se ainda a documentação desatualizada, que dificultou a instalação d
 .. _Projet RT-MaG: http://www.gipsa-lab.fr/projet/RT-MaG/#
 
 Linux
-~~~~~~
+~~~~~
 
 .. figure:: /img/Aerial/linux.png
    :align: right
@@ -47,7 +47,7 @@ Linux
 O Linux é um sistema operacional popurlamente utilizado em sistemas embarcados. Além de fornecer suporte para mais arquiteturas cumputacionais que qualquer outro sistema, ele ainda é leve e possui codigo aberto, minimizando os custos de implementação. Dos diferentes sistemas operacionais suportados pelas placas Gumstix Overo, destacam-se os sistemas baseados em Linux. Sendo o **Ubuntu** e o **Yocto Project** os principais, além de serem recomendados pelo proprio fabricante.
 
 Projeto Yocto
---------------
+-------------
 
 .. figure:: /img/Aerial/yocto.png
    :align: left
@@ -96,7 +96,7 @@ A desvantagem de se utilizar este sistema operacional é que podem ser executada
 .. _ubuntu.com: https://ubuntu.com/
 
 Sistema Escolhido
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 Chegamos a instalar o RT-Mag no sistema embarcado, entretanto, devido a complicações posteriores à instalação do sistema operacional, optou-se por não mais utilizar essa ferramenta.
 
@@ -105,7 +105,19 @@ Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser espec�
 .. _Ubuntu 15.04: http://old-releases.ubuntu.com/releases/15.04/
 
 Referencias
-------------
+-----------
+
+	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+	* ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.
+
+	* Phanuel Hieber. Yocto Project on the Gumstix Overo Board. Technische Universität München. 
+
+	* `RT-MaG Project`_ - gipsa-lab.fr
+
+	* `Yocto Project`_ - yoctoproject.org
+
+.. _RT-MaG Project: http://www.gipsa-lab.fr/projet/RT-MaG/
+.. _Yocto Project: https://www.yoctoproject.org/
 
 .. https://www.gumstix.com/images/1241515-1.pdf
-

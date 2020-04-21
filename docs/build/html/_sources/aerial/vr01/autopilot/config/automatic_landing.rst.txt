@@ -1,5 +1,5 @@
 Pouso automático
-=================
+================
 
 Após a conexão do Lidar ao sistema via PWM, alguns parâmetros do piloto automático devem ser alterados para que ele reconheça o sensor. Esses parâmetros podem ser facilmente alterados através do QGroundControl. São eles: 
 

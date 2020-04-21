@@ -1,8 +1,8 @@
 Computador Embarcado 
-======================
+====================
 
 Overo WaterStorm
------------------
+----------------
 
 
 Após considerar as aplicações mais específicas a serem realizadas, o computador embarcado escolhido foi o Overo WaterStorm Computer-On-Module(COM), esse sistema embarcado apresenta um processador DM3730 com arquitetura ARM Cortex-A8 e clock de base do processador de até 1 GHz. Além disso, esse computador está acoplado a uma placa de expansão Tobi que acrescenta ao computador embarcado conexões do tipo display DVI, Ethernet, USB Host, USB OTG, USB console, áudio Stereo e um segmento com 40 pin-headers que podem ser utilizados para a mais diversas funções, como modulação PWM, GPIO, alimentação, conversão analógico digital e comunicação serial.
@@ -16,8 +16,8 @@ Acoplou-se também ao sistema uma câmera Caspa VL, capaz de capturar imagens co
 
 Apesar do tamanho pequeno, a combinação da Overo COM com a placa de extensão TOBI possui o mesmo desempenho do que um computador Linux completo de tamanho normal, maior do que outros sistemas desse tipo encontrados no mercado, como, por exemplo, o computador Raspberry Pi.
 
-Especificações 
-----------------
+Especificações
+--------------
 
 -  **Camera**
    -   Camera Connector: 27-Pin (OMAP ISP)
@@ -45,6 +45,3 @@ Especificações
 	* :download:`Overo Waterstorm COM <docs/GUM3703WB-1729092.pdf>` 
 	* :download:`Placa de extensão TOBI <docs/PKG30002.pdf>` 
 	* :download:`Câmera Caspa VL <docs/PKG30009C.pdf>` 
-
-
-

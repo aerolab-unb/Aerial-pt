@@ -1,5 +1,5 @@
 Configuração do Piloto Automatico
-==================================
+=================================
 
 .. https://docs.px4.io/v1.9.0/en/config/
 
@@ -23,6 +23,7 @@ Esta seção contém os principais tópicos de configuração e montagem:
    config/mounting
    config/Compass
    config/gyroscope
+   config/accelerometer
    config/automatic_landing
 
 
