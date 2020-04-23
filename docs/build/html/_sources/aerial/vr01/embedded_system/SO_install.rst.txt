@@ -4,7 +4,7 @@ Instalando o Sistema Operacional
 A instalação do sistema operacional não é uma tarefa trivial, além disso existe uma escassez de documentação detalhada e completa que explique como instalar o sistema operacional no computador embarcado, logo será documentado nesta seção os procedimentos necessários para a instalação de um sistema operacional. Na fase atual dos trabalhos instalamos ambos os sistemas, de tal forma, podemos decidir posteriormente qual dos dois sistemas será melhor para nossa aplicação. 
 
 .. Note:: 
-   Os tutoriais oficiais podem ser encontrados no site da `Gumstix`_ e nos repositórios do GitHub do projeto `Yocto`_ e `Ubuntu`_ para a Gumstix.
+   Os tutoriais oficiais podem ser encontrados no site da `Gumstix`_ e nos repositórios do GitHub do projeto `Yocto`_ e `Ubuntu`_ para produtos Gumstix.
 
 .. _Gumstix: https://www.gumstix.com/
 .. _Yocto: https://github.com/gumstix/yocto-manifest

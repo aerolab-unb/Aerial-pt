@@ -3,7 +3,7 @@ Obtenção das imagens do Yocto Project
 
 .. https://github.com/gumstix/yocto-manifest/blob/warrior/README.md
 
-Para realizar o processo de iniciação do sistema operacional no computador embarcado, no caso do Yocto Project para Gumstix, precisamos de três arquivos específicos, são eles o primeiro estágio do sistema de iniciação, o arquivo MLO (*Minimal Loader*), o segundo estágio do sistema de iniciação, o arquivo *u-boot.img* (a sigla vem de *Universal Bootloader*), e a imagem do sistema, que em nosso caso será o Yocto 1.8.2 com kernel Linux. 
+Para realizar o processo de iniciação do sistema operacional Yocto Project no computador embarcado Gumstix, precisamos de três arquivos específicos, são eles o primeiro estágio do sistema de iniciação, o arquivo MLO (*Minimal Loader*), o segundo estágio do sistema de iniciação, o arquivo *u-boot.img* (a sigla vem de *Universal Bootloader*), e a imagem do sistema, que em nosso caso será o Yocto 1.8.2 com kernel Linux. 
 
 .. adicionar a figura
 
@@ -26,15 +26,16 @@ Requisitos do Sistema
 
 .. Note ::
    Para mais informações a respeito dos requisitos do sistema, consulte `System Requirements - Yocto Project Reference Manual`_.
+
 .. _System Requirements - Yocto Project Reference Manual: https://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#intro-requirements
 
 O desenvolvimento de projetos no ambiente do Yocto Project requer que alguns requisitos sejam cumpridos, são eles:
 
 	* Um sistema com no mínimo 25 GB de espaço livre em disco executando uma distribuição Linux suportada (ou seja, versões recentes do Fedora, openSUSE, CentOS, Debian ou Ubuntu). Se o sistema host suportar vários núcleos e encadeamentos, você poderá configurar o sistema de construção do Yocto Project para diminuir significativamente o tempo necessário para construir imagens.
 
-	* Pacotes apropriados instalados no sistema que você está usando para compilações.
+	* Pacotes apropriados instalados no sistema utilizado para realizar as compilações.
 
-	* Um lançamento do Projeto Yocto.
+	* Uma distribuição do Projeto Yocto.
 
 A equipe do Yocto Project verifica continuamente mais e mais distribuições Linux a cada versão lançada. Em geral, se você possui a versão atual menos uma das seguintes distribuições, não deve ter problemas.
 
@@ -53,20 +54,36 @@ A equipe do Yocto Project verifica continuamente mais e mais distribuições Lin
 
 .. _Supported Linux Distributions: http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#detailed-supported-distros
 
-O sistema de compilação OpenEmbedded pode ser executado nas distribuição moderna que possuam as seguintes versões para Git, tar e Python.
+O sistema de compilação OpenEmbedded pode ser executado nas distribuição mais modernas que possuam as seguintes versões para Git, tar e Python.
 
-	* Git 1.7.8 ou superior
+	* Git 1.8.3.1 or greater
 
-	* tar 1.24 ou superior
+	* tar 1.27 or greater
 
-	* Python 2.7.3 ou superior, exceto Python 3.x, que não é suportado.
+	* Python 3.4.0 or greater.
 
-Sabe-se que as versões anteriores do Python não funcionam e o sistema não suporta o Python 3 no momento. Se o seu sistema não atender a nenhum desses três requisitos de versão listados, você poderá executar as etapas para preparar o sistema para que você ainda possa usar o sistema de construção. Além disso, recomenda-se atualizar todos os comandos do Linux que serão utilizados nessa seção. 
+Além disso, recomenda-se atualizar todos os comandos do Linux que serão utilizados nessa seção.
 
 .. Note::
    Consulte a seção `Required Git, tar, and Python Versions`_ no Yocto Project Reference Manual para obter informações.
 
 .. _Required Git, tar, and Python Versions: http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#required-git-tar-and-python-versions
+
+É necessaria ainda a instalação dos pacotes de host essenciais para a construção da imagem. O comando a seguir instala os pacotes de host com base em sua distribuição Ubuntu:
+
+	::
+
+		$ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib
+		$ build-essential chrpath socat cpio python python3 python3-pip python3-pexpect 
+		$ xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev 
+		$ pylint3 xterm
+
+..    $ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \ build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \ xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \ pylint3 xterm
+
+.. Note::
+   Para instalar os pacotes de host em outras distribuições Linux suportadas, consulte a seção `Required Packages for the Build Host`_ em Yocto Project Reference Manual.
+   
+.. _Required Packages for the Build Host: http://www.yoctoproject.org/docs/3.0.1/ref-manual/ref-manual.html#required-packages-for-the-build-host
 
 Configurando a imagem
 ~~~~~~~~~~~~~~~~~~~~~
@@ -75,25 +92,25 @@ Linhas de comando Linux para obtenção e montagem da imagem.
 
 1.  **Instalando o repositorio**
 
-Baixa os scripts do repositorio
+Baixa os scripts do repositorio:
 
 	::
 
 		$ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
 
-Torna os arquivos executaveis
+Torna os arquivos executaveis:
 
 	::
 
 		$ chmod a+x repo
 
-Move os arquivos para o caminho do sistema
+Move os arquivos para o caminho do sistema:
 
 	::
 
 		$ sudo mv repo /usr/local/bin/
 
-Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização. Esse comando não é obrigatorio
+Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização. Esse comando não é obrigatorio:
 
 	::
 
@@ -101,14 +118,14 @@ Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização. Esse comando
 
 2. **Criando um repositorio local**
 
-Cria um diretorio para os arquivos e altera o diretorio de execução para o novo repositorio.
+Cria um diretorio para os arquivos e altera o diretorio de execução para o novo repositorio:
 
 	:: 
 
 		$ mkdir yocto
 		$ cd yocto
 
-Seleciona o ramo mais estavel do repositorio
+Seleciona o ramo mais estavel do repositorio:
 
 	::
 		
@@ -118,7 +135,7 @@ Uma inicialização bem-sucedida terminará com uma mensagem informando que o .r
 
 3. **Baixando os arquivos**
 
-Baixa os arquivos do repositorio
+Baixa os arquivos do repositorio:
 
 	::
 
@@ -127,7 +144,7 @@ Baixa os arquivos do repositorio
 .. Note::
    Está etapa pode demorar mais de 20 minutos, dependendo da sua conexão de internet.
 
-Força todos os arquivos temporarios a serem escritos em dipositivos persistentes
+Força todos os arquivos temporarios a serem escritos em dipositivos persistentes:
 
 	::
 
@@ -135,7 +152,7 @@ Força todos os arquivos temporarios a serem escritos em dipositivos persistente
 
 4. **Iniciando o Yocto Project Build Environment**
 
-Copia as informações de configuração padrão no diretório **poky/build/conf** e configura algumas variáveis de ambiente para o sistema de montagem da imagem. 
+Copia as informações de configuração padrão no diretório **poky/build/conf** e configura algumas variáveis de ambiente para o sistema de montagem da imagem:
 
 	::
 
@@ -147,9 +164,18 @@ Copia as informações de configuração padrão no diretório **poky/build/conf
 
 5. **Criando a imagem**
 
-Baixa os codigos fonte e compilando as imagens do sistema
+Baixa os codigos fonte e compilando as imagens do sistema:
 
 	::
 
 		$ bitbake gumstix-console-image
+
+.. Tip::
+   Esse processo baixa varios gigabytes de codigo e, em seguida, faz uma enorme compilação. Portanto, certifique-se de ter pelo menos os 25GB de espaço livre. Esta etapa pode levar um dia ou mais para a criação da imagem, a depender da sua conexão de internet. Não se preocupe, é apenas a primeira compilação que demora um pouco.
+
+Após a finalização da execução de todos os comandos, recomenda-se verificar a pasta **/yocto/build/tmp/deploy/images/overo**, essa pasta deve conter arquivos binários de kernel e bootloaders e arquivos de diretório raiz no formato .tar. 
+
+.. Warning::
+   Possíveis causas de falhas provavelmente estão relacionadas com softwares faltosos ou desatualizados, sistema operacional não compatível ou falta de espaço livre.
+
 
