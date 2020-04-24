@@ -1,4 +1,4 @@
-Calibração da bússola
+Calibração da Bússola
 =====================
 
 .. All internal and external magnetometers that are connected to the Pixhawk will be configured in the process of calibrating the compass
@@ -6,7 +6,7 @@ Calibração da bússola
 Todos os magnetômetros internos e externos conectados ao Pixhawk serão configurados no processo de calibração da bússola
 
 
-Etapas de calibração
+Etapas da Calibração
 ~~~~~~~~~~~~~~~~~~~~
 
 1. Abra o aplicativo QGroundControl e conecte o veículo pelo fio ao usb do computador.
@@ -17,7 +17,7 @@ Etapas de calibração
 6. Repita o processo de calibração para todas as orientações do veículo.
 
 
-Mais informações
+Mais Informações
 -----------------
 
 * `PX4 user guide > Firmware`_.

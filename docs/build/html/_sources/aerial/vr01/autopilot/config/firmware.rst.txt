@@ -65,7 +65,7 @@ Assim que a instalação acabar e o firmware estiver instalado, o controlador se
 
 .. Once the firmware has completed loading, the device will reboot and reconnect.
  
-Mais informações
+Mais Informações
 ----------------
 
 * `PX4 user guide > Firmware`_.

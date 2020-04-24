@@ -3,14 +3,14 @@ Montando o Pixhawk
 
 .. substituir as imagens por imagens do lab
 
-Orientação do piloto automático
+Orientação do Piloto Automático
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Por padrão, o controlador de voo e a bússola externa devem ser colocados na estrutura da aeronave orientados de modo que a seta aponte para a frente do veículo. Se a placa ou a bússola externa estiverem em qualquer outra orientação, será necessário corrigir a orientação no firmware.
 
 .. By default, the flight controller and the external compass should be placed on the aircraft frame oriented so that the arrow points towards the front of the vehicle. If the card or external compass are in any other direction, you need to correct the orientation in firmware.
 
-Cálculo de orientação
+Cálculo da Orientação
 ----------------------
 
 As compensações dos ângulos de rotação `YAW, PITCH e / ou ROLL`_ são calculados em relação à orientação vertical apontando para a frente (rotação no sentido horário em torno dos eixos Z, Y e X, respectivamente). Esse diagrama é chamado de *body frame* (diagrama de corpo) e a orientação padrão é dada por ``ROTATION_NOME``.
@@ -28,7 +28,7 @@ Por exemplo, a imagem abaixo apresenta rotações de aeronaves em torno do eixo 
 .. image:: /img/Aerial/yaw_rotation.png
     :align: center
 
-Definindo a orientação
+Definindo a Orientação
 -----------------------
 
 Para definir as orientações no firmware: 
@@ -59,7 +59,7 @@ Para definir as orientações no firmware:
 
 .. _Orientação do piloto automático: https://docs.px4.io/v1.9.0/en/config/flight_controller_orientation.html
 
-Isolamento de vibrações
+Isolamento de Vibrações
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 As placas Pixhawk possuem acelerômetros e giroscópios embutidos, sendo sensíveis a vibrações. Elevados níveis de vibração podem causar uma série de problemas, incluindo redução do desempenho de voo, voos mais curtos e maior desgaste do veículo. Em casos extremos, a vibração pode levar a falhas dos sensores, resultando em falhas de estimativa ou até mesmo a interrupção do voo.
@@ -83,7 +83,7 @@ O Pixhawk deve ser montado na aeronave utilizando as espumas antivibratórias in
 
 .. _PX4 user guide > Vibration Isolation: https://docs.px4.io/v1.9.0/en/assembly/vibration_isolation.html#vibration-isolation
 
-Mais informações
+Mais Informações
 ----------------
 
 * `Advanced Orientation Tuning`_.

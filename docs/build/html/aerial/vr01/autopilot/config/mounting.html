@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Calibração da bússola" href="Compass.html" />
+    <link rel="next" title="Calibração do Piloto Automático" href="AutoPilotCalibration.html" />
     <link rel="prev" title="Conexões" href="connection.html" /> 
 </head>
 
@@ -92,9 +92,8 @@
 <li class="toctree-l4"><a class="reference internal" href="airframe.html">Estrutura da aeronave</a></li>
 <li class="toctree-l4"><a class="reference internal" href="connection.html">Conexões</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Montando o Pixhawk</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Compass.html">Calibração da bússola</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gyroscope.html">Calibração do giroscópio</a></li>
-<li class="toctree-l4"><a class="reference internal" href="automatic_landing.html">Pouso automático</a></li>
+<li class="toctree-l4"><a class="reference internal" href="AutoPilotCalibration.html">Calibração do Piloto Automático</a></li>
+<li class="toctree-l4"><a class="reference internal" href="automatic_landing.html">Pouso Automático</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../embedded_system/system.html">Sistema Embarcado</a></li>
@@ -181,17 +180,17 @@
   <div class="section" id="montando-o-pixhawk">
 <h1>Montando o Pixhawk<a class="headerlink" href="#montando-o-pixhawk" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="orientacao-do-piloto-automatico">
-<h2>Orientação do piloto automático<a class="headerlink" href="#orientacao-do-piloto-automatico" title="Permalink to this headline">¶</a></h2>
+<h2>Orientação do Piloto Automático<a class="headerlink" href="#orientacao-do-piloto-automatico" title="Permalink to this headline">¶</a></h2>
 <p>Por padrão, o controlador de voo e a bússola externa devem ser colocados na estrutura da aeronave orientados de modo que a seta aponte para a frente do veículo. Se a placa ou a bússola externa estiverem em qualquer outra orientação, será necessário corrigir a orientação no firmware.</p>
-<div class="section" id="calculo-de-orientacao">
-<h3>Cálculo de orientação<a class="headerlink" href="#calculo-de-orientacao" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="calculo-da-orientacao">
+<h3>Cálculo da Orientação<a class="headerlink" href="#calculo-da-orientacao" title="Permalink to this headline">¶</a></h3>
 <p>As compensações dos ângulos de rotação <a class="reference external" href="https://www.youtube.com/watch?v=pQ24NtnaLl8">YAW, PITCH e / ou ROLL</a> são calculados em relação à orientação vertical apontando para a frente (rotação no sentido horário em torno dos eixos Z, Y e X, respectivamente). Esse diagrama é chamado de <em>body frame</em> (diagrama de corpo) e a orientação padrão é dada por <code class="docutils literal notranslate"><span class="pre">ROTATION_NOME</span></code>.</p>
 <img alt="../../../../_images/fc_orientation_1.png" class="align-center" src="../../../../_images/fc_orientation_1.png" />
 <p>Por exemplo, a imagem abaixo apresenta rotações de aeronaves em torno do eixo z (YAW), correspondendo, respectivamente, a: <code class="docutils literal notranslate"><span class="pre">ROTATION_NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">ROTATION_YAW_90</span></code>, <code class="docutils literal notranslate"><span class="pre">ROTATION_YAW_180</span></code>, <code class="docutils literal notranslate"><span class="pre">ROTATION_YAW_270</span></code>.</p>
 <img alt="../../../../_images/yaw_rotation.png" class="align-center" src="../../../../_images/yaw_rotation.png" />
 </div>
 <div class="section" id="definindo-a-orientacao">
-<h3>Definindo a orientação<a class="headerlink" href="#definindo-a-orientacao" title="Permalink to this headline">¶</a></h3>
+<h3>Definindo a Orientação<a class="headerlink" href="#definindo-a-orientacao" title="Permalink to this headline">¶</a></h3>
 <p>Para definir as orientações no firmware:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -217,7 +216,7 @@
 </div>
 </div>
 <div class="section" id="isolamento-de-vibracoes">
-<h2>Isolamento de vibrações<a class="headerlink" href="#isolamento-de-vibracoes" title="Permalink to this headline">¶</a></h2>
+<h2>Isolamento de Vibrações<a class="headerlink" href="#isolamento-de-vibracoes" title="Permalink to this headline">¶</a></h2>
 <p>As placas Pixhawk possuem acelerômetros e giroscópios embutidos, sendo sensíveis a vibrações. Elevados níveis de vibração podem causar uma série de problemas, incluindo redução do desempenho de voo, voos mais curtos e maior desgaste do veículo. Em casos extremos, a vibração pode levar a falhas dos sensores, resultando em falhas de estimativa ou até mesmo a interrupção do voo.</p>
 <p>Por essa razão, o Pixhawk vem com <em>espumas de amortecimento de vibrações</em>.</p>
 <p>O Pixhawk deve ser montado na aeronave utilizando as espumas antivibratórias incluídas no kit. Ele deve ser posicionado o mais próximo possível do centro de gravidade do veículo.</p>
@@ -226,7 +225,7 @@
 <p class="last">Para determinar se os níveis de vibração estão muito altos e utilizar algumas técnicas para melhorar as características de vibração, recomenda-se o tópico <a class="reference external" href="https://docs.px4.io/v1.9.0/en/assembly/vibration_isolation.html#vibration-isolation">PX4 user guide &gt; Vibration Isolation</a>.</p>
 </div>
 <div class="section" id="mais-informacoes">
-<h3>Mais informações<a class="headerlink" href="#mais-informacoes" title="Permalink to this headline">¶</a></h3>
+<h3>Mais Informações<a class="headerlink" href="#mais-informacoes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><a class="reference external" href="https://docs.px4.io/v1.9.0/en/advanced_config/advanced_flight_controller_orientation_leveling.html">Advanced Orientation Tuning</a>.</li>
 <li><a class="reference external" href="https://docs.px4.io/v1.9.0/en/config/flight_controller_orientation.html">PX4 user guide &gt; Sensor Orientation</a>.</li>
@@ -245,7 +244,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Compass.html" class="btn btn-neutral float-right" title="Calibração da bússola" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="AutoPilotCalibration.html" class="btn btn-neutral float-right" title="Calibração do Piloto Automático" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="connection.html" class="btn btn-neutral float-left" title="Conexões" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

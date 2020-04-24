@@ -21,9 +21,6 @@ Esta seção contém os principais tópicos de configuração e montagem:
    config/airframe
    config/connection 
    config/mounting
-   config/Compass
-   config/gyroscope
-   config/accelerometer
+   config/AutoPilotCalibration
    config/automatic_landing
-
 
