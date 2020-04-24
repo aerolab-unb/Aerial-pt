@@ -6,7 +6,11 @@ Calibração da Bússola
 Todos os magnetômetros internos e externos conectados ao Pixhawk serão configurados no processo de calibração da bússola
 
 
+<<<<<<< HEAD:docs/source/aerial/vr01/autopilot/config/calibration/Compass.rst
 Etapas da Calibração
+=======
+Etapas de calibração
+>>>>>>> beee94a7a7e21870594ac0e0294ee6e92b72d4c9:docs/source/aerial/vr01/autopilot/config/Compass.rst
 ~~~~~~~~~~~~~~~~~~~~
 
 1. Abra o aplicativo QGroundControl e conecte o veículo pelo fio ao usb do computador.
@@ -17,8 +21,13 @@ Etapas da Calibração
 6. Repita o processo de calibração para todas as orientações do veículo.
 
 
+<<<<<<< HEAD:docs/source/aerial/vr01/autopilot/config/calibration/Compass.rst
 Mais Informações
 -----------------
+=======
+Mais informações
+----------------
+>>>>>>> beee94a7a7e21870594ac0e0294ee6e92b72d4c9:docs/source/aerial/vr01/autopilot/config/Compass.rst
 
 * `PX4 user guide > Firmware`_.
 
