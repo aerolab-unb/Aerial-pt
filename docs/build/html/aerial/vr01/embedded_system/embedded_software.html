@@ -186,8 +186,8 @@
 <a class="reference internal image-reference" href="../../../_images/FlyingRobot_small.jpg"><img alt="RT X4-MaG, primeiro robô desenvolvido utilizando o sistema RT-Mag" src="../../../_images/FlyingRobot_small.jpg" style="width: 280px;" /></a>
 <p class="caption"><span class="caption-text">RT X4-MaG, primeiro robô desenvolvido utilizando o sistema RT-Mag</span></p>
 </div>
-<p>Essas ferramentas consistem em um conjunto de blocos simulink que fornecem acesso direto às entradas e saídas do computador. Os modelos Simulink são convertidos automaticamente em aplicações em tempo real. O uso dessas ferramentas é totalmente gratuito. Além disso, atualmente, o Gumstix Overo COM é totalmente compatatível com o sistema RT-MaG.</p>
-<p>Entretanto, a ferramenta RT-MaG toma para si muitas das operações necessárias para a operação do nosso sistema, o que impossibilita utiliza-lo da maneira que ele foi idealizado, em consequência disto a demasiada simplificação da etapa poderia prejudicar aplicações futuras. Com essa ferramenta seria inviavel utilizar o protocolo de comunicação <em>MAVLink</em> do piloto automático para comunicação entre os dispositivos ou aeronaves, por exemplo.</p>
+<p>Essas ferramentas consistem em um conjunto de blocos simulink que fornecem acesso direto às entradas e saídas do computador. Os modelos Simulink são convertidos automaticamente em aplicações em tempo real. O uso dessas ferramentas é totalmente gratuito. Além disso, atualmente, o Gumstix Overo COM é totalmente compatível com o sistema RT-MaG.</p>
+<p>Entretanto, a ferramenta RT-MaG toma para si muitas das operações necessárias para a operação do nosso sistema, o que impossibilita utiliza-lo da maneira que ele foi idealizado, em consequência disto a demasiada simplificação da etapa poderia prejudicar aplicações futuras. Com essa ferramenta seria inviável utilizar o protocolo de comunicação <em>MAVLink</em> do piloto automático para comunicação entre os dispositivos ou aeronaves, por exemplo.</p>
 <p>Destaca-se ainda a documentação desatualizada, que dificultou a instalação dos componentes da ferramenta como a toolbox do Matlab, que nunca chegou a funcionar, e o sistema operacional do computador embarcado. A complexidade na utilização do sistema aumentava a cada etapa enquanto mesmo as etapas iniciais mais simples ainda não funcionavam adequadamente.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -200,15 +200,15 @@
 <a class="reference internal image-reference" href="../../../_images/linux.png"><img alt="Tux, a mascote do Linux" src="../../../_images/linux.png" style="width: 160px;" /></a>
 <p class="caption"><span class="caption-text">Tux, a mascote do Linux</span></p>
 </div>
-<p>O Linux é um sistema operacional popurlamente utilizado em sistemas embarcados. Além de fornecer suporte para mais arquiteturas cumputacionais que qualquer outro sistema, ele ainda é leve e possui codigo aberto, minimizando os custos de implementação. Dos diferentes sistemas operacionais suportados pelas placas Gumstix Overo, destacam-se os sistemas baseados em Linux. Sendo o <strong>Ubuntu</strong> e o <strong>Yocto Project</strong> os principais, além de serem recomendados pelo proprio fabricante.</p>
+<p>O Linux é um sistema operacional popularmente utilizado em sistemas embarcados. Além de fornecer suporte para mais arquiteturas computacionais que qualquer outro sistema, ele ainda é leve e possui código aberto, minimizando os custos de implementação. Dos diferentes sistemas operacionais suportados pelas placas Gumstix Overo, destacam-se os sistemas baseados em Linux. Sendo o <strong>Ubuntu</strong> e o <strong>Yocto Project</strong> os principais, além de serem recomendados pelo próprio fabricante.</p>
 <div class="section" id="projeto-yocto">
 <h3>Projeto Yocto<a class="headerlink" href="#projeto-yocto" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-left" style="width: 220px">
 <a class="reference internal image-reference" href="../../../_images/yocto.png"><img alt="../../../_images/yocto.png" src="../../../_images/yocto.png" style="width: 200px;" /></a>
 </div>
-<p>O projeto Yocto é um projeto de colaboração open source da <a class="reference external" href="https://www.linuxfoundation.org/">Linux Foundation</a>, cujo objetico é produzir e fornecer metadados, ferramentas e processos para ajudar seus usuários a criar distribuições baseados em Linux para <em>softwares</em> embarcados, independentemente da arquitetura do sistema.</p>
-<p>Um elemento a ser destacado dentre os componentes do Projeto Yocto é o sistema de compilação baseado na arquiterura <a class="reference external" href="https://www.openembedded.org/wiki/Main_Page">OpenEmbedded</a>, que permite que os desenvolvedores criem suas propria distribuição Linux especifica para seu ambiente, de acordo com suas proprias necessidades.</p>
-<p>Outra ferramenta importante do Yocto Project é o sistema de compilação por referencia Poky. Ele contém a ferramenta BitBake, que permite a compilação cruzada independente da plataforma. Além disso, o BitBake gerencia todos os arquivos de configuração e dados e tenta reduzir o tempo de compilação usando todos os recursos de processamento disponíveis.</p>
+<p>O projeto Yocto é um projeto de colaboração open source da <a class="reference external" href="https://www.linuxfoundation.org/">Linux Foundation</a>, cujo objetivo é produzir e fornecer metadados, ferramentas e processos para ajudar seus usuários a criar distribuições baseadas em Linux para <em>softwares</em> embarcados, independentemente da arquitetura do sistema.</p>
+<p>Um elemento a ser destacado dentre os componentes do Projeto Yocto é o sistema de compilação baseado na arquitetura <a class="reference external" href="https://www.openembedded.org/wiki/Main_Page">OpenEmbedded</a>, que permite que os desenvolvedores criem suas própria distribuição Linux especifica para seu ambiente, de acordo com suas próprias necessidades.</p>
+<p>Outra ferramenta importante do Yocto Project é o sistema de compilação por referência Poky. Ele contém a ferramenta BitBake, que permite a compilação cruzada independente da plataforma. Além disso, o BitBake gerencia todos os arquivos de configuração e dados, e tenta reduzir o tempo de compilação usando todos os recursos de processamento disponíveis.</p>
 <p>Infelizmente, com a ampla versatilidade do Projeto Yocto, a complexidade do processo de criação de uma distribuição personalizada também está aumentando.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -220,7 +220,7 @@
 <div class="figure align-left" style="width: 220px">
 <a class="reference internal image-reference" href="../../../_images/ubuntu.jpg"><img alt="../../../_images/ubuntu.jpg" src="../../../_images/ubuntu.jpg" style="width: 200px;" /></a>
 </div>
-<p>Ubuntu é um sistema operacional de codigo aberto, desenvolvido a partir do nucleo Linux, baseado no Debian. O Ubuntu é desenvolvido pela <a class="reference external" href="https://canonical.com/">Canonical</a> e pela comunidade em um modelo de governança meritocrática. A Canonical fornece atualizações gratuitas de segurança e suporte para cada versão do Ubuntu. Todas as versões são disponibilizadas sem custo algum.</p>
+<p>Ubuntu é um sistema operacional de código aberto, desenvolvido a partir do núcleo Linux, baseado no Debian. O Ubuntu é desenvolvido pela <a class="reference external" href="https://canonical.com/">Canonical</a> e pela comunidade em um modelo de governança meritocrática. A Canonical fornece atualizações gratuitas de segurança e suporte para cada versão do Ubuntu. Todas as versões são disponibilizadas sem custo algum.</p>
 <p>A vantagem de se utilizar o sistema Ubuntu é que esse é um sistema operacional a partir do núcleo Linux muito difundido que já contém diversos softwares que podem ser úteis para algumas aplicações futuras, ele contém, por exemplo, um compilador o que facilita a criação e execução de códigos simples para testes rápidos.</p>
 <p>A desvantagem de se utilizar este sistema operacional é que podem ser executadas muitas tarefas paralelas desnecessárias que diminuem a especificidade e o desempenho do computador embarcado.</p>
 <div class="admonition note">
@@ -232,9 +232,18 @@
 <div class="section" id="sistema-escolhido">
 <h2>Sistema Escolhido<a class="headerlink" href="#sistema-escolhido" title="Permalink to this headline">¶</a></h2>
 <p>Chegamos a instalar o RT-Mag no sistema embarcado, entretanto, devido a complicações posteriores à instalação do sistema operacional, optou-se por não mais utilizar essa ferramenta.</p>
-<p>Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado. Todavia, realizamos a instalação Ubuntu em um dos computadores embarcados com o intuito de analisar as diferenças entre as duas principais opções de sistemas operacionais. O sistema Ubuntu instalado foi o <a class="reference external" href="http://old-releases.ubuntu.com/releases/15.04/">Ubuntu 15.04</a> por ser uma versão estável e adaptada para o sistema em questão.</p>
+<p>Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado. Todavia, realizamos a instalação do Ubuntu em um dos computadores embarcados com o intuito de analisar as diferenças entre às duas principais opções de sistemas operacionais. O sistema Ubuntu instalado foi o <a class="reference external" href="http://old-releases.ubuntu.com/releases/15.04/">Ubuntu 15.04</a> por ser uma versão estável e adaptada para o sistema em questão.</p>
 <div class="section" id="referencias">
 <h3>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.</li>
+<li>ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.</li>
+<li>Phanuel Hieber. Yocto Project on the Gumstix Overo Board. Technische Universität München.</li>
+<li><a class="reference external" href="http://www.gipsa-lab.fr/projet/RT-MaG/">RT-MaG Project</a> - gipsa-lab.fr</li>
+<li><a class="reference external" href="https://www.yoctoproject.org/">Yocto Project</a> - yoctoproject.org</li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 </div>

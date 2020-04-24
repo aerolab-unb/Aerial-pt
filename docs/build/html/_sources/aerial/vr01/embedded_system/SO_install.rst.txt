@@ -1,9 +1,26 @@
 Instalando o Sistema Operacional
 ================================
 
-A instalação do sistema operacional não foi algo trivial, além disso existe uma escassez de documentação detalhada e completa que explique como instalar o sistema operacional no computador embarcado, logo será descrito os principais procedimentos necessários para a instalação de um sistema operacional. Na fase atual dos trabalhos instalamos ambos os sistemas, mais tarde podemos decidir qual dos dois sistemas será melhor para nossa aplicação. Nas seções seguintes irei traduzir, comentar e realizar pequenas modificações em tutoriais que podem ser encontrados no próprio site da gumstix3 e nos repositórios do GitHub do projeto Yocto4 e Ubuntu para a Gumstix5.
+A instalação do sistema operacional não é uma tarefa trivial, além disso existe uma escassez de documentação detalhada e completa que explique como instalar o sistema operacional no computador embarcado, logo será documentado nesta seção os procedimentos necessários para a instalação de um sistema operacional. Na fase atual dos trabalhos instalamos ambos os sistemas, de tal forma, podemos decidir posteriormente qual dos dois sistemas será melhor para nossa aplicação. 
 
-Obtenção de imagens do SO
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. Note:: 
+   Os tutoriais oficiais podem ser encontrados no site da `Gumstix`_ e nos repositórios do GitHub do projeto `Yocto`_ e `Ubuntu`_ para produtos Gumstix.
+
+.. _Gumstix: https://www.gumstix.com/
+.. _Yocto: https://github.com/gumstix/yocto-manifest
+.. _Ubuntu: https://github.com/gumstix/live-build
+
+Obtenção das imagens do SO
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. https://github.com/gumstix/yocto-manifest/blob/warrior/README.md
+
+Essencialmente o dispositivo precisa apenas executar um pequeno programa, geralmente localizado em uma mémoria não volátil do tipo *Read-Only Memory* (ROM), para acessar a outro dispositivo de memória não volátil que armazene o sistema operacional, e carregar o sistema operacional na memória volátil de rápido acesso ou *Random Access Memory* (RAM) onde ele poderá ser executado. Em sistemas mais robustos ocorre, na verdade, um encadeamento desses pequenos programas, chamados de bootloaders, onde um primeiro estágio executa um segundo estágio que carrega programas mais complexos e, por sua vez, executa um terceiro estágio e assim por diante até que o sistema operacional seja completamente carregado e esteja pronto para ser executado por si só.
+
+
+	.. toctree::
+	   :maxdepth: 2
+
+	   yocto/yocto_image
 
 

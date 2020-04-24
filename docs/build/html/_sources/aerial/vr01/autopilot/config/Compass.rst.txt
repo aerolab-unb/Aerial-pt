@@ -18,7 +18,7 @@ Etapas de calibração
 
 
 Mais informações
------------------
+----------------
 
 * `PX4 user guide > Firmware`_.
 

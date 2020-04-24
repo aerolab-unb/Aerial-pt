@@ -1,5 +1,5 @@
 Sistema Embarcado
-=====================
+=================
 
 Um computador embarcado deverá adicionado à cada aeronave de modo a comunicar-se com o piloto automático Pixhawk e com os computadores embarcados nas demais aeronaves através de um modem responsável por receber e transmitir informações. O microprocessador deverá processar as informações obtidas através do modem e repassar instruções ao piloto automático Pixhawk. 
 

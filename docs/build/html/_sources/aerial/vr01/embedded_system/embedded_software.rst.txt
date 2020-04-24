@@ -1,5 +1,5 @@
-Sistema Operacional 
-====================
+Sistema Operacional
+===================
 
 Um computador digital com determinada complexidade que exige o gerenciamento dos recursos do sistema e tais funções primárias necessitam de um sistema operacional. O núcleo ou kernel é a parte mais importante e de nível mais baixo de um sistema operacional, ele tem a função de definir qual programa recebe atenção do processador, gerenciar memória, criar um sistema de arquivos, gerenciar o sistema de comunicação, etc.
 
@@ -8,7 +8,7 @@ O primeiro passo para a utilização desse computador, é a criação e configur
 Um Sistema Operacional de Tempo Real ou RTOS (*Real Time Operating Systems*) é um sistema operacional destinado à execução de múltiplas tarefas com tempo de resposta a um evento (externo ou interno) pré-definido. Existem duas abordagens para a execução de aplicações de tempo real em Linux, uso de ferramentas que implementam um kernel duplo ou o uso de RTL (Real-time Linux). 
 
 RT-Mag
-~~~~~~~
+~~~~~~
 
 Inicialmente, foi decidido a utilização da ferramenta RT-MaG como sistema operacional do sistema embarcado. 
 
@@ -22,12 +22,11 @@ O projeto RT-MaG (*Real-Time - Marseille Grenoble Project*) é um projeto desenv
 
    RT X4-MaG, primeiro robô desenvolvido utilizando o sistema RT-Mag
 
-Essas ferramentas consistem em um conjunto de blocos simulink que fornecem acesso direto às entradas e saídas do computador. Os modelos Simulink são convertidos automaticamente em aplicações em tempo real. O uso dessas ferramentas é totalmente gratuito. Além disso, atualmente, o Gumstix Overo COM é totalmente compatatível com o sistema RT-MaG.
+Essas ferramentas consistem em um conjunto de blocos simulink que fornecem acesso direto às entradas e saídas do computador. Os modelos Simulink são convertidos automaticamente em aplicações em tempo real. O uso dessas ferramentas é totalmente gratuito. Além disso, atualmente, o Gumstix Overo COM é totalmente compatível com o sistema RT-MaG.
 
-Entretanto, a ferramenta RT-MaG toma para si muitas das operações necessárias para a operação do nosso sistema, o que impossibilita utiliza-lo da maneira que ele foi idealizado, em consequência disto a demasiada simplificação da etapa poderia prejudicar aplicações futuras. Com essa ferramenta seria inviavel utilizar o protocolo de comunicação *MAVLink* do piloto automático para comunicação entre os dispositivos ou aeronaves, por exemplo.
+Entretanto, a ferramenta RT-MaG toma para si muitas das operações necessárias para a operação do nosso sistema, o que impossibilita utiliza-lo da maneira que ele foi idealizado, em consequência disto a demasiada simplificação da etapa poderia prejudicar aplicações futuras. Com essa ferramenta seria inviável utilizar o protocolo de comunicação *MAVLink* do piloto automático para comunicação entre os dispositivos ou aeronaves, por exemplo.
 
 Destaca-se ainda a documentação desatualizada, que dificultou a instalação dos componentes da ferramenta como a toolbox do Matlab, que nunca chegou a funcionar, e o sistema operacional do computador embarcado. A complexidade na utilização do sistema aumentava a cada etapa enquanto mesmo as etapas iniciais mais simples ainda não funcionavam adequadamente.
-
 
 .. Note::
    Mais detalhes do projeto RT-MaG podem ser encontrados em `Projet RT-MaG`_.
@@ -35,7 +34,7 @@ Destaca-se ainda a documentação desatualizada, que dificultou a instalação d
 .. _Projet RT-MaG: http://www.gipsa-lab.fr/projet/RT-MaG/#
 
 Linux
-~~~~~~
+~~~~~
 
 .. figure:: /img/Aerial/linux.png
    :align: right
@@ -44,10 +43,10 @@ Linux
 
    Tux, a mascote do Linux
 
-O Linux é um sistema operacional popurlamente utilizado em sistemas embarcados. Além de fornecer suporte para mais arquiteturas cumputacionais que qualquer outro sistema, ele ainda é leve e possui codigo aberto, minimizando os custos de implementação. Dos diferentes sistemas operacionais suportados pelas placas Gumstix Overo, destacam-se os sistemas baseados em Linux. Sendo o **Ubuntu** e o **Yocto Project** os principais, além de serem recomendados pelo proprio fabricante.
+O Linux é um sistema operacional popularmente utilizado em sistemas embarcados. Além de fornecer suporte para mais arquiteturas computacionais que qualquer outro sistema, ele ainda é leve e possui código aberto, minimizando os custos de implementação. Dos diferentes sistemas operacionais suportados pelas placas Gumstix Overo, destacam-se os sistemas baseados em Linux. Sendo o **Ubuntu** e o **Yocto Project** os principais, além de serem recomendados pelo próprio fabricante.
 
 Projeto Yocto
---------------
+-------------
 
 .. figure:: /img/Aerial/yocto.png
    :align: left
@@ -56,18 +55,17 @@ Projeto Yocto
 
    
 
-O projeto Yocto é um projeto de colaboração open source da `Linux Foundation`_, cujo objetico é produzir e fornecer metadados, ferramentas e processos para ajudar seus usuários a criar distribuições baseados em Linux para *softwares* embarcados, independentemente da arquitetura do sistema. 
+O projeto Yocto é um projeto de colaboração open source da `Linux Foundation`_, cujo objetivo é produzir e fornecer metadados, ferramentas e processos para ajudar seus usuários a criar distribuições baseadas em Linux para *softwares* embarcados, independentemente da arquitetura do sistema. 
 
 .. _Linux Foundation: https://www.linuxfoundation.org/
 
-Um elemento a ser destacado dentre os componentes do Projeto Yocto é o sistema de compilação baseado na arquiterura `OpenEmbedded`_, que permite que os desenvolvedores criem suas propria distribuição Linux especifica para seu ambiente, de acordo com suas proprias necessidades. 
+Um elemento a ser destacado dentre os componentes do Projeto Yocto é o sistema de compilação baseado na arquitetura `OpenEmbedded`_, que permite que os desenvolvedores criem suas própria distribuição Linux especifica para seu ambiente, de acordo com suas próprias necessidades. 
 
-Outra ferramenta importante do Yocto Project é o sistema de compilação por referencia Poky. Ele contém a ferramenta BitBake, que permite a compilação cruzada independente da plataforma. Além disso, o BitBake gerencia todos os arquivos de configuração e dados e tenta reduzir o tempo de compilação usando todos os recursos de processamento disponíveis.
+Outra ferramenta importante do Yocto Project é o sistema de compilação por referência Poky. Ele contém a ferramenta BitBake, que permite a compilação cruzada independente da plataforma. Além disso, o BitBake gerencia todos os arquivos de configuração e dados, e tenta reduzir o tempo de compilação usando todos os recursos de processamento disponíveis.
 
 Infelizmente, com a ampla versatilidade do Projeto Yocto, a complexidade do processo de criação de uma distribuição personalizada também está aumentando.
 
 .. _OpenEmbedded: https://www.openembedded.org/wiki/Main_Page
-
 
 .. Note::
    Mais detalhes do projeto Yocto podem ser encontrados em `yoctoproject.org`_.
@@ -82,7 +80,7 @@ Ubuntu
    :width: 200 px
    :figwidth: 220 px
 
-Ubuntu é um sistema operacional de codigo aberto, desenvolvido a partir do nucleo Linux, baseado no Debian. O Ubuntu é desenvolvido pela `Canonical`_ e pela comunidade em um modelo de governança meritocrática. A Canonical fornece atualizações gratuitas de segurança e suporte para cada versão do Ubuntu. Todas as versões são disponibilizadas sem custo algum.
+Ubuntu é um sistema operacional de código aberto, desenvolvido a partir do núcleo Linux, baseado no Debian. O Ubuntu é desenvolvido pela `Canonical`_ e pela comunidade em um modelo de governança meritocrática. A Canonical fornece atualizações gratuitas de segurança e suporte para cada versão do Ubuntu. Todas as versões são disponibilizadas sem custo algum.
 
 .. _Canonical: https://canonical.com/
 
@@ -96,16 +94,28 @@ A desvantagem de se utilizar este sistema operacional é que podem ser executada
 .. _ubuntu.com: https://ubuntu.com/
 
 Sistema Escolhido
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 Chegamos a instalar o RT-Mag no sistema embarcado, entretanto, devido a complicações posteriores à instalação do sistema operacional, optou-se por não mais utilizar essa ferramenta.
 
-Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado. Todavia, realizamos a instalação Ubuntu em um dos computadores embarcados com o intuito de analisar as diferenças entre as duas principais opções de sistemas operacionais. O sistema Ubuntu instalado foi o `Ubuntu 15.04`_ por ser uma versão estável e adaptada para o sistema em questão.
+Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado. Todavia, realizamos a instalação do Ubuntu em um dos computadores embarcados com o intuito de analisar as diferenças entre às duas principais opções de sistemas operacionais. O sistema Ubuntu instalado foi o `Ubuntu 15.04`_ por ser uma versão estável e adaptada para o sistema em questão.
 
 .. _Ubuntu 15.04: http://old-releases.ubuntu.com/releases/15.04/
 
 Referencias
-------------
+-----------
+
+	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+	* ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.
+
+	* Phanuel Hieber. Yocto Project on the Gumstix Overo Board. Technische Universität München. 
+
+	* `RT-MaG Project`_ - gipsa-lab.fr
+
+	* `Yocto Project`_ - yoctoproject.org
+
+.. _RT-MaG Project: http://www.gipsa-lab.fr/projet/RT-MaG/
+.. _Yocto Project: https://www.yoctoproject.org/
 
 .. https://www.gumstix.com/images/1241515-1.pdf
-

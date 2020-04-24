@@ -1,5 +1,5 @@
 Conexões
-==========
+========
 
 A imagem abaixo apresenta as conexões dos sensores e demais itens inclusos no Pixhawk. Cada parte será analisada com mais detalhes nas seções a seguir.
 
@@ -9,7 +9,7 @@ A imagem abaixo apresenta as conexões dos sensores e demais itens inclusos no P
 
 
 Campainha e interruptor de segurança
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A campainha fornece sinais sonoros que indicam a situação do VANT. Enquanto o interruptor atua na segurança da aeronave, bloqueando e desbloqueando os motores.
 
@@ -28,7 +28,7 @@ Para conectar a campainha e o interruptor de segurança (itens obrigatórios), b
     :align: center
 
 Divisor I2C
-~~~~~~~~~~~~
+~~~~~~~~~~~
 
 O *slitter* I2C expande a quantidade de portas I2C permitindo a conexão de até quatro periféricos ao Piwhawk. Utilize um cabo de 4 fios para conectar o *slitter* I2C e para alimentar uma bússola externa, um display LED, um sensor de velocidade do ar digital e/ou qualquer outro periférico compatível ao veículo.
 
@@ -42,7 +42,7 @@ Em edição...
 .. verificar no laboratorio 
 
 GPS + Compass 
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 O GPS, outro dispositivo obrigatório, deve ser conectado à porta GPS (6 pinos) usando o cabo de 6 fios fornecidos no kit. A conexão da bússola é opcional, porém recomendamos fortemente sua utilização. Para conecta-lá, ligue um cabo de 4 fios a uma porta I2C do *slitter* I2C, como mostrado abaixo.
 
@@ -55,8 +55,8 @@ O GPS, outro dispositivo obrigatório, deve ser conectado à porta GPS (6 pinos)
 
 .. The GPS / compass should be mounted on the aircraft's chassis as far away from other electronic components as possible, with the indicator arrow facing forward and as aligned as possible with the Pixhawk.
 
-Rádio controle 
-~~~~~~~~~~~~~~~
+Rádio controle
+~~~~~~~~~~~~~~
 
 O sistema de rádio controle (RC) é necessário caso deseje controlar manualmente seu veículo, dado que o Pixhawk não requer um sistema de rádio para modos de voo autônomo.
 
@@ -93,8 +93,8 @@ Para obter mais informações sobre a seleção de um sistema de rádio, a compa
 
 .. _Transmissores e receptores de controle remoto: https://docs.px4.io/v1.9.0/en/getting_started/rc_transmitter_receiver.html
 
-Telemetria 
-~~~~~~~~~~~
+Telemetria
+~~~~~~~~~~
 
 Os modens de telemetria podem ser usados ​​para comunicar e controlar um veículo em voo a partir de uma estação terrestre (por exemplo, você pode direcionar o VANT para uma posição específica ou carregar uma nova missão). Um modem deve ser conectado ao seu veículo, como mostrado abaixo. O outro modem deverá ser conectado ao computador da estação terrestre ou dispositivo móvel (geralmente por uma porta USB).
 
@@ -103,7 +103,7 @@ Os modens de telemetria podem ser usados ​​para comunicar e controlar um ve�
 .. image:: /img/Aerial/pixhawk_3dr_telemetry_radio.jpg
 
 Módulo de energia
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 O módulo de energia (*Power module* - PM) fornece energia ao controlador de voo da bateria e também envia informações sobre a corrente analógica e a tensão fornecida pelo módulo (incluindo a energia do controlador de voo e dos motores, etc.).
 
@@ -116,7 +116,7 @@ A saída do modulo de energia (PM) deve ser conectada à porta **POWER** do Pixh
 .. image:: /img/Aerial/pixhawk_3dr_power_module.jpg
 
 Sensor de distancia
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 O Pixhawk suporta vários sensores de distância diferentes, incluindo os Lidars (que usam lasers ou raios infravermelhos para medições de distância) e Sonars (que utilizam som ultrassônico), e também incluem os buscadores de alcance LED Maxbotix Sonar e Pulsed Light. Dessa forma, a instalação varia de dispositivo para dispositivo. Mais informações a respeito da configuração dos sensores pode ser visualizada em `Rangefinders`_.
 

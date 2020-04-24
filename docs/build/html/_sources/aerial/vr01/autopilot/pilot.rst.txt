@@ -11,7 +11,7 @@ Piloto Automatico
 .. _Getting Started - PX4: https://docs.px4.io/v1.9.0/en/getting_started/px4_basic_concepts.html
 
 Introdução
-~~~~~~~~~~~
+~~~~~~~~~~
 
 .. este topico foi mudado e precisa ser traduzido
 
@@ -76,7 +76,7 @@ Existem mais de dez estações de controle em solo diferentes. Na área de contr
 .. https://ardupilot.org/copter/docs/common-choosing-a-ground-station.html#overview
 
 Plataforma Dronecode
----------------------
+--------------------
 
 O PX4 faz parte da `Dronecode Plataform`_, uma plataforma completa para desenvolvimento de drones, sob uma licença de código aberto a comunidade. Incluindo, entre outras, os controladores `PX4`_, a estação de controle terrestre `QGroundControl`_, o `Dronecode SDK`_ e o `Dronecode Camera Manager`_. [5]_
 
@@ -91,7 +91,7 @@ O PX4 faz parte da `Dronecode Plataform`_, uma plataforma completa para desenvol
 
 
 Sensores
-~~~~~~~~~
+~~~~~~~~
 
 Os sistemas baseados em PX4 utilizam diversos sensores para determinar o estado do veículo (sendo estes essenciais para a estabilização e para possibilitar o controle autônomo). Os estados do veículo incluem: posição, direção, velocidade, velocidade do ar, orientação (atitude), taxas de rotação em diferentes direções, nível da bateria, etc.
 
@@ -135,7 +135,7 @@ Mais informações e a lista de GPS/bússola suportados pode ser encontradas em 
 
 
 Velocidade do ar
-------------------
+----------------
 
 .. Tip::
    Os sensores de velocidade do ar são altamente recomendados para o funcionamento seguro de um VANT asa fixa ou VTOL (*Vertical Take-Off and Landing* - Decolagem e Aterragem Vertical).
@@ -158,7 +158,7 @@ Mais informações e a lista de sensores de velocidade do ar suportados pode ser
 
 
 Distância (telêmetros)
------------------------
+----------------------
 
 Os sensores de distância fornecem medição de distância em tempo real. Podendo ser óptico, quando baseado em um mecanismo de focalização, ou ultrassônico (ecotelêmetro ou telêmetro acústico), quando utiliza reflexões sonoras. Eles são utilizados para melhorar a precisão do pouso, prevenir colisões, acompanhar o terreno, aviso de limites de altura, etc.
 
@@ -173,7 +173,7 @@ O PX4 suporta uma grande variedade de sensores de distância, usando tecnologias
 
 
 Fluxo optico
--------------
+------------
 
 O PX4Flow é uma câmera inteligente de fluxo óptico com um sensor de sonar embutido que pode rastrear movimentos. O PX4 combina os dados do sensor com as informações de outras fontes de posição (GPS, por exemplo) para fixar uma posição de forma mais precisa. Este sensor pode ser utilizado em ambientes fechados, quando não há sinal de GPS disponível.
 
@@ -184,7 +184,7 @@ A maior parte de suas aplicações é direcionada a aeronaves de asas rotativas.
 .. Most of its applications are directed to rotary-wing aircraft.
 
 Especificações do Pixhawk
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  **Processador**
 

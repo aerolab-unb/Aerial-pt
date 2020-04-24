@@ -59,8 +59,13 @@ Para definir as orientações no firmware:
 
 .. _Orientação do piloto automático: https://docs.px4.io/v1.9.0/en/config/flight_controller_orientation.html
 
+<<<<<<< HEAD
 Isolamento de Vibrações
 ~~~~~~~~~~~~~~~~~~~~~~~~
+=======
+Isolamento de vibrações
+~~~~~~~~~~~~~~~~~~~~~~~
+>>>>>>> beee94a7a7e21870594ac0e0294ee6e92b72d4c9
 
 As placas Pixhawk possuem acelerômetros e giroscópios embutidos, sendo sensíveis a vibrações. Elevados níveis de vibração podem causar uma série de problemas, incluindo redução do desempenho de voo, voos mais curtos e maior desgaste do veículo. Em casos extremos, a vibração pode levar a falhas dos sensores, resultando em falhas de estimativa ou até mesmo a interrupção do voo.
 

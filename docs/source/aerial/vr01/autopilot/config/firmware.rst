@@ -1,5 +1,5 @@
 Firmware
-=========
+========
 
 A instalação do *firmware* no hardware do controlador de voo pode ser efetuada de duas formas, pelo uso de um programa de Estação de Controle Terrestre (ECT) ou diretamente pelo uso de ferramentas de desenvolvedor sem o uso de um programa auxiliar [1]_. 
 
@@ -18,8 +18,8 @@ A instalação do *firmware* no hardware do controlador de voo pode ser efetuada
 
 .. _QGroundControl: https://docs.qgroundcontrol.com/en/
 
-Instalação 
-~~~~~~~~~~~
+Instalação
+~~~~~~~~~~
 
 Recomenda-se a instalação da versão mais recente do PX4, a fim de obter as correções de bug e as melhores e mais recentes funções.
 

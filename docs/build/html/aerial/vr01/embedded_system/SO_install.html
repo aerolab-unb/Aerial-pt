@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Modelagem" href="../model/Ranger.html" />
+    <link rel="next" title="Obtenção das imagens do Yocto Project" href="yocto/yocto_image.html" />
     <link rel="prev" title="Sistema Operacional" href="embedded_software.html" /> 
 </head>
 
@@ -175,9 +175,25 @@
             
   <div class="section" id="instalando-o-sistema-operacional">
 <h1>Instalando o Sistema Operacional<a class="headerlink" href="#instalando-o-sistema-operacional" title="Permalink to this headline">¶</a></h1>
-<p>A instalação do sistema operacional não foi algo trivial, além disso existe uma escassez de documentação detalhada e completa que explique como instalar o sistema operacional no computador embarcado, logo será descrito os principais procedimentos necessários para a instalação de um sistema operacional. Na fase atual dos trabalhos instalamos ambos os sistemas, mais tarde podemos decidir qual dos dois sistemas será melhor para nossa aplicação. Nas seções seguintes irei traduzir, comentar e realizar pequenas modificações em tutoriais que podem ser encontrados no próprio site da gumstix3 e nos repositórios do GitHub do projeto Yocto4 e Ubuntu para a Gumstix5.</p>
-<div class="section" id="obtencao-de-imagens-do-so">
-<h2>Obtenção de imagens do SO<a class="headerlink" href="#obtencao-de-imagens-do-so" title="Permalink to this headline">¶</a></h2>
+<p>A instalação do sistema operacional não é uma tarefa trivial, além disso existe uma escassez de documentação detalhada e completa que explique como instalar o sistema operacional no computador embarcado, logo será documentado nesta seção os procedimentos necessários para a instalação de um sistema operacional. Na fase atual dos trabalhos instalamos ambos os sistemas, de tal forma, podemos decidir posteriormente qual dos dois sistemas será melhor para nossa aplicação.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Os tutoriais oficiais podem ser encontrados no site da <a class="reference external" href="https://www.gumstix.com/">Gumstix</a> e nos repositórios do GitHub do projeto <a class="reference external" href="https://github.com/gumstix/yocto-manifest">Yocto</a> e <a class="reference external" href="https://github.com/gumstix/live-build">Ubuntu</a> para produtos Gumstix.</p>
+</div>
+<div class="section" id="obtencao-das-imagens-do-so">
+<h2>Obtenção das imagens do SO<a class="headerlink" href="#obtencao-das-imagens-do-so" title="Permalink to this headline">¶</a></h2>
+<p>Essencialmente o dispositivo precisa apenas executar um pequeno programa, geralmente localizado em uma mémoria não volátil do tipo <em>Read-Only Memory</em> (ROM), para acessar a outro dispositivo de memória não volátil que armazene o sistema operacional, e carregar o sistema operacional na memória volátil de rápido acesso ou <em>Random Access Memory</em> (RAM) onde ele poderá ser executado. Em sistemas mais robustos ocorre, na verdade, um encadeamento desses pequenos programas, chamados de bootloaders, onde um primeiro estágio executa um segundo estágio que carrega programas mais complexos e, por sua vez, executa um terceiro estágio e assim por diante até que o sistema operacional seja completamente carregado e esteja pronto para ser executado por si só.</p>
+<blockquote>
+<div><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="yocto/yocto_image.html">Obtenção das imagens do Yocto Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="yocto/yocto_image.html#requisitos-do-sistema">Requisitos do Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yocto/yocto_image.html#configurando-a-imagem">Configurando a imagem</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div></blockquote>
 </div>
 </div>
 
@@ -189,7 +205,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../model/Ranger.html" class="btn btn-neutral float-right" title="Modelagem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="yocto/yocto_image.html" class="btn btn-neutral float-right" title="Obtenção das imagens do Yocto Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="embedded_software.html" class="btn btn-neutral float-left" title="Sistema Operacional" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
