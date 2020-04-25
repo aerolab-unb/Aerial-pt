@@ -1,6 +1,7 @@
 Calibração do Piloto Automático
 ===============================
 
+Esta seção contém os principais tópicos de calibração do piloto automático:
 
 .. toctree::
    :maxdepth: 2
