@@ -195,6 +195,23 @@
 </div>
 </div></blockquote>
 </div>
+<div class="section" id="preparando-o-cartao-de-memoria">
+<h2>Preparando o Cartão de Memória<a class="headerlink" href="#preparando-o-cartao-de-memoria" title="Permalink to this headline">¶</a></h2>
+<p>Uma vez obtida a imagem do sistema operacional podemos transferir os arquivos para o computador embarcado para, enfim, ligá-lo. Essa tarefa será realizada por meio de um cartão SD que funcionará como o disco rígido do computador embarcado.</p>
+<p>Logo, o cartão SD irá conter tanto os programas necessários para boot, que serão utilizados apenas na inicialização do computador, quanto os outros programas, que podem ser utilizados a qualquer momento e realizarão modificações constantes no cartão SD. Portanto a melhor maneira de lidar com essa divisão é particionar o cartão SD em duas partições que serão denominadas boot e rootfs.</p>
+<p>Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, entretanto, a maneira recomendada é apresentada no topico abaixo e é baseada nas recomendações do fabricante. Um ponto negativo deste procedimento é o excesso de memória alocada para a partição de boot, no caso são reservados 528 MB à partição de boot e utilizam-se menos de 100 MB. Sendo assim, caso futuramente venha a faltar espaço para armazenamento de dados será possível ampliar a partição roots refazendo esta divisão.</p>
+<blockquote>
+<div><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SD_card.html">Particionando o Cartão SD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SD_card.html#preparando-o-script">Preparando o script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SD_card.html#examinando-o-sistema-linux">Examinando o sistema Linux</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div></blockquote>
+</div>
 </div>
 
 

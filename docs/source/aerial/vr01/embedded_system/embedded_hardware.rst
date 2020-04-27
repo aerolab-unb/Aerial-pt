@@ -4,7 +4,6 @@ Computador Embarcado
 Overo WaterStorm
 ----------------
 
-
 Após considerar as aplicações mais específicas a serem realizadas, o computador embarcado escolhido foi o Overo WaterStorm Computer-On-Module(COM), esse sistema embarcado apresenta um processador DM3730 com arquitetura ARM Cortex-A8 e clock de base do processador de até 1 GHz. Além disso, esse computador está acoplado a uma placa de expansão Tobi que acrescenta ao computador embarcado conexões do tipo display DVI, Ethernet, USB Host, USB OTG, USB console, áudio Stereo e um segmento com 40 pin-headers que podem ser utilizados para a mais diversas funções, como modulação PWM, GPIO, alimentação, conversão analógico digital e comunicação serial.
 
 .. figure:: /img/Aerial/System_Gumstix.png
