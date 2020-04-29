@@ -1,20 +1,19 @@
 Particionando o Cartão SD
 =========================
 
-Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de **boot** e **rootfs** com o objetivo de gerar um cartão SD bootavel. O procedimento descrito abaixo é baseado metodo recomendado pelo fabricante do computador embarcado, utilizando um script que pode ser obtido em seu `repositório GitHub`_ e seguindo os procedimentos do tutorial `How to Make 2 Partition SD Card`_ da Texas Instrument. 
+Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de **boot** e **rootfs** com o objetivo de gerar um cartão SD bootavel. O procedimento descrito abaixo é baseado método recomendado pelo fabricante do computador embarcado, utilizando um script que pode ser obtido em seu `repositório GitHub`_ e seguindo os procedimentos do tutorial `How to Make 2 Partition SD Card`_ da Texas Instrument. 
 
 .. _repositório GitHub: https://github.com/gumstix/meta-gumstix-extras/blob/dizzy/scripts/mk2partsd
 
 .. _How to Make 2 Partition SD Card: https://processors.wiki.ti.com/index.php/How_to_Make_3_Partition_SD_Card#How_to_Make_2_Partition_SD_Card
 
 .. Warning::
-   **Leia e compreenda este artigo inteiro antes de executar qualquer procedimento descrito aqui.** 
+   **Leia e compreenda este artigo inteiro antes de executar qualquer procedimento descrito aqui.**
 
 Preparando o script
 ~~~~~~~~~~~~~~~~~~~
 
-Crie um arquivo em seu compuador chamado "*mk2PartSDCard*". Copie o conteúdo do script abaixo para este arquivo e salve-o.
-
+Crie um arquivo em seu computador chamado "*mk2PartSDCard*". Copie o conteúdo do script abaixo para este arquivo e salve-o.
 ::
 	
 	#! /bin/sh
@@ -54,7 +53,7 @@ Crie um arquivo em seu compuador chamado "*mk2PartSDCard*". Copie o conteúdo do
 .. Descobrir como modificar o espaço alocado 
    Dica: "Essa divisão pode ser modificada alterando-se os valores logo abaixo de "sfdisk" no script."
 
-Torne o script executavel com o comando a seguir
+Torne o script executável com o comando a seguir
 
 ::
 
@@ -63,28 +62,27 @@ Torne o script executavel com o comando a seguir
 Examinando o sistema Linux
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Este script requer um unico parametro de entrada, que é a especificação do sistema de arquivo do dispositivo a ser particionado, neste caso o dispositivo conectado ao leitor de cartão SD. Esta seção mostra como descobrir qual a sistema de arquivo o cartão SD está conectado e no qual está conectado ao disco rígido.
+Este script requer um único parâmetro de entrada, que é a especificação do sistema de arquivo do dispositivo a ser particionado, neste caso o dispositivo conectado ao leitor de cartão SD. Esta seção mostra como descobrir qual o sistema de arquivo o cartão SD está conectado e no qual está conectado ao disco rígido.
 
 .. Warning::
-   **Não execute o script se não tiver certeza do dispositivo correto a particionar**. Se você especificar o dispositivo conectado ao disco rígido da máquina host em vez do leitor de cartão SD, você destruirá o disco rígido da sua máquina. 
+   **Não execute o script se não tiver certeza do dispositivo correto a particionar**. Se for especificado o dispositivo conectado ao disco rígido da máquina host em vez do leitor de cartão SD, o disco rígido da máquina será destruido. 
 
-O comando abaixo pode ser usado para examinar o sistema de armazenamento do computador Linux. Normalmente o cartão SD terá uma unica partição formatada no padrão Windows FAT, configuração tipica encontada em cartões adquiridos em varejo. 
+O comando abaixo pode ser usado para examinar o sistema de armazenamento do computador Linux. Normalmente o cartão SD terá uma única partição formatada no padrão Windows FAT, configuração tipica encontrada em cartões adquiridos em varejo.
 
 ::
 
 	df -hT
 
-Após executar o comando, procure pelo Cartão SD, ele apresentará um tamanho um pouco menor que o informado pelo fabricante, por exemplo, um cartão SD de 4GB pode apresensentar 3,9GB ou menos. 
-Além disso, o cartão provavelmente estará em um Sistema de Arquivo */dev/sdb* no caso de computadores com um unico leitor de cartão SD. Para maquinas com mais de um leitor de cartão, pode haver um leitor em */dev/sdb* e outro em */dev/sdc*, para este caso, a melhor modo de saber é pela capacidade de armazenamento do cartão. 
+Após executar o comando, procure pelo Cartão SD, ele apresentará um tamanho um pouco menor que o informado pelo fabricante, por exemplo, um cartão SD de 4GB pode apresentar 3,9GB ou menos. Além disso, o cartão provavelmente estará em um Sistema de Arquivo */dev/sdb* no caso de computadores com um único leitor de cartão SD. Para maquinas com mais de um leitor de cartão, pode haver um leitor em */dev/sdb* e outro em */dev/sdc*, para este caso, a melhor modo de saber é pela capacidade de armazenamento do cartão. 
 
 Outra etapa importante é localizar a partição do sistema host Linux, provavelmente armazenada em */dev/sda1* caso a maquina host possua uma unidade SATA em */dev/sda1*, */dev/hda* caso a maquina tenha uma unidade IDE mais antiga ou (adicionar nvme). Porem, o sistema host Linux ainda pode estar em outro tipo de sistema de arquivo, portanto é importante ter cuidado.
 
 .. adicionar nvme tambem
 
-O parametro a ser passado para o script é sistema de arquivos no qual o cartão SD está.
+O parâmetro a ser passado para o script é sistema de arquivos no qual o cartão SD está.
 
 .. Warning::
-   **Não passe em hipotese alguma a partição do sistema host Linux como parametro. Passar a partição associada ao disco rígido da máquina host para esse script destruirá o disco rígido da máquina host**.
+   **Não passe, em hipótese algum, a a partição do sistema host Linux como parâmetro.**.
 
 **Veja o exemplo abaixo.**
 
@@ -100,21 +98,22 @@ O parametro a ser passado para o script é sistema de arquivos no qual o cartão
 	tmpfs          tmpfs     789M   16K  789M   1% /run/user/121
 	**/dev/sdb1      vfat      954M   48K  954M   1% /media/lucas/DSC_DISK**
 
-O cartão utilizado para o exemplo possui 1GB com uma partição única formatada em Windows padrão FAT. Como pode ser visto, o resultado do comando ``df -hT`` no sistema Linux diz que há um cartão SD conectado ao dispositivo */dev/sdb*. Portanto, o parametro a ser passado para o script é */dev/sdb*. Além disso, podemos verificar que a partição do sistema host Linux está em */dev/sda1*. Isso indica que a máquina host possui uma unidade SATA em */dev/sda*. 
+O cartão utilizado para o exemplo possui 1GB com uma partição única formatada em Windows padrão FAT. Como pode ser visto, o resultado do comando ``df -hT`` no sistema Linux diz que há um cartão SD conectado ao dispositivo */dev/sdb*. Portanto, o parâmetro a ser passado para o script é */dev/sdb*. Além disso, podemos verificar que a partição do sistema host Linux está em */dev/sda1*. Isso indica que a máquina host possui uma unidade SATA em */dev/sda*.  
 
 
 Executando o script
 ~~~~~~~~~~~~~~~~~~~
 
-Após verificar o dispositivo correto a ser particionado, é necessario desmontar qualquer diretorio do dispositivo. Para isso utilize o comando ``$	umount`` especificando o dispositivo. 
 
-No exemplo acima, o diretorio */media/lucas/DSC_DISK* está montado em */dev/sdb1*, portanto para desmonta-lo é necessario executar o seguinte comando:
+Após verificar o dispositivo correto a ser particionado, é necessário desmontar qualquer diretório do dispositivo. Para isso utilize o comando ``$	umount`` especificando o dispositivo. 
+
+No exemplo acima, o diretório */media/lucas/DSC_DISK* está montado em */dev/sdb1*, portanto para desmonta-lo é necessário executar o seguinte comando:
 
 ::
 
 	$ umount /dev/sdb1
 
-O script deve ser executado com permissão de super usuario especificando o leitor de cartão SD. No ubuntu, isso é feito acrescentando ``sudo`` antes do comando. No caso do exemplo apresentado, o comando a ser realizado é:
+O script deve ser executado com permissão de super usuário especificando o leitor de cartão SD. No ubuntu, isso é feito acrescentando ``sudo`` antes do comando. No caso do exemplo apresentado, o comando a ser realizado é:
 
 ::
 
