@@ -1,7 +1,7 @@
 Particionando o Cartão SD
 =========================
 
-Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de **boot** e **rootfs**. O procedimento descrito abaixo é baseado metodo recomendado pelo fabricante do computador embarcado, utilizando um script que pode ser obtido em seu `repositório GitHub`_ e seguindo os procedimentos do tutorial `How to Make 2 Partition SD Card`_ da Texas Instrument. 
+Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de **boot** e **rootfs** com o objetivo de gerar um cartão SD bootavel. O procedimento descrito abaixo é baseado metodo recomendado pelo fabricante do computador embarcado, utilizando um script que pode ser obtido em seu `repositório GitHub`_ e seguindo os procedimentos do tutorial `How to Make 2 Partition SD Card`_ da Texas Instrument. 
 
 .. _repositório GitHub: https://github.com/gumstix/meta-gumstix-extras/blob/dizzy/scripts/mk2partsd
 
@@ -75,11 +75,16 @@ O comando abaixo pode ser usado para examinar o sistema de armazenamento do comp
 	df -hT
 
 Após executar o comando, procure pelo Cartão SD, ele apresentará um tamanho um pouco menor que o informado pelo fabricante, por exemplo, um cartão SD de 4GB pode apresensentar 3,9GB ou menos. 
-Além disso, o cartão deve estar em um Sistema de Arquivo */dev/sdb* no caso de computadores com um unico leitor de cartão SD. Para maquinas com mais de um leitor de cartão, pode haver um leitor em */dev/sdb* e outro em */dev/sdc*, para este caso,  a melhor modo de saber é pela capacidade de armazenamento do cartão. 
+Além disso, o cartão provavelmente estará em um Sistema de Arquivo */dev/sdb* no caso de computadores com um unico leitor de cartão SD. Para maquinas com mais de um leitor de cartão, pode haver um leitor em */dev/sdb* e outro em */dev/sdc*, para este caso, a melhor modo de saber é pela capacidade de armazenamento do cartão. 
 
-Outra etapa importante é localizar a partição do sistema host Linux, provavelmente armazenada em */dev/sda1*, caso a maquina host possua uma unidade SATA em */dev/sda1*, ou */dev/hda*, caso a maquina tenha uma unidade IDE mais antiga. Porem, o sistema host Linux ainda pode estar em outro tipo de sistema de arquivo, portanto é importante ter cuidado.
+Outra etapa importante é localizar a partição do sistema host Linux, provavelmente armazenada em */dev/sda1* caso a maquina host possua uma unidade SATA em */dev/sda1*, */dev/hda* caso a maquina tenha uma unidade IDE mais antiga ou (adicionar nvme). Porem, o sistema host Linux ainda pode estar em outro tipo de sistema de arquivo, portanto é importante ter cuidado.
+
+.. adicionar nvme tambem
 
 O parametro a ser passado para o script é sistema de arquivos no qual o cartão SD está.
+
+.. Warning::
+   **Não passe em hipotese alguma a partição do sistema host Linux como parametro. Passar a partição associada ao disco rígido da máquina host para esse script destruirá o disco rígido da máquina host**.
 
 **Veja o exemplo abaixo.**
 
@@ -89,14 +94,34 @@ O parametro a ser passado para o script é sistema de arquivos no qual o cartão
 	Sist. Arq.     Tipo      Tam. Usado Disp. Uso% Montado em
 	udev           devtmpfs  3,9G     0  3,9G   0% /dev
 	tmpfs          tmpfs     789M  2,1M  787M   1% /run
-	/dev/sda6      ext4       30G   16G   13G  55% /
+	/dev/sda1      ext4       30G   16G   13G  55% /
 	tmpfs          tmpfs     3,9G   70M  3,8G   2% /dev/shm
 	/dev/loop6     squashfs   15M   15M     0 100% /snap/gnome-characters/399
 	tmpfs          tmpfs     789M   16K  789M   1% /run/user/121
-	/dev/sdb1      vfat      954M   48K  954M   1% /media/lucas/DSC_DISK
+	**/dev/sdb1      vfat      954M   48K  954M   1% /media/lucas/DSC_DISK**
 
-O cartão utilizado para o exemplo possui 1GB com uma partição única formatada em Windows padrão FAT. Como pode ser visto, o resultado do comando df no sistema Linux diz que possui um cartão SD conectado ao dispositivo */dev/sdb*. Portanto, o parametro a ser passado para o script é */dev/sdb*. Outro ponto importante é que a partição do sistema host Linux está em */dev/sda6*. Isso indica que a máquina host possui uma unidade SATA em */dev/sda*. 
-
-
+O cartão utilizado para o exemplo possui 1GB com uma partição única formatada em Windows padrão FAT. Como pode ser visto, o resultado do comando ``df -hT`` no sistema Linux diz que há um cartão SD conectado ao dispositivo */dev/sdb*. Portanto, o parametro a ser passado para o script é */dev/sdb*. Além disso, podemos verificar que a partição do sistema host Linux está em */dev/sda1*. Isso indica que a máquina host possui uma unidade SATA em */dev/sda*. 
 
 
+Executando o script
+~~~~~~~~~~~~~~~~~~~
+
+Após verificar o dispositivo correto a ser particionado, é necessario desmontar qualquer diretorio do dispositivo. Para isso utilize o comando ``$	umount`` especificando o dispositivo. 
+
+No exemplo acima, o diretorio */media/lucas/DSC_DISK* está montado em */dev/sdb1*, portanto para desmonta-lo é necessario executar o seguinte comando:
+
+::
+
+	$ umount /dev/sdb1
+
+O script deve ser executado com permissão de super usuario especificando o leitor de cartão SD. No ubuntu, isso é feito acrescentando ``sudo`` antes do comando. No caso do exemplo apresentado, o comando a ser realizado é:
+
+::
+
+	$ sudo ./mk2PartSDCard /dev/sdb
+
+
+Quando a senha for solicitada pelo sistema, use a senha da conta do usuário para confirmar o procedimento.
+
+Em uma execução bem-sucedida, o terminal será semelhante ao seguinte. Um erro pode aparecer é do **sfdisk** (como mostrado abaixo), porém este pode ser ignorado com segurança.
+	

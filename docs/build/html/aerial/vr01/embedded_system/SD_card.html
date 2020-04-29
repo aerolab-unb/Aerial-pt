@@ -177,7 +177,7 @@
             
   <div class="section" id="particionando-o-cartao-sd">
 <h1>Particionando o Cartão SD<a class="headerlink" href="#particionando-o-cartao-sd" title="Permalink to this headline">¶</a></h1>
-<p>Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de <strong>boot</strong> e <strong>rootfs</strong>. O procedimento descrito abaixo é baseado metodo recomendado pelo fabricante do computador embarcado, utilizando um script que pode ser obtido em seu <a class="reference external" href="https://github.com/gumstix/meta-gumstix-extras/blob/dizzy/scripts/mk2partsd">repositório GitHub</a> e seguindo os procedimentos do tutorial <a class="reference external" href="https://processors.wiki.ti.com/index.php/How_to_Make_3_Partition_SD_Card#How_to_Make_2_Partition_SD_Card">How to Make 2 Partition SD Card</a> da Texas Instrument.</p>
+<p>Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de <strong>boot</strong> e <strong>rootfs</strong> com o objetivo de gerar um cartão SD bootavel. O procedimento descrito abaixo é baseado metodo recomendado pelo fabricante do computador embarcado, utilizando um script que pode ser obtido em seu <a class="reference external" href="https://github.com/gumstix/meta-gumstix-extras/blob/dizzy/scripts/mk2partsd">repositório GitHub</a> e seguindo os procedimentos do tutorial <a class="reference external" href="https://processors.wiki.ti.com/index.php/How_to_Make_3_Partition_SD_Card#How_to_Make_2_Partition_SD_Card">How to Make 2 Partition SD Card</a> da Texas Instrument.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last"><strong>Leia e compreenda este artigo inteiro antes de executar qualquer procedimento descrito aqui.</strong></p>
@@ -238,22 +238,40 @@ fi
 </pre></div>
 </div>
 <p>Após executar o comando, procure pelo Cartão SD, ele apresentará um tamanho um pouco menor que o informado pelo fabricante, por exemplo, um cartão SD de 4GB pode apresensentar 3,9GB ou menos.
-Além disso, o cartão deve estar em um Sistema de Arquivo <em>/dev/sdb</em> no caso de computadores com um unico leitor de cartão SD. Para maquinas com mais de um leitor de cartão, pode haver um leitor em <em>/dev/sdb</em> e outro em <em>/dev/sdc</em>, para este caso,  a melhor modo de saber é pela capacidade de armazenamento do cartão.</p>
-<p>Outra etapa importante é localizar a partição do sistema host Linux, provavelmente armazenada em <em>/dev/sda1</em>, caso a maquina host possua uma unidade SATA em <em>/dev/sda1</em>, ou <em>/dev/hda</em>, caso a maquina tenha uma unidade IDE mais antiga. Porem, o sistema host Linux ainda pode estar em outro tipo de sistema de arquivo, portanto é importante ter cuidado.</p>
+Além disso, o cartão provavelmente estará em um Sistema de Arquivo <em>/dev/sdb</em> no caso de computadores com um unico leitor de cartão SD. Para maquinas com mais de um leitor de cartão, pode haver um leitor em <em>/dev/sdb</em> e outro em <em>/dev/sdc</em>, para este caso, a melhor modo de saber é pela capacidade de armazenamento do cartão.</p>
+<p>Outra etapa importante é localizar a partição do sistema host Linux, provavelmente armazenada em <em>/dev/sda1</em> caso a maquina host possua uma unidade SATA em <em>/dev/sda1</em>, <em>/dev/hda</em> caso a maquina tenha uma unidade IDE mais antiga ou (adicionar nvme). Porem, o sistema host Linux ainda pode estar em outro tipo de sistema de arquivo, portanto é importante ter cuidado.</p>
 <p>O parametro a ser passado para o script é sistema de arquivos no qual o cartão SD está.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><strong>Não passe em hipotese alguma a partição do sistema host Linux como parametro. Passar a partição associada ao disco rígido da máquina host para esse script destruirá o disco rígido da máquina host</strong>.</p>
+</div>
 <p><strong>Veja o exemplo abaixo.</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>lucas@Ubuntu-7348:~$ df -hT
 Sist. Arq.     Tipo      Tam. Usado Disp. Uso% Montado em
 udev           devtmpfs  3,9G     0  3,9G   0% /dev
 tmpfs          tmpfs     789M  2,1M  787M   1% /run
-/dev/sda6      ext4       30G   16G   13G  55% /
+/dev/sda1      ext4       30G   16G   13G  55% /
 tmpfs          tmpfs     3,9G   70M  3,8G   2% /dev/shm
 /dev/loop6     squashfs   15M   15M     0 100% /snap/gnome-characters/399
 tmpfs          tmpfs     789M   16K  789M   1% /run/user/121
-/dev/sdb1      vfat      954M   48K  954M   1% /media/lucas/DSC_DISK
+**/dev/sdb1      vfat      954M   48K  954M   1% /media/lucas/DSC_DISK**
 </pre></div>
 </div>
-<p>O cartão utilizado para o exemplo possui 1GB com uma partição única formatada em Windows padrão FAT. Como pode ser visto, o resultado do comando df no sistema Linux diz que possui um cartão SD conectado ao dispositivo <em>/dev/sdb</em>. Portanto, o parametro a ser passado para o script é <em>/dev/sdb</em>. Outro ponto importante é que a partição do sistema host Linux está em <em>/dev/sda6</em>. Isso indica que a máquina host possui uma unidade SATA em <em>/dev/sda</em>.</p>
+<p>O cartão utilizado para o exemplo possui 1GB com uma partição única formatada em Windows padrão FAT. Como pode ser visto, o resultado do comando <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-hT</span></code> no sistema Linux diz que há um cartão SD conectado ao dispositivo <em>/dev/sdb</em>. Portanto, o parametro a ser passado para o script é <em>/dev/sdb</em>. Além disso, podemos verificar que a partição do sistema host Linux está em <em>/dev/sda1</em>. Isso indica que a máquina host possui uma unidade SATA em <em>/dev/sda</em>.</p>
+</div>
+<div class="section" id="executando-o-script">
+<h2>Executando o script<a class="headerlink" href="#executando-o-script" title="Permalink to this headline">¶</a></h2>
+<p>Após verificar o dispositivo correto a ser particionado, é necessario desmontar qualquer diretorio do dispositivo. Para isso utilize o comando <code class="docutils literal notranslate"><span class="pre">$</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">umount</span></code> especificando o dispositivo.</p>
+<p>No exemplo acima, o diretorio <em>/media/lucas/DSC_DISK</em> está montado em <em>/dev/sdb1</em>, portanto para desmonta-lo é necessario executar o seguinte comando:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ umount /dev/sdb1
+</pre></div>
+</div>
+<p>O script deve ser executado com permissão de super usuario especificando o leitor de cartão SD. No ubuntu, isso é feito acrescentando <code class="docutils literal notranslate"><span class="pre">sudo</span></code> antes do comando. No caso do exemplo apresentado, o comando a ser realizado é:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo ./mk2PartSDCard /dev/sdb
+</pre></div>
+</div>
+<p>Quando a senha for solicitada pelo sistema, use a senha da conta do usuário para confirmar o procedimento.</p>
+<p>Em uma execução bem-sucedida, o terminal será semelhante ao seguinte. Um erro pode aparecer é do <strong>sfdisk</strong> (como mostrado abaixo), porém este pode ser ignorado com segurança.</p>
 </div>
 </div>
 
