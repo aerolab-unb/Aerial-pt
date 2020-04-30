@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -177,14 +177,14 @@
             
   <div class="section" id="particionando-o-cartao-sd">
 <h1>Particionando o Cartão SD<a class="headerlink" href="#particionando-o-cartao-sd" title="Permalink to this headline">¶</a></h1>
-<p>Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de <strong>boot</strong> e <strong>rootfs</strong> com o objetivo de gerar um cartão SD bootavel. O procedimento descrito abaixo é baseado metodo recomendado pelo fabricante do computador embarcado, utilizando um script que pode ser obtido em seu <a class="reference external" href="https://github.com/gumstix/meta-gumstix-extras/blob/dizzy/scripts/mk2partsd">repositório GitHub</a> e seguindo os procedimentos do tutorial <a class="reference external" href="https://processors.wiki.ti.com/index.php/How_to_Make_3_Partition_SD_Card#How_to_Make_2_Partition_SD_Card">How to Make 2 Partition SD Card</a> da Texas Instrument.</p>
+<p>Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de <strong>boot</strong> e <strong>rootfs</strong> com o objetivo de gerar um cartão SD bootável. O procedimento descrito abaixo é baseado método recomendado pelo fabricante do computador embarcado, utilizando um script que pode ser obtido em seu <a class="reference external" href="https://github.com/gumstix/meta-gumstix-extras/blob/dizzy/scripts/mk2partsd">repositório GitHub</a> e seguindo os procedimentos do tutorial <a class="reference external" href="https://processors.wiki.ti.com/index.php/How_to_Make_3_Partition_SD_Card#How_to_Make_2_Partition_SD_Card">How to Make 2 Partition SD Card</a> da Texas Instrument.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last"><strong>Leia e compreenda este artigo inteiro antes de executar qualquer procedimento descrito aqui.</strong></p>
+<p class="admonition-title">Warning</p>
+<p><strong>Leia e compreenda este artigo inteiro antes de executar qualquer procedimento descrito aqui.</strong></p>
 </div>
 <div class="section" id="preparando-o-script">
 <h2>Preparando o script<a class="headerlink" href="#preparando-o-script" title="Permalink to this headline">¶</a></h2>
-<p>Crie um arquivo em seu compuador chamado &quot;<em>mk2PartSDCard</em>&quot;. Copie o conteúdo do script abaixo para este arquivo e salve-o.</p>
+<p>Crie um arquivo em seu computador chamado &quot;<em>mk2PartSDCard</em>&quot;. Copie o conteúdo do script abaixo para este arquivo e salve-o.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#! /bin/sh
 #
 # (c) Copyright 2014 Gumstix, Inc.
@@ -218,32 +218,32 @@ fi
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Para modificar o espaço alocado em cada partição...</p>
+<p class="admonition-title">Tip</p>
+<p>Para modificar o espaço alocado em cada partição...</p>
 </div>
-<p>Torne o script executavel com o comando a seguir</p>
+<p>Torne o script executável com o comando a seguir</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod 755 mk2PartSDCard
 </pre></div>
 </div>
 </div>
 <div class="section" id="examinando-o-sistema-linux">
 <h2>Examinando o sistema Linux<a class="headerlink" href="#examinando-o-sistema-linux" title="Permalink to this headline">¶</a></h2>
-<p>Este script requer um unico parametro de entrada, que é a especificação do sistema de arquivo do dispositivo a ser particionado, neste caso o dispositivo conectado ao leitor de cartão SD. Esta seção mostra como descobrir qual a sistema de arquivo o cartão SD está conectado e no qual está conectado ao disco rígido.</p>
+<p>Este script requer um único parâmetro de entrada, que é a especificação do sistema de arquivo do dispositivo a ser particionado, neste caso o dispositivo conectado ao leitor de cartão SD. Esta seção mostra como descobrir qual a sistema de arquivo o cartão SD está conectado e no qual está conectado ao disco rígido.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last"><strong>Não execute o script se não tiver certeza do dispositivo correto a particionar</strong>. Se você especificar o dispositivo conectado ao disco rígido da máquina host em vez do leitor de cartão SD, você destruirá o disco rígido da sua máquina.</p>
+<p class="admonition-title">Warning</p>
+<p><strong>Não execute o script se não tiver certeza do dispositivo correto a particionar</strong>. Se você especificar o dispositivo conectado ao disco rígido da máquina host em vez do leitor de cartão SD, você destruirá o disco rígido da sua máquina.</p>
 </div>
-<p>O comando abaixo pode ser usado para examinar o sistema de armazenamento do computador Linux. Normalmente o cartão SD terá uma unica partição formatada no padrão Windows FAT, configuração tipica encontada em cartões adquiridos em varejo.</p>
+<p>O comando abaixo pode ser usado para examinar o sistema de armazenamento do computador Linux. Normalmente o cartão SD terá uma única partição formatada no padrão Windows FAT, configuração típica encontrada em cartões adquiridos em varejo.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">-</span><span class="n">hT</span>
 </pre></div>
 </div>
-<p>Após executar o comando, procure pelo Cartão SD, ele apresentará um tamanho um pouco menor que o informado pelo fabricante, por exemplo, um cartão SD de 4GB pode apresensentar 3,9GB ou menos.
-Além disso, o cartão provavelmente estará em um Sistema de Arquivo <em>/dev/sdb</em> no caso de computadores com um unico leitor de cartão SD. Para maquinas com mais de um leitor de cartão, pode haver um leitor em <em>/dev/sdb</em> e outro em <em>/dev/sdc</em>, para este caso, a melhor modo de saber é pela capacidade de armazenamento do cartão.</p>
-<p>Outra etapa importante é localizar a partição do sistema host Linux, provavelmente armazenada em <em>/dev/sda1</em> caso a maquina host possua uma unidade SATA em <em>/dev/sda1</em>, <em>/dev/hda</em> caso a maquina tenha uma unidade IDE mais antiga ou (adicionar nvme). Porem, o sistema host Linux ainda pode estar em outro tipo de sistema de arquivo, portanto é importante ter cuidado.</p>
-<p>O parametro a ser passado para o script é sistema de arquivos no qual o cartão SD está.</p>
+<p>Após executar o comando, procure pelo Cartão SD, ele apresentará um tamanho um pouco menor que o informado pelo fabricante, por exemplo, um cartão SD de 4GB pode apresentar 3,9GB ou menos.
+Além disso, o cartão provavelmente estará em um Sistema de Arquivo <em>/dev/sdb</em> no caso de computadores com um unico leitor de cartão SD. Para máquinas com mais de um leitor de cartão, pode haver um leitor em <em>/dev/sdb</em> e outro em <em>/dev/sdc</em>, para este caso, a melhor modo de saber é pela capacidade de armazenamento do cartão.</p>
+<p>Outra etapa importante é localizar a partição do sistema host Linux, provavelmente armazenada em <em>/dev/sda1</em> caso a máquina host possua uma unidade SATA em <em>/dev/sda1</em>, <em>/dev/hda</em> caso a máquina tenha uma unidade IDE mais antiga ou (adicionar nvme). Porém, o sistema host Linux ainda pode estar em outro tipo de sistema de arquivo, portanto é importante ter cuidado.</p>
+<p>O parâmetro a ser passado para o script é sistema de arquivos no qual o cartão SD está.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last"><strong>Não passe em hipotese alguma a partição do sistema host Linux como parametro. Passar a partição associada ao disco rígido da máquina host para esse script destruirá o disco rígido da máquina host</strong>.</p>
+<p class="admonition-title">Warning</p>
+<p><strong>Não passe em hipótese alguma a partição do sistema host Linux como parâmetro. Passar a partição associada ao disco rígido da máquina host para esse script destruirá o disco rígido da máquina host</strong>.</p>
 </div>
 <p><strong>Veja o exemplo abaixo.</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>lucas@Ubuntu-7348:~$ df -hT
@@ -257,16 +257,16 @@ tmpfs          tmpfs     789M   16K  789M   1% /run/user/121
 **/dev/sdb1      vfat      954M   48K  954M   1% /media/lucas/DSC_DISK**
 </pre></div>
 </div>
-<p>O cartão utilizado para o exemplo possui 1GB com uma partição única formatada em Windows padrão FAT. Como pode ser visto, o resultado do comando <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-hT</span></code> no sistema Linux diz que há um cartão SD conectado ao dispositivo <em>/dev/sdb</em>. Portanto, o parametro a ser passado para o script é <em>/dev/sdb</em>. Além disso, podemos verificar que a partição do sistema host Linux está em <em>/dev/sda1</em>. Isso indica que a máquina host possui uma unidade SATA em <em>/dev/sda</em>.</p>
+<p>O cartão utilizado para o exemplo possui 1GB com uma partição única formatada em Windows padrão FAT. Como pode ser visto, o resultado do comando <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-hT</span></code> no sistema Linux diz que há um cartão SD conectado ao dispositivo <em>/dev/sdb</em>. Portanto, o parâmetro a ser passado para o script é <em>/dev/sdb</em>. Além disso, podemos verificar que a partição do sistema host Linux está em <em>/dev/sda1</em>. Isso indica que a máquina host possui uma unidade SATA em <em>/dev/sda</em>.</p>
 </div>
 <div class="section" id="executando-o-script">
 <h2>Executando o script<a class="headerlink" href="#executando-o-script" title="Permalink to this headline">¶</a></h2>
-<p>Após verificar o dispositivo correto a ser particionado, é necessario desmontar qualquer diretorio do dispositivo. Para isso utilize o comando <code class="docutils literal notranslate"><span class="pre">$</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">umount</span></code> especificando o dispositivo.</p>
-<p>No exemplo acima, o diretorio <em>/media/lucas/DSC_DISK</em> está montado em <em>/dev/sdb1</em>, portanto para desmonta-lo é necessario executar o seguinte comando:</p>
+<p>Após verificar o dispositivo correto a ser particionado, é necessário desmontar qualquer diretório do dispositivo. Para isso utilize o comando <code class="docutils literal notranslate"><span class="pre">$</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">umount</span></code> especificando o dispositivo.</p>
+<p>No exemplo acima, o diretório <em>/media/lucas/DSC_DISK</em> está montado em <em>/dev/sdb1</em>, portanto para desmonta-lo é necessário executar o seguinte comando:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ umount /dev/sdb1
 </pre></div>
 </div>
-<p>O script deve ser executado com permissão de super usuario especificando o leitor de cartão SD. No ubuntu, isso é feito acrescentando <code class="docutils literal notranslate"><span class="pre">sudo</span></code> antes do comando. No caso do exemplo apresentado, o comando a ser realizado é:</p>
+<p>O script deve ser executado com permissão de super usuário especificando o leitor de cartão SD. No Ubuntu, isso é feito acrescentando <code class="docutils literal notranslate"><span class="pre">sudo</span></code> antes do comando. No caso do exemplo apresentado, o comando a ser realizado é:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo ./mk2PartSDCard /dev/sdb
 </pre></div>
 </div>

@@ -57,11 +57,11 @@ A equipe do Yocto Project verifica continuamente mais e mais distribuições Lin
 O sistema de compilação OpenEmbedded pode ser executado nas distribuições mais modernas que possuam as seguintes versões para Git, tar e Python.
 
 
-	* Git 1.8.3.1 or greater
+	* Git 1.8.3.1 ou posterior
 
-	* tar 1.27 or greater
+	* tar 1.27 ou posterior
 
-	* Python 3.4.0 or greater.
+	* Python 3.4.0  ou posterior
 
 Além disso, recomenda-se atualizar todos os comandos do Linux que serão utilizados nessa seção.
 
@@ -74,10 +74,7 @@ Além disso, recomenda-se atualizar todos os comandos do Linux que serão utiliz
 
 	::
 
-		$ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib
-		$ build-essential chrpath socat cpio python python3 python3-pip python3-pexpect 
-		$ xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev 
-		$ pylint3 xterm
+		sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm
 
 ..    $ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \ build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \ xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \ pylint3 xterm
 
@@ -93,29 +90,31 @@ Linhas de comando Linux para obtenção e montagem da imagem.
 
 1.  **Instalando o repositório**
 
+.. sudo apt install curl
+
 Baixa os scripts do repositório:
 
 	::
 
-		$ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
+		curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
 
 Torna os arquivos executáveis:
 
 	::
 
-		$ chmod a+x repo
+		chmod a+x repo
 
 Move os arquivos para o caminho do sistema:
 
 	::
 
-		$ sudo mv repo /usr/local/bin/
+		sudo mv repo /usr/local/bin/
 
 Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização. Esse comando não é obrigatório:
 
 	::
 
-		$ repo --help
+		repo --help
 
 2. **Criando um repositório local**
 
@@ -123,14 +122,14 @@ Cria um diretório para os arquivos e altera o diretório de execução para o n
 
 	:: 
 
-		$ mkdir yocto
-		$ cd yocto
+		mkdir yocto
+		cd yocto
 
 Seleciona o ramo mais estável do repositório:
 
 	::
 		
-		$ repo init -u git://github.com/gumstix/yocto-manifest.git -b fido
+		repo init -u git://github.com/gumstix/yocto-manifest.git -b fido
 
 Uma inicialização bem-sucedida terminará com uma mensagem informando que o *.repo* foi inicializado no seu diretório de trabalho. Agora seu diretório deve conter uma pasta *.repo* onde os arquivos de controle de repositório estão armazenados, mas não é necessário abrir o diretório.
 
@@ -140,7 +139,7 @@ Baixa os arquivos do repositorio:
 
 	::
 
-		$ repo sync
+		repo sync
 
 .. Note::
    Está etapa pode demorar mais de 20 minutos, dependendo da sua conexão de internet.
@@ -149,7 +148,7 @@ Força todos os arquivos temporários a serem escritos em dispositivos persisten
 
 	::
 
-		$ sync
+		sync
 
 4. **Iniciando o Yocto Project Build Environment**
 
@@ -157,8 +156,8 @@ Copia as informações de configuração padrão no diretório **poky/build/conf
 
 	::
 
-		$ export TEMPLATECONF=meta-gumstix-extras/conf 
-		$ source ./poky/oe-init-build-env
+		export TEMPLATECONF=meta-gumstix-extras/conf 
+		source ./poky/oe-init-build-env
 
 .. Note::
    Este diretório de configuração não está sob controle de revisão; você pode editar esses arquivos de configuração para sua instalação específica. 
@@ -169,7 +168,7 @@ Baixa os códigos fonte e compilando as imagens do sistema:
 
 	::
 
-		$ bitbake gumstix-console-image
+		bitbake gumstix-console-image
 
 .. Tip::
    Esse processo baixa vários gigabytes de código e, em seguida, faz uma enorme compilação. Portanto, certifique-se de ter pelo menos os 25GB de espaço livre. Esta etapa pode levar um dia ou mais para a criação da imagem, a depender da sua conexão de internet. Não se preocupe, é apenas a primeira compilação que demora um pouco.

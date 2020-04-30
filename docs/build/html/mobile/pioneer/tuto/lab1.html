@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -195,77 +195,69 @@
 <h2>Introdução<a class="headerlink" href="#introducao" title="Permalink to this headline">¶</a></h2>
 <p>Todo o software produzido no ROS é organizado em pacotes. Um pacote pode conter nós do ROS, bibliotecas independentes, datasets, arquivos de configuração ou qualquer material que possa constituir um módulo. Para que um pacote seja visto pelo ROS ele deve ter no mínimo os seguintes requisitos:</p>
 <ul class="simple">
-<li>Deve conter um arquivo chamado package.xml com código catkin;</li>
-<li>Deve conter um arquivo CMakeLists.txt;</li>
-<li>Cada pacote deve ter seu próprio diretório;</li>
+<li><p>Deve conter um arquivo chamado package.xml com código catkin;</p></li>
+<li><p>Deve conter um arquivo CMakeLists.txt;</p></li>
+<li><p>Cada pacote deve ter seu próprio diretório;</p></li>
 </ul>
 <p>O arquivo package.xml reúne todas as informações de autor, nome do pacote, versão do código e dependências. Já o CMakeLists.txt reúne as regras de compilação do pacote.</p>
 </div>
 <div class="section" id="procedimentos">
 <h2>Procedimentos<a class="headerlink" href="#procedimentos" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>No terminal, configure o ros com o comando:</dt>
-<dd><ul class="first last">
-<li>$ bash.sh</li>
+<li><dl class="simple">
+<dt>No terminal, configure o ros com o comando:</dt><dd><ul>
+<li><p>$ bash.sh</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>No novo terminal aberto, entre na pasta catkin_ws. Esse será o ambiente de trabalho a ser usado neste curso:</dt>
-<dd><ul class="first last">
-<li>$ cd catkin_ws</li>
+<li><dl class="simple">
+<dt>No novo terminal aberto, entre na pasta catkin_ws. Esse será o ambiente de trabalho a ser usado neste curso:</dt><dd><ul>
+<li><p>$ cd catkin_ws</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Entre na pasta src. Para o ROS essa é pasta onde fica o código fonte dos pacotes:</dt>
-<dd><ul class="first last">
-<li>$ cd src</li>
+<li><dl class="simple">
+<dt>Entre na pasta src. Para o ROS essa é pasta onde fica o código fonte dos pacotes:</dt><dd><ul>
+<li><p>$ cd src</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Use o script catkin_create_pkg para criar um novo pacote. Esse pacote será chamado de ‘beginner_tutorials’ e terá como dependências os pacotes std_msgs, roscpp e rospy:</dt>
-<dd><ul class="first last">
-<li>$ catkin_create_pkg beginner_tutorials std_msgs rospy roscpp</li>
+<li><dl class="simple">
+<dt>Use o script catkin_create_pkg para criar um novo pacote. Esse pacote será chamado de ‘beginner_tutorials’ e terá como dependências os pacotes std_msgs, roscpp e rospy:</dt><dd><ul>
+<li><p>$ catkin_create_pkg beginner_tutorials std_msgs rospy roscpp</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Este comando irá criar uma pasta chamada de beginner_tutorials que conterá um package.xml e um CMakeLists.txt parcialmente preenchidos com as dependências indicadas.</dt>
-<dd><ul class="first last">
-<li>Abra o CMakeLists.txt em um editor de texto e procure onde as dependências são chamadas.</li>
-<li>Abra o package.xml em um editor de texto e procure onde as informações de autor, versão e dependências são informadas.</li>
+<li><dl class="simple">
+<dt>Este comando irá criar uma pasta chamada de beginner_tutorials que conterá um package.xml e um CMakeLists.txt parcialmente preenchidos com as dependências indicadas.</dt><dd><ul>
+<li><p>Abra o CMakeLists.txt em um editor de texto e procure onde as dependências são chamadas.</p></li>
+<li><p>Abra o package.xml em um editor de texto e procure onde as informações de autor, versão e dependências são informadas.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Para compilar o workspace volte para catkin_ws:</dt>
-<dd><ul class="first last">
-<li>$ cd ~/catkin_ws</li>
+<li><dl class="simple">
+<dt>Para compilar o workspace volte para catkin_ws:</dt><dd><ul>
+<li><p>$ cd ~/catkin_ws</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Atualize as variáveis de ambiente do ROS:</dt>
-<dd><ul class="first last">
-<li>$ cd catkin_ws</li>
-<li>$ . devel/ros_custom.sh</li>
+<li><dl class="simple">
+<dt>Atualize as variáveis de ambiente do ROS:</dt><dd><ul>
+<li><p>$ cd catkin_ws</p></li>
+<li><p>$ . devel/ros_custom.sh</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Compile o workspace:</dt>
-<dd><ul class="first last">
-<li>$ catkin_make</li>
+<li><dl class="simple">
+<dt>Compile o workspace:</dt><dd><ul>
+<li><p>$ catkin_make</p></li>
 </ul>
 </dd>
 </dl>

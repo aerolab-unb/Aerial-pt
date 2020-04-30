@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -177,10 +177,10 @@
 <h1>Computador Embarcado<a class="headerlink" href="#computador-embarcado" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overo-waterstorm">
 <h2>Overo WaterStorm<a class="headerlink" href="#overo-waterstorm" title="Permalink to this headline">¶</a></h2>
-<p>Após considerar as aplicações mais específicas a serem realizadas, o computador embarcado escolhido foi o Overo WaterStorm Computer-On-Module(COM), esse sistema embarcado apresenta um processador DM3730 com arquitetura ARM Cortex-A8 e clock de base do processador de até 1 GHz. Além disso, esse computador está acoplado a uma placa de expansão Tobi que acrescenta ao computador embarcado conexões do tipo display DVI, Ethernet, USB Host, USB OTG, USB console, áudio Stereo e um segmento com 40 pin-headers que podem ser utilizados para a mais diversas funções, como modulação PWM, GPIO, alimentação, conversão analógico digital e comunicação serial.</p>
+<p>Após considerar as aplicações mais específicas a serem realizadas, o computador embarcado escolhido foi o Overo WaterStorm Computer-On-Module (COM), esse sistema embarcado apresenta um processador DM3730 com arquitetura ARM Cortex-A8 e clock de base do processador de até 1 GHz. Além disso, esse computador está acoplado a uma placa de expansão Tobi que acrescenta ao computador embarcado conexões do tipo display DVI, Ethernet, USB Host, USB OTG, USB console, áudio Stereo e um segmento com 40 pin-headers que podem ser utilizados para a mais diversas funções, como modulação PWM, GPIO, alimentação, conversão analógico digital e comunicação serial.</p>
 <div class="figure align-center" id="id1">
 <img alt="../../../_images/System_Gumstix.png" src="../../../_images/System_Gumstix.png" />
-<p class="caption"><span class="caption-text">Sistema Gumstix com computador Overo WaterSTORM, placa de expansão Tobi e câmera Caspa VL</span></p>
+<p class="caption"><span class="caption-text">Sistema Gumstix com computador Overo WaterSTORM, placa de expansão Tobi e câmera Caspa VL</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Acoplou-se também ao sistema uma câmera Caspa VL, capaz de capturar imagens coloridas com dimensão de 752 x 480 pixels em uma frequência de 60 imagens por segundo. Esses três componentes são produzidos pela empresa Gumstix, fabricante de hardware especializada em computadores pequenos do tipo computador-em-módulo (COM - computer-on-module), muito utilizados para sistemas embarcados.</p>
 <p>Apesar do tamanho pequeno, a combinação da Overo COM com a placa de extensão TOBI possui o mesmo desempenho do que um computador Linux completo de tamanho normal, maior do que outros sistemas desse tipo encontrados no mercado, como, por exemplo, o computador Raspberry Pi.</p>
@@ -188,33 +188,33 @@
 <div class="section" id="especificacoes">
 <h2>Especificações<a class="headerlink" href="#especificacoes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><strong>Camera</strong>
--   Camera Connector: 27-Pin (OMAP ISP)</li>
-<li><strong>Mechanical</strong>
+<li><p><strong>Camera</strong>
+-   Camera Connector: 27-Pin (OMAP ISP)</p></li>
+<li><p><strong>Mechanical</strong>
 -   Length: 58 mm
--   Width: 17 mm</li>
-<li><strong>Memory</strong>
--   Flash Memory (NAND): 512</li>
-<li><strong>Processor</strong>
+-   Width: 17 mm</p></li>
+<li><p><strong>Memory</strong>
+-   Flash Memory (NAND): 512</p></li>
+<li><p><strong>Processor</strong>
 -   Graphics Acceleration: PowerVR SGX530 with OpenGL
 -   Digital Signal Processor: C64x+
 -   Processor: Texas Instruments OMAP3730
 -   Processor Architecture: ARM Cortex-A8
 -   Processor Base Clock: 800 MHz
--   Processor Max Clock: 1 GHz</li>
-<li><strong>Power</strong>
--   Power Management: Texas Instruments TPS65950</li>
-<li><strong>Storage</strong>
--   Storage Expansion via microSD Card Slot</li>
+-   Processor Max Clock: 1 GHz</p></li>
+<li><p><strong>Power</strong>
+-   Power Management: Texas Instruments TPS65950</p></li>
+<li><p><strong>Storage</strong>
+-   Storage Expansion via microSD Card Slot</p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>As especificações completas do computador, da placa de extensão e da câmera estão disponíveis nas fichas técnicas abaixo.</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li><a class="reference download internal" download="" href="../../../_downloads/e6458db0d1d5cd1787277bde92e3d619/GUM3703WB-1729092.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Overo</span> <span class="pre">Waterstorm</span> <span class="pre">COM</span></code></a></li>
-<li><a class="reference download internal" download="" href="../../../_downloads/cfd5167c595f0ac7317bd5d9758edf26/PKG30002.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Placa</span> <span class="pre">de</span> <span class="pre">extensão</span> <span class="pre">TOBI</span></code></a></li>
-<li><a class="reference download internal" download="" href="../../../_downloads/19f1d2aa438c4dffc26f82ab4c6d8de7/PKG30009C.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Câmera</span> <span class="pre">Caspa</span> <span class="pre">VL</span></code></a></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/fd78fa001764b645ece107e15d5e8708/GUM3703WB-1729092.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Overo</span> <span class="pre">Waterstorm</span> <span class="pre">COM</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/1fc4948d9e796b0431e7ec48afdaf18b/PKG30002.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Placa</span> <span class="pre">de</span> <span class="pre">extensão</span> <span class="pre">TOBI</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/63063a867a20d0e93210a2222b98bad6/PKG30009C.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Câmera</span> <span class="pre">Caspa</span> <span class="pre">VL</span></code></a></p></li>
 </ul>
 </div></blockquote>
 </div>

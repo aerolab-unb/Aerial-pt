@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -181,10 +181,10 @@
 <h1>Pouso Automático<a class="headerlink" href="#pouso-automatico" title="Permalink to this headline">¶</a></h1>
 <p>Após a conexão do Lidar ao sistema via PWM, alguns parâmetros do piloto automático devem ser alterados para que ele reconheça o sensor. Esses parâmetros podem ser facilmente alterados através do QGroundControl. São eles:</p>
 <ul class="simple">
-<li>RNG_FND = 5, indica que a conexão ocorre via PWM.</li>
-<li>RNDFND_MAX_CM = 4000, representa a distância máxima em que o sensor é confiável.</li>
-<li>RNDFND_STOP_PIN = 55, indica o pino conectado ao sinal de ativação do Lidar. Permite que o dispositivo reinicie o sensor caso ele para de fornecer dados.</li>
-<li>Os parâmetros RNDFND_SCALING e RNDFND_OFFSET devem ser ajustados de forma a se calibrar o sensor (costumam ser aproximadamente 0 e 1, respectivamente).</li>
+<li><p>RNG_FND = 5, indica que a conexão ocorre via PWM.</p></li>
+<li><p>RNDFND_MAX_CM = 4000, representa a distância máxima em que o sensor é confiável.</p></li>
+<li><p>RNDFND_STOP_PIN = 55, indica o pino conectado ao sinal de ativação do Lidar. Permite que o dispositivo reinicie o sensor caso ele para de fornecer dados.</p></li>
+<li><p>Os parâmetros RNDFND_SCALING e RNDFND_OFFSET devem ser ajustados de forma a se calibrar o sensor (costumam ser aproximadamente 0 e 1, respectivamente).</p></li>
 </ul>
 <p>O sensor pode ser testado pelo QGroundControl, onde as leituras podem ser observadas no campo <strong>Sonar Range</strong>. Após a configuração do sensor, o piloto automático será capaz de pousar a aeronave de forma muito mais rápida e precisa. O pouso ocorre pelo envio do comando <strong>Land</strong> ao controlador, mas para que ele ocorra corretamente deve-se definir a posição da pista de pouso e deve-se ajustar os parâmetros de pouso, como, por exemplo, a velocidade com que o avião deve pousar.</p>
 <p>A documentação detalhada sobre pousos automáticos pode ser encontrada em <a class="reference external" href=".http://ardupilot.org/plane/docs/automatic-landing.html.">Automatic Landing</a>.</p>

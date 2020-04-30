@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -179,49 +179,48 @@
             
   <div class="section" id="firmware">
 <h1>Firmware<a class="headerlink" href="#firmware" title="Permalink to this headline">¶</a></h1>
-<p>A instalação do <em>firmware</em> no hardware do controlador de voo pode ser efetuada de duas formas, pelo uso de um programa de Estação de Controle Terrestre (ECT) ou diretamente pelo uso de ferramentas de desenvolvedor sem o uso de um programa auxiliar <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<p>A instalação do <em>firmware</em> no hardware do controlador de voo pode ser efetuada de duas formas, pelo uso de um programa de Estação de Controle Terrestre (ECT) ou diretamente pelo uso de ferramentas de desenvolvedor sem o uso de um programa auxiliar <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Antes de iniciar esta seção, recomenda-se o download e instalação do QGroundControl em seu computador.</p>
+<p class="admonition-title">Tip</p>
+<p>Antes de iniciar esta seção, recomenda-se o download e instalação do QGroundControl em seu computador.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">A documentação oficial do QGroundControl está disponível em <a class="reference external" href="https://docs.qgroundcontrol.com/en/">QGroundControl</a>.</p>
+<p class="admonition-title">Note</p>
+<p>A documentação oficial do QGroundControl está disponível em <a class="reference external" href="https://docs.qgroundcontrol.com/en/">QGroundControl</a>.</p>
 </div>
 <div class="section" id="instalacao">
 <h2>Instalação<a class="headerlink" href="#instalacao" title="Permalink to this headline">¶</a></h2>
 <p>Recomenda-se a instalação da versão mais recente do PX4, a fim de obter as correções de bug e as melhores e mais recentes funções.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Antes de instalar o firmware, todas as conexões USB do veículo devem ser desconectadas e o veículo não deve ser alimentado por uma bateria.</p>
+<p class="admonition-title">Note</p>
+<p>Antes de instalar o firmware, todas as conexões USB do veículo devem ser desconectadas e o veículo não deve ser alimentado por uma bateria.</p>
 </div>
 <ol class="arabic simple">
-<li>Selecione o icone da engrenagem (<strong>Vehicle Setup</strong>) na barra de ferramentas superior e, em seguida, selecione <strong>Firmware</strong> na barra lateral.</li>
+<li><p>Selecione o icone da engrenagem (<strong>Vehicle Setup</strong>) na barra de ferramentas superior e, em seguida, selecione <strong>Firmware</strong> na barra lateral.</p></li>
 </ol>
 <ol class="arabic simple" start="2">
-<li>Conecte o Pixhawk diretamente ao seu computador via USB (não conecte através de um hub USB).</li>
+<li><p>Conecte o Pixhawk diretamente ao seu computador via USB (não conecte através de um hub USB).</p></li>
 </ol>
 <ol class="arabic simple" start="3">
-<li>Selecione a opção <strong>PX4 Flight Stack X.x.x Release</strong> para instalar a versão mais recente do PX4 em seu controlador de voo (detectado automaticamente).</li>
+<li><p>Selecione a opção <strong>PX4 Flight Stack X.x.x Release</strong> para instalar a versão mais recente do PX4 em seu controlador de voo (detectado automaticamente).</p></li>
 </ol>
 <ol class="arabic simple" start="4">
-<li>Clique em <strong>OK</strong> para iniciar a instalação.</li>
+<li><p>Clique em <strong>OK</strong> para iniciar a instalação.</p></li>
 </ol>
 <p>O firmware seguirá com várias etapas de atualização (download do novo firmware, exclusão da versão antiga, etc.). O progresso geral é exibido em uma barra de progresso.</p>
 <p>Assim que a instalação acabar e o firmware estiver instalado, o controlador será reiniciado e reconectado.</p>
 <div class="section" id="mais-informacoes">
 <h3>Mais Informações<a class="headerlink" href="#mais-informacoes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="https://docs.px4.io/v1.9.0/en/config/firmware.html">PX4 user guide &gt; Firmware</a>.</li>
-<li><a class="reference external" href="https://docs.qgroundcontrol.com/en/SetupView/Firmware.html">QGroundControl user guide &gt; Firmware</a>.</li>
-<li><a class="reference external" href="https://www.youtube.com/watch?v=91VGmdSlbo4&amp;feature=youtu.be">PX4 Setup Video</a> (Youtube)</li>
+<li><p><a class="reference external" href="https://docs.px4.io/v1.9.0/en/config/firmware.html">PX4 user guide &gt; Firmware</a>.</p></li>
+<li><p><a class="reference external" href="https://docs.qgroundcontrol.com/en/SetupView/Firmware.html">QGroundControl user guide &gt; Firmware</a>.</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=91VGmdSlbo4&amp;feature=youtu.be">PX4 Setup Video</a> (Youtube)</p></li>
 </ul>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.</td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>

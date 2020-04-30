@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -191,63 +191,52 @@
 </div>
 <div class="section" id="procedimentos">
 <h2>Procedimentos<a class="headerlink" href="#procedimentos" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Abra o terminal e inicie o nó central do ROS:</dt>
-<dd><ul class="first last simple">
-<li>$ roscore</li>
+<dl class="simple">
+<dt>Abra o terminal e inicie o nó central do ROS:</dt><dd><ul class="simple">
+<li><p>$ roscore</p></li>
 </ul>
 </dd>
-<dt>Em outro terminal inicie o turtlesim:</dt>
-<dd><ul class="first last simple">
-<li>$ rosrun turtlesim turtlesim_node</li>
+<dt>Em outro terminal inicie o turtlesim:</dt><dd><ul class="simple">
+<li><p>$ rosrun turtlesim turtlesim_node</p></li>
 </ul>
 </dd>
-<dt>O ROS usa um sistema de comunicação distribuída em que os executáveis, chamados de nós, usam tópicos para a troca de mensagens. Um nó pode publicar e/ou se inscrever em um tópico. Para ver os tópicos ativos, abra um novo terminal e use o comando:</dt>
-<dd><ul class="first last simple">
-<li>$ rostopic list</li>
+<dt>O ROS usa um sistema de comunicação distribuída em que os executáveis, chamados de nós, usam tópicos para a troca de mensagens. Um nó pode publicar e/ou se inscrever em um tópico. Para ver os tópicos ativos, abra um novo terminal e use o comando:</dt><dd><ul class="simple">
+<li><p>$ rostopic list</p></li>
 </ul>
 </dd>
-<dt>Este comando irá listar todos os tópicos ativos. Para ver o nós ativos use:</dt>
-<dd><ul class="first last simple">
-<li>$ rosnode list</li>
+<dt>Este comando irá listar todos os tópicos ativos. Para ver o nós ativos use:</dt><dd><ul class="simple">
+<li><p>$ rosnode list</p></li>
 </ul>
 </dd>
-<dt>Para ver as informações de um nó, use rosnode info /nome_do_no:</dt>
-<dd><ul class="first last simple">
-<li>$ rosnode info /turtlesim</li>
+<dt>Para ver as informações de um nó, use rosnode info /nome_do_no:</dt><dd><ul class="simple">
+<li><p>$ rosnode info /turtlesim</p></li>
 </ul>
 </dd>
-<dt>Este comando irá mostrar os tópicos que são publicados e ouvidos pelo nó turtlesim. Para mover a tartaruga do turtlesim deve-se publicar no tópico /turtle1/cmd_vel. Cada tópico no ROS tem um único tipo de mensagem. Para saber qual o tipo da mensagem publicada no tópico /turtle1/cmd_vel use o comando:</dt>
-<dd><ul class="first last simple">
-<li>$ rostopic info /turtle1/cmd_vel</li>
+<dt>Este comando irá mostrar os tópicos que são publicados e ouvidos pelo nó turtlesim. Para mover a tartaruga do turtlesim deve-se publicar no tópico /turtle1/cmd_vel. Cada tópico no ROS tem um único tipo de mensagem. Para saber qual o tipo da mensagem publicada no tópico /turtle1/cmd_vel use o comando:</dt><dd><ul class="simple">
+<li><p>$ rostopic info /turtle1/cmd_vel</p></li>
 </ul>
 </dd>
-<dt>Este comando mostrará o tipo de mensagem, os ‘publishers’ e os ‘subscribers’ deste tópico. O tipo ‘geometry_msgs/Twist’ representa uma velocidade como uma velocidade angular e uma velocidade linear. Para ver a estrutura dessa mensagem visite <a class="reference external" href="http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html">http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html</a> ou use o comando:</dt>
-<dd><ul class="first last simple">
-<li>$ rosmsg show geometry_msgs/Twist</li>
-<li>Obs.: Todas as unidades no ROS estão no Sistema Internacional de Unidades (SI), portanto a velocidade se dá em m/s;</li>
+<dt>Este comando mostrará o tipo de mensagem, os ‘publishers’ e os ‘subscribers’ deste tópico. O tipo ‘geometry_msgs/Twist’ representa uma velocidade como uma velocidade angular e uma velocidade linear. Para ver a estrutura dessa mensagem visite <a class="reference external" href="http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html">http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html</a> ou use o comando:</dt><dd><ul class="simple">
+<li><p>$ rosmsg show geometry_msgs/Twist</p></li>
+<li><p>Obs.: Todas as unidades no ROS estão no Sistema Internacional de Unidades (SI), portanto a velocidade se dá em m/s;</p></li>
 </ul>
 </dd>
-<dt>Para publicar uma mensagem no tópico /turtle1/cmd_vel, use o comando:</dt>
-<dd><ul class="first last simple">
-<li>$ rostopic pub /turtle1/cmd_vel geometry_msgs/Twist &quot;{linear:[0.0, 0.0, 0.0], angular:[0.0, 0.0, 0.0]}&quot;</li>
-<li>Obs.: a tecla TAB pode ser usada para completar os comandos;</li>
+<dt>Para publicar uma mensagem no tópico /turtle1/cmd_vel, use o comando:</dt><dd><ul class="simple">
+<li><p>$ rostopic pub /turtle1/cmd_vel geometry_msgs/Twist &quot;{linear:[0.0, 0.0, 0.0], angular:[0.0, 0.0, 0.0]}&quot;</p></li>
+<li><p>Obs.: a tecla TAB pode ser usada para completar os comandos;</p></li>
 </ul>
 </dd>
-<dt>O primeiro argumento da mensagem representa a velocidade linear e suas componentes x, y e z. Já o segundo argumento representa a velocidade angular e suas componentes. Como a tartaruga está sendo simulada em um ambiente 2D apenas as velocidades linear em x e angular em z farão a tartaruga se mover. Para isso use, por exemplo:</dt>
-<dd><ul class="first last simple">
-<li>$ rostopic pub /turtle1/cmd_vel geometry_msgs/Twist &quot;{linear:[1.0, 0.0, 0.0], angular:[0.0, 0.0, 0.0]}&quot;</li>
+<dt>O primeiro argumento da mensagem representa a velocidade linear e suas componentes x, y e z. Já o segundo argumento representa a velocidade angular e suas componentes. Como a tartaruga está sendo simulada em um ambiente 2D apenas as velocidades linear em x e angular em z farão a tartaruga se mover. Para isso use, por exemplo:</dt><dd><ul class="simple">
+<li><p>$ rostopic pub /turtle1/cmd_vel geometry_msgs/Twist &quot;{linear:[1.0, 0.0, 0.0], angular:[0.0, 0.0, 0.0]}&quot;</p></li>
 </ul>
 </dd>
-<dt>Para enviar uma mensagem em loop, deve-se adicionar o argumento ‘-r &lt;frequência_do_loop&gt;’. Para enviar o mesmo comando acima em um loop de 10 Hz, por exemplo, use:</dt>
-<dd><ul class="first last simple">
-<li>$ rostopic pub /turtle1/cmd_vel geometry_msgs/Twist &quot;{linear:[0.0, 0.0, 0.0], angular:[0.0, 0.0, 1.0]}&quot; -r 10</li>
+<dt>Para enviar uma mensagem em loop, deve-se adicionar o argumento ‘-r &lt;frequência_do_loop&gt;’. Para enviar o mesmo comando acima em um loop de 10 Hz, por exemplo, use:</dt><dd><ul class="simple">
+<li><p>$ rostopic pub /turtle1/cmd_vel geometry_msgs/Twist &quot;{linear:[0.0, 0.0, 0.0], angular:[0.0, 0.0, 1.0]}&quot; -r 10</p></li>
 </ul>
 </dd>
-<dt>Para ver o que está sendo publicado em um nó pode se usar ‘rostopic echo’:</dt>
-<dd><ul class="first last simple">
-<li>$ rostopic echo /turtle1/cmd_vel</li>
-<li>$ rostopic echo /turtle1/pose</li>
+<dt>Para ver o que está sendo publicado em um nó pode se usar ‘rostopic echo’:</dt><dd><ul class="simple">
+<li><p>$ rostopic echo /turtle1/cmd_vel</p></li>
+<li><p>$ rostopic echo /turtle1/pose</p></li>
 </ul>
 </dd>
 </dl>
@@ -259,10 +248,10 @@ Usando os comando acima faça a tartaruga desenhar um círculo.</p>
 <h2>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h2>
 <p>Para mais informações sobre tópicos, mensagens e nós visite:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes">http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes</a></li>
-<li><a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics">http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics</a></li>
-<li>Referência sobre geometry_msgs: <a class="reference external" href="http://wiki.ros.org/geometry_msgs">http://wiki.ros.org/geometry_msgs</a></li>
-<li>Referência sobre o turtlesim: <a class="reference external" href="http://wiki.ros.org/turtlesim">http://wiki.ros.org/turtlesim</a></li>
+<li><p><a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes">http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes</a></p></li>
+<li><p><a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics">http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics</a></p></li>
+<li><p>Referência sobre geometry_msgs: <a class="reference external" href="http://wiki.ros.org/geometry_msgs">http://wiki.ros.org/geometry_msgs</a></p></li>
+<li><p>Referência sobre o turtlesim: <a class="reference external" href="http://wiki.ros.org/turtlesim">http://wiki.ros.org/turtlesim</a></p></li>
 </ul>
 </div>
 </div>

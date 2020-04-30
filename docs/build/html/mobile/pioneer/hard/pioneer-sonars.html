@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -191,12 +191,12 @@
 <div class="section" id="sonar-specs">
 <h2>Sonar Specs<a class="headerlink" href="#sonar-specs" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Range of view: 0.1 m ~ 5 m</li>
-<li>Aquisition rate: 25 Hz</li>
+<li><p>Range of view: 0.1 m ~ 5 m</p></li>
+<li><p>Aquisition rate: 25 Hz</p></li>
 </ul>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">If the sonar doesn't view anything in its cone of view, it will send to the software the max range.</p>
+<p class="admonition-title">Warning</p>
+<p>If the sonar doesn't view anything in its cone of view, it will send to the software the max range.</p>
 </div>
 </div>
 <div class="section" id="geometry">
@@ -204,10 +204,10 @@
 <p>The position of each sonar is showed in the image below.</p>
 <img alt="../../../_images/IeTo5.jpg" src="../../../_images/IeTo5.jpg" />
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<ul class="last simple">
-<li>All these locations are fixed in the robot.</li>
-<li>There're a URDF file, describing these locations to ROS. Please see the section <a class="reference external" href="urdf.html#urdf">description of the robot</a>.</li>
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>All these locations are fixed in the robot.</p></li>
+<li><p>There're a URDF file, describing these locations to ROS. Please see the section <a class="reference external" href="urdf.html#urdf">description of the robot</a>.</p></li>
 </ul>
 </div>
 </div>
@@ -218,10 +218,11 @@
 <p>Low sonar-gain settings reduce the robot’s ability to see small objects. Under some circumstances, that is desirable. For instance, attenuate the sonar if you are operating in a noisy environment or on uneven or highly reflective floor, a heavy shag carpet, for example. If the sonar are too sensitive, they will “see” the carpet immediately ahead of the robot as an obstacle.</p>
 <p>Increase the sensitivity of the sonar by turning the gain-adjustment screw clockwise, making them more likely to see small objects or objects at a greater distance. For instance, increase the gain if youare operating in a relatively quiet and open environment with a smooth floor surface.</p>
 <blockquote>
-<div>By Mobile Robots©</div></blockquote>
+<div><p>By Mobile Robots©</p>
+</div></blockquote>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">See more in the <a class="reference external" href="manual.pdf">manual</a>.</p>
+<p class="admonition-title">Hint</p>
+<p>See more in the <a class="reference external" href="manual.pdf">manual</a>.</p>
 </div>
 </div>
 <div class="section" id="software">

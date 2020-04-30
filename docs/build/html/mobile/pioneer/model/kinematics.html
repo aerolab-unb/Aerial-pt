@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -191,21 +191,21 @@ Also, we can draw the paths and trajectories that the robot can do.
 Here, the text focus on wheeled robots, which can only move in 2D space.</p>
 <div class="figure align-left" id="id11">
 <a class="reference internal image-reference" href="../../../_images/p3-dx.jpg"><img alt="../../../_images/p3-dx.jpg" src="../../../_images/p3-dx.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Pioneer P3-DX</span></p>
+<p class="caption"><span class="caption-text">Pioneer P3-DX</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-right" id="id12">
 <a class="reference internal image-reference" href="../../../_images/p3-at.jpg"><img alt="../../../_images/p3-at.jpg" src="../../../_images/p3-at.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Pioneer P3-AT</span></p>
+<p class="caption"><span class="caption-text">Pioneer P3-AT</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 <p>The P3-DX is a two-wheel-drive and P3-AT is a four-wheel-drive.
 The <a class="reference external" href="http://www.mobilerobots.com/Mobile_Robots.aspx">Omron Adept MobileRobots</a> considers in its manual the P3-DX as a differential drive robot and the P3-AT as a skid/slip drive robot.
-For our sake, both are modeled as differential drive vehicles because the exact center of rotation in a skid/slip drive is unpredictable <a class="footnote-reference" href="#id7" id="id1">[1]</a>.</p>
+For our sake, both are modeled as differential drive vehicles because the exact center of rotation in a skid/slip drive is unpredictable <a class="footnote-reference brackets" href="#id7" id="id1">1</a>.</p>
 <p>In order to represent the motion of a mobile robot, we must define the reference frames and determine their position.
 There are two essential frames to a robot if we consider the robot as a rigid body.
 They are the global reference frame, that is world fixed, and the local reference frame, which is robot fixed.</p>
 <div class="figure align-left" id="id13" style="width: 320px">
 <a class="reference internal image-reference" href="../../../_images/robot_frames.png"><img alt="The global reference frame and the robot local reference frame." src="../../../_images/robot_frames.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">The global reference frame and the robot local reference frame. Figure from <a class="footnote-reference" href="#id7" id="id2">[1]</a>.</span></p>
+<p class="caption"><span class="caption-text">The global reference frame and the robot local reference frame. Figure from <a class="footnote-reference brackets" href="#id7" id="id2">1</a>.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
 <p>The figure shows a robot and its reference frames.
 Where the <span class="math notranslate nohighlight">\(X_I\)</span> and <span class="math notranslate nohighlight">\(Y_I\)</span> defines the global reference frame, also known as the inertial frame, and <span class="math notranslate nohighlight">\(X_R\)</span> and <span class="math notranslate nohighlight">\(Y_R\)</span> defines the local reference frame or the robot frame.
@@ -225,29 +225,29 @@ Or, we can map obstacles sensed by the robot in terms of the global reference fr
 \[\dot{\xi_R} = R(\theta) \dot{\xi_I}\]</div>
 <div class="section" id="wheels-and-its-constraints">
 <h2>Wheels and its constraints<a class="headerlink" href="#wheels-and-its-constraints" title="Permalink to this headline">¶</a></h2>
-<p>&quot;Wheeled Mobile Robots (WMR) constitute a class of mechanical systems characterized by kinematics constraints that are not integrable and cannot, therefore, be eliminated from the model equations&quot; <a class="footnote-reference" href="#id8" id="id3">[2]</a>.
+<p>&quot;Wheeled Mobile Robots (WMR) constitute a class of mechanical systems characterized by kinematics constraints that are not integrable and cannot, therefore, be eliminated from the model equations&quot; <a class="footnote-reference brackets" href="#id8" id="id3">2</a>.
 If we want to study and describe a robot motion, we also must specify which are the hypotheses and constraints of the wheels.
 There are three essential hypotheses about the kinematics model of the wheeled robot during the motion; they are:</p>
 <ul class="simple">
-<li>Each wheel remain perpendicular about its plane;</li>
-<li>There is only one contact point between plane and wheel;</li>
-<li>There is only rolling without slipping;</li>
+<li><p>Each wheel remain perpendicular about its plane;</p></li>
+<li><p>There is only one contact point between plane and wheel;</p></li>
+<li><p>There is only rolling without slipping;</p></li>
 </ul>
 <p>And two constraints:</p>
 <ul class="simple">
-<li>About rolling: the motion component along the wheel plane is equal to the rotation velocity of the wheel;</li>
-<li>About slipping: the motion component along the orthogonal direction is equal to zero;</li>
+<li><p>About rolling: the motion component along the wheel plane is equal to the rotation velocity of the wheel;</p></li>
+<li><p>About slipping: the motion component along the orthogonal direction is equal to zero;</p></li>
 </ul>
 <p>Some authors may call these constraints as &quot;the pure rolling and rotation condition&quot;.</p>
 </div>
 <div class="section" id="differential-drive-model">
 <h2>Differential Drive Model<a class="headerlink" href="#differential-drive-model" title="Permalink to this headline">¶</a></h2>
 <p>Now we delve into modeling of a differential drive kinematic.
-Dudek et al. say that the differential drive consists of two wheels mounted in the same axis with separated motors <a class="footnote-reference" href="#id9" id="id4">[3]</a>.
+Dudek et al. say that the differential drive consists of two wheels mounted in the same axis with separated motors <a class="footnote-reference brackets" href="#id9" id="id4">3</a>.
 Each wheel contributes to the robot motion, so to fully describe the robot motion, we must compute each contribution.</p>
 <div class="figure align-right" id="id14" style="width: 420px">
 <a class="reference internal image-reference" href="../../../_images/wheel_vel.png"><img alt="The global reference frame and the robot local reference frame." src="../../../_images/wheel_vel.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Wheel velocities and the robot frame.</span></p>
+<p class="caption"><span class="caption-text">Wheel velocities and the robot frame.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 <p>The image shows the robot, the wheel velocities, and the local frame.
 <span class="math notranslate nohighlight">\(\dot{\phi}_1\)</span> and <span class="math notranslate nohighlight">\(\dot{\phi}_2\)</span> is the spin speed of the left wheel and right wheel.
@@ -278,8 +278,8 @@ v      &amp; = &amp;   v_1 + v_2 \\
                               0       &amp;        0 \\
                       -\frac{r}{2 l}  &amp; \frac{r}{2 l}  \end{array} \right] \left[ \begin{array}{c} \dot{\phi}_1 \\ \dot{\phi}_2 \end{array} \right]\end{split}\]</div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">In the robot frame, there is no velocity in the direction of <span class="math notranslate nohighlight">\(Y_R\)</span>. Because we assumed the pure rolling and rotation condition. And yet he can reach any point in the global frame.</p>
+<p class="admonition-title">Note</p>
+<p>In the robot frame, there is no velocity in the direction of <span class="math notranslate nohighlight">\(Y_R\)</span>. Because we assumed the pure rolling and rotation condition. And yet he can reach any point in the global frame.</p>
 </div>
 <div class="section" id="forward-kinematics">
 <h3>Forward Kinematics<a class="headerlink" href="#forward-kinematics" title="Permalink to this headline">¶</a></h3>
@@ -332,8 +332,8 @@ Then, we can transform the robot velocities in the local frame to the global fra
                        -\frac{r}{2 l}          &amp;  \frac{r}{2 l}    \end{array} \right]
 \left[ \begin{array}{c} \dot{\phi}_1 \\ \dot{\phi}_2 \end{array} \right]\end{split}\]</div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The matrix which maps spin speed to the robot velocities is commonly known as <strong>Jacobian Matrix</strong>.</p>
+<p class="admonition-title">Note</p>
+<p>The matrix which maps spin speed to the robot velocities is commonly known as <strong>Jacobian Matrix</strong>.</p>
 </div>
 <p>Well, we know the relationship between spin speeds and robot velocities, but what about the robot pose in the global frame?</p>
 <div class="math notranslate nohighlight">
@@ -381,9 +381,9 @@ Then, the robot motion simplifies to:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\xi_I = \left[ \begin{array}{c} x' \\ y' \\ \theta' \end{array} \right] =
 \left[ \begin{array}{c} x \\ y \\ \theta + \frac{2 v}{l} \delta t \end{array} \right]\end{split}\]</div>
-<div class="figure" id="id15">
+<div class="figure align-default" id="id15">
 <img alt="A differential-drive robot in its global reference frame." src="../../../_images/diff_drive.png" />
-<p class="caption"><span class="caption-text">A differential-drive robot in its global reference frame. Figure from <a class="footnote-reference" href="#id7" id="id5">[1]</a>.</span></p>
+<p class="caption"><span class="caption-text">A differential-drive robot in its global reference frame. Figure from <a class="footnote-reference brackets" href="#id7" id="id5">1</a>.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -397,40 +397,28 @@ Then, the robot motion simplifies to:</p>
 \left[ \begin{array}{c} \cos \theta &amp; 0 \\ \sin \theta &amp; 0 \\ 0 &amp; 1 \end{array} \right] \left[ \begin{array}{c} v \\ \omega \end{array} \right]\end{split}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(\theta\)</span> are the coordinates of the robot in the global frame and <span class="math notranslate nohighlight">\(u = (v, \omega)\)</span> is the control vector.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">A differential drive robot has a major problem which is...
-Feng et al. <a class="footnote-reference" href="#id10" id="id6">[4]</a> develops in 1993 a motion controller which...</p>
+<p class="admonition-title">Note</p>
+<p>A differential drive robot has a major problem which is...
+Feng et al. <a class="footnote-reference brackets" href="#id10" id="id6">4</a> develops in 1993 a motion controller which...</p>
 </div>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>, <a class="fn-backref" href="#id5">3</a>)</em> Roland Siegwart and Illah R. Nourbakhsh. 2004. Introduction to Autonomous Mobile Robots. Bradford Company, USA.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><ol class="first last upperalpha simple" start="7">
-<li>Campion, G. Bastin and B. Dandrea-Novel, &quot;<a class="reference external" href="https://ieeexplore.ieee.org/document/481750">Structural properties and classification of kinematic and dynamic models of wheeled mobile robots</a>,&quot; in IEEE Transactions on Robotics and Automation, vol. 12, no. 1, pp. 47-62, Feb. 1996.</li>
+<dl class="footnote brackets">
+<dt class="label" id="id7"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id5">3</a>)</span></dt>
+<dd><p>Roland Siegwart and Illah R. Nourbakhsh. 2004. Introduction to Autonomous Mobile Robots. Bradford Company, USA.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><ol class="upperalpha simple" start="7">
+<li><p>Campion, G. Bastin and B. Dandrea-Novel, &quot;<a class="reference external" href="https://ieeexplore.ieee.org/document/481750">Structural properties and classification of kinematic and dynamic models of wheeled mobile robots</a>,&quot; in IEEE Transactions on Robotics and Automation, vol. 12, no. 1, pp. 47-62, Feb. 1996.</p></li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Gregory Dudek and Michael Jenkin. 2010. Computational Principles of Mobile Robotics (2nd. ed.). Cambridge University Press, USA.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id10" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[4]</a></td><td><ol class="first last upperalpha simple" start="12">
-<li>Feng, Y. Koren and J. Borenstein, &quot;<a class="reference external" href="https://ieeexplore.ieee.org/document/248002/">Cross-coupling motion controller for mobile robots</a>,&quot; in IEEE Control Systems Magazine, vol. 13, no. 6, pp. 35-43, Dec. 1993.</li>
+</dd>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p>Gregory Dudek and Michael Jenkin. 2010. Computational Principles of Mobile Robotics (2nd. ed.). Cambridge University Press, USA.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id6">4</a></span></dt>
+<dd><ol class="upperalpha simple" start="12">
+<li><p>Feng, Y. Koren and J. Borenstein, &quot;<a class="reference external" href="https://ieeexplore.ieee.org/document/248002/">Cross-coupling motion controller for mobile robots</a>,&quot; in IEEE Control Systems Magazine, vol. 13, no. 6, pp. 35-43, Dec. 1993.</p></li>
 </ol>
-</td></tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </div>
 </div>
 

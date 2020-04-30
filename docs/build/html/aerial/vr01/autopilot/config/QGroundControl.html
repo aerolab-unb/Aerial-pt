@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -193,51 +193,53 @@ Requisitos de sistema
 <div class="section" id="instalacao">
 <h2>Instalação<a class="headerlink" href="#instalacao" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><strong>Windows</strong><ul>
-<li>Instalação do QGroundControl nas versões de 64 bits do Windows Vista ou posterior:<ol class="arabic">
-<li>Efetue o download do instalador do <a class="reference external" href="https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl-installer.exe">QGroundControl.exe</a></li>
-<li>Clique duas vezes no executável para inicializar o instalador.</li>
+<li><p><strong>Windows</strong></p>
+<ul>
+<li><p>Instalação do QGroundControl nas versões de 64 bits do Windows Vista ou posterior:</p>
+<ol class="arabic simple">
+<li><p>Efetue o download do instalador do <a class="reference external" href="https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl-installer.exe">QGroundControl.exe</a></p></li>
+<li><p>Clique duas vezes no executável para inicializar o instalador.</p></li>
 </ol>
 </li>
 </ul>
 </li>
-<li><strong>Mac OS X</strong><ul>
-<li>Instalação do QGroundControl no Mac OS 10.10 ou posterior:<ol class="arabic">
-<li>Efetue o download do <a class="reference external" href="https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.dmg">QGroundControl.dmg</a></li>
-<li>Clique duas vezes no arquivo .dmg para instalar</li>
-<li>Mova o aplicativo $ QGroundControl para a pasta <em>Application</em></li>
+<li><p><strong>Mac OS X</strong></p>
+<ul>
+<li><p>Instalação do QGroundControl no Mac OS 10.10 ou posterior:</p>
+<ol class="arabic simple">
+<li><p>Efetue o download do <a class="reference external" href="https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.dmg">QGroundControl.dmg</a></p></li>
+<li><p>Clique duas vezes no arquivo .dmg para instalar</p></li>
+<li><p>Mova o aplicativo $ QGroundControl para a pasta <em>Application</em></p></li>
 </ol>
 </li>
 </ul>
 </li>
-<li><strong>Ubuntu</strong></li>
+<li><p><strong>Ubuntu</strong></p></li>
 </ul>
 <p>O Ubuntu possui um gerenciador de modem serial (<em>serial modem manager</em>) que interfere nas aplicações envolvendo robótica que utilizam uma porta serial (ou serial USB). Antes da instalação do <em>QGroundControl</em> é necessário remover tal gerenciador de modens e conceder ao seu usuário as permissões para acessar a porta serial. Também é preciso instalar o GStreamer para possibilitar o streaming de video.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Antes de instalar o QGroundControl pela primeira vez:</li>
+<li><p>Antes de instalar o QGroundControl pela primeira vez:</p></li>
 </ul>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">Digite no prompt de comando:</p>
+<li><p>Digite no prompt de comando:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G dialout $USER
 sudo apt-get remove modemmanager -y
 sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav -y
 </pre></div>
 </div>
 </li>
-<li><p class="first">Execute logout e login novamente para ativar a alteração nas permissões de usuario.</p>
-</li>
+<li><p>Execute logout e login novamente para ativar a alteração nas permissões de usuario.</p></li>
 </ol>
 </div></blockquote>
 <ul class="simple">
-<li>Instalação do QGroundControl no Ubuntu Linux 16.04 LTS ou posterior:</li>
+<li><p>Instalação do QGroundControl no Ubuntu Linux 16.04 LTS ou posterior:</p></li>
 </ul>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">Efetue o download do <a class="reference external" href="https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.AppImage">QGroundControl.AppImage</a></p>
-</li>
-<li><p class="first">Instale e execute os comandos do terminal:</p>
+<li><p>Efetue o download do <a class="reference external" href="https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.AppImage">QGroundControl.AppImage</a></p></li>
+<li><p>Instale e execute os comandos do terminal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">Downloads</span>
 <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">./</span><span class="n">QGroundControl</span><span class="o">.</span><span class="n">AppImage</span>
 <span class="o">./</span><span class="n">QGroundControl</span><span class="o">.</span><span class="n">AppImage</span>
@@ -248,16 +250,18 @@ sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav -y
 </div></blockquote>
 </div></blockquote>
 <div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">A última linha de comando não é necessário se o usuário for ao gerenciador de arquivos, procurar o arquivo QGroundControl baixado e clicar duas vezes nele.</p>
+<p class="admonition-title">Tip</p>
+<p>A última linha de comando não é necessário se o usuário for ao gerenciador de arquivos, procurar o arquivo QGroundControl baixado e clicar duas vezes nele.</p>
 </div>
 <ul class="simple">
-<li><strong>Android</strong><ul>
-<li>O QGroundControl está disponível no Google Play Store em <a class="reference external" href="https://play.google.com/store/apps/details?id=org.mavlink.qgroundcontrol">QGroundControl - play.google.com</a> .</li>
+<li><p><strong>Android</strong></p>
+<ul>
+<li><p>O QGroundControl está disponível no Google Play Store em <a class="reference external" href="https://play.google.com/store/apps/details?id=org.mavlink.qgroundcontrol">QGroundControl - play.google.com</a> .</p></li>
 </ul>
 </li>
-<li><strong>IOS</strong><ul>
-<li>O QGroundControl está disponível na App Store.</li>
+<li><p><strong>IOS</strong></p>
+<ul>
+<li><p>O QGroundControl está disponível na App Store.</p></li>
 </ul>
 </li>
 </ul>

@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -184,21 +184,21 @@
 <p>O projeto RT-MaG (<em>Real-Time - Marseille Grenoble Project</em>) é um projeto desenvolvido pelo Gipsa-Lab (Grenoble, França) e o Institute of Mouvement Sciences (ISM, Marseille, França). O objetivo deste projeto é fornecer ferramentas eficientes para a prototipagem rápida de robôs para pesquisa e aplicações acadêmicas. O RT-MaG fornece uma caixa de ferramentas para Matlab e Simulink para programar sistemas Linux-COM. Com a ferramenta, pode-se facilmente gerar um aplicativo autônomo em tempo real a partir de um modelo Simulink para um robô usando um sistema Linux.</p>
 <div class="figure align-right" id="id1" style="width: 300px">
 <a class="reference internal image-reference" href="../../../_images/FlyingRobot_small.jpg"><img alt="RT X4-MaG, primeiro robô desenvolvido utilizando o sistema RT-Mag" src="../../../_images/FlyingRobot_small.jpg" style="width: 280px;" /></a>
-<p class="caption"><span class="caption-text">RT X4-MaG, primeiro robô desenvolvido utilizando o sistema RT-Mag</span></p>
+<p class="caption"><span class="caption-text">RT X4-MaG, primeiro robô desenvolvido utilizando o sistema RT-Mag</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Essas ferramentas consistem em um conjunto de blocos simulink que fornecem acesso direto às entradas e saídas do computador. Os modelos Simulink são convertidos automaticamente em aplicações em tempo real. O uso dessas ferramentas é totalmente gratuito. Além disso, atualmente, o Gumstix Overo COM é totalmente compatível com o sistema RT-MaG.</p>
 <p>Entretanto, a ferramenta RT-MaG toma para si muitas das operações necessárias para a operação do nosso sistema, o que impossibilita utiliza-lo da maneira que ele foi idealizado, em consequência disto a demasiada simplificação da etapa poderia prejudicar aplicações futuras. Com essa ferramenta seria inviável utilizar o protocolo de comunicação <em>MAVLink</em> do piloto automático para comunicação entre os dispositivos ou aeronaves, por exemplo.</p>
 <p>Destaca-se ainda a documentação desatualizada, que dificultou a instalação dos componentes da ferramenta como a toolbox do Matlab, que nunca chegou a funcionar, e o sistema operacional do computador embarcado. A complexidade na utilização do sistema aumentava a cada etapa enquanto mesmo as etapas iniciais mais simples ainda não funcionavam adequadamente.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Mais detalhes do projeto RT-MaG podem ser encontrados em <a class="reference external" href="http://www.gipsa-lab.fr/projet/RT-MaG/#">Projet RT-MaG</a>.</p>
+<p class="admonition-title">Note</p>
+<p>Mais detalhes do projeto RT-MaG podem ser encontrados em <a class="reference external" href="http://www.gipsa-lab.fr/projet/RT-MaG/#">Projet RT-MaG</a>.</p>
 </div>
 </div>
 <div class="section" id="linux">
 <h2>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id2">
 <a class="reference internal image-reference" href="../../../_images/linux.png"><img alt="Tux, a mascote do Linux" src="../../../_images/linux.png" style="width: 160px;" /></a>
-<p class="caption"><span class="caption-text">Tux, a mascote do Linux</span></p>
+<p class="caption"><span class="caption-text">Tux, a mascote do Linux</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>O Linux é um sistema operacional popularmente utilizado em sistemas embarcados. Além de fornecer suporte para mais arquiteturas computacionais que qualquer outro sistema, ele ainda é leve e possui código aberto, minimizando os custos de implementação. Dos diferentes sistemas operacionais suportados pelas placas Gumstix Overo, destacam-se os sistemas baseados em Linux. Sendo o <strong>Ubuntu</strong> e o <strong>Yocto Project</strong> os principais, além de serem recomendados pelo próprio fabricante.</p>
 <div class="section" id="projeto-yocto">
@@ -207,12 +207,12 @@
 <a class="reference internal image-reference" href="../../../_images/yocto.png"><img alt="../../../_images/yocto.png" src="../../../_images/yocto.png" style="width: 200px;" /></a>
 </div>
 <p>O projeto Yocto é um projeto de colaboração open source da <a class="reference external" href="https://www.linuxfoundation.org/">Linux Foundation</a>, cujo objetivo é produzir e fornecer metadados, ferramentas e processos para ajudar seus usuários a criar distribuições baseadas em Linux para <em>softwares</em> embarcados, independentemente da arquitetura do sistema.</p>
-<p>Um elemento a ser destacado dentre os componentes do Projeto Yocto é o sistema de compilação baseado na arquitetura <a class="reference external" href="https://www.openembedded.org/wiki/Main_Page">OpenEmbedded</a>, que permite que os desenvolvedores criem suas própria distribuição Linux especifica para seu ambiente, de acordo com suas próprias necessidades.</p>
-<p>Outra ferramenta importante do Yocto Project é o sistema de compilação por referência Poky. Ele contém a ferramenta BitBake, que permite a compilação cruzada independente da plataforma. Além disso, o BitBake gerencia todos os arquivos de configuração e dados, e tenta reduzir o tempo de compilação usando todos os recursos de processamento disponíveis.</p>
+<p>Um elemento a ser destacado dentre os componentes do Projeto Yocto é o sistema de compilação baseado na arquitetura <a class="reference external" href="https://www.openembedded.org/wiki/Main_Page">OpenEmbedded</a>, que permite que os desenvolvedores criem suas próprias distribuições Linux especifica para seu ambiente, de acordo com suas próprias necessidades.</p>
+<p>Outra ferramenta importante do Yocto Project é o sistema de compilação por referência Poky. Ele contém a ferramenta BitBake, que permite a compilação cruzada independentemente da plataforma. Além disso, o BitBake gerencia todos os arquivos de configuração e dados, e tenta reduzir o tempo de compilação usando todos os recursos de processamento disponíveis.</p>
 <p>Infelizmente, com a ampla versatilidade do Projeto Yocto, a complexidade do processo de criação de uma distribuição personalizada também está aumentando.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Mais detalhes do projeto Yocto podem ser encontrados em <a class="reference external" href="https://www.yoctoproject.org/">yoctoproject.org</a>.</p>
+<p class="admonition-title">Note</p>
+<p>Mais detalhes do projeto Yocto podem ser encontrados em <a class="reference external" href="https://www.yoctoproject.org/">yoctoproject.org</a>.</p>
 </div>
 </div>
 <div class="section" id="ubuntu">
@@ -224,8 +224,8 @@
 <p>A vantagem de se utilizar o sistema Ubuntu é que esse é um sistema operacional a partir do núcleo Linux muito difundido que já contém diversos softwares que podem ser úteis para algumas aplicações futuras, ele contém, por exemplo, um compilador o que facilita a criação e execução de códigos simples para testes rápidos.</p>
 <p>A desvantagem de se utilizar este sistema operacional é que podem ser executadas muitas tarefas paralelas desnecessárias que diminuem a especificidade e o desempenho do computador embarcado.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Mais detalhes a respeito do Ubuntu podem ser encontrados em <a class="reference external" href="https://ubuntu.com/">ubuntu.com</a>.</p>
+<p class="admonition-title">Note</p>
+<p>Mais detalhes a respeito do Ubuntu podem ser encontrados em <a class="reference external" href="https://ubuntu.com/">ubuntu.com</a>.</p>
 </div>
 </div>
 </div>
@@ -237,11 +237,11 @@
 <h3>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li>PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.</li>
-<li>ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.</li>
-<li>Phanuel Hieber. Yocto Project on the Gumstix Overo Board. Technische Universität München.</li>
-<li><a class="reference external" href="http://www.gipsa-lab.fr/projet/RT-MaG/">RT-MaG Project</a> - gipsa-lab.fr</li>
-<li><a class="reference external" href="https://www.yoctoproject.org/">Yocto Project</a> - yoctoproject.org</li>
+<li><p>PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.</p></li>
+<li><p>ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.</p></li>
+<li><p>Phanuel Hieber. Yocto Project on the Gumstix Overo Board. Technische Universität München.</p></li>
+<li><p><a class="reference external" href="http://www.gipsa-lab.fr/projet/RT-MaG/">RT-MaG Project</a> - gipsa-lab.fr</p></li>
+<li><p><a class="reference external" href="https://www.yoctoproject.org/">Yocto Project</a> - yoctoproject.org</p></li>
 </ul>
 </div></blockquote>
 </div>

@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -177,12 +177,12 @@
 <h1>Instalando o Sistema Operacional<a class="headerlink" href="#instalando-o-sistema-operacional" title="Permalink to this headline">¶</a></h1>
 <p>A instalação do sistema operacional não é uma tarefa trivial, além disso existe uma escassez de documentação detalhada e completa que explique como instalar o sistema operacional no computador embarcado, logo será documentado nesta seção os procedimentos necessários para a instalação de um sistema operacional. Na fase atual dos trabalhos instalamos ambos os sistemas, de tal forma, podemos decidir posteriormente qual dos dois sistemas será melhor para nossa aplicação.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Os tutoriais oficiais podem ser encontrados no site da <a class="reference external" href="https://www.gumstix.com/">Gumstix</a> e nos repositórios do GitHub do projeto <a class="reference external" href="https://github.com/gumstix/yocto-manifest">Yocto</a> e <a class="reference external" href="https://github.com/gumstix/live-build">Ubuntu</a> para produtos Gumstix.</p>
+<p class="admonition-title">Note</p>
+<p>Os tutoriais oficiais podem ser encontrados no site da <a class="reference external" href="https://www.gumstix.com/">Gumstix</a> e nos repositórios do GitHub do projeto <a class="reference external" href="https://github.com/gumstix/yocto-manifest">Yocto</a> e <a class="reference external" href="https://github.com/gumstix/live-build">Ubuntu</a> para produtos Gumstix.</p>
 </div>
 <div class="section" id="obtencao-das-imagens-do-so">
 <h2>Obtenção das imagens do SO<a class="headerlink" href="#obtencao-das-imagens-do-so" title="Permalink to this headline">¶</a></h2>
-<p>Essencialmente o dispositivo precisa apenas executar um pequeno programa, geralmente localizado em uma mémoria não volátil do tipo <em>Read-Only Memory</em> (ROM), para acessar a outro dispositivo de memória não volátil que armazene o sistema operacional, e carregar o sistema operacional na memória volátil de rápido acesso ou <em>Random Access Memory</em> (RAM) onde ele poderá ser executado. Em sistemas mais robustos ocorre, na verdade, um encadeamento desses pequenos programas, chamados de bootloaders, onde um primeiro estágio executa um segundo estágio que carrega programas mais complexos e, por sua vez, executa um terceiro estágio e assim por diante até que o sistema operacional seja completamente carregado e esteja pronto para ser executado por si só.</p>
+<p>Essencialmente o dispositivo precisa apenas executar um pequeno programa, geralmente localizado em uma memória não volátil do tipo <em>Read-Only Memory</em> (ROM), para acessar a outro dispositivo de memória não volátil que armazene o sistema operacional, e carregar o sistema operacional na memória volátil de rápido acesso ou <em>Random Access Memory</em> (RAM) onde ele poderá ser executado. Em sistemas mais robustos ocorre, na verdade, um encadeamento desses pequenos programas, chamados de bootloaders, onde um primeiro estágio executa um segundo estágio que carrega programas mais complexos e, por sua vez, executa um terceiro estágio e assim por diante até que o sistema operacional seja completamente carregado e esteja pronto para ser executado por si só.</p>
 <blockquote>
 <div><div class="toctree-wrapper compound">
 <ul>
@@ -199,7 +199,7 @@
 <h2>Preparando o Cartão de Memória<a class="headerlink" href="#preparando-o-cartao-de-memoria" title="Permalink to this headline">¶</a></h2>
 <p>Uma vez obtida a imagem do sistema operacional podemos transferir os arquivos para o computador embarcado para, enfim, ligá-lo. Essa tarefa será realizada por meio de um cartão SD que funcionará como o disco rígido do computador embarcado.</p>
 <p>Logo, o cartão SD irá conter tanto os programas necessários para boot, que serão utilizados apenas na inicialização do computador, quanto os outros programas, que podem ser utilizados a qualquer momento e realizarão modificações constantes no cartão SD. Portanto a melhor maneira de lidar com essa divisão é particionar o cartão SD em duas partições que serão denominadas boot e rootfs.</p>
-<p>Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, entretanto, a maneira recomendada é apresentada no topico abaixo e é baseada nas recomendações do fabricante. Um ponto negativo deste procedimento é o excesso de memória alocada para a partição de boot, no caso são reservados 528 MB à partição de boot e utilizam-se menos de 100 MB. Sendo assim, caso futuramente venha a faltar espaço para armazenamento de dados será possível ampliar a partição roots refazendo esta divisão.</p>
+<p>Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, entretanto, a maneira recomendada é apresentada no tópico abaixo e é baseada nas recomendações do fabricante. Um ponto negativo deste procedimento é o excesso de memória alocada para a partição de boot, no caso são reservados 528 MB à partição de boot e utilizam-se menos de 100 MB. Sendo assim, caso futuramente venha a faltar espaço para armazenamento de dados será possível ampliar a partição roots refazendo esta divisão.</p>
 <blockquote>
 <div><div class="toctree-wrapper compound">
 <ul>
