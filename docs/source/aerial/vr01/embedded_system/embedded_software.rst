@@ -59,9 +59,9 @@ O projeto Yocto é um projeto de colaboração open source da `Linux Foundation`
 
 .. _Linux Foundation: https://www.linuxfoundation.org/
 
-Um elemento a ser destacado dentre os componentes do Projeto Yocto é o sistema de compilação baseado na arquitetura `OpenEmbedded`_, que permite que os desenvolvedores criem suas própria distribuição Linux especifica para seu ambiente, de acordo com suas próprias necessidades. 
+Um elemento a ser destacado dentre os componentes do Projeto Yocto é o sistema de compilação baseado na arquitetura `OpenEmbedded`_, que permite que os desenvolvedores criem suas próprias distribuições Linux especifica para seu ambiente, de acordo com suas próprias necessidades. 
 
-Outra ferramenta importante do Yocto Project é o sistema de compilação por referência Poky. Ele contém a ferramenta BitBake, que permite a compilação cruzada independente da plataforma. Além disso, o BitBake gerencia todos os arquivos de configuração e dados, e tenta reduzir o tempo de compilação usando todos os recursos de processamento disponíveis.
+Outra ferramenta importante do Yocto Project é o sistema de compilação por referência Poky. Ele contém a ferramenta BitBake, que permite a compilação cruzada independentemente da plataforma. Além disso, o BitBake gerencia todos os arquivos de configuração e dados, e tenta reduzir o tempo de compilação usando todos os recursos de processamento disponíveis.
 
 Infelizmente, com a ampla versatilidade do Projeto Yocto, a complexidade do processo de criação de uma distribuição personalizada também está aumentando.
 
