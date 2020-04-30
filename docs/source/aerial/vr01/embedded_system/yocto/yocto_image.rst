@@ -12,7 +12,7 @@ A figura mostra um exemplo dos arquivos descritos no parágrafo anterior, observ
 .. _README.md: https://github.com/gumstix/yocto-manifest/blob/warrior/README.md
 .. _repositório do projeto Yocto para produtos Gumstix: https://github.com/gumstix/yocto-manifest
 
-Esse tutorial explica como obter a imagem e realizar todos os procedimentos através de linhas de comando do terminal do Linux. Porem, para executar essa etapa é altamente recomendado o cumprimento dos requisitos indicadas pelo projeto Yocto. 
+Esse tutorial explica como obter a imagem e realizar todos os procedimentos através de linhas de comando do terminal do Linux. Porém, para executar essa etapa é altamente recomendado o cumprimento dos requisitos indicadas pelo projeto Yocto.
 
 .. _Yocto: https://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html
 
@@ -54,7 +54,8 @@ A equipe do Yocto Project verifica continuamente mais e mais distribuições Lin
 
 .. _Supported Linux Distributions: http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#detailed-supported-distros
 
-O sistema de compilação OpenEmbedded pode ser executado nas distribuição mais modernas que possuam as seguintes versões para Git, tar e Python.
+O sistema de compilação OpenEmbedded pode ser executado nas distribuições mais modernas que possuam as seguintes versões para Git, tar e Python.
+
 
 	* Git 1.8.3.1 or greater
 
@@ -69,7 +70,7 @@ Além disso, recomenda-se atualizar todos os comandos do Linux que serão utiliz
 
 .. _Required Git, tar, and Python Versions: http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#required-git-tar-and-python-versions
 
-É necessaria ainda a instalação dos pacotes de host essenciais para a construção da imagem. O comando a seguir instala os pacotes de host com base em sua distribuição Ubuntu:
+É necessária ainda a instalação dos pacotes de host essenciais para a construção da imagem. O comando a seguir instala os pacotes de host com base em sua distribuição Ubuntu:
 
 	::
 
@@ -90,15 +91,15 @@ Configurando a imagem
 
 Linhas de comando Linux para obtenção e montagem da imagem.
 
-1.  **Instalando o repositorio**
+1.  **Instalando o repositório**
 
-Baixa os scripts do repositorio:
+Baixa os scripts do repositório:
 
 	::
 
 		$ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
 
-Torna os arquivos executaveis:
+Torna os arquivos executáveis:
 
 	::
 
@@ -110,28 +111,28 @@ Move os arquivos para o caminho do sistema:
 
 		$ sudo mv repo /usr/local/bin/
 
-Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização. Esse comando não é obrigatorio:
+Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização. Esse comando não é obrigatório:
 
 	::
 
 		$ repo --help
 
-2. **Criando um repositorio local**
+2. **Criando um repositório local**
 
-Cria um diretorio para os arquivos e altera o diretorio de execução para o novo repositorio:
+Cria um diretório para os arquivos e altera o diretório de execução para o novo repositório:
 
 	:: 
 
 		$ mkdir yocto
 		$ cd yocto
 
-Seleciona o ramo mais estavel do repositorio:
+Seleciona o ramo mais estável do repositório:
 
 	::
 		
 		$ repo init -u git://github.com/gumstix/yocto-manifest.git -b fido
 
-Uma inicialização bem-sucedida terminará com uma mensagem informando que o .repo foi inicializado no seu diretório de trabalho. Agora seu diretório deve conter uma pasta .repo onde os arquivos de controle de repositorio estão armazenados, mas não é necessario abrir o diretório.
+Uma inicialização bem-sucedida terminará com uma mensagem informando que o *.repo* foi inicializado no seu diretório de trabalho. Agora seu diretório deve conter uma pasta *.repo* onde os arquivos de controle de repositório estão armazenados, mas não é necessário abrir o diretório.
 
 3. **Baixando os arquivos**
 
@@ -144,7 +145,7 @@ Baixa os arquivos do repositorio:
 .. Note::
    Está etapa pode demorar mais de 20 minutos, dependendo da sua conexão de internet.
 
-Força todos os arquivos temporarios a serem escritos em dipositivos persistentes:
+Força todos os arquivos temporários a serem escritos em dispositivos persistentes:
 
 	::
 
@@ -164,14 +165,14 @@ Copia as informações de configuração padrão no diretório **poky/build/conf
 
 5. **Criando a imagem**
 
-Baixa os codigos fonte e compilando as imagens do sistema:
+Baixa os códigos fonte e compilando as imagens do sistema:
 
 	::
 
 		$ bitbake gumstix-console-image
 
 .. Tip::
-   Esse processo baixa varios gigabytes de codigo e, em seguida, faz uma enorme compilação. Portanto, certifique-se de ter pelo menos os 25GB de espaço livre. Esta etapa pode levar um dia ou mais para a criação da imagem, a depender da sua conexão de internet. Não se preocupe, é apenas a primeira compilação que demora um pouco.
+   Esse processo baixa vários gigabytes de código e, em seguida, faz uma enorme compilação. Portanto, certifique-se de ter pelo menos os 25GB de espaço livre. Esta etapa pode levar um dia ou mais para a criação da imagem, a depender da sua conexão de internet. Não se preocupe, é apenas a primeira compilação que demora um pouco.
 
 Após a finalização da execução de todos os comandos, recomenda-se verificar a pasta **/yocto/build/tmp/deploy/images/overo**, essa pasta deve conter arquivos binários de kernel e bootloaders e arquivos de diretório raiz no formato .tar. 
 
@@ -182,8 +183,6 @@ A figura abaixo apresenta um exemplo do conteúdo da pasta descrita, essa pasta 
 
 .. imagem
 
-Na figura podemos encontrar tanto os bootloaders necessários descritos anteriormente como o binário (.ubi) e arquivos do diretório raiz de algumas versões do projeto
-Yocto. A versão utilizada foi a mais recente à época, "gumstix-console-image-overo-20180509042558.rootfs.tar.bz2", entretanto tudo oque foi implementado foi testado também,
-na versão recomendada, "gumstix-console-image-overo.tar.bz2", portanto as duas imagens podem ser utilizadas. Os bootloaders utilizados foram "MLO-overo" e "u-boot-overo.img".
+.. Na figura podemos encontrar tanto os bootloaders necessários descritos anteriormente como o binário (.ubi) e arquivos do diretório raiz de algumas versões do projeto Yocto. A versão utilizada foi a mais recente à época, "gumstix-console-image-overo-20180509042558.rootfs.tar.bz2", entretanto tudo o que foi implementado foi testado também, na versão recomendada, "gumstix-console-image-overo.tar.bz2", portanto as duas imagens podem ser utilizadas. Os bootloaders utilizados foram "MLO-overo" e "u-boot-overo.img".
 
 
