@@ -17,6 +17,8 @@ Obtenção das imagens do SO
 
 Essencialmente o dispositivo precisa apenas executar um pequeno programa, geralmente localizado em uma memória não volátil do tipo *Read-Only Memory* (ROM), para acessar a outro dispositivo de memória não volátil que armazene o sistema operacional, e carregar o sistema operacional na memória volátil de rápido acesso ou *Random Access Memory* (RAM) onde ele poderá ser executado. Em sistemas mais robustos ocorre, na verdade, um encadeamento desses pequenos programas, chamados de bootloaders, onde um primeiro estágio executa um segundo estágio que carrega programas mais complexos e, por sua vez, executa um terceiro estágio e assim por diante até que o sistema operacional seja completamente carregado e esteja pronto para ser executado por si só.
 
+Existem dois métodos para obter os sistemas operacionais para o Gumstix Overo. O primeiro método é baixar uma imagem pré-compilada diretamente do Gumstix. O segundo método é construir você mesmo a imagem em seu computador. A criação manual da imagem do sistema operacional possui benefícios adicionais, como personalização ou adição de pacotes binários adicionais à sua imagem base. Também compus um arquivo bash que cria scripts para o processo de criação manual que é referenciado e explicado no final desta documentação. A possibilidade de personalização será muito importante no desenvolvimento do projeto.
+
 	.. toctree::
 	   :maxdepth: 2
 

@@ -178,8 +178,11 @@
   <div class="section" id="obtencao-das-imagens-do-yocto-project">
 <h1>Obtenção das imagens do Yocto Project<a class="headerlink" href="#obtencao-das-imagens-do-yocto-project" title="Permalink to this headline">¶</a></h1>
 <p>Para realizar o processo de iniciação do sistema operacional Yocto Project no computador embarcado Gumstix, precisamos de três arquivos específicos, são eles o primeiro estágio do sistema de iniciação, o arquivo MLO (<em>Minimal Loader</em>), o segundo estágio do sistema de iniciação, o arquivo <em>u-boot.img</em> (a sigla vem de <em>Universal Bootloader</em>), e a imagem do sistema, que em nosso caso será o Yocto 1.8.2 com kernel Linux.</p>
+<div class="figure align-center">
+<img alt="../../../../_images/yocto_exemple.png" src="../../../../_images/yocto_exemple.png" />
+</div>
 <p>A figura mostra um exemplo dos arquivos descritos no parágrafo anterior, observe que, neste caso, há também uma pasta compactada que contém os arquivos raiz do sistema operacional. O modo mais simples encontrado para se obter esses arquivos e a imagem do sistema operacional é seguindo os passos do arquivo <a class="reference external" href="https://github.com/gumstix/yocto-manifest/blob/warrior/README.md">README.md</a> do <a class="reference external" href="https://github.com/gumstix/yocto-manifest">repositório do projeto Yocto para produtos Gumstix</a>. A vantagem de se utilizar esse método ao invés de simplesmente obter a imagem pronta do sistema operacional é que caso seja necessário poderemos modifica-la.</p>
-<p>Esse tutorial explica como obter a imagem e realizar todos os procedimentos através de linhas de comando do terminal do Linux. Porém, para executar essa etapa é altamente recomendado o cumprimento dos requisitos indicadas pelo projeto Yocto.</p>
+<p>Esse tutorial explica como construir manualmente a imagem do sistema Yocto e realizar todos os procedimentos através de linhas de comando do terminal do Linux, com enfase no <strong>Ubuntu 14.04 (LTS)</strong>. Porém, para executar essa etapa é altamente recomendado o cumprimento dos requisitos indicadas pelo projeto Yocto.</p>
 <div class="section" id="requisitos-do-sistema">
 <h2>Requisitos do Sistema<a class="headerlink" href="#requisitos-do-sistema" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
@@ -189,26 +192,36 @@
 <p>O desenvolvimento de projetos no ambiente do Yocto Project requer que alguns requisitos sejam cumpridos, são eles:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Um sistema com no mínimo 25 GB de espaço livre em disco executando uma distribuição Linux suportada (ou seja, versões recentes do Fedora, openSUSE, CentOS, Debian ou Ubuntu). Se o sistema host suportar vários núcleos e encadeamentos, você poderá configurar o sistema de construção do Yocto Project para diminuir significativamente o tempo necessário para construir imagens.</p></li>
+<li><p>Um sistema com no mínimo 25 GB de espaço livre em disco executando uma distribuição Linux suportada. Se o sistema host suportar vários núcleos e encadeamentos, você poderá configurar o sistema de construção do Yocto Project para diminuir significativamente o tempo necessário para construir imagens.</p></li>
 <li><p>Pacotes apropriados instalados no sistema utilizado para realizar as compilações.</p></li>
 <li><p>Uma distribuição do Projeto Yocto.</p></li>
 </ul>
 </div></blockquote>
-<p>A equipe do Yocto Project verifica continuamente mais e mais distribuições Linux a cada versão lançada. Em geral, se você possui a versão atual menos uma das seguintes distribuições, não deve ter problemas.</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Ubuntu</p></li>
-<li><p>Fedora</p></li>
-<li><p>openSUSE</p></li>
-<li><p>CentOS</p></li>
-<li><p>Debian</p></li>
+<p>Atualmente, o Project Yocto é suportado nas seguintes distribuições Linux.</p>
+<ul class="simple">
+<li><p>Ubuntu 12.04 (LTS)</p></li>
+<li><p>Ubuntu 13.10</p></li>
+<li><p>Ubuntu 14.04 (LTS)</p></li>
+<li><p>Fedora release 19 (Schrödinger's Cat)</p></li>
+<li><p>Fedora release 20 (Heisenbug)</p></li>
+<li><p>CentOS release 6.4</p></li>
+<li><p>CentOS release 6.5</p></li>
+<li><p>Debian GNU/Linux 7.0 (Wheezy)</p></li>
+<li><p>Debian GNU/Linux 7.1 (Wheezy)</p></li>
+<li><p>Debian GNU/Linux 7.2 (Wheezy)</p></li>
+<li><p>Debian GNU/Linux 7.3 (Wheezy)</p></li>
+<li><p>Debian GNU/Linux 7.4 (Wheezy)</p></li>
+<li><p>Debian GNU/Linux 7.5 (Wheezy)</p></li>
+<li><p>Debian GNU/Linux 7.6 (Wheezy)</p></li>
+<li><p>openSUSE 12.2</p></li>
+<li><p>openSUSE 12.3</p></li>
+<li><p>openSUSE 13.1</p></li>
 </ul>
-</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Para obter uma lista mais detalhada de distribuições que suportam o Projeto Yocto, consulte a seção <a class="reference external" href="http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#detailed-supported-distros">Supported Linux Distributions</a> em Yocto Project Reference Manual .</p>
+<p>Para obter uma lista mais detalhada de distribuições que suportam o Projeto Yocto, consulte a seção <a class="reference external" href="http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#detailed-supported-distros">Supported Linux Distributions</a> em Yocto Project Reference Manual.</p>
 </div>
-<p>O sistema de compilação OpenEmbedded pode ser executado nas distribuições mais modernas que possuam as seguintes versões para Git, tar e Python.</p>
+<p>Para a construção da imagem do sistema operacional, o sistema de compilação deve possuir as seguintes versões do <em>softwares</em> Git, tar e Python.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Git 1.8.3.1 ou posterior</p></li>
@@ -216,14 +229,19 @@
 <li><p>Python 3.4.0  ou posterior</p></li>
 </ul>
 </div></blockquote>
-<p>Além disso, recomenda-se atualizar todos os comandos do Linux que serão utilizados nessa seção.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Consulte a seção <a class="reference external" href="http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#required-git-tar-and-python-versions">Required Git, tar, and Python Versions</a> no Yocto Project Reference Manual para obter informações.</p>
 </div>
-<p>É necessária ainda a instalação dos pacotes de host essenciais para a construção da imagem. O comando a seguir instala os pacotes de host com base em sua distribuição Ubuntu:</p>
+<p>Além disso, recomenda-se atualizar os repositorios do Linux. Para tal, no caso de distribuição Ubuntu, basta executar o seguinte comando:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \ build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \ xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \ pylint3 xterm
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       sudo apt-get update &amp;&amp; sudo apt-get upgrade
+</pre></div>
+</div>
+</div></blockquote>
+<p>É necessária ainda a instalação dos pacotes de host essenciais para a construção da imagem. O comando a seguir instala os pacotes de host com base em sistemas com distribuição Ubuntu:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm curl
 </pre></div>
 </div>
 </div></blockquote>
@@ -234,59 +252,72 @@
 </div>
 <div class="section" id="configurando-a-imagem">
 <h2>Configurando a imagem<a class="headerlink" href="#configurando-a-imagem" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>O sistema operacional utilizado para testar os comandos foi Ubuntu 14.04 (LTS).</p>
+</div>
 <p>Linhas de comando Linux para obtenção e montagem da imagem.</p>
 <ol class="arabic simple">
 <li><p><strong>Instalando o repositório</strong></p></li>
 </ol>
+<p>Para fazer o download das imagens do Yocto, primeiro precisamos instalar o comando repo. Em resumo, o repo é basicamente um invólucro do git, que fornece uma maneira simples de agrupar vários repositórios git diferentes em um unico projeto. Caso tenha interesse em mais informações sobre o comando <em>repo</em>, acesse <a class="reference external" href="https://gerrit.googlesource.com/git-repo/+/refs/heads/master/README.md">repo - gerrit.googlesource.com</a>.</p>
 <p>Baixa os scripts do repositório:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">commondatastorage</span><span class="o">.</span><span class="n">googleapis</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">git</span><span class="o">-</span><span class="n">repo</span><span class="o">-</span><span class="n">downloads</span><span class="o">/</span><span class="n">repo</span> <span class="o">&gt;</span> <span class="n">repo</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       curl http://commondatastorage.googleapis.com/git-repo-downloads/repo &gt; repo
 </pre></div>
 </div>
 </div></blockquote>
 <p>Torna os arquivos executáveis:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">x</span> <span class="n">repo</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       chmod a+x repo
 </pre></div>
 </div>
 </div></blockquote>
 <p>Move os arquivos para o caminho do sistema:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mv</span> <span class="n">repo</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       sudo mv repo /usr/local/bin/
 </pre></div>
 </div>
 </div></blockquote>
-<p>Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização. Esse comando não é obrigatório:</p>
+<p>Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização similar a imagem. Esse comando não é obrigatório.</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">repo</span> <span class="o">--</span><span class="n">help</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       repo --help
 </pre></div>
 </div>
 </div></blockquote>
+<div class="figure align-center">
+<img alt="../../../../_images/yocto_repo.png" src="../../../../_images/yocto_repo.png" />
+</div>
 <ol class="arabic simple" start="2">
 <li><p><strong>Criando um repositório local</strong></p></li>
 </ol>
 <p>Cria um diretório para os arquivos e altera o diretório de execução para o novo repositório:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">yocto</span>
-<span class="n">cd</span> <span class="n">yocto</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       mkdir yocto
+$       cd yocto
 </pre></div>
 </div>
 </div></blockquote>
-<p>Seleciona o ramo mais estável do repositório:</p>
+<p>Agora com o repositório já instalado, faremos o download de todas as configurações do Yocto para o nosso projeto. O comando <strong>init</strong> pode levar algum tempo, pois faz o download de todos os repositórios git associados ao projeto. Já o comando <strong>-b</strong> especifica a ramificação a ser usada e o comando <em>fido</em> seleciona o ramo mais estável do repositório.</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">repo</span> <span class="n">init</span> <span class="o">-</span><span class="n">u</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gumstix</span><span class="o">/</span><span class="n">yocto</span><span class="o">-</span><span class="n">manifest</span><span class="o">.</span><span class="n">git</span> <span class="o">-</span><span class="n">b</span> <span class="n">fido</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       repo init -u git://github.com/gumstix/yocto-manifest.git -b fido
 </pre></div>
 </div>
 </div></blockquote>
 <p>Uma inicialização bem-sucedida terminará com uma mensagem informando que o <em>.repo</em> foi inicializado no seu diretório de trabalho. Agora seu diretório deve conter uma pasta <em>.repo</em> onde os arquivos de controle de repositório estão armazenados, mas não é necessário abrir o diretório.</p>
+<div class="figure align-center">
+<img alt="../../../../_images/yocto_init.png" src="../../../../_images/yocto_init.png" />
+</div>
 <ol class="arabic simple" start="3">
 <li><p><strong>Baixando os arquivos</strong></p></li>
 </ol>
-<p>Baixa os arquivos do repositorio:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">repo</span> <span class="n">sync</span>
+<div><p>O comando a seguir é usado para garantir que todos os seus repositórios estejam atualizados e é útil para atualizar suas configurações do Yocto se você fizer uma compilação posteriormente:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       repo sync
 </pre></div>
 </div>
+</div></blockquote>
 </div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -294,17 +325,21 @@
 </div>
 <p>Força todos os arquivos temporários a serem escritos em dispositivos persistentes:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sync</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       sync
 </pre></div>
 </div>
 </div></blockquote>
 <ol class="arabic simple" start="4">
 <li><p><strong>Iniciando o Yocto Project Build Environment</strong></p></li>
 </ol>
-<p>Copia as informações de configuração padrão no diretório <strong>poky/build/conf</strong> e configura algumas variáveis de ambiente para o sistema de montagem da imagem:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Se, por algum motivo, você cancelar a atividade antes de concluir a compilação do Yocto, será necessário executar este comando todas as vezes antes de seguir para as proximas etapas. Lembre-se de que isso também se aplica a compilações futuras.</p>
+</div>
+<p>Agora que temos nossas configurações básicas do Yocto, entraremos em nosso ambiente de compilação. É necessario copiar as informações de configuração padrão no diretório <strong>poky/build/conf</strong> e configurar algumas variáveis de ambiente para o sistema de montagem da imagem</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">TEMPLATECONF</span><span class="o">=</span><span class="n">meta</span><span class="o">-</span><span class="n">gumstix</span><span class="o">-</span><span class="n">extras</span><span class="o">/</span><span class="n">conf</span>
-<span class="n">source</span> <span class="o">./</span><span class="n">poky</span><span class="o">/</span><span class="n">oe</span><span class="o">-</span><span class="n">init</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="n">env</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       export TEMPLATECONF=meta-gumstix-extras/conf
+$       source ./poky/oe-init-build-env
 </pre></div>
 </div>
 </div></blockquote>
@@ -315,9 +350,21 @@
 <ol class="arabic simple" start="5">
 <li><p><strong>Criando a imagem</strong></p></li>
 </ol>
-<p>Baixa os códigos fonte e compilando as imagens do sistema:</p>
+<p>O project Yocto utiliza o bitbake para compilar a imagem do Yocto Linux. O Bitbake basicamente compila apenas o SO, o kernel, os módulos e todos os pacotes incluídos no SO Linux de destino.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>(<strong>OPCIONAL</strong>)
+Se você tiver familiaridade com a compilação via make, poderá acelerar o processo de compilação dizendo ao bitbake para compilar com mais threads. Esta etapa não é necessária, mas se você estiver compilando em um sistema com uma CPU de ponta com muitos núcleos, isso acelerará o tempo de compilação. por exemplo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>            <span class="n">export</span> <span class="n">PARALLEL_MAKE</span><span class="o">=</span><span class="s2">&quot;-j 8&quot;</span>
+
+<span class="n">O</span> <span class="n">numero</span> <span class="s2">&quot;8&quot;</span> <span class="n">indica</span> <span class="n">a</span> <span class="n">quantidade</span> <span class="n">de</span> <span class="n">nucleos</span> <span class="n">a</span> <span class="n">ser</span> <span class="n">utiliuzada</span> <span class="n">na</span> <span class="n">compliação</span><span class="o">.</span>
+    <span class="o">**</span><span class="n">Vale</span> <span class="n">ressaltar</span> <span class="n">que</span> <span class="n">você</span> <span class="n">não</span> <span class="n">deve</span> <span class="n">especificar</span> <span class="n">um</span> <span class="n">valor</span> <span class="o">-</span><span class="n">j</span> <span class="n">maior</span> <span class="n">que</span> <span class="n">a</span> <span class="n">quantidade</span> <span class="n">de</span> <span class="n">núcleos</span> <span class="n">de</span> <span class="n">CPU</span> <span class="n">presentes</span> <span class="n">em</span> <span class="n">sua</span> <span class="n">máquina</span> <span class="n">de</span> <span class="n">construção</span><span class="o">**.</span>
+</pre></div>
+</div>
+</div>
+<p>Assim, para baixar os códigos fonte e compilar as imagens do sistema execute:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bitbake</span> <span class="n">gumstix</span><span class="o">-</span><span class="n">console</span><span class="o">-</span><span class="n">image</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       bitbake gumstix-console-image
 </pre></div>
 </div>
 </div></blockquote>
@@ -326,11 +373,15 @@
 <p>Esse processo baixa vários gigabytes de código e, em seguida, faz uma enorme compilação. Portanto, certifique-se de ter pelo menos os 25GB de espaço livre. Esta etapa pode levar um dia ou mais para a criação da imagem, a depender da sua conexão de internet. Não se preocupe, é apenas a primeira compilação que demora um pouco.</p>
 </div>
 <p>Após a finalização da execução de todos os comandos, recomenda-se verificar a pasta <strong>/yocto/build/tmp/deploy/images/overo</strong>, essa pasta deve conter arquivos binários de kernel e bootloaders e arquivos de diretório raiz no formato .tar.</p>
+<p>A figura abaixo apresenta um exemplo do conteúdo da pasta descrita, essa pasta deve ser semelhante ao obtido após a execução dos procedimentos anteriores.</p>
+<div class="figure align-center">
+<img alt="../../../../_images/yocto_image.png" src="../../../../_images/yocto_image.png" />
+</div>
+<p>Na figura podemos encontrar tanto os bootloaders necessários descritos anteriormente como o binário (.ubi) e arquivos do diretório raiz de algumas versões do projeto Yocto. A versão utilizada foi a mais recente à época, &quot;gumstix-console-image-overo-20180509042558.rootfs.tar.bz2&quot;, entretanto tudo o que foi implementado foi testado também, na versão recomendada, &quot;gumstix-console-image-overo.tar.bz2&quot;, portanto as duas imagens podem ser utilizadas. Os bootloaders utilizados foram &quot;MLO-overo&quot; e &quot;u-boot-overo.img&quot;.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Possíveis causas de falhas provavelmente estão relacionadas com softwares faltosos ou desatualizados, sistema operacional não compatível ou falta de espaço livre.</p>
 </div>
-<p>A figura abaixo apresenta um exemplo do conteúdo da pasta descrita, essa pasta deve ser semelhante ao obtido após a execução dos procedimentos anteriores.</p>
 </div>
 </div>
 
