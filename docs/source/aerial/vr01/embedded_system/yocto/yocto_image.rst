@@ -184,4 +184,4 @@ A figura abaixo apresenta um exemplo do conteúdo da pasta descrita, essa pasta 
 
 .. Na figura podemos encontrar tanto os bootloaders necessários descritos anteriormente como o binário (.ubi) e arquivos do diretório raiz de algumas versões do projeto Yocto. A versão utilizada foi a mais recente à época, "gumstix-console-image-overo-20180509042558.rootfs.tar.bz2", entretanto tudo o que foi implementado foi testado também, na versão recomendada, "gumstix-console-image-overo.tar.bz2", portanto as duas imagens podem ser utilizadas. Os bootloaders utilizados foram "MLO-overo" e "u-boot-overo.img".
 
-
+.. teste
