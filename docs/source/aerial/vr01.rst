@@ -67,4 +67,3 @@ Referências
 .. _QGroundControl User Guide: https://docs.qgroundcontrol.com/en/
 .. _Ardupilot Docs: https://ardupilot.org/copter/index.html
 
-.. teste vsc
