@@ -103,29 +103,29 @@ Linhas de comando Linux para obtenção e montagem da imagem.
 
 1.  **Instalando o repositório**
 
-Para fazer o download das imagens do Yocto, primeiro precisamos instalar o comando repo. Em resumo, o repo é basicamente um invólucro do git, que fornece uma maneira simples de agrupar vários repositórios git diferentes em um unico projeto. Caso tenha interesse em mais informações sobre o comando *repo*, acesse `repo - gerrit.googlesource.com`_.
+Para fazer o download das imagens do Yocto, primeiro precisamos instalar o comando **repo**. Em resumo, o repo é basicamente um invólucro do git, que fornece uma maneira simples de agrupar vários repositórios git diferentes em um unico projeto. Caso tenha interesse em mais informações sobre o comando **repo**, acesse `repo - gerrit.googlesource.com`_.
 
 .. _repo - gerrit.googlesource.com: https://gerrit.googlesource.com/git-repo/+/refs/heads/master/README.md
 
-Baixa os scripts do repositório:
+Baixe os scripts do repositório
 
 	::
 
 		$	curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
 
-Torna os arquivos executáveis:
+Torne os arquivos executáveis
 
 	::
 
 		$	chmod a+x repo
 
-Move os arquivos para o caminho do sistema:
+Mova os arquivos para o caminho do sistema
 
 	::
 
 		$	sudo mv repo /usr/local/bin/
 
-Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização similar a imagem. Esse comando não é obrigatório.
+Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização similar a imagem ao executar o comando a seguir. Esse comando não é obrigatório.
 
 	::
 
@@ -136,27 +136,27 @@ Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização similar a ima
 
 2. **Criando um repositório local**
 
-Cria um diretório para os arquivos e altera o diretório de execução para o novo repositório:
+Crie um diretório para os arquivos e altera o diretório de execução para o novo repositório
 
 	:: 
 
 		$	mkdir yocto
 		$	cd yocto
 
-Agora com o repositório já instalado, faremos o download de todas as configurações do Yocto para o nosso projeto. O comando **init** pode levar algum tempo, pois faz o download de todos os repositórios git associados ao projeto. Já o comando **-b** especifica a ramificação a ser usada e o comando *fido* seleciona o ramo mais estável do repositório.
+Agora com o repositório já instalado, faremos o download de todas as configurações do Yocto para o nosso projeto. O comando **init** pode levar algum tempo, pois faz o download de todos os repositórios git associados ao projeto. Já o comando **-b** especifica a ramificação a ser usada e o comando **fido** seleciona o ramo mais estável do repositório.
 
 	::
 		
 		$	repo init -u git://github.com/gumstix/yocto-manifest.git -b fido
 
-Uma inicialização bem-sucedida terminará com uma mensagem informando que o *.repo* foi inicializado no seu diretório de trabalho. Agora seu diretório deve conter uma pasta *.repo* onde os arquivos de controle de repositório estão armazenados, mas não é necessário abrir o diretório.
+Uma inicialização bem-sucedida terminará com uma mensagem informando que o **.repo** foi inicializado no seu diretório de trabalho. Agora seu diretório deve conter uma pasta *.repo* onde os arquivos de controle de repositório estão armazenados, mas não é necessário abrir o diretório.
 
 .. figure:: /img/Aerial/yocto_init.png
    :align: center
 
 3. **Baixando os arquivos**
 
- O comando a seguir é usado para garantir que todos os seus repositórios estejam atualizados e é útil para atualizar suas configurações do Yocto se você fizer uma compilação posteriormente:
+ O comando a seguir é usado para garantir que todos os seus repositórios estejam atualizados e é útil para atualizar suas configurações do Yocto se você fizer uma compilação posteriormente
 
 	::
 
@@ -165,7 +165,7 @@ Uma inicialização bem-sucedida terminará com uma mensagem informando que o *.
 .. Note::
    Está etapa pode demorar mais de 20 minutos, dependendo da sua conexão de internet.
 
-Força todos os arquivos temporários a serem escritos em dispositivos persistentes:
+Force todos os arquivos temporários a serem escritos em dispositivos permanentes atraves do comando
 
 	::
 
@@ -176,7 +176,7 @@ Força todos os arquivos temporários a serem escritos em dispositivos persisten
 .. Note:: 
    Se, por algum motivo, você cancelar a atividade antes de concluir a compilação do Yocto, será necessário executar este comando todas as vezes antes de seguir para as proximas etapas. Lembre-se de que isso também se aplica a compilações futuras.
 
-Agora que temos nossas configurações básicas do Yocto, entraremos em nosso ambiente de compilação. É necessario copiar as informações de configuração padrão no diretório **poky/build/conf** e configurar algumas variáveis de ambiente para o sistema de montagem da imagem
+Agora que temos nossas configurações básicas do Yocto, entraremos em nosso ambiente de compilação. Por meio do comando a seguir, iremos copiar as informações de configuração padrão no diretório **poky/build/conf** e configurar algumas variáveis de ambiente para o sistema de montagem da imagem
 
 	::
 
@@ -184,21 +184,19 @@ Agora que temos nossas configurações básicas do Yocto, entraremos em nosso am
 		$	source ./poky/oe-init-build-env
 
 .. Note::
-   Este diretório de configuração não está sob controle de revisão; você pode editar esses arquivos de configuração para sua instalação específica. 
+   Este diretório de configuração não está sob controle de revisão, portanto você pode editar esses arquivos de configuração para sua instalação específica. 
 
 5. **Criando a imagem**
 
 O project Yocto utiliza o bitbake para compilar a imagem do Yocto Linux. O Bitbake basicamente compila apenas o SO, o kernel, os módulos e todos os pacotes incluídos no SO Linux de destino. 
 
 .. Tip::
-   (**OPCIONAL**)  
-   Se você tiver familiaridade com a compilação via make, poderá acelerar o processo de compilação dizendo ao bitbake para compilar com mais threads. Esta etapa não é necessária, mas se você estiver compilando em um sistema com uma CPU de ponta com muitos núcleos, isso acelerará o tempo de compilação. por exemplo:
+	(**OPCIONAL**)  
+	Se você tiver familiaridade com a compilação via make, poderá acelerar o processo de compilação dizendo ao bitbake para compilar com mais threads. Esta etapa não é necessária, mas se você estiver compilando em um sistema com uma CPU de ponta com muitos núcleos, isso acelerará o tempo de compilação. Por exemplo:
 
-   ::
+	``$	export PARALLEL_MAKE="-j 8"``
 
-		export PARALLEL_MAKE="-j 8"
-
-    O numero "8" indica a quantidade de nucleos a ser utiliuzada na compliação. 
+	O numero "8" indica a quantidade de nucleos a ser utiliuzada na compliação. 
 	**Vale ressaltar que você não deve especificar um valor -j maior que a quantidade de núcleos de CPU presentes em sua máquina de construção**.
 
 Assim, para baixar os códigos fonte e compilar as imagens do sistema execute:
@@ -207,7 +205,7 @@ Assim, para baixar os códigos fonte e compilar as imagens do sistema execute:
 
 		$	bitbake gumstix-console-image
 
-.. Tip::
+.. Note::
    Esse processo baixa vários gigabytes de código e, em seguida, faz uma enorme compilação. Portanto, certifique-se de ter pelo menos os 25GB de espaço livre. Esta etapa pode levar um dia ou mais para a criação da imagem, a depender da sua conexão de internet. Não se preocupe, é apenas a primeira compilação que demora um pouco.
 
 Após a finalização da execução de todos os comandos, recomenda-se verificar a pasta **/yocto/build/tmp/deploy/images/overo**, essa pasta deve conter arquivos binários de kernel e bootloaders e arquivos de diretório raiz no formato .tar. 

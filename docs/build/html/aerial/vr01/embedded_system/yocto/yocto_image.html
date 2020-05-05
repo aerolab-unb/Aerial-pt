@@ -260,26 +260,26 @@
 <ol class="arabic simple">
 <li><p><strong>Instalando o repositório</strong></p></li>
 </ol>
-<p>Para fazer o download das imagens do Yocto, primeiro precisamos instalar o comando repo. Em resumo, o repo é basicamente um invólucro do git, que fornece uma maneira simples de agrupar vários repositórios git diferentes em um unico projeto. Caso tenha interesse em mais informações sobre o comando <em>repo</em>, acesse <a class="reference external" href="https://gerrit.googlesource.com/git-repo/+/refs/heads/master/README.md">repo - gerrit.googlesource.com</a>.</p>
-<p>Baixa os scripts do repositório:</p>
+<p>Para fazer o download das imagens do Yocto, primeiro precisamos instalar o comando <strong>repo</strong>. Em resumo, o repo é basicamente um invólucro do git, que fornece uma maneira simples de agrupar vários repositórios git diferentes em um unico projeto. Caso tenha interesse em mais informações sobre o comando <strong>repo</strong>, acesse <a class="reference external" href="https://gerrit.googlesource.com/git-repo/+/refs/heads/master/README.md">repo - gerrit.googlesource.com</a>.</p>
+<p>Baixe os scripts do repositório</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       curl http://commondatastorage.googleapis.com/git-repo-downloads/repo &gt; repo
 </pre></div>
 </div>
 </div></blockquote>
-<p>Torna os arquivos executáveis:</p>
+<p>Torne os arquivos executáveis</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       chmod a+x repo
 </pre></div>
 </div>
 </div></blockquote>
-<p>Move os arquivos para o caminho do sistema:</p>
+<p>Mova os arquivos para o caminho do sistema</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       sudo mv repo /usr/local/bin/
 </pre></div>
 </div>
 </div></blockquote>
-<p>Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização similar a imagem. Esse comando não é obrigatório.</p>
+<p>Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização similar a imagem ao executar o comando a seguir. Esse comando não é obrigatório.</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       repo --help
 </pre></div>
@@ -291,20 +291,20 @@
 <ol class="arabic simple" start="2">
 <li><p><strong>Criando um repositório local</strong></p></li>
 </ol>
-<p>Cria um diretório para os arquivos e altera o diretório de execução para o novo repositório:</p>
+<p>Crie um diretório para os arquivos e altera o diretório de execução para o novo repositório</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       mkdir yocto
 $       cd yocto
 </pre></div>
 </div>
 </div></blockquote>
-<p>Agora com o repositório já instalado, faremos o download de todas as configurações do Yocto para o nosso projeto. O comando <strong>init</strong> pode levar algum tempo, pois faz o download de todos os repositórios git associados ao projeto. Já o comando <strong>-b</strong> especifica a ramificação a ser usada e o comando <em>fido</em> seleciona o ramo mais estável do repositório.</p>
+<p>Agora com o repositório já instalado, faremos o download de todas as configurações do Yocto para o nosso projeto. O comando <strong>init</strong> pode levar algum tempo, pois faz o download de todos os repositórios git associados ao projeto. Já o comando <strong>-b</strong> especifica a ramificação a ser usada e o comando <strong>fido</strong> seleciona o ramo mais estável do repositório.</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       repo init -u git://github.com/gumstix/yocto-manifest.git -b fido
 </pre></div>
 </div>
 </div></blockquote>
-<p>Uma inicialização bem-sucedida terminará com uma mensagem informando que o <em>.repo</em> foi inicializado no seu diretório de trabalho. Agora seu diretório deve conter uma pasta <em>.repo</em> onde os arquivos de controle de repositório estão armazenados, mas não é necessário abrir o diretório.</p>
+<p>Uma inicialização bem-sucedida terminará com uma mensagem informando que o <strong>.repo</strong> foi inicializado no seu diretório de trabalho. Agora seu diretório deve conter uma pasta <em>.repo</em> onde os arquivos de controle de repositório estão armazenados, mas não é necessário abrir o diretório.</p>
 <div class="figure align-center">
 <img alt="../../../../_images/yocto_init.png" src="../../../../_images/yocto_init.png" />
 </div>
@@ -312,7 +312,7 @@ $       cd yocto
 <li><p><strong>Baixando os arquivos</strong></p></li>
 </ol>
 <blockquote>
-<div><p>O comando a seguir é usado para garantir que todos os seus repositórios estejam atualizados e é útil para atualizar suas configurações do Yocto se você fizer uma compilação posteriormente:</p>
+<div><p>O comando a seguir é usado para garantir que todos os seus repositórios estejam atualizados e é útil para atualizar suas configurações do Yocto se você fizer uma compilação posteriormente</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       repo sync
 </pre></div>
@@ -323,7 +323,7 @@ $       cd yocto
 <p class="admonition-title">Note</p>
 <p>Está etapa pode demorar mais de 20 minutos, dependendo da sua conexão de internet.</p>
 </div>
-<p>Força todos os arquivos temporários a serem escritos em dispositivos persistentes:</p>
+<p>Force todos os arquivos temporários a serem escritos em dispositivos permanentes atraves do comando</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       sync
 </pre></div>
@@ -336,7 +336,7 @@ $       cd yocto
 <p class="admonition-title">Note</p>
 <p>Se, por algum motivo, você cancelar a atividade antes de concluir a compilação do Yocto, será necessário executar este comando todas as vezes antes de seguir para as proximas etapas. Lembre-se de que isso também se aplica a compilações futuras.</p>
 </div>
-<p>Agora que temos nossas configurações básicas do Yocto, entraremos em nosso ambiente de compilação. É necessario copiar as informações de configuração padrão no diretório <strong>poky/build/conf</strong> e configurar algumas variáveis de ambiente para o sistema de montagem da imagem</p>
+<p>Agora que temos nossas configurações básicas do Yocto, entraremos em nosso ambiente de compilação. Por meio do comando a seguir, iremos copiar as informações de configuração padrão no diretório <strong>poky/build/conf</strong> e configurar algumas variáveis de ambiente para o sistema de montagem da imagem</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$       export TEMPLATECONF=meta-gumstix-extras/conf
 $       source ./poky/oe-init-build-env
@@ -345,7 +345,7 @@ $       source ./poky/oe-init-build-env
 </div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Este diretório de configuração não está sob controle de revisão; você pode editar esses arquivos de configuração para sua instalação específica.</p>
+<p>Este diretório de configuração não está sob controle de revisão, portanto você pode editar esses arquivos de configuração para sua instalação específica.</p>
 </div>
 <ol class="arabic simple" start="5">
 <li><p><strong>Criando a imagem</strong></p></li>
@@ -355,12 +355,9 @@ $       source ./poky/oe-init-build-env
 <p class="admonition-title">Tip</p>
 <p>(<strong>OPCIONAL</strong>)
 Se você tiver familiaridade com a compilação via make, poderá acelerar o processo de compilação dizendo ao bitbake para compilar com mais threads. Esta etapa não é necessária, mas se você estiver compilando em um sistema com uma CPU de ponta com muitos núcleos, isso acelerará o tempo de compilação. por exemplo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>            <span class="n">export</span> <span class="n">PARALLEL_MAKE</span><span class="o">=</span><span class="s2">&quot;-j 8&quot;</span>
-
-<span class="n">O</span> <span class="n">numero</span> <span class="s2">&quot;8&quot;</span> <span class="n">indica</span> <span class="n">a</span> <span class="n">quantidade</span> <span class="n">de</span> <span class="n">nucleos</span> <span class="n">a</span> <span class="n">ser</span> <span class="n">utiliuzada</span> <span class="n">na</span> <span class="n">compliação</span><span class="o">.</span>
-    <span class="o">**</span><span class="n">Vale</span> <span class="n">ressaltar</span> <span class="n">que</span> <span class="n">você</span> <span class="n">não</span> <span class="n">deve</span> <span class="n">especificar</span> <span class="n">um</span> <span class="n">valor</span> <span class="o">-</span><span class="n">j</span> <span class="n">maior</span> <span class="n">que</span> <span class="n">a</span> <span class="n">quantidade</span> <span class="n">de</span> <span class="n">núcleos</span> <span class="n">de</span> <span class="n">CPU</span> <span class="n">presentes</span> <span class="n">em</span> <span class="n">sua</span> <span class="n">máquina</span> <span class="n">de</span> <span class="n">construção</span><span class="o">**.</span>
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">$</span>&#160;&#160;&#160;&#160; <span class="pre">export</span> <span class="pre">PARALLEL_MAKE=&quot;-j</span> <span class="pre">8&quot;</span></code></p>
+<p>O numero &quot;8&quot; indica a quantidade de nucleos a ser utiliuzada na compliação.
+<strong>Vale ressaltar que você não deve especificar um valor -j maior que a quantidade de núcleos de CPU presentes em sua máquina de construção</strong>.</p>
 </div>
 <p>Assim, para baixar os códigos fonte e compilar as imagens do sistema execute:</p>
 <blockquote>
