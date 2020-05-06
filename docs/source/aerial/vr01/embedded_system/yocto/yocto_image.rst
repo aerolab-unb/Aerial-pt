@@ -156,7 +156,7 @@ Uma inicialização bem-sucedida terminará com uma mensagem informando que o **
 
 3. **Baixando os arquivos**
 
- O comando a seguir é usado para garantir que todos os seus repositórios estejam atualizados e é útil para atualizar suas configurações do Yocto se você fizer uma compilação posteriormente.
+O comando a seguir é usado para garantir que todos os seus repositórios estejam atualizados e é útil para atualizar suas configurações do Yocto se você fizer uma compilação posteriormente.
 
 	::
 
@@ -221,3 +221,20 @@ Na figura podemos encontrar tanto os bootloaders necessários descritos anterior
 
 .. Warning::
    Possíveis causas de falhas provavelmente estão relacionadas com softwares faltosos ou desatualizados, sistema operacional não compatível ou falta de espaço livre.
+
+Referências
+-----------
+	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+	* `Gumstix Repo Manifests for the Yocto Project Build System`_ - github.com
+
+	* `Yocto Project Quick Start`_ - yoctoproject.org
+
+	* `Yocto Project Reference Manual`_ - yoctoproject.org
+
+	* `Building Yocto Linux Images for the Gumstix Overo`_ - hackgnar.com
+
+.. _Gumstix Repo Manifests for the Yocto Project Build System: https://github.com/gumstix/yocto-manifest
+.. _Yocto Project Reference Manual: https://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html
+.. _Yocto Project Quick Start: https://www.yoctoproject.org/docs/1.7/yocto-project-qs/yocto-project-qs.html
+.. _Building Yocto Linux Images for the Gumstix Overo: http://www.hackgnar.com/2015/03/building-yocto-linux-images-for-gumstix.html
