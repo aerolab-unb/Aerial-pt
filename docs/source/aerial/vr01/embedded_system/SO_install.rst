@@ -23,6 +23,7 @@ Existem dois métodos para obter os sistemas operacionais para o Gumstix Overo. 
 	   :maxdepth: 2
 
 	   yocto/yocto_image
+	   ubuntu/ubuntu_image
 
 Preparando o Cartão de Memória
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ubuntu on Gumstix &mdash; CoopRobo 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> CoopRobo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Robots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../aerial.html">Aerial Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mobile.html">Mobile Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../manipulators.html">Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs-ref.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../camera.html">Camera</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CoopRobo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Ubuntu on Gumstix</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/aerial/vr01/embedded_system/ubuntu/ubuntu_README.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ubuntu-on-gumstix">
+<h1>Ubuntu on Gumstix<a class="headerlink" href="#ubuntu-on-gumstix" title="Permalink to this headline">¶</a></h1>
+<p>This repository provides a method to build an Ubuntu image for various
+Gumstix boards such as Overo COMs, DuoVero COMs, and the Pepper SBC.</p>
+<div class="section" id="prebuilt-images">
+<h2>Prebuilt Images<a class="headerlink" href="#prebuilt-images" title="Permalink to this headline">¶</a></h2>
+<p>If you want to get started with Ubuntu using one of our prebuilt images, you can download
+these prebuilt console images for Ubuntu 15.04 for [Overo][8], [Duovero][9] and [Pepper][10].
+Flash them on to the SD card and you are good to go!</p>
+<blockquote>
+<div><p># First unmount the SD card before flashing the image
+$ xz -d &lt;image.xz&gt; # Uncompress the image
+$ sudo dd if=/path/to/the/image/file of=/dev/sdX bs=4K</p>
+</div></blockquote>
+</div>
+<div class="section" id="build-instructions">
+<h2>Build Instructions<a class="headerlink" href="#build-instructions" title="Permalink to this headline">¶</a></h2>
+<p>If you want to build everything from scratch:</p>
+<ol class="arabic">
+<li><p>Install the required tools on your host system:</p>
+<blockquote>
+<div><p>$ sudo apt-get install -y git live-build qemu-user-static gcc-arm-linux-gnueabihf</p>
+</div></blockquote>
+</li>
+<li><p>Fetch this repository.</p>
+<blockquote>
+<div><p>$ git clone git://github.com/gumstix/live-build.git
+$ cd live-build</p>
+</div></blockquote>
+</li>
+<li><p>Choose an image type and machine for which to build.  This repository
+supports the Gumstix <em>overo</em>, <em>duovero</em>, and <em>pepper</em> machines.</p>
+<blockquote>
+<div><p>Image Name      | Description
+----------------<a href="#id1"><span class="problematic" id="id2">|</span></a>-------------
+<em>vivid-console</em> | A developer-oriented console image of Ubuntu 15.04
+<em>vivid-lxde</em>    | Ubuntu 15.04 &quot;Vivid Vervet&quot; with a lightweight desktop environment (LXDE)
+<em>sid-console</em>   | Debian Sid console image</p>
+</div></blockquote>
+</li>
+<li><p><em>Make</em> it!  You will be prompted for a super-user password then go get some
+coffee.</p>
+<blockquote>
+<div><p>$ make MACHINE=&lt;machine&gt; IMAGE=&lt;image&gt; -j4</p>
+</div></blockquote>
+</li>
+<li><p>Everything proceeding correctly, binaries for the u-boot bootloader along
+with a root filesystem tarball will be created.  Insert a microSD card to
+your development machine, note the drive name, and then format it.
+<strong>Warning</strong>: this erases anything currently on the microSD card!</p>
+<blockquote>
+<div><p>$ # substitute the path to the drive e.g. /dev/sdd or /dev/mmcblk0 (not the
+$ # path of a partition e.g. /dev/sdd1 or /dev/mmcblk0p1) in place of &lt;drive&gt;
+$ MACHINE=&lt;machine&gt; IMAGE=&lt;image&gt; scripts/mkcard.sh &lt;drive name&gt;</p>
+</div></blockquote>
+</li>
+<li><p>Alternatively, you have the option of creating a dd-able image after the
+build process is complete using the mkiso.sh script present in the scripts/
+directory. Before using the script, make sure that the following tools are
+installed: qemu-img, mkfs, kpartx, sfdisk, losetup.</p>
+<blockquote>
+<div><p>$ sudo apt-get install qemu-utils dosfstools kpartx</p>
+</div></blockquote>
+<p>Then, run the script:</p>
+<blockquote>
+<div><p>$ MACHINE=&lt;machine&gt; IMAGE=&lt;image&gt; scripts/mkiso.sh</p>
+</div></blockquote>
+<p>This will create a [machine]-[image].img file of size 4GB which needs to be
+flashed on the microSD card.</p>
+<blockquote>
+<div><p># First unmount the SD card
+$ sudo dd if=/path/to/the/image/file of=/dev/sdX bs=4K</p>
+</div></blockquote>
+<p>If you have an SD card bigger than 4GB, you can resize the image after flashing
+it on the SD card using <em>gparted</em></p>
+<blockquote>
+<div><p>$ sudo apt-get install gparted
+$ sudo gparted /dev/sdX</p>
+</div></blockquote>
+<p>Now click on the partition you want to resize and select Partition -&gt; Resize/Move from the menu.</p>
+</li>
+<li><p>Once the microSD card has been written, insert it into your Gumstix system, login
+as <em>gumstix</em> with password <em>gumstix</em> and start playing with your new Ubuntu/Debian
+image.</p></li>
+</ol>
+</div>
+<div class="section" id="customization">
+<h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h2>
+<p>There are numerous ways to customize this root file system.</p>
+<p><strong>1. Change distro, release, or image type.</strong></p>
+<p>As well as Ubuntu images, the [Live Build][1] tool can build images for a
+number of Debian-based distributions (e.g. Debian, [Kali][2]) each with different
+release versions (e.g. <em>wheezy</em>, <em>utopic</em>).  Depending on the image <em>flavour</em>
+and the installed packages, images can provide a variety of different desktop
+environments or a stripped down console environement. Start customizing by
+copying an existing image directory and adjusting the <em>config</em>.</p>
+<blockquote>
+<div><p>$ cp -r images/vivid-console images/super-gumstix
+$ sensible-editor images/super-gumstix/auto/config
+$ make MACHINE=&lt;machine&gt; IMAGE=super-gumstix -j4</p>
+</div></blockquote>
+<p>There are some [great][3] [samples][4].</p>
+<p><strong>2. Pre-install additional packages.</strong></p>
+<p>To include additional packages in a custom image, simply add the package names
+(as the would be passed in an <em>apt-get</em>) to the list of packages in the
+<em>customization</em> directory. Carrying on from the previous customization:</p>
+<blockquote>
+<div><p>$ echo 'vim' &gt;&gt; images/super-gumstix/customiztion/package-lists/gumstix.list.chroot
+$ make MACHINE=&lt;machine&gt; IMAGE=super-gumstix -j4</p>
+</div></blockquote>
+<p>As the contents of the <em>customization</em> directory get copied over to the
+<em>config</em> generated by Live Build's configuration step, it is possible to add
+locally created <em>deb</em> packages by dropping them in a
+<em>customization/packages.chroot</em> directory.  It is even [possible][5] to extend
+the list of package repositories.</p>
+<p><strong>3. Change the Root File System.</strong></p>
+<p>It is possible to run scripts during the construction of root file system as if
+the image was actually running (i.e. within a <em>chroot</em> under QEMU emulation).
+See the <em>customization/hooks</em> directory for some samples.</p>
+<p>It is also possible to do some boot-time configuration using the <em>live-config</em>
+[tool][6] (different than <em>live-build config</em>).</p>
+<p>This is not a <em>build-everything-from-scratch</em> tool.  This tool
+assembles a root file system from pre-compiled packages and provides a
+useful framework for adjusting configuration files.  If something
+additional needs to be compiled, there are three options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>compile it natively (and possibly, create a .deb for future inclusion)</p></li>
+<li><p>cross-build the code---there are a litany of techniques ranging from
+building on emulated ARM hardware (qemu) through a full cross-building
+environment (it gets a [little complicated][6])</p></li>
+<li><p>Use [Yocto][7]!  The Yocto environment excels at cross-building where Debian
+prefers native compilation.</p></li>
+</ul>
+</div></blockquote>
+<hr class="docutils" />
+<p>[1]: <a class="reference external" href="http://live.debian.net/devel/live-build/">http://live.debian.net/devel/live-build/</a>
+[2]: <a class="reference external" href="http://docs.kali.org/development/live-build-a-custom-kali-iso">http://docs.kali.org/development/live-build-a-custom-kali-iso</a>
+[3]: <a class="reference external" href="https://git.linaro.org/ci/ubuntu-build-service.git">https://git.linaro.org/ci/ubuntu-build-service.git</a>
+[4]: <a class="reference external" href="https://wiki.debian.org/InstallingDebianOn/TI/BeagleBone">https://wiki.debian.org/InstallingDebianOn/TI/BeagleBone</a>
+[5]: <a class="reference external" href="https://git.linaro.org/ci/ubuntu-build-service.git/blob/HEAD:/utopic-armhf-nano/customization/archives/linaro-overlay-ppa.list.chroot">https://git.linaro.org/ci/ubuntu-build-service.git/blob/HEAD:/utopic-armhf-nano/customization/archives/linaro-overlay-ppa.list.chroot</a>
+[6]: <a class="reference external" href="http://live.debian.net/devel/live-config/">http://live.debian.net/devel/live-config/</a>
+[6]: <a class="reference external" href="https://wiki.linaro.org/Platform/DevPlatform/CrossCompile/CurrentPackageCrossBuildStatus">https://wiki.linaro.org/Platform/DevPlatform/CrossCompile/CurrentPackageCrossBuildStatus</a>
+[7]: <a class="reference external" href="https://github.com/gumstix/yocto-manifest">https://github.com/gumstix/yocto-manifest</a>
+[8]: <a class="reference external" href="https://catalina.gumstix.com/binaries/?sort=-last_updated&amp;search=ubuntu-overo-master-iso">https://catalina.gumstix.com/binaries/?sort=-last_updated&amp;search=ubuntu-overo-master-iso</a>
+[9]: <a class="reference external" href="https://catalina.gumstix.com/binaries/?sort=-last_updated&amp;search=ubuntu-duovero-master-iso">https://catalina.gumstix.com/binaries/?sort=-last_updated&amp;search=ubuntu-duovero-master-iso</a>
+[10]: <a class="reference external" href="https://catalina.gumstix.com/binaries/?sort=-last_updated&amp;search=ubuntu-pepper-master-iso">https://catalina.gumstix.com/binaries/?sort=-last_updated&amp;search=ubuntu-pepper-master-iso</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Gabriel Araujo
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

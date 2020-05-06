@@ -1,6 +1,8 @@
 Particionando o Cartão SD
 =========================
 
+.. https://www.gumstix.com/support/getting-started/create-bootable-microsd-card
+
 Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de **boot** e **rootfs** com o objetivo de gerar um cartão SD bootável. O procedimento descrito abaixo é baseado método recomendado pelo fabricante do computador embarcado, utilizando um script que pode ser obtido em seu `repositório GitHub`_ e seguindo os procedimentos do tutorial `How to Make 2 Partition SD Card`_ da Texas Instrument. 
 
 .. _repositório GitHub: https://github.com/gumstix/meta-gumstix-extras/blob/dizzy/scripts/mk2partsd
