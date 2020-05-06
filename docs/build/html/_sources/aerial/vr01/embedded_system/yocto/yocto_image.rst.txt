@@ -39,23 +39,23 @@ O desenvolvimento de projetos no ambiente do Yocto Project requer que alguns req
 
 Atualmente, o Project Yocto é suportado nas seguintes distribuições Linux.
 
-*	Ubuntu 12.04 (LTS)
-*	Ubuntu 13.10
-*	Ubuntu 14.04 (LTS)
-*	Fedora release 19 (Schrödinger's Cat)
-*	Fedora release 20 (Heisenbug)
-*	CentOS release 6.4
-*	CentOS release 6.5
-*	Debian GNU/Linux 7.0 (Wheezy)
-*	Debian GNU/Linux 7.1 (Wheezy)
-*	Debian GNU/Linux 7.2 (Wheezy)
-*	Debian GNU/Linux 7.3 (Wheezy)
-*	Debian GNU/Linux 7.4 (Wheezy)
-*	Debian GNU/Linux 7.5 (Wheezy)
-*	Debian GNU/Linux 7.6 (Wheezy)
-*	openSUSE 12.2
-*	openSUSE 12.3
-*	openSUSE 13.1
+	*	Ubuntu 12.04 (LTS)
+	*	Ubuntu 13.10
+	*	Ubuntu 14.04 (LTS)
+	*	Fedora release 19 (Schrödinger's Cat)
+	*	Fedora release 20 (Heisenbug)
+	*	CentOS release 6.4
+	*	CentOS release 6.5
+	*	Debian GNU/Linux 7.0 (Wheezy)
+	*	Debian GNU/Linux 7.1 (Wheezy)
+	*	Debian GNU/Linux 7.2 (Wheezy)
+	*	Debian GNU/Linux 7.3 (Wheezy)
+	*	Debian GNU/Linux 7.4 (Wheezy)
+	*	Debian GNU/Linux 7.5 (Wheezy)
+	*	Debian GNU/Linux 7.6 (Wheezy)
+	*	openSUSE 12.2
+	*	openSUSE 12.3
+	*	openSUSE 13.1
 
 .. Note::
    Para obter uma lista mais detalhada de distribuições que suportam o Projeto Yocto, consulte a seção `Supported Linux Distributions`_ em Yocto Project Reference Manual.
@@ -79,13 +79,13 @@ Além disso, recomenda-se atualizar os repositorios do Linux. Para tal, no caso 
 
 	::
 
-		$	sudo apt-get update && sudo apt-get upgrade
+		$ sudo apt-get update && sudo apt-get upgrade
 
-É necessária ainda a instalação dos pacotes de host essenciais para a construção da imagem. O comando a seguir instala os pacotes de host com base em sistemas com distribuição Ubuntu:
+É necessária ainda a instalação dos pacotes de host essenciais para a construção da imagem. O comando a seguir instala os pacotes de host com base em sistemas com distribuição Ubuntu.
 
 	::
 
-		$	sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm curl
+		$ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm curl
 
 
 .. Note::
@@ -111,25 +111,25 @@ Baixe os scripts do repositório
 
 	::
 
-		$	curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
+		$ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
 
 Torne os arquivos executáveis
 
 	::
 
-		$	chmod a+x repo
+		$ chmod a+x repo
 
 Mova os arquivos para o caminho do sistema
 
 	::
 
-		$	sudo mv repo /usr/local/bin/
+		$ sudo mv repo /usr/local/bin/
 
 Se tudo ocorrer bem, deverá aparecer uma mensagem de utilização similar a imagem ao executar o comando a seguir. Esse comando não é obrigatório.
 
 	::
 
-		$	repo --help
+		$ repo --help
 
 .. figure:: /img/Aerial/yocto_repo.png
    :align: center
@@ -140,14 +140,14 @@ Crie um diretório para os arquivos e altera o diretório de execução para o n
 
 	:: 
 
-		$	mkdir yocto
-		$	cd yocto
+		$ mkdir yocto
+		$ cd yocto
 
 Agora com o repositório já instalado, faremos o download de todas as configurações do Yocto para o nosso projeto. O comando **init** pode levar algum tempo, pois faz o download de todos os repositórios git associados ao projeto. Já o comando **-b** especifica a ramificação a ser usada e o comando **fido** seleciona o ramo mais estável do repositório.
 
 	::
 		
-		$	repo init -u git://github.com/gumstix/yocto-manifest.git -b fido
+		$ repo init -u git://github.com/gumstix/yocto-manifest.git -b fido
 
 Uma inicialização bem-sucedida terminará com uma mensagem informando que o **.repo** foi inicializado no seu diretório de trabalho. Agora seu diretório deve conter uma pasta *.repo* onde os arquivos de controle de repositório estão armazenados, mas não é necessário abrir o diretório.
 
@@ -156,32 +156,32 @@ Uma inicialização bem-sucedida terminará com uma mensagem informando que o **
 
 3. **Baixando os arquivos**
 
- O comando a seguir é usado para garantir que todos os seus repositórios estejam atualizados e é útil para atualizar suas configurações do Yocto se você fizer uma compilação posteriormente
+ O comando a seguir é usado para garantir que todos os seus repositórios estejam atualizados e é útil para atualizar suas configurações do Yocto se você fizer uma compilação posteriormente.
 
 	::
 
-		$	repo sync
+		$ repo sync
 
 .. Note::
    Está etapa pode demorar mais de 20 minutos, dependendo da sua conexão de internet.
 
-Force todos os arquivos temporários a serem escritos em dispositivos permanentes atraves do comando
+Force todos os arquivos temporários a serem escritos em dispositivos permanentes atraves do comando: 
 
 	::
 
-		$	sync
+		$ sync
 
 4. **Iniciando o Yocto Project Build Environment**
 
-.. Note:: 
+.. Warning:: 
    Se, por algum motivo, você cancelar a atividade antes de concluir a compilação do Yocto, será necessário executar este comando todas as vezes antes de seguir para as proximas etapas. Lembre-se de que isso também se aplica a compilações futuras.
 
-Agora que temos nossas configurações básicas do Yocto, entraremos em nosso ambiente de compilação. Por meio do comando a seguir, iremos copiar as informações de configuração padrão no diretório **poky/build/conf** e configurar algumas variáveis de ambiente para o sistema de montagem da imagem
+Agora que temos nossas configurações básicas do Yocto, entraremos em nosso ambiente de compilação. Por meio do comando a seguir, iremos copiar as informações de configuração padrão no diretório **poky/build/conf** e configurar algumas variáveis de ambiente para o sistema de montagem da imagem.
 
 	::
 
-		$	export TEMPLATECONF=meta-gumstix-extras/conf 
-		$	source ./poky/oe-init-build-env
+		$ export TEMPLATECONF=meta-gumstix-extras/conf 
+		$ source ./poky/oe-init-build-env
 
 .. Note::
    Este diretório de configuração não está sob controle de revisão, portanto você pode editar esses arquivos de configuração para sua instalação específica. 
@@ -192,9 +192,9 @@ O project Yocto utiliza o bitbake para compilar a imagem do Yocto Linux. O Bitba
 
 .. Tip::
 	(**OPCIONAL**)  
-	Se você tiver familiaridade com a compilação via make, poderá acelerar o processo de compilação dizendo ao bitbake para compilar com mais threads. Esta etapa não é necessária, mas se você estiver compilando em um sistema com uma CPU de ponta com muitos núcleos, isso acelerará o tempo de compilação. por exemplo:
+	Se você tiver familiaridade com a compilação via make, poderá acelerar o processo de compilação dizendo ao bitbake para compilar com mais threads. Esta etapa não é necessária, mas se você estiver compilando em um sistema com uma CPU de ponta com muitos núcleos, isso acelerará o tempo de compilação. Por exemplo:
 
-	``$	export PARALLEL_MAKE="-j 8"``
+	``$ export PARALLEL_MAKE="-j 8"``
 
 	O numero "8" indica a quantidade de nucleos a ser utiliuzada na compliação. 
 	**Vale ressaltar que você não deve especificar um valor -j maior que a quantidade de núcleos de CPU presentes em sua máquina de construção**.
@@ -203,9 +203,9 @@ Assim, para baixar os códigos fonte e compilar as imagens do sistema execute:
 
 	::
 
-		$	bitbake gumstix-console-image
+		$ bitbake gumstix-console-image
 
-.. Tip::
+.. Note::
    Esse processo baixa vários gigabytes de código e, em seguida, faz uma enorme compilação. Portanto, certifique-se de ter pelo menos os 25GB de espaço livre. Esta etapa pode levar um dia ou mais para a criação da imagem, a depender da sua conexão de internet. Não se preocupe, é apenas a primeira compilação que demora um pouco.
 
 Após a finalização da execução de todos os comandos, recomenda-se verificar a pasta **/yocto/build/tmp/deploy/images/overo**, essa pasta deve conter arquivos binários de kernel e bootloaders e arquivos de diretório raiz no formato .tar. 
@@ -215,7 +215,9 @@ A figura abaixo apresenta um exemplo do conteúdo da pasta descrita, essa pasta 
 .. figure:: /img/Aerial/yocto_image.png
    :align: center
 
-Na figura podemos encontrar tanto os bootloaders necessários descritos anteriormente como o binário (.ubi) e arquivos do diretório raiz de algumas versões do projeto Yocto. A versão utilizada foi a mais recente à época, "gumstix-console-image-overo-20180509042558.rootfs.tar.bz2", entretanto tudo o que foi implementado foi testado também, na versão recomendada, "gumstix-console-image-overo.tar.bz2", portanto as duas imagens podem ser utilizadas. Os bootloaders utilizados foram "MLO-overo" e "u-boot-overo.img".
+Na figura podemos encontrar tanto os bootloaders necessários descritos anteriormente como o binário (.ubi) e arquivos do diretório raiz de algumas versões do projeto Yocto. 
+
+.. A versão utilizada foi a mais recente à época, "gumstix-console-image-overo-20180509042558.rootfs.tar.bz2", entretanto tudo o que foi implementado foi testado também, na versão recomendada, "gumstix-console-image-overo.tar.bz2", portanto as duas imagens podem ser utilizadas. Os bootloaders utilizados foram "MLO-overo" e "u-boot-overo.img".
 
 .. Warning::
    Possíveis causas de falhas provavelmente estão relacionadas com softwares faltosos ou desatualizados, sistema operacional não compatível ou falta de espaço livre.
