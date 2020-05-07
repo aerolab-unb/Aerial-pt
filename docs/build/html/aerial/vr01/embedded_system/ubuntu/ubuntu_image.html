@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Obtenção das imagens do Ubuntu 15.04 &mdash; CoopRobo 1.0.0 documentation</title>
+  <title>Obtenção das imagens do Ubuntu &mdash; CoopRobo 1.0.0 documentation</title>
   
 
   
@@ -156,7 +156,7 @@
         
           <li><a href="../SO_install.html">Instalando o Sistema Operacional</a> &raquo;</li>
         
-      <li>Obtenção das imagens do Ubuntu 15.04</li>
+      <li>Obtenção das imagens do Ubuntu</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -175,10 +175,92 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="obtencao-das-imagens-do-ubuntu-15-04">
-<h1>Obtenção das imagens do Ubuntu 15.04<a class="headerlink" href="#obtencao-das-imagens-do-ubuntu-15-04" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="obtencao-das-imagens-do-ubuntu">
+<h1>Obtenção das imagens do Ubuntu<a class="headerlink" href="#obtencao-das-imagens-do-ubuntu" title="Permalink to this headline">¶</a></h1>
+<p>Dentre os sistemas Ubuntu, foi escolhido o Ubuntu 15.04 por ser uma versão estável e adaptada para o sistema embarcado Gumstix Overo, além de ser a versão recomendada pelo proprio fabricante.</p>
+<p>Esse tutorial explica como construir manualmente uma imagem do <strong>Ubuntu 15.04</strong> para placas Gumstix Overo COMs e realizar todos os procedimentos através de linhas de comando do terminal do Linux. Este topico é baseado nas instruções apresentadas no arquivo <a class="reference external" href="https://github.com/gumstix/live-build/blob/master/README.md">README.md</a> do <a class="reference external" href="https://github.com/gumstix/live-build">repositório sobre Ubuntu para produtos Gumstix</a>.</p>
+<p>Infelizmente, existe uma grande escassez de documentação detalhada e completa que explique como construir a imagem do sistema operacional Ubuntu 15.04 e quais os requisitos do sistema para realizar esta atividade.</p>
 <div class="section" id="configurando-a-imagem">
 <h2>Configurando a imagem<a class="headerlink" href="#configurando-a-imagem" title="Permalink to this headline">¶</a></h2>
+<p>Linhas de comando Linux para obtenção e montagem da imagem.</p>
+<ol class="arabic">
+<li><p>Instale as ferramentas necessárias em seu computador:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install -y git live-build qemu-user-static gcc-arm-linux-gnueabihf
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Faça uma copia local do repositorio e altera o diretório de execução para este novo repositório</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone git://github.com/gumstix/live-build.git
+$ cd live-build
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Escolha um tipo de imagem e uma máquina para construir. Este repositório suporta as máquinas Gumstix Overo, Duovero e Pepper.</p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 66%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Nome da imagem</strong></p></td>
+<td><p><strong>Descrição</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>overo</p></td>
+<td><p>Gumstix Overo COMs Series</p></td>
+</tr>
+<tr class="row-odd"><td><p>duovero</p></td>
+<td><p>Gumstix DuoVero COMs Series</p></td>
+</tr>
+<tr class="row-even"><td><p>pepper</p></td>
+<td><p>Gumstix™ Pepper Single Board Computer</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Nome da imagem</strong></p></td>
+<td><p><strong>Descrição</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>vivid-console</p></td>
+<td><p>Imagem de console do Ubuntu 15.04 orientada a desenvolvedores</p></td>
+</tr>
+<tr class="row-odd"><td><p>vivid-lxde</p></td>
+<td><p>Ubuntu 15.04 &quot;Vivid Vervet&quot; com um ambiente de desktop leve (LXDE)</p></td>
+</tr>
+<tr class="row-even"><td><p>sid-console</p></td>
+<td><p>Imagem de console para desenvolvimento do Debian (Sid)</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ol>
+<p>Em seguida, execute o comando abaixo substituindo <strong>&lt;machine&gt;</strong> pela nome da maquina em que deseja instalar a imagem e <strong>&lt;image&gt;</strong> pelo nome da imagem que deseja, conforme apresentado nas tabelas acima.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make MACHINE=&lt;machine&gt; IMAGE=&lt;image&gt; -j4
+</pre></div>
+</div>
+</div></blockquote>
+<p>Por exemplo, para o desenvolvimento do projeto no computador embarcado Gumstix Overo, optou-se pela imagem <strong>inserir</strong> devido .... Logo, o comando executado foi:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make MACHINE=overo IMAGE=vivid-console -j4
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Esse processo baixa vários gigabytes de código e, em seguida, faz uma enorme compilação. Portanto, esta etapa pode levar um tempo consideravel para a criação da imagem, a depender da sua conexão de internet.</p>
+</div>
+<p>Se tudo ocorrer corretamente, os arquivos binarios para o carregamento de inicialização <em>u-boot</em> e um pasta compactada <em>tar</em> contendo os arquivos raiz do sistema operacional serão criados.</p>
 </div>
 </div>
 
