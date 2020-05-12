@@ -131,6 +131,10 @@ No caso do exemplo apresentado, o comando a ser realizado é:
 
 Quando a senha for solicitada pelo sistema, use a senha da conta do usuário para confirmar o procedimento.
 
-Em uma execução bem-sucedida, o terminal será semelhante a imagem a seguir. Um erro pode aparecer é do **sfdisk** (como mostrado abaixo), porém este pode ser ignorado com segurança.
+Em uma execução bem-sucedida, o terminal será semelhante a imagem a seguir. Um erro pode aparecer é o **sfdisk** (como mostrado abaixo), porém este pode ser ignorado com segurança.
 	
+.. adicionar imagem
+
+A figura abaixo apresenta um exemplo de cartão de memória com as partições já definidas, montadas e contendo o sistema operacional do computador embarcado. No exemplo o cartão SD possui um total de 4 GB, porém, para o projeto Yocto, um cartão de memória de 2 GB deve ser suficiente.
+
 .. adicionar imagem
