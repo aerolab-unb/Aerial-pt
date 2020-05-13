@@ -16,26 +16,47 @@ Procedimentos
 ~~~~~~~~~~~~~
 
 .. Warning::
-      A versão do sistema operacional utilizada nas atividades foi Ubuntu 14.04 (LTS). Os procedimentos podem ter algumas diferenças a depender da versão e distribuição do Linux a ser utilizada.
+      A versão do sistema operacional utilizada nas atividades foi o Ubuntu 20.04 (LTS), porém os comandos são os mesmos para versões mais antigas do Ubuntu, a partir do Ubuntu 14.04 (LTS). Os procedimentos podem ter algumas diferenças a depender da versão e distribuição do Linux a ser utilizada.
 
 1. Insira o cartão SD ou um adaptador com ele em uma porta disponível no seu computador Linux.
 
 2. Clique em “**Pesquisar em seu coputador**” na barra de ferramentas e selecione "**Discos**" (*Disks*) na aba de **Aplicativos**. O programa será iniciado exibindo os dispositivos de memoria conectados ao computador.
 
-3. Na aba de dispositivos, selecione o cartão SD que deseja particionar.
+3. Na aba de **Discos**, selecione o cartão SD que deseja particionar.
+
+.. figure:: /img/Aerial/SD_car/discos.png
 
 4. Clique em "**Desmontar o sistema de arquivos**" abaixo de "**Volumes**" para habilitar modificações no cartão SD.
 
+.. figure:: /img/Aerial/SD_car/desmontar.png
+
 5. Para criar novas partições em diferentes formatos é recomendado excluir a partição do seu cartão SD, para isso, clique em "**Excluir partição**".
+
+.. figure:: /img/Aerial/SD_car/excluir1.png
 
 .. Warning::
 	Está etapa irá formatar o seu cartão SD, portanto, todos os dados ali presentes serão excluidos permanentemente.
 
+.. figure:: /img/Aerial/SD_car/excluir2.png
+
 6. Clique em "**Criar uma nova partição** para criar a primeira partição. 
+
+.. figure:: /img/Aerial/SD_car/nova_particao1.png
 
 Está partição será nomeada como "**boot**", terá um tamanho de 528MB e será configurado com o tipo de gestão de arquivos "FAT", como exemplificado abaixo. Após configurar, clique em "**Criar**" para gerar está nova partição.
 
+.. figure:: /img/Aerial/SD_car/nova_particao2.png
+
+.. figure:: /img/Aerial/SD_car/nova_particao3.png
+
+
 Em seguida, vá em "**Mais Ações**", "**Editar partição**", configure o "**Tipo de partição**" como "**W95 FAT32 (LBA)**" e ative a opção "**Iniciavel** para determinar que é nesta partição que o sistema operacional deve ser carregado.
+
+.. figure:: /img/Aerial/SD_car/editar_particao1.png
+
+.. figure:: /img/Aerial/SD_car/editar_particao2.png
+
+.. figure:: /img/Aerial/SD_car/editar_particao3.png
 
 .. Tip:: 
 	Neste exemplo, foram reservados 528 MB para a partição de boot, entretanto, utilizam-se para inicialização menos de 100 MB. Sendo assim, caso futuramente venha a faltar espaço para armazenamento de dados será possível ampliar a partição roots refazendo esta divisão.
