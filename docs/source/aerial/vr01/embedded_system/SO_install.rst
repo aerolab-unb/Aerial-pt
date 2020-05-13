@@ -32,7 +32,9 @@ Uma vez obtida a imagem do sistema operacional podemos transferir os arquivos pa
 
 O sistema de gestão de arquivos define o método que o sistema operacional irá utilizar para armazenar nos espaços de memória os arquivos e suas informações, ou metadados dos arquivos, como nome, espaço de memória ocupado, datas de alterações e últimos acessos. Existe uma grande variedade de sistemas de gestão de arquivos com as mais diversas complexidades. Mas o que podemos precisar nesse trabalho e em trabalhos futuros é o sistema "FAT", um sistema antigo geralmente utilizado em mídias e, normalmente, universal. Já o "ext" é um sistema elaborado especificamente para o Linux e não é possível acessá-lo por um outro sistema operacional sem um programa para essa finalidade.
 
-Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, entretanto, a maneira recomendada é apresentada no tópico abaixo e é baseada nas recomendações do fabricante. Um ponto negativo deste procedimento é o excesso de memória alocada para a partição de boot, no caso são reservados 528 MB à partição de boot e utilizam-se menos de 100 MB. Sendo assim, caso futuramente venha a faltar espaço para armazenamento de dados será possível ampliar a partição roots refazendo esta divisão.
+Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, entretanto, aqui utilizaremos o proprio gerenciador de discos do Linux para realizar o particionamento, por ser uma ferramenta simples, intuitiva e possibilitar futuras modificações sem grandes dificuldades. Vale ressaltar que este não é o metodo indicado pelo fabricante, já que os procedimentos recomendados por eles na pagina `Create Bootable MicroSD Card - gumstix.com`_ apresentaram os mais diversos erros, todavia, os resultados obtidos utilizando os procedimentos do topico abaixo são os mesmos.  
+
+.. _Create Bootable MicroSD Card - gumstix.com: https://www.gumstix.com/support/getting-started/create-bootable-microsd-card
 
 	.. toctree::
 	   :maxdepth: 2
