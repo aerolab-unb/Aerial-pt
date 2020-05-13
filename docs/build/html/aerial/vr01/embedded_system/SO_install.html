@@ -202,16 +202,14 @@
 </div>
 <div class="section" id="preparando-o-cartao-de-memoria">
 <h2>Preparando o Cartão de Memória<a class="headerlink" href="#preparando-o-cartao-de-memoria" title="Permalink to this headline">¶</a></h2>
-<p>Uma vez obtida a imagem do sistema operacional podemos transferir os arquivos para o computador embarcado para, enfim, ligá-lo. Essa tarefa será realizada por meio de um cartão SD que funcionará como o disco rígido do computador embarcado.</p>
-<p>Logo, o cartão SD irá conter tanto os programas necessários para boot, que serão utilizados apenas na inicialização do computador, quanto os outros programas, que podem ser utilizados a qualquer momento e realizarão modificações constantes no cartão SD. Portanto a melhor maneira de lidar com essa divisão é particionar o cartão SD em duas partições que serão denominadas boot e rootfs.</p>
-<p>Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, entretanto, a maneira recomendada é apresentada no tópico abaixo e é baseada nas recomendações do fabricante. Um ponto negativo deste procedimento é o excesso de memória alocada para a partição de boot, no caso são reservados 528 MB à partição de boot e utilizam-se menos de 100 MB. Sendo assim, caso futuramente venha a faltar espaço para armazenamento de dados será possível ampliar a partição roots refazendo esta divisão.</p>
+<p>Uma vez obtida a imagem do sistema operacional podemos transferir os arquivos para o computador embarcado para, enfim, ligá-lo. Essa tarefa será realizada por meio de um cartão SD que funcionará como o disco rígido do computador embarcado. Logo, o cartão SD irá conter tanto os programas necessários para boot, que serão utilizados apenas na inicialização do computador, quanto os outros programas podem ser utilizados a qualquer momento e realizarão modificações constantes no cartão SD. Portanto a melhor maneira de lidar com essa divisão é particionar o cartão SD em duas partições que serão denominadas boot e rootfs.</p>
+<p>O sistema de gestão de arquivos define o método que o sistema operacional irá utilizar para armazenar nos espaços de memória os arquivos e suas informações, ou metadados dos arquivos, como nome, espaço de memória ocupado, datas de alterações e últimos acessos. Existe uma grande variedade de sistemas de gestão de arquivos com as mais diversas complexidades. Mas o que podemos precisar nesse trabalho e em trabalhos futuros é o sistema &quot;FAT&quot;, um sistema antigo geralmente utilizado em mídias e, normalmente, universal. Já o &quot;ext&quot; é um sistema elaborado especificamente para o Linux e não é possível acessá-lo por um outro sistema operacional sem um programa para essa finalidade.</p>
+<p>Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, entretanto, aqui utilizaremos o proprio gerenciador de discos do Linux para realizar o particionamento, por ser uma ferramenta simples, intuitiva e possibilitar futuras modificações sem grandes dificuldades. Vale ressaltar que este não é o metodo indicado pelo fabricante, já que os procedimentos recomendados por eles na pagina <a class="reference external" href="https://www.gumstix.com/support/getting-started/create-bootable-microsd-card">Create Bootable MicroSD Card - gumstix.com</a> apresentaram os mais diversos erros, todavia, os resultados obtidos utilizando os procedimentos do topico abaixo são os mesmos.</p>
 <blockquote>
 <div><div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="SD_card.html">Particionando o Cartão SD</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="SD_card.html#preparando-o-script">Preparando o script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SD_card.html#examinando-o-sistema-linux">Examinando o sistema Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SD_card.html#executando-o-script">Executando o script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SD_card.html#procedimentos">Procedimentos</a></li>
 </ul>
 </li>
 </ul>
