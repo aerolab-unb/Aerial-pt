@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Modelagem" href="../model/Ranger.html" />
-    <link rel="prev" title="Obtenção das imagens do Ubuntu" href="ubuntu/ubuntu_image.html" /> 
+    <link rel="prev" title="Obtenção das imagens do Yocto Project" href="yocto/yocto_image.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -177,8 +177,8 @@
             
   <div class="section" id="particionando-o-cartao-sd">
 <h1>Particionando o Cartão SD<a class="headerlink" href="#particionando-o-cartao-sd" title="Permalink to this headline">¶</a></h1>
-<p>Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de <strong>boot</strong> e <strong>rootfs</strong> com o objetivo de gerar um cartão SD bootável. O procedimento descrito abaixo é realizado utilizando o gerenciador de discos do próprio Ubuntu, não sendo necessário instalar novos <em>softwares</em>.</p>
-<p>Usualmente, o cartão SD é configurado em uma única partição formatada no padrão Windows FAT, configuração típica encontrada em cartões adquiridos em varejo. Porém, aqui particionaremos o cartão SD em duas partes, que serão denominadas <strong>boot</strong> e <strong>rootfs</strong>, sendo o sistema de gestão de arquivos da partição <strong>boot</strong> &quot;VFAT&quot; e da partição <strong>rootfs</strong> &quot;ext4&quot;.</p>
+<p>Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão microSD em duas partes, denominadas de <strong>boot</strong> e <strong>rootfs</strong> com o objetivo de gerar um cartão SD bootável. O procedimento descrito abaixo é realizado utilizando o gerenciador de discos do próprio Ubuntu, não sendo necessário instalar novos <em>softwares</em>.</p>
+<p>Usualmente, o cartão microSD é configurado em uma única partição formatada no padrão Windows FAT, configuração típica encontrada em cartões adquiridos em varejo. Porém, aqui particionaremos o cartão microSD em duas partes, que serão denominadas <strong>boot</strong> e <strong>rootfs</strong>, sendo o sistema de gestão de arquivos da partição <strong>boot</strong> &quot;VFAT&quot; e da partição <strong>rootfs</strong> &quot;ext4&quot;.</p>
 <p>A figura abaixo apresenta um exemplo de cartão de memória com as partições já definidas, montadas e contendo o sistema operacional do computador embarcado. No exemplo o cartão SD possui um total de 4 GB, porém, para o projeto Yocto, um cartão de memória de 2 GB deve ser suficiente.</p>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../../../_images/SD_parted.png"><img alt="../../../_images/SD_parted.png" src="../../../_images/SD_parted.png" style="width: 450px;" /></a>
@@ -192,32 +192,32 @@
 </div>
 </div></blockquote>
 <ol class="arabic">
-<li><p>Insira o cartão SD ou um adaptador com ele em uma porta disponível no seu computador Linux.</p></li>
+<li><p>Insira o cartão microSD ou um adaptador com ele em uma porta disponível no seu computador Linux.</p></li>
 <li><p>Clique em “<strong>Pesquisar em seu computador</strong>” na barra de ferramentas e selecione &quot;<strong>Discos</strong>&quot; (<em>Disks</em>) na aba de <strong>Aplicativos</strong>. O programa será iniciado exibindo os dispositivos de memoria conectados ao computador.</p>
 <div class="figure align-center">
 <img alt="../../../_images/disks.png" src="../../../_images/disks.png" />
 </div>
 </li>
-<li><p>Na aba de <strong>Discos</strong>, selecione o cartão SD que deseja particionar.</p>
+<li><p>Na aba de <strong>Discos</strong>, selecione o cartão microSD que deseja particionar.</p>
 <div class="figure align-center">
 <img alt="../../../_images/discos.png" src="../../../_images/discos.png" />
 </div>
 </li>
-<li><p>Clique em &quot;<strong>Desmontar o sistema de arquivos</strong>&quot; abaixo de &quot;<strong>Volumes</strong>&quot; para habilitar modificações no cartão SD.</p>
+<li><p>Clique em &quot;<strong>Desmontar o sistema de arquivos</strong>&quot; abaixo de &quot;<strong>Volumes</strong>&quot; para habilitar modificações no cartão microSD.</p>
 <blockquote>
 <div><div class="figure align-center">
 <img alt="../../../_images/desmontar.png" src="../../../_images/desmontar.png" />
 </div>
 </div></blockquote>
 </li>
-<li><p>Para criar novas partições em diferentes formatos é recomendado excluir a partição do seu cartão SD, para isso, clique em &quot;<strong>Excluir partição</strong>&quot;.</p>
+<li><p>Para criar novas partições em diferentes formatos é recomendado excluir a partição do seu cartão microSD, para isso, clique em &quot;<strong>Excluir partição</strong>&quot;.</p>
 <blockquote>
 <div><div class="figure align-center">
 <img alt="../../../_images/excluir1.png" src="../../../_images/excluir1.png" />
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Está etapa irá formatar o seu cartão SD, portanto, todos os dados ali presentes serão excluídos permanentemente.</p>
+<p>Está etapa irá formatar o seu cartão microSD, portanto, todos os dados ali presentes serão excluídos permanentemente.</p>
 </div>
 <div class="figure align-center">
 <img alt="../../../_images/excluir2.png" src="../../../_images/excluir2.png" />
@@ -282,7 +282,7 @@
         <a href="../model/Ranger.html" class="btn btn-neutral float-right" title="Modelagem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ubuntu/ubuntu_image.html" class="btn btn-neutral float-left" title="Obtenção das imagens do Ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="yocto/yocto_image.html" class="btn btn-neutral float-left" title="Obtenção das imagens do Yocto Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

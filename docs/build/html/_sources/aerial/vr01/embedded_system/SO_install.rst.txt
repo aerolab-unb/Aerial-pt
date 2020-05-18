@@ -33,13 +33,21 @@ Uma vez obtida a imagem do sistema operacional podemos transferir os arquivos pa
 
 O sistema de gestão de arquivos define o método que o sistema operacional irá utilizar para armazenar nos espaços de memória os arquivos e suas informações, ou metadados dos arquivos, como nome, espaço de memória ocupado, datas de alterações e últimos acessos. Existe uma grande variedade de sistemas de gestão de arquivos com as mais diversas complexidades. Mas o que podemos precisar nesse trabalho e em trabalhos futuros é o sistema "FAT", um sistema antigo geralmente utilizado em mídias e, normalmente, universal. Já o "ext" é um sistema elaborado especificamente para o Linux e não é possível acessá-lo por um outro sistema operacional sem um programa para essa finalidade.
 
-Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, entretanto, aqui utilizaremos o proprio gerenciador de discos do Linux para realizar o particionamento, por ser uma ferramenta simples, intuitiva e possibilitar futuras modificações sem grandes dificuldades. Vale ressaltar que este não é o metodo indicado pelo fabricante, já que os procedimentos recomendados por eles na pagina `Create Bootable MicroSD Card - gumstix.com`_ apresentaram os mais diversos erros, todavia, os resultados obtidos utilizando os procedimentos do topico abaixo são os mesmos.  
+Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, entretanto, aqui utilizaremos o proprio gerenciador de discos do Linux para realizar o particionamento, por ser uma ferramenta simples, intuitiva e possibilitar futuras modificações sem grandes dificuldades. Vale ressaltar que este não é o metodo indicado pelo fabricante, já que os procedimentos recomendados por eles na pagina `Create Bootable MicroSD Card`_ apresentaram os mais diversos erros, todavia, os resultados obtidos utilizando os procedimentos do topico abaixo são os mesmos.  
 
-.. _Create Bootable MicroSD Card - gumstix.com: https://www.gumstix.com/support/getting-started/create-bootable-microsd-card
+.. _Create Bootable MicroSD Card : https://www.gumstix.com/support/getting-started/create-bootable-microsd-card
 
 	.. toctree::
 	   :maxdepth: 2
 
 	   SD_card
 
+Escrevendo a imagem no Cartão MicroSD
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Após dividido o cartão SD podemos prosseguir com a instalação do sistema montando suas partições e copiando os arquivos obtidos anteriormente, os dois arquivos bootloaders, para a pasta em que a partição de boot foi montada e extraindo os diretórios do sistema para a pasta em que a partição rootfs foi montada. Depois disso, 
+
+O procedimento de montagem de uma partição de memória consiste em uma atividade do sistema operacional para garantir que a transferência de informação será feita da maneira correta, basicamente o dispositivo conectado é lido por inteiro para identificar os arquivos nele armazenados e aonde podem ser escritas novas informações sem que haja sobreposição de dados. Porém mais importante que a montagem da partição é desmontar a partição antes de desconectar o periférico, pois garante que nenhuma atividade de escrita na partição esteja ocorrendo no momento que o dispositivo for removido. Esse procedimento garante, também, que todas as alterações solicitadas tenham sido feitas no periférico e não estejam salvas em arquivos temporários ou buffers do sistema. O procedimento descrito pode ser resumido em uma sequência de linhas de comando para o terminal Linux apresentadas na listagem 2.2, novamente é recomendado que cada linha seja executada de cada vez para facilitar a identificação e correção de erros. É recomendado também que seja criado um diretório com todos os arquivos necessários já descritos anteriormente.
+
+.. Tip::
+	Lembre-se de desmontar as partições antes de remover o cartão SD.

@@ -5,9 +5,9 @@ Particionando o Cartão SD
 
 .. https://processors.wiki.ti.com/index.php/How_to_Make_3_Partition_SD_Card#How_to_Make_2_Partition_SD_Card
 
-Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de **boot** e **rootfs** com o objetivo de gerar um cartão SD bootável. O procedimento descrito abaixo é realizado utilizando o gerenciador de discos do próprio Ubuntu, não sendo necessário instalar novos *softwares*. 
+Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão microSD em duas partes, denominadas de **boot** e **rootfs** com o objetivo de gerar um cartão SD bootável. O procedimento descrito abaixo é realizado utilizando o gerenciador de discos do próprio Ubuntu, não sendo necessário instalar novos *softwares*. 
 
-Usualmente, o cartão SD é configurado em uma única partição formatada no padrão Windows FAT, configuração típica encontrada em cartões adquiridos em varejo. Porém, aqui particionaremos o cartão SD em duas partes, que serão denominadas **boot** e **rootfs**, sendo o sistema de gestão de arquivos da partição **boot** "VFAT" e da partição **rootfs** "ext4".
+Usualmente, o cartão microSD é configurado em uma única partição formatada no padrão Windows FAT, configuração típica encontrada em cartões adquiridos em varejo. Porém, aqui particionaremos o cartão microSD em duas partes, que serão denominadas **boot** e **rootfs**, sendo o sistema de gestão de arquivos da partição **boot** "VFAT" e da partição **rootfs** "ext4".
 
 A figura abaixo apresenta um exemplo de cartão de memória com as partições já definidas, montadas e contendo o sistema operacional do computador embarcado. No exemplo o cartão SD possui um total de 4 GB, porém, para o projeto Yocto, um cartão de memória de 2 GB deve ser suficiente.
 
@@ -21,30 +21,30 @@ Procedimentos
 	.. Warning::
 		A versão do sistema operacional utilizada nas atividades foi o Ubuntu 20.04 (LTS), porém os comandos são os mesmos para versões mais antigas do Ubuntu, a partir do Ubuntu 14.04 (LTS). Os procedimentos podem ter algumas diferenças a depender da versão e distribuição do Linux a ser utilizada.
 
-1.	Insira o cartão SD ou um adaptador com ele em uma porta disponível no seu computador Linux.
+1.	Insira o cartão microSD ou um adaptador com ele em uma porta disponível no seu computador Linux.
 
 2.	Clique em “**Pesquisar em seu computador**” na barra de ferramentas e selecione "**Discos**" (*Disks*) na aba de **Aplicativos**. O programa será iniciado exibindo os dispositivos de memoria conectados ao computador.
 
 	.. figure:: /img/Aerial/SD_card/disks.png
 		:align: center
 
-3.	Na aba de **Discos**, selecione o cartão SD que deseja particionar.
+3.	Na aba de **Discos**, selecione o cartão microSD que deseja particionar.
 
 	.. figure:: /img/Aerial/SD_card/discos.png
 		:align: center
 
-4. Clique em "**Desmontar o sistema de arquivos**" abaixo de "**Volumes**" para habilitar modificações no cartão SD.
+4. Clique em "**Desmontar o sistema de arquivos**" abaixo de "**Volumes**" para habilitar modificações no cartão microSD.
 
 	.. figure:: /img/Aerial/SD_card/desmontar.png
 		:align: center
 
-5. Para criar novas partições em diferentes formatos é recomendado excluir a partição do seu cartão SD, para isso, clique em "**Excluir partição**".
+5. Para criar novas partições em diferentes formatos é recomendado excluir a partição do seu cartão microSD, para isso, clique em "**Excluir partição**".
 
 	.. figure:: /img/Aerial/SD_card/excluir1.png
 		:align: center
 
 	.. Warning::
-		Está etapa irá formatar o seu cartão SD, portanto, todos os dados ali presentes serão excluídos permanentemente.
+		Está etapa irá formatar o seu cartão microSD, portanto, todos os dados ali presentes serão excluídos permanentemente.
 
 	.. figure:: /img/Aerial/SD_card/excluir2.png
 		:align: center
