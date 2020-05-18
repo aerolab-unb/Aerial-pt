@@ -2,6 +2,7 @@ Particionando o Cartão SD
 =========================
 
 .. https://www.gumstix.com/support/getting-started/create-bootable-microsd-card
+
 .. https://processors.wiki.ti.com/index.php/How_to_Make_3_Partition_SD_Card#How_to_Make_2_Partition_SD_Card
 
 Este guia descreve o processo de particionamento, utilizando um sistema Linux, de um cartão SD em duas partes, denominadas de **boot** e **rootfs** com o objetivo de gerar um cartão SD bootável. O procedimento descrito abaixo é realizado utilizando o gerenciador de discos do próprio Ubuntu, não sendo necessário instalar novos *softwares*. 
@@ -17,74 +18,74 @@ A figura abaixo apresenta um exemplo de cartão de memória com as partições j
 Procedimentos
 ~~~~~~~~~~~~~
 
-.. Warning::
-      A versão do sistema operacional utilizada nas atividades foi o Ubuntu 20.04 (LTS), porém os comandos são os mesmos para versões mais antigas do Ubuntu, a partir do Ubuntu 14.04 (LTS). Os procedimentos podem ter algumas diferenças a depender da versão e distribuição do Linux a ser utilizada.
+	.. Warning::
+		A versão do sistema operacional utilizada nas atividades foi o Ubuntu 20.04 (LTS), porém os comandos são os mesmos para versões mais antigas do Ubuntu, a partir do Ubuntu 14.04 (LTS). Os procedimentos podem ter algumas diferenças a depender da versão e distribuição do Linux a ser utilizada.
 
-1. Insira o cartão SD ou um adaptador com ele em uma porta disponível no seu computador Linux.
+1.	Insira o cartão SD ou um adaptador com ele em uma porta disponível no seu computador Linux.
 
-2. Clique em “**Pesquisar em seu computador**” na barra de ferramentas e selecione "**Discos**" (*Disks*) na aba de **Aplicativos**. O programa será iniciado exibindo os dispositivos de memoria conectados ao computador.
+2.	Clique em “**Pesquisar em seu computador**” na barra de ferramentas e selecione "**Discos**" (*Disks*) na aba de **Aplicativos**. O programa será iniciado exibindo os dispositivos de memoria conectados ao computador.
 
-.. figure:: /img/Aerial/SD_card/disks.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/disks.png
+		:align: center
 
-3. Na aba de **Discos**, selecione o cartão SD que deseja particionar.
+3.	Na aba de **Discos**, selecione o cartão SD que deseja particionar.
 
-.. figure:: /img/Aerial/SD_card/discos.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/discos.png
+		:align: center
 
 4. Clique em "**Desmontar o sistema de arquivos**" abaixo de "**Volumes**" para habilitar modificações no cartão SD.
 
-.. figure:: /img/Aerial/SD_card/desmontar.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/desmontar.png
+		:align: center
 
 5. Para criar novas partições em diferentes formatos é recomendado excluir a partição do seu cartão SD, para isso, clique em "**Excluir partição**".
 
-.. figure:: /img/Aerial/SD_card/excluir1.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/excluir1.png
+		:align: center
 
-.. Warning::
-	Está etapa irá formatar o seu cartão SD, portanto, todos os dados ali presentes serão excluídos permanentemente.
+	.. Warning::
+		Está etapa irá formatar o seu cartão SD, portanto, todos os dados ali presentes serão excluídos permanentemente.
 
-.. figure:: /img/Aerial/SD_card/excluir2.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/excluir2.png
+		:align: center
 
 6. Clique em "**Criar uma nova partição** para criar a primeira partição. 
 
-.. figure:: /img/Aerial/SD_card/nova_particao1.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/nova_particao1.png
+		:align: center
 
-Está partição será nomeada como "**boot**", terá um tamanho de 528MB e será configurado com o tipo de gestão de arquivos "FAT", como exemplificado abaixo. Após configurar, clique em "**Criar**" para gerar está nova partição.
+	Está partição será nomeada como "**boot**", terá um tamanho de 528MB e será configurado com o tipo de gestão de arquivos "FAT", como exemplificado abaixo. Após configurar, clique em "**Criar**" para gerar está nova partição.
 
-.. figure:: /img/Aerial/SD_card/nova_particao2.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/nova_particao2.png
+		:align: center
 
-.. figure:: /img/Aerial/SD_card/nova_particao3.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/nova_particao3.png
+		:align: center
 
 
-Em seguida, vá em "**Mais Ações**", "**Editar partição**", configure o "**Tipo de partição**" como "**W95 FAT32 (LBA)**" e ative a opção "**Iniciável** para determinar que é nesta partição que o sistema operacional deve ser carregado.
+	Em seguida, vá em "**Mais Ações**", "**Editar partição**", configure o "**Tipo de partição**" como "**W95 FAT32 (LBA)**" e ative a opção "**Iniciável** para determinar que é nesta partição que o sistema operacional deve ser carregado.
 
-.. figure:: /img/Aerial/SD_card/editar_particao1.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/editar_particao1.png
+		:align: center
 
-.. figure:: /img/Aerial/SD_card/editar_particao3.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/editar_particao3.png
+		:align: center
 
-.. Tip:: 
-	Neste exemplo, foram reservados 528 MB para a partição de boot, entretanto, utilizam-se para inicialização menos de 100 MB. Sendo assim, caso futuramente venha a faltar espaço para armazenamento de dados será possível ampliar a partição roots refazendo esta divisão.
+	.. Tip:: 
+		Neste exemplo, foram reservados 528 MB para a partição de boot, entretanto, utilizam-se para inicialização menos de 100 MB. Sendo assim, caso futuramente venha a faltar espaço para armazenamento de dados será possível ampliar a partição roots refazendo esta divisão.
 
 7. Agora iremos criar a segunda partição, chamada de **rootfs**. Portanto, selecione o espaço livre do cartão SD e clique em **Criar partição em espaço vazio**.
 
-.. figure:: /img/Aerial/SD_card/seg_part1.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/seg_part1.png
+		:align: center
 
-Está partição será nomeada como "**rootfs**" e para ela destinaremos toda a memória remanescente no cartão SD. Esta partição será configurada com o tipo de gestão de arquivos "Ext4", sistema de arquivos padrão dos atuais sistemas GNU/Linux. Após configurar, clique em "**Criar**" para gerar está nova partição.
+	Está partição será nomeada como "**rootfs**" e para ela destinaremos toda a memória remanescente no cartão SD. Esta partição será configurada com o tipo de gestão de arquivos "Ext4", sistema de arquivos padrão dos atuais sistemas GNU/Linux. Após configurar, clique em "**Criar**" para gerar está nova partição.
 
-.. figure:: /img/Aerial/SD_card/seg_part2.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/seg_part2.png
+		:align: center
 
-.. figure:: /img/Aerial/SD_card/seg_part3.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/seg_part3.png
+		:align: center
 
 Em uma execução bem-sucedida, o resultado será similar a figura abaixo, onde os procedimentos foram aplicados em um cartão de 8GB.
 
