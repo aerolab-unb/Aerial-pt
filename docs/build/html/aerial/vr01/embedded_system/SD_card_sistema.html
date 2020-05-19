@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Procedimento &mdash; CoopRobo 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Modelagem" href="../model/Ranger.html" />
+    <link rel="prev" title="Particionando o Cartão SD" href="SD_card.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Robots</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../aerial.html">Aerial Robots</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../vr01.html">VR-01</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../autopilot/pilot.html">Piloto Automatico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../autopilot/config_pilot.html">Configuração do Piloto Automatico</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="system.html">Sistema Embarcado</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="embedded_hardware.html">Computador Embarcado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="embedded_software.html">Sistema Operacional</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="SO_install.html">Instalando o Sistema Operacional</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../model/Ranger.html">Modelagem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vr01.html#referencias">Referências</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mobile.html">Mobile Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manipulators.html">Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs-ref.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../camera.html">Camera</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CoopRobo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
+        
+          <li><a href="../../vr01.html">VR-01</a> &raquo;</li>
+        
+          <li><a href="system.html">Sistema Embarcado</a> &raquo;</li>
+        
+          <li><a href="SO_install.html">Instalando o Sistema Operacional</a> &raquo;</li>
+        
+      <li>Procedimento</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/aerial/vr01/embedded_system/SD_card_sistema.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="procedimento">
+<h1>Procedimento<a class="headerlink" href="#procedimento" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="montagem-das-particoes">
+<h2>Montagem das Partições<a class="headerlink" href="#montagem-das-particoes" title="Permalink to this headline">¶</a></h2>
+<p>O procedimento de montagem de uma partição de memória consiste em uma atividade do sistema operacional para garantir que a transferência de informação será feita da maneira correta, basicamente o dispositivo conectado é lido por inteiro para identificar os arquivos nele armazenados e aonde podem ser escritas novas informações sem que haja sobreposição de dados.</p>
+<p>Para isso, abra o terminal e insira os comandos abaixo:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$sudo mount −t vfat /dev/&lt;*mmcblk0p*&gt;1/  media/*Nome_de_Usuário*/boot  (Comando para montar a partição boot)
+$sudo mount -t ext4 /dev/&lt;*mmcblk0p*&gt;2/  media/*Nome_de_Usuário*/rootfs  (Comando para montar a partição rootfs)
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Os dois nomes entre asteriscos devem ser mudados. Sobre <em>Nome_de_Usuário</em> deve ser mudado para o nome do login da máquina em uso e sobre <em>mmcblk0p</em> deve ser mudado para o nome do arquivo que o sistema cria automaticamente quando reconhece o cartão pela primeira vez e esse arquivo estará presente em /dev com nome semelhante ao <em>mmcblk0p</em>.</p>
+</div>
+</div>
+<div class="section" id="copia-e-extracao-de-arquivos">
+<h2>Cópia e Extração de Arquivos<a class="headerlink" href="#copia-e-extracao-de-arquivos" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="copia">
+<h3>Cópia<a class="headerlink" href="#copia" title="Permalink to this headline">¶</a></h3>
+<p>Dois arquivos de nome MLO e u-boot.img devem ser copiados para a partição boot do cartão de memória. Para isso,para que os comando a seguir funcionem, é necessário que esteja na pasta que contém os arquivos pelo terminal.</p>
+<p>Comando para entrar na pasta que contém os arquivos:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd yocto | cd temp | cd deploy | cd images | cd overo
+</pre></div>
+</div>
+</div></blockquote>
+<p>Após esses comandos, o terminal estará como a imagem abaixo:</p>
+<p>Após os passos anterios, digite os seguintes comandos:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo cp MLO /media/*Nome_de_Usuário*/boot/
+$ sudo cp u-boot.img /media/*Nome_de_Usuário*/boot
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="extracao">
+<h3>Extração<a class="headerlink" href="#extracao" title="Permalink to this headline">¶</a></h3>
+<p>Com o terminal na mesma pasta que foi realizada o procedimento de cópia dos arquivos, insira o seguinte comando para extração do diretório do sistema:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo tar -xjvf gumstix-console-image-overo.tar.bz2 -C /media/*Nome_de_Usuário*/rootfs
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="resultado-no-cartao-de-memoria">
+<h2>Resultado no Cartão de Memoria<a class="headerlink" href="#resultado-no-cartao-de-memoria" title="Permalink to this headline">¶</a></h2>
+<p>Partição boot:</p>
+<div class="figure align-center">
+<img alt="../../../_images/boot.png" src="../../../_images/boot.png" />
+</div>
+<p>Partição rootfs:</p>
+<div class="figure align-center">
+<img alt="../../../_images/rootfs.png" src="../../../_images/rootfs.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../model/Ranger.html" class="btn btn-neutral float-right" title="Modelagem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SD_card.html" class="btn btn-neutral float-left" title="Particionando o Cartão SD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Gabriel Araujo
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

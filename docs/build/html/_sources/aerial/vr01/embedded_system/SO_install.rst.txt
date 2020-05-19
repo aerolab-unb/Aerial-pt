@@ -41,9 +41,9 @@ Esse é um procedimento muito comum e existem inúmeras maneiras de fazê-lo, en
 	   :maxdepth: 2
 
 	   SD_card
-
+	   
 Escrevendo a imagem no Cartão MicroSD
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	  
 
 Após dividido o cartão SD podemos prosseguir com a instalação do sistema montando suas partições e copiando os arquivos obtidos anteriormente, os dois arquivos bootloaders, para a pasta em que a partição de boot foi montada e extraindo os diretórios do sistema para a pasta em que a partição rootfs foi montada. Depois disso, 
 
@@ -53,4 +53,9 @@ O procedimento descrito a seguir é baseado nas recomendações do fabricante e 
 
 .. Tip::
 	Lembre-se de desmontar as partições antes de remover o cartão SD.
+	
+.. toctree::
+	   :maxdepth: 2
+
+	   SD_card_sistema	
 
