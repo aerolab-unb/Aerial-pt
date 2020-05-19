@@ -181,33 +181,38 @@
 <h2>Montagem das Partições<a class="headerlink" href="#montagem-das-particoes" title="Permalink to this headline">¶</a></h2>
 <p>O procedimento de montagem de uma partição de memória consiste em uma atividade do sistema operacional para garantir que a transferência de informação será feita da maneira correta, basicamente o dispositivo conectado é lido por inteiro para identificar os arquivos nele armazenados e aonde podem ser escritas novas informações sem que haja sobreposição de dados.</p>
 <p>Para isso, abra o terminal e insira os comandos abaixo:</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$sudo mount −t vfat /dev/&lt;*mmcblk0p*&gt;1/  media/*Nome_de_Usuário*/boot  (Comando para montar a partição boot)
-$sudo mount -t ext4 /dev/&lt;*mmcblk0p*&gt;2/  media/*Nome_de_Usuário*/rootfs  (Comando para montar a partição rootfs)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Comando para montar a partição boot
+$ sudo mount −t vfat /dev/&lt;mmcblk0p&gt;1/  media/&lt;Nome_de_Usuário&gt;/boot
+
+# Comando para montar a partição rootfs
+$ sudo mount -t ext4 /dev/&lt;mmcblk0p&gt;2/  media/&lt;Nome_de_Usuário&gt;/rootfs
 </pre></div>
 </div>
-</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Os dois nomes entre asteriscos devem ser mudados. Sobre <em>Nome_de_Usuário</em> deve ser mudado para o nome do login da máquina em uso e sobre <em>mmcblk0p</em> deve ser mudado para o nome do arquivo que o sistema cria automaticamente quando reconhece o cartão pela primeira vez e esse arquivo estará presente em /dev com nome semelhante ao <em>mmcblk0p</em>.</p>
+<p>Os dois nomes entre &lt;&gt; devem ser mudados. Sobre <em>Nome_de_Usuário</em> deve ser mudado para o nome do login da máquina em uso e sobre <em>mmcblk0p</em> deve ser mudado para o nome do arquivo que o sistema cria automaticamente quando reconhece o cartão pela primeira vez e esse arquivo estará presente em /dev com nome semelhante ao <em>mmcblk0p</em>. Para exibir os dispositivos de midia conectados ao seu computador, execute o comando <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-hT</span></code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Alternativamente</strong>, é possivel realizar o processo de montagem das partições do cartão microSD seguindo o <strong>procedimento 8</strong> do topico <a class="reference external" href="SD_card.html#procedimentos">Procedimentos - Particionando o Cartão SD</a>. O resultado esperado é exatamente o mesmo.</p>
 </div>
 </div>
 <div class="section" id="copia-e-extracao-de-arquivos">
 <h2>Cópia e Extração de Arquivos<a class="headerlink" href="#copia-e-extracao-de-arquivos" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="copia">
 <h3>Cópia<a class="headerlink" href="#copia" title="Permalink to this headline">¶</a></h3>
-<p>Dois arquivos de nome MLO e u-boot.img devem ser copiados para a partição boot do cartão de memória. Para isso,para que os comando a seguir funcionem, é necessário que esteja na pasta que contém os arquivos pelo terminal.</p>
-<p>Comando para entrar na pasta que contém os arquivos:</p>
+<p>Dois arquivos de nome MLO e u-boot.img devem ser copiados para a partição boot do cartão de memória. Para isso, os comandos a seguir devem ser executados dentro da pasta que contém as imagens ou especificando corretamente o local dos arquivos. Recomendamos que entre na pasta das imagens, já que assim é possivel realizar a escrita da imagem de forma mais eficiente.</p>
+<p>A pasta que contém os arquivos das imagens está localizada em <code class="docutils literal notranslate"><span class="pre">/yocto/build/tmp/deploy/images/overo</span></code> e pode ser acessada pelo comando:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd yocto | cd temp | cd deploy | cd images | cd overo
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /yocto/build/tmp/deploy/images/overo
 </pre></div>
 </div>
 </div></blockquote>
 <p>Após esses comandos, o terminal estará como a imagem abaixo:</p>
 <p>Após os passos anterios, digite os seguintes comandos:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo cp MLO /media/*Nome_de_Usuário*/boot/
-$ sudo cp u-boot.img /media/*Nome_de_Usuário*/boot
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo cp MLO /media/&lt;Nome_de_Usuário&gt;/boot/
+$ sudo cp u-boot.img /media/&lt;Nome_de_Usuário&gt;/boot
 </pre></div>
 </div>
 </div></blockquote>
@@ -215,7 +220,7 @@ $ sudo cp u-boot.img /media/*Nome_de_Usuário*/boot
 <div class="section" id="extracao">
 <h3>Extração<a class="headerlink" href="#extracao" title="Permalink to this headline">¶</a></h3>
 <p>Com o terminal na mesma pasta que foi realizada o procedimento de cópia dos arquivos, insira o seguinte comando para extração do diretório do sistema:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo tar -xjvf gumstix-console-image-overo.tar.bz2 -C /media/*Nome_de_Usuário*/rootfs
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo tar -xjvf gumstix-console-image-overo.tar.bz2 -C /media/&lt;Nome_de_Usuário&gt;/rootfs
 </pre></div>
 </div>
 </div>
@@ -229,6 +234,10 @@ $ sudo cp u-boot.img /media/*Nome_de_Usuário*/boot
 <p>Partição rootfs:</p>
 <div class="figure align-center">
 <img alt="../../../_images/rootfs.png" src="../../../_images/rootfs.png" />
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Lembre-se de desmontar as partições antes de remover o cartão SD.</p>
 </div>
 </div>
 </div>

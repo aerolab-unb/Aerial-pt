@@ -23,7 +23,7 @@ Procedimentos
 
 1.	Insira o cartão microSD ou um adaptador com ele em uma porta disponível no seu computador Linux.
 
-2.	Clique em “**Pesquisar em seu computador**” na barra de ferramentas e selecione "**Discos**" (*Disks*) na aba de **Aplicativos**. O programa será iniciado exibindo os dispositivos de memoria conectados ao computador.
+2. Pesquise em seu computador um aplicativo chamado **Discos** (*Disks*) e o inicie. Logo ao abrir, o aplicativo exibira os dispositivos de memoria conectados ao computador.
 
 	.. figure:: /img/Aerial/SD_card/disks.png
 		:align: center
@@ -33,7 +33,7 @@ Procedimentos
 	.. figure:: /img/Aerial/SD_card/discos.png
 		:align: center
 
-4. Clique em "**Desmontar o sistema de arquivos**" abaixo de "**Volumes**" para habilitar modificações no cartão microSD.
+4. Clique em "**Desmontar o sistema de arquivos**" abaixo de **Volumes** para habilitar modificações no cartão microSD.
 
 	.. figure:: /img/Aerial/SD_card/desmontar.png
 		:align: center
@@ -63,7 +63,7 @@ Procedimentos
 		:align: center
 
 
-	Em seguida, vá em "**Mais Ações**", "**Editar partição**", configure o "**Tipo de partição**" como "**W95 FAT32 (LBA)**" e ative a opção "**Iniciável** para determinar que é nesta partição que o sistema operacional deve ser carregado.
+	Em seguida, vá em **Mais Ações** > **Editar partição**, configure o **Tipo de partição** como "**W95 FAT32 (LBA)**" e ative a opção "**Iniciável** para determinar que é nesta partição que o sistema operacional deve ser carregado.
 
 	.. figure:: /img/Aerial/SD_card/editar_particao1.png
 		:align: center
@@ -87,10 +87,18 @@ Procedimentos
 	.. figure:: /img/Aerial/SD_card/seg_part3.png
 		:align: center
 
-Em uma execução bem-sucedida, o resultado será similar a figura abaixo, onde os procedimentos foram aplicados em um cartão de 8GB.
+	Em uma execução bem-sucedida, o resultado será similar a figura abaixo, onde os procedimentos foram aplicados em um cartão de 8GB.
 
-.. figure:: /img/Aerial/SD_card/seg_part4.png
-	:align: center
+	.. figure:: /img/Aerial/SD_card/seg_part4.png
+		:align: center
+
+8. (Opcional) Para remontar as partições, basta apenas selecionar a partição e clicar em **Montar a partição selecionada**. Está ferramenta irá montar, automaticamente, a partição selecionada ao sistema de arquivos /media/<User_Name>
+
+	.. figure:: /img/Aerial/SD_card/montando1.png
+		:align: center
+
+	.. figure:: /img/Aerial/SD_card/montando2.png
+		:align: center
 
 
 .. fontes
