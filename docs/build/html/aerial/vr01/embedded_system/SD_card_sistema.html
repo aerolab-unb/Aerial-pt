@@ -209,6 +209,9 @@ $ sudo mount -t ext4 /dev/&lt;mmcblk0p&gt;2/  media/&lt;Nome_de_Usuário&gt;/roo
 </div>
 </div></blockquote>
 <p>Após esses comandos, o terminal estará como a imagem abaixo:</p>
+<div class="figure align-center">
+<img alt="img/Aerial/SD_card/terminal.png" src="img/Aerial/SD_card/terminal.png" />
+</div>
 <p>Após os passos anterios, digite os seguintes comandos:</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo cp MLO /media/&lt;Nome_de_Usuário&gt;/boot/
@@ -219,7 +222,7 @@ $ sudo cp u-boot.img /media/&lt;Nome_de_Usuário&gt;/boot
 </div>
 <div class="section" id="extracao">
 <h3>Extração<a class="headerlink" href="#extracao" title="Permalink to this headline">¶</a></h3>
-<p>Com o terminal na mesma pasta que foi realizada o procedimento de cópia dos arquivos, insira o seguinte comando para extração do diretório do sistema:</p>
+<p>Com o terminal ainda na pasta <code class="docutils literal notranslate"><span class="pre">/yocto/build/tmp/deploy/images/overo</span></code>, a mesma onde foi realizado o procedimento de cópia dos arquivos, insira o seguinte comando para extração do diretório do sistema:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo tar -xjvf gumstix-console-image-overo.tar.bz2 -C /media/&lt;Nome_de_Usuário&gt;/rootfs
 </pre></div>
 </div>

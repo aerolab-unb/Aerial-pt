@@ -42,8 +42,10 @@ A pasta que contém os arquivos das imagens está localizada em ``/yocto/build/t
    
 Após esses comandos, o terminal estará como a imagem abaixo:
 
-.. IMAGEM DO TERMINAL AINDA SERA COLOCADA
-
+.. figure:: /img/Aerial/SD_card/terminal.png
+	:align: center
+	
+	
 Após os passos anterios, digite os seguintes comandos:
 
   ::
@@ -54,7 +56,7 @@ Após os passos anterios, digite os seguintes comandos:
 Extração
 --------
 
-Com o terminal na mesma pasta que foi realizada o procedimento de cópia dos arquivos, insira o seguinte comando para extração do diretório do sistema:
+Com o terminal ainda na pasta ``/yocto/build/tmp/deploy/images/overo``, a mesma onde foi realizado o procedimento de cópia dos arquivos, insira o seguinte comando para extração do diretório do sistema:
 
 ::
 
