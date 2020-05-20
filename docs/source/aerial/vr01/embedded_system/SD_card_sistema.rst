@@ -42,8 +42,10 @@ A pasta que contém os arquivos das imagens está localizada em ``/yocto/build/t
    
 Após esses comandos, o terminal estará como a imagem abaixo:
 
-.. IMAGEM DO TERMINAL AINDA SERA COLOCADA
-
+.. figure:: /img/Aerial/SD_card/terminal.png
+	:align: center
+	
+	
 Após os passos anterios, digite os seguintes comandos:
 
   ::
