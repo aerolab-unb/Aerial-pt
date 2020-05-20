@@ -54,7 +54,7 @@ Após os passos anterios, digite os seguintes comandos:
 Extração
 --------
 
-Com o terminal na mesma pasta que foi realizada o procedimento de cópia dos arquivos, insira o seguinte comando para extração do diretório do sistema:
+Com o terminal ainda na pasta ``/yocto/build/tmp/deploy/images/overo``, a mesma onde foi realizado o procedimento de cópia dos arquivos, insira o seguinte comando para extração do diretório do sistema:
 
 ::
 
