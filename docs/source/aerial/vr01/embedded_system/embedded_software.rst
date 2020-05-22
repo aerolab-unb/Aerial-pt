@@ -1,7 +1,7 @@
 Sistema Operacional
 ===================
 
-Um computador digital com determinada complexidade que exige o gerenciamento dos recursos do sistema e tais funções primárias necessitam de um sistema operacional. O núcleo ou kernel é a parte mais importante e de nível mais baixo de um sistema operacional, ele tem a função de definir qual programa recebe atenção do processador, gerenciar memória, criar um sistema de arquivos, gerenciar o sistema de comunicação, etc.
+Um computador digital com determinada complexidade que exige o gerenciamento dos recursos do sistema e tais funções primárias necessitam de um sistema operacional. O núcleo ou kernel é a parte mais importante e de nível mais baixo de um sistema operacional, ele tem a função de definir qual programa recebe atenção do processador, gerenciar memória, criar um sistema de arquivos, gerenciar o sistema de comunicação etc.
 
 O primeiro passo para a utilização desse computador, é a criação e configuração de uma imagem de sistema operacional que atende aos requisitos do projeto. São eles: compatibilidade com o computador utilizado, *Overo WaterStorm COM*, e suporte para aplicações em tempo real.
 
@@ -98,12 +98,13 @@ Sistema Escolhido
 
 Chegamos a instalar o RT-Mag no sistema embarcado, entretanto, devido a complicações posteriores à instalação do sistema operacional, optou-se por não mais utilizar essa ferramenta. 
 
-Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado. Optando pela instalaçao do sistema Ubuntu 15.04 em um dos computadores com o intuito de analisar as diferenças entre os dois sistemas operacionais e realizar testes. 
+Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado. Optando pela instalação do sistema Ubuntu 15.04 em um dos computadores com o intuito de analisar as diferenças entre os dois sistemas operacionais e realizar testes. 
 
 Entretanto, o sistema Ubuntu, apesar de ser uma versão estável e adaptada para o sistema em questão, apresentou erros não solucionados no processo de instalação, impossibilitando a instalação do sistema em um cartão SD. 
 
-.. Não foi possivel instalar o sistema Ubuntu
+.. Não foi possível instalar o sistema Ubuntu
 .. Decidiu-se então utilizar o núcleo oferecido pelo Projeto Yocto por ser específico para o modelo de computador embarcado. Todavia, realizamos a instalação do Ubuntu em um dos computadores embarcados com o intuito de analisar as diferenças entre às duas principais opções de sistemas operacionais. O sistema Ubuntu instalado foi o Ubuntu 15.04 por ser uma versão estável e adaptada para o sistema em questão.
+
 
 Referencias
 -----------
