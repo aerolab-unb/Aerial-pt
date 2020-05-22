@@ -190,18 +190,18 @@ $ sudo mount -t ext4 /dev/&lt;mmcblk0p&gt;2/  media/&lt;Nome_de_Usuário&gt;/roo
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Os dois nomes entre &lt;&gt; devem ser mudados. Sobre <em>Nome_de_Usuário</em> deve ser mudado para o nome do login da máquina em uso e sobre <em>mmcblk0p</em> deve ser mudado para o nome do arquivo que o sistema cria automaticamente quando reconhece o cartão pela primeira vez e esse arquivo estará presente em /dev com nome semelhante ao <em>mmcblk0p</em>. Para exibir os dispositivos de midia conectados ao seu computador, execute o comando <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-hT</span></code>.</p>
+<p>Os dois nomes entre &lt;&gt; devem ser mudados. Sobre <em>Nome_de_Usuário</em> deve ser mudado para o nome do login da máquina em uso e sobre <em>mmcblk0p</em> deve ser mudado para o nome do arquivo que o sistema cria automaticamente quando reconhece o cartão pela primeira vez e esse arquivo estará presente em /dev com nome semelhante ao <em>mmcblk0p</em>. Para exibir os dispositivos de mídia conectados ao seu computador, execute o comando <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-hT</span></code>.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p><strong>Alternativamente</strong>, é possivel realizar o processo de montagem das partições do cartão microSD seguindo o <strong>procedimento 8</strong> do topico <a class="reference external" href="SD_card.html#procedimentos">Procedimentos - Particionando o Cartão SD</a>. O resultado esperado é exatamente o mesmo.</p>
+<p><strong>Alternativamente</strong>, é possível realizar o processo de montagem das partições do cartão microSD seguindo o <strong>procedimento 8</strong> do tópico <a class="reference external" href="SD_card.html#procedimentos">Procedimentos - Particionando o Cartão SD</a>. O resultado esperado é exatamente o mesmo.</p>
 </div>
 </div>
 <div class="section" id="copia-e-extracao-de-arquivos">
 <h2>Cópia e Extração de Arquivos<a class="headerlink" href="#copia-e-extracao-de-arquivos" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="copia">
 <h3>Cópia<a class="headerlink" href="#copia" title="Permalink to this headline">¶</a></h3>
-<p>Dois arquivos de nome MLO e u-boot.img devem ser copiados para a partição boot do cartão de memória. Para isso, os comandos a seguir devem ser executados dentro da pasta que contém as imagens ou especificando corretamente o local dos arquivos. Recomendamos que entre na pasta das imagens, já que assim é possivel realizar a escrita da imagem de forma mais eficiente.</p>
+<p>Dois arquivos de nome MLO e u-boot.img devem ser copiados para a partição boot do cartão de memória. Para isso, os comandos a seguir devem ser executados dentro da pasta que contém as imagens ou especificando corretamente o local dos arquivos. Recomendamos que entre na pasta das imagens, já que assim é possível realizar a escrita da imagem de forma mais eficiente.</p>
 <p>A pasta que contém os arquivos das imagens está localizada em <code class="docutils literal notranslate"><span class="pre">/yocto/build/tmp/deploy/images/overo</span></code> e pode ser acessada pelo comando:</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /yocto/build/tmp/deploy/images/overo
@@ -229,7 +229,7 @@ $ sudo cp u-boot.img /media/&lt;Nome_de_Usuário&gt;/boot
 </div>
 </div>
 <div class="section" id="resultado-no-cartao-de-memoria">
-<h2>Resultado no Cartão de Memoria<a class="headerlink" href="#resultado-no-cartao-de-memoria" title="Permalink to this headline">¶</a></h2>
+<h2>Resultado no Cartão de Memória<a class="headerlink" href="#resultado-no-cartao-de-memoria" title="Permalink to this headline">¶</a></h2>
 <p>Partição boot:</p>
 <div class="figure align-center">
 <img alt="../../../_images/boot.png" src="../../../_images/boot.png" />

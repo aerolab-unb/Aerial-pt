@@ -23,7 +23,7 @@ Procedimentos
 
 1.	Insira o cartão microSD ou um adaptador com ele em uma porta disponível no seu computador Linux.
 
-2. Pesquise em seu computador um aplicativo chamado **Discos** (*Disks*) e o inicie. Logo ao abrir, o aplicativo exibira os dispositivos de memoria conectados ao computador.
+2. Pesquise em seu computador um aplicativo chamado **Discos** (*Disks*) e o inicie. Logo ao abrir, o aplicativo exibira os dispositivos de memória conectados ao computador.
 
 	.. figure:: /img/Aerial/SD_card/disks.png
 		:align: center

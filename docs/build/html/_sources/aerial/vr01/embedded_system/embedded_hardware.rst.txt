@@ -11,7 +11,7 @@ Após considerar as aplicações mais específicas a serem realizadas, o computa
 
    Sistema Gumstix com computador Overo WaterSTORM, placa de expansão Tobi e câmera Caspa VL
 
-Acoplou-se também ao sistema uma câmera Caspa VL, capaz de capturar imagens coloridas com dimensão de 752 x 480 pixels em uma frequência de 60 imagens por segundo. Esses três componentes são produzidos pela empresa Gumstix, fabricante de hardware especializada em computadores pequenos do tipo computador-em-módulo (COM - computer-on-module), muito utilizados para sistemas embarcados.
+Acoplou-se também ao sistema uma câmera Caspa VL, capaz de capturar imagens coloridas com dimensão de 752 x 480 pixels em uma frequência de 60 imagens por segundo. Esses três componentes são produzidos pela empresa Gumstix, fabricante de hardware especializada em computadores pequenos do tipo computador-em-módulo (COM - Computer-On-Module), muito utilizados para sistemas embarcados.
 
 Apesar do tamanho pequeno, a combinação da Overo COM com a placa de extensão TOBI possui o mesmo desempenho do que um computador Linux completo de tamanho normal, maior do que outros sistemas desse tipo encontrados no mercado, como, por exemplo, o computador Raspberry Pi.
 

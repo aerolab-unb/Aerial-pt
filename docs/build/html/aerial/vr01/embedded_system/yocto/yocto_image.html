@@ -182,7 +182,7 @@
 <img alt="../../../../_images/yocto_exemple.png" src="../../../../_images/yocto_exemple.png" />
 </div>
 <p>A figura mostra um exemplo dos arquivos descritos no parágrafo anterior, observe que, neste caso, há também uma pasta compactada que contém os arquivos raiz do sistema operacional. O modo mais simples encontrado para se obter esses arquivos e a imagem do sistema operacional é seguindo os passos do arquivo <a class="reference external" href="https://github.com/gumstix/yocto-manifest/blob/warrior/README.md">README.md</a> do <a class="reference external" href="https://github.com/gumstix/yocto-manifest">repositório do projeto Yocto para produtos Gumstix</a>. A vantagem de se utilizar esse método ao invés de simplesmente obter a imagem pronta do sistema operacional é que caso seja necessário poderemos modifica-la.</p>
-<p>Esse tutorial explica como construir manualmente a imagem do sistema Yocto e realizar todos os procedimentos através de linhas de comando do terminal do Linux, com enfase no <strong>Ubuntu 14.04 (LTS)</strong>. Porém, para executar essa etapa é altamente recomendado o cumprimento dos requisitos indicadas pelo projeto Yocto.</p>
+<p>Esse tutorial explica como construir manualmente a imagem do sistema Yocto e realizar todos os procedimentos através de linhas de comando do terminal do Linux, com ênfase no <strong>Ubuntu 14.04 (LTS)</strong>. Porém, para executar essa etapa é altamente recomendado o cumprimento dos requisitos indicadas pelo projeto Yocto.</p>
 <div class="section" id="requisitos-do-sistema">
 <h2>Requisitos do Sistema<a class="headerlink" href="#requisitos-do-sistema" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
@@ -228,14 +228,14 @@
 <div><ul class="simple">
 <li><p>Git 1.8.3.1 ou posterior</p></li>
 <li><p>tar 1.27 ou posterior</p></li>
-<li><p>Python 3.4.0  ou posterior</p></li>
+<li><p>Python 3.4.0 ou posterior</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Consulte a seção <a class="reference external" href="http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#required-git-tar-and-python-versions">Required Git, tar, and Python Versions</a> no Yocto Project Reference Manual para obter informações.</p>
 </div>
-<p>Além disso, recomenda-se atualizar os repositorios do Linux. Para tal, no caso de distribuição Ubuntu, basta executar o seguinte comando:</p>
+<p>Além disso, recomenda-se atualizar os repositórios do Linux. Para tal, no caso de distribuição Ubuntu, basta executar o seguinte comando:</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update &amp;&amp; sudo apt-get upgrade
 </pre></div>
@@ -262,7 +262,7 @@
 <ol class="arabic simple">
 <li><p><strong>Instalando o repositório</strong></p></li>
 </ol>
-<p>Para fazer o download das imagens do Yocto, primeiro precisamos instalar o comando <strong>repo</strong>. Em resumo, o repo é basicamente um invólucro do git, que fornece uma maneira simples de agrupar vários repositórios git diferentes em um unico projeto. Caso tenha interesse em mais informações sobre o comando <strong>repo</strong>, acesse <a class="reference external" href="https://gerrit.googlesource.com/git-repo/+/refs/heads/master/README.md">repo - gerrit.googlesource.com</a>.</p>
+<p>Para fazer o download das imagens do Yocto, primeiro precisamos instalar o comando <strong>repo</strong>. Em resumo, o repo é basicamente um invólucro do git, que fornece uma maneira simples de agrupar vários repositórios git diferentes em um único projeto. Caso tenha interesse em mais informações sobre o comando <strong>repo</strong>, acesse <a class="reference external" href="https://gerrit.googlesource.com/git-repo/+/refs/heads/master/README.md">repo - gerrit.googlesource.com</a>.</p>
 <p>Baixe os scripts do repositório</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo &gt; repo
@@ -323,7 +323,7 @@ $ cd yocto
 <p class="admonition-title">Note</p>
 <p>Está etapa pode demorar mais de 20 minutos, dependendo da sua conexão de internet.</p>
 </div>
-<p>Force todos os arquivos temporários a serem escritos em dispositivos permanentes atraves do comando:</p>
+<p>Force todos os arquivos temporários a serem escritos em dispositivos permanentes através do comando:</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sync
 </pre></div>
@@ -334,7 +334,7 @@ $ cd yocto
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Se, por algum motivo, você cancelar a atividade antes de concluir a compilação do Yocto, será necessário executar este comando todas as vezes antes de seguir para as proximas etapas. Lembre-se de que isso também se aplica a compilações futuras.</p>
+<p>Se, por algum motivo, você cancelar a atividade antes de concluir a compilação do Yocto, será necessário executar este comando todas as vezes antes de seguir para as próximas etapas. Lembre-se de que isso também se aplica a compilações futuras.</p>
 </div>
 <p>Agora que temos nossas configurações básicas do Yocto, entraremos em nosso ambiente de compilação. Por meio do comando a seguir, iremos copiar as informações de configuração padrão no diretório <strong>poky/build/conf</strong> e configurar algumas variáveis de ambiente para o sistema de montagem da imagem.</p>
 <blockquote>
@@ -356,7 +356,7 @@ $ source ./poky/oe-init-build-env
 <p>(<strong>OPCIONAL</strong>)
 Se você tiver familiaridade com a compilação via make, poderá acelerar o processo de compilação dizendo ao bitbake para compilar com mais threads. Esta etapa não é necessária, mas se você estiver compilando em um sistema com uma CPU de ponta com muitos núcleos, isso acelerará o tempo de compilação. Por exemplo:</p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">export</span> <span class="pre">PARALLEL_MAKE=&quot;-j</span> <span class="pre">8&quot;</span></code></p>
-<p>O numero &quot;8&quot; indica a quantidade de nucleos a ser utiliuzada na compliação.
+<p>O número &quot;8&quot; indica a quantidade de núcleos a ser utilizada na compilação.
 <strong>Vale ressaltar que você não deve especificar um valor -j maior que a quantidade de núcleos de CPU presentes em sua máquina de construção</strong>.</p>
 </div>
 <p>Assim, para baixar os códigos fonte e compilar as imagens do sistema execute:</p>
