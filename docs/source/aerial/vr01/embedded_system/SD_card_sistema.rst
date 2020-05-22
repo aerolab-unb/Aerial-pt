@@ -4,7 +4,7 @@ Procedimento
 Montagem das Partições
 ~~~~~~~~~~~~~~~~~~~~~~
 
-O procedimento de montagem de uma partição de memória consiste em uma atividade do sistema operacional para garantir que a transferência de informação será feito da maneira correta, basicamente o dispositivo conectado é lido por inteiro para identificar os arquivos nele armazenados e aonde podem ser escritas novas informações sem que haja sobreposição de dados.
+O procedimento de montagem de uma partição de memória consiste em uma atividade do sistema operacional para garantir que a transferência de informação será feita da maneira correta, basicamente o dispositivo conectado é lido por inteiro para identificar os arquivos nele armazenados e aonde podem ser escritas novas informações sem que haja sobreposição de dados.
 
 Para isso, abra o terminal e insira os comandos abaixo:
 
