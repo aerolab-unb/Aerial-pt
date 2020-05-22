@@ -13,7 +13,7 @@ A figura mostra um exemplo dos arquivos descritos no parágrafo anterior, observ
 .. _README.md: https://github.com/gumstix/yocto-manifest/blob/warrior/README.md
 .. _repositório do projeto Yocto para produtos Gumstix: https://github.com/gumstix/yocto-manifest
 
-Esse tutorial explica como construir manualmente a imagem do sistema Yocto e realizar todos os procedimentos através de linhas de comando do terminal do Linux, com enfase no **Ubuntu 14.04 (LTS)**. Porém, para executar essa etapa é altamente recomendado o cumprimento dos requisitos indicadas pelo projeto Yocto.
+Esse tutorial explica como construir manualmente a imagem do sistema Yocto e realizar todos os procedimentos através de linhas de comando do terminal do Linux, com ênfase no **Ubuntu 14.04 (LTS)**. Porém, para executar essa etapa é altamente recomendado o cumprimento dos requisitos indicadas pelo projeto Yocto.
 
 .. Yocto: https://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html
 
@@ -68,14 +68,14 @@ Para a construção da imagem do sistema operacional, o sistema de compilação 
 
 	* tar 1.27 ou posterior
 
-	* Python 3.4.0  ou posterior
+	* Python 3.4.0 ou posterior
 
 .. Note::
    Consulte a seção `Required Git, tar, and Python Versions`_ no Yocto Project Reference Manual para obter informações.
 
 .. _Required Git, tar, and Python Versions: http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#required-git-tar-and-python-versions
 
-Além disso, recomenda-se atualizar os repositorios do Linux. Para tal, no caso de distribuição Ubuntu, basta executar o seguinte comando:  
+Além disso, recomenda-se atualizar os repositórios do Linux. Para tal, no caso de distribuição Ubuntu, basta executar o seguinte comando:  
 
 	::
 
@@ -105,7 +105,7 @@ Linhas de comando Linux para obtenção e montagem da imagem.
 
 1.  **Instalando o repositório**
 
-Para fazer o download das imagens do Yocto, primeiro precisamos instalar o comando **repo**. Em resumo, o repo é basicamente um invólucro do git, que fornece uma maneira simples de agrupar vários repositórios git diferentes em um unico projeto. Caso tenha interesse em mais informações sobre o comando **repo**, acesse `repo - gerrit.googlesource.com`_.
+Para fazer o download das imagens do Yocto, primeiro precisamos instalar o comando **repo**. Em resumo, o repo é basicamente um invólucro do git, que fornece uma maneira simples de agrupar vários repositórios git diferentes em um único projeto. Caso tenha interesse em mais informações sobre o comando **repo**, acesse `repo - gerrit.googlesource.com`_.
 
 .. _repo - gerrit.googlesource.com: https://gerrit.googlesource.com/git-repo/+/refs/heads/master/README.md
 
@@ -167,7 +167,7 @@ O comando a seguir é usado para garantir que todos os seus repositórios esteja
 .. Note::
    Está etapa pode demorar mais de 20 minutos, dependendo da sua conexão de internet.
 
-Force todos os arquivos temporários a serem escritos em dispositivos permanentes atraves do comando: 
+Force todos os arquivos temporários a serem escritos em dispositivos permanentes através do comando: 
 
 	::
 
@@ -176,7 +176,7 @@ Force todos os arquivos temporários a serem escritos em dispositivos permanente
 4. **Iniciando o Yocto Project Build Environment**
 
 .. Warning:: 
-   Se, por algum motivo, você cancelar a atividade antes de concluir a compilação do Yocto, será necessário executar este comando todas as vezes antes de seguir para as proximas etapas. Lembre-se de que isso também se aplica a compilações futuras.
+   Se, por algum motivo, você cancelar a atividade antes de concluir a compilação do Yocto, será necessário executar este comando todas as vezes antes de seguir para as próximas etapas. Lembre-se de que isso também se aplica a compilações futuras.
 
 Agora que temos nossas configurações básicas do Yocto, entraremos em nosso ambiente de compilação. Por meio do comando a seguir, iremos copiar as informações de configuração padrão no diretório **poky/build/conf** e configurar algumas variáveis de ambiente para o sistema de montagem da imagem.
 
@@ -198,7 +198,7 @@ O project Yocto utiliza o bitbake para compilar a imagem do Yocto Linux. O Bitba
 
 	``$ export PARALLEL_MAKE="-j 8"``
 
-	O numero "8" indica a quantidade de nucleos a ser utiliuzada na compliação. 
+	O número "8" indica a quantidade de núcleos a ser utilizada na compilação. 
 	**Vale ressaltar que você não deve especificar um valor -j maior que a quantidade de núcleos de CPU presentes em sua máquina de construção**.
 
 Assim, para baixar os códigos fonte e compilar as imagens do sistema execute:
