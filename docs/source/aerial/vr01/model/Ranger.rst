@@ -1,2 +1,2 @@
-Ranger EX Volatex RC
-====================
+Parâmetros de estabilidade
+==========================

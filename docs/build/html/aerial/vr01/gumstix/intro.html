@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sistema Embarcado &mdash; CoopRobo 1.0.0 documentation</title>
+  <title>Utilizando o computador embarcado &mdash; CoopRobo 1.0.0 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Computador Embarcado" href="embedded_hardware.html" />
-    <link rel="prev" title="Pouso Automático" href="../autopilot/config/automatic_landing.html" /> 
+    <link rel="next" title="Parâmetros de estabilidade" href="../model/Ranger.html" />
+    <link rel="prev" title="Procedimento" href="../embedded_system/SD_card_sistema.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,14 +87,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../vr01.html">VR-01</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../autopilot/pilot.html">Piloto Automatico</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../autopilot/config_pilot.html">Configuração do Piloto Automatico</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Sistema Embarcado</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="embedded_hardware.html">Computador Embarcado</a></li>
-<li class="toctree-l4"><a class="reference internal" href="embedded_software.html">Sistema Operacional</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SO_install.html">Instalando o Sistema Operacional</a></li>
-<li class="toctree-l4"><a class="reference internal" href="connect_gumstix.html">Primeiros passos com o Gumstix Overo</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../gumstix/intro.html">Utilizando o computador embarcado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../embedded_system/system.html">Sistema Embarcado</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Utilizando o computador embarcado</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../model/Ranger.html">Parâmetros de estabilidade</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../vr01.html#referencias">Referências</a></li>
 </ul>
@@ -154,13 +148,13 @@
         
           <li><a href="../../vr01.html">VR-01</a> &raquo;</li>
         
-      <li>Sistema Embarcado</li>
+      <li>Utilizando o computador embarcado</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../_sources/aerial/vr01/embedded_system/system.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/aerial/vr01/gumstix/intro.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -173,39 +167,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sistema-embarcado">
-<h1>Sistema Embarcado<a class="headerlink" href="#sistema-embarcado" title="Permalink to this headline">¶</a></h1>
-<p>Um computador embarcado deverá adicionado à cada aeronave de modo a comunicar-se com o piloto automático Pixhawk e com os computadores embarcados nas demais aeronaves através de um modem responsável por receber e transmitir informações. O microprocessador deverá processar as informações obtidas através do modem e repassar instruções ao piloto automático Pixhawk.</p>
-<p>Computadores embarcados são sistemas microprocessados digitais no qual o computador é inteiramente encapsulado ou dedicado ao sistema que ele controla. Diferentemente de computadores de finalidade geral, como o computador pessoal, um sistema embarcado realiza um conjunto de tarefas predefinidas, geralmente com requisitos específicos. A predefinição das atividades a serem realizadas permite que os computadores embarcados possuam menor tamanho, peso, preço e capacidade de processamento do que computadores comuns que desempenham funções similares.</p>
-<p>Entretanto, existem desvantagens em sua aplicação devido o mesmo motivo que os tornam atrativos. Por serem bem específicos geralmente estes dispositivos não podem ter sua função inicial alterada sem mudar boa parte de seu software ou estrutura do hardware, em alguns casos estes dispositivos chegam a não apresentar interface com o usuário.</p>
-<p>Neste capítulo será explicitado os primeiros passos e procedimentos que tiveram de ser realizados para operar o microprocessador.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="embedded_hardware.html">Computador Embarcado</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="embedded_hardware.html#overo-waterstorm">Overo WaterStorm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_hardware.html#especificacoes">Especificações</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="embedded_software.html">Sistema Operacional</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="embedded_software.html#rt-mag">RT-Mag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_software.html#linux">Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_software.html#sistema-escolhido">Sistema Escolhido</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="SO_install.html">Instalando o Sistema Operacional</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="SO_install.html#obtencao-das-imagens-do-so">Obtenção das imagens do SO</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SO_install.html#preparando-o-cartao-de-memoria">Preparando o Cartão de Memória</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SO_install.html#escrevendo-a-imagem-no-cartao-microsd">Escrevendo a imagem no Cartão MicroSD</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="connect_gumstix.html">Primeiros passos com o Gumstix Overo</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="connect_gumstix.html#conexoes-do-gumstix-overo">Conexões do Gumstix Overo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connect_gumstix.html#conectando-se-a-gumstix">Conectando-se à Gumstix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connect_gumstix.html#salvando-a-imagem-do-so-na-memoria-flash">Salvando a imagem do SO na memória flash</a></li>
-</ul>
-</li>
-</ul>
-</div>
+  <div class="section" id="utilizando-o-computador-embarcado">
+<h1>Utilizando o computador embarcado<a class="headerlink" href="#utilizando-o-computador-embarcado" title="Permalink to this headline">¶</a></h1>
+<p>Neste capítulo serão discutidos conhecimentos básicos necessários para a manipulação do computador embarcado Gumstix Overo, do sistema operacional linux e do sistema operacional específico instalado e, posteriormente, são realizados testes do GPIO e da comunicação serial do computador embarcado. As informações descritas nessas etapas são essenciais para a compreensão de diversos topicos e serão utilizadas ao longo do trabalho.</p>
 </div>
 
 
@@ -216,10 +180,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="embedded_hardware.html" class="btn btn-neutral float-right" title="Computador Embarcado" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../model/Ranger.html" class="btn btn-neutral float-right" title="Parâmetros de estabilidade" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../autopilot/config/automatic_landing.html" class="btn btn-neutral float-left" title="Pouso Automático" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../embedded_system/SD_card_sistema.html" class="btn btn-neutral float-left" title="Procedimento" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

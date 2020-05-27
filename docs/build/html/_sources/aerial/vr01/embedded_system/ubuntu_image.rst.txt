@@ -1,5 +1,0 @@
-Obtenção das imagens do Ubuntu
-==============================
-
-Configurando a imagem
-~~~~~~~~~~~~~~~~~~~~~

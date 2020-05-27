@@ -44,6 +44,12 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
 
 .. toctree::
    :maxdepth: 2
+   :caption: Utilizando o computador embarcado
+
+   vr01/gumstix/intro
+
+.. toctree::
+   :maxdepth: 2
    :caption: Modelagem
 
    vr01/model/Ranger
