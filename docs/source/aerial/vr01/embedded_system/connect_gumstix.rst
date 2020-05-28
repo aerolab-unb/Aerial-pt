@@ -10,6 +10,10 @@ Conexões do Gumstix Overo
 	.. figure:: /img/Aerial/TOBI-board.jpg
 	    :align: center
 
+
+	.. figure:: /img/Aerial/Overo_connection.jpg
+	    :align: center
+
 Conectando-se à Gumstix
 ~~~~~~~~~~~~~~~~~~~~~~~
 
