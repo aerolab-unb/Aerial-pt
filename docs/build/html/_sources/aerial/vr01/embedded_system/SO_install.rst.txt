@@ -22,7 +22,7 @@ Existem dois métodos para obter os sistemas operacionais para o Gumstix Overo. 
 	.. toctree::
 	   :maxdepth: 2
 
-	   yocto/yocto_image
+	   yocto_image
 
 .. ubuntu/ubuntu_image
 

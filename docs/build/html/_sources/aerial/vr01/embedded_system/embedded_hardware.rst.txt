@@ -41,6 +41,7 @@ Especificações
 .. Note:: 
    As especificações completas do computador, da placa de extensão e da câmera estão disponíveis nas fichas técnicas abaixo.
 
-	* :download:`Overo Waterstorm COM <docs/GUM3703WB-1729092.pdf>` 
-	* :download:`Placa de extensão TOBI <docs/PKG30002.pdf>` 
-	* :download:`Câmera Caspa VL <docs/PKG30009C.pdf>` 
+   * :download:`Datasheet - Overo Waterstorm COM <docs/GUM3703WB-1729092.pdf>`
+   * :download:`Manual - Overo Waterstorm COM <docs/manual_overo.pdf>`
+   * :download:`Datasheet - Placa de extensão TOBI <docs/PKG30002.pdf>`
+   * :download:`Datasheet - Câmera Caspa VL <docs/PKG30009C.pdf>` 
