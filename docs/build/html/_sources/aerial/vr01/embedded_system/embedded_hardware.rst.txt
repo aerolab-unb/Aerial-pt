@@ -45,3 +45,13 @@ Especificações
    * :download:`Manual - Overo Waterstorm COM <docs/manual_overo.pdf>`
    * :download:`Datasheet - Placa de extensão TOBI <docs/PKG30002.pdf>`
    * :download:`Datasheet - Câmera Caspa VL <docs/PKG30009C.pdf>` 
+
+
+Referências
+-----------
+
+   	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+      
+	* `Overo® WaterSTORM COM - Gumstix Store`_ 
+
+.. _Overo® WaterSTORM COM - Gumstix Store: https://store.gumstix.com/overo-waterstorm-com.html

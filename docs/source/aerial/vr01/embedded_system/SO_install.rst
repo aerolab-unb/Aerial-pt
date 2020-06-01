@@ -59,3 +59,7 @@ O procedimento descrito a seguir é baseado nas recomendações do fabricante e 
 
 	   SD_card_sistema	
 
+Referências
+-----------
+
+	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.

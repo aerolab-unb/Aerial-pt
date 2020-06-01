@@ -104,4 +104,16 @@ Procedimentos
 .. fontes
 .. repositório GitHub: https://github.com/gumstix/meta-gumstix-extras/blob/dizzy/scripts/mk2partsd
 .. How to Make 2 Partition SD Card: https://processors.wiki.ti.com/index.php/How_to_Make_3_Partition_SD_Card#How_to_Make_2_Partition_SD_Card
-.. Create Bootable MicroSD Card: https://www.gumstix.com/support/getting-started/create-bootable-microsd-card
+
+
+Referências
+-----------
+
+	* `Create Bootable MicroSD Card`_ - gumstix.com
+	* `Script - Make 2 Partition SD Card`_ - github.com
+	* `How to Make 2 Partition SD Card - Texas Instruments Processors Wiki`_ 	
+	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+.. _Create Bootable MicroSD Card: https://www.gumstix.com/support/getting-started/create-bootable-microsd-card
+.. _Script - Make 2 Partition SD Card: https://github.com/gumstix/meta-gumstix-extras/blob/dizzy/scripts/mk2partsd
+.. _How to Make 2 Partition SD Card - Texas Instruments Processors Wiki: https://processors.wiki.ti.com/index.php/How_to_Make_3_Partition_SD_Card#How_to_Make_2_Partition_SD_Card

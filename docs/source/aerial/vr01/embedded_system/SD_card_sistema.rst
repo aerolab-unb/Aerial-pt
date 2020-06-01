@@ -75,3 +75,12 @@ Partição rootfs:
 
 .. Tip::
 	Lembre-se de desmontar as partições antes de remover o cartão SD.
+
+Referências
+-----------
+
+  * `Create Bootable MicroSD Card`_ - gumstix.com
+
+  * PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+.. _Create Bootable MicroSD Card: https://www.gumstix.com/support/getting-started/create-bootable-microsd-card

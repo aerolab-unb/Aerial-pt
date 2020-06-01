@@ -69,6 +69,19 @@ Referências
 
 	- `Ardupilot Docs`_ - ardupilot.org
 
+  	* `RT-MaG Project`_ - gipsa-lab.fr
+
+	- `Yocto Project`_ - yoctoproject.org
+
+   * `Getting Started - Gumstix COM`_ - gumstix.com
+
+   - `Gumstix, Inc - GitHub`_ - github.com
+   
+
+.. _Gumstix, Inc - GitHub: https://github.com/gumstix
+.. _Getting Started - Gumstix COM: https://www.gumstix.com/support/getting-started
+.. _RT-MaG Project: http://www.gipsa-lab.fr/projet/RT-MaG/
+.. _Yocto Project: https://www.yoctoproject.org/
 .. _PX4 Autopilot User Guide: https://docs.px4.io/master/en/index.html
 .. _QGroundControl User Guide: https://docs.qgroundcontrol.com/en/
 .. _Ardupilot Docs: https://ardupilot.org/copter/index.html
