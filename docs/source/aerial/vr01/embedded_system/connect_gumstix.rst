@@ -31,6 +31,7 @@ A porta USB Host utiliza uma corrente de 500 mA e aceita uma taxa de amostragem 
 	Muitos periféricos USB usam uma taxa de sinalização de *Full Speed* (FS) e não funcionam na porta USB Host, que é apenas de *High Speed* (HS). Se você estiver com problemas para conectar periféricos USB diretamente ao sistema Gumstix, conectar os periféricos primeiro a um hub USB com alimentação e depois conectar o hub com alimentação ao sistema Gumstix geralmente resolverá o problema.
 
 Para a conexão de mais periféricos, além da quantidade de portas USB disponíveis na placa de expansão Tobi, recomendamos a utilização de um hub USB. O hub USB **energizado** deve ser conectado a porta USB Host da placa de expansão e um hub USB não **energizado** deve ser conectado a porta OTG USB da placa de expansão com um cabo USB On-the-Go.
+
 .. Tip::
 	O vídeo `Connecting Gumstix Tobi Expansion Board to Video Monitor`_ demonstra como conectar um Overo COM a um monitor e alguns periféricos através da placa Tobi.
 
