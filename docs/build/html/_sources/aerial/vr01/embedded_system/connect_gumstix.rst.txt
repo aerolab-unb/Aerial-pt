@@ -4,7 +4,7 @@ Primeiros passos com o Gumstix Overo
 Montando o Gumstix COM na Placa de Expansão Tobi 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A configuração dos computadores Gumstix Overo consiste em um computador em modulo e uma placa de expansão. O modulo Overo se conecta a uma placa de expansão Tobi através dos dois conectores AVX de 70 pinos localizados na parte inferior do COM. Coloque a placa Tobi em uma superfície plana, antiestática, alinhe a COM com o contorno branco na placa acima dos conectores e pressione delicadamente a COM até que ela se encaixe no lugar.
+A configuração dos computadores Gumstix Overo consiste em um computador em modulo e uma placa de expansão. O modulo Overo se conecta a uma placa de expansão Tobi através dos dois conectores AVX de 70 pinos localizados na parte inferior do COM. Coloque a placa Tobi em uma superfície plana, antiestética, alinhe a COM com o contorno branco na placa acima dos conectores e pressione delicadamente a COM até que ela se encaixe no lugar.
 
 
 	.. figure:: /img/Aerial/overo_front.png
@@ -13,7 +13,7 @@ A configuração dos computadores Gumstix Overo consiste em um computador em mod
 	.. figure:: /img/Aerial/gs_tobi.jpg
 	    :align: center
 
-Para utilizar a câmera , a placa de câmera deve ser conectada à parte superior do Overo COM através de um cabo de fita.
+Para utilizar a câmera, a placa de câmera deve ser conectada à parte superior do Overo COM através de um cabo de fita.
 
 Conexões do computador
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -30,22 +30,26 @@ A porta USB Host utiliza uma corrente de 500 mA e aceita uma taxa de amostragem 
 .. Note::
 	Muitos periféricos USB usam uma taxa de sinalização de *Full Speed* (FS) e não funcionam na porta USB Host, que é apenas de *High Speed* (HS). Se você estiver com problemas para conectar periféricos USB diretamente ao sistema Gumstix, conectar os periféricos primeiro a um hub USB com alimentação e depois conectar o hub com alimentação ao sistema Gumstix geralmente resolverá o problema.
 
-Para a conexão de mais perifericos, além da quantidade de portas USB disponiveis na placa de expansão Tobi, recomendamos a utilização de um hub USB. O hub USB **energizado** deve ser conectado a porta USB Host da placa de expansão e um  hub USB não **energizado** deve ser conectado a porta OTG USB da placa de expansão com um cabo USB On-the-Go.
+Para a conexão de mais periféricos, além da quantidade de portas USB disponíveis na placa de expansão Tobi, recomendamos a utilização de um hub USB. O hub USB **energizado** deve ser conectado a porta USB Host da placa de expansão e um hub USB não **energizado** deve ser conectado a porta OTG USB da placa de expansão com um cabo USB On-the-Go.
 
+.. Tip::
+	O vídeo `Connecting Gumstix Tobi Expansion Board to Video Monitor`_ demonstra como conectar um Overo COM a um monitor e alguns periféricos através da placa Tobi.
+
+.. _Connecting Gumstix Tobi Expansion Board to Video Monitor: https://www.youtube.com/watch?v=FxxEBn8Z_PA
 
 Conectando-se ao Overo
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Primeiramente, insira o seu cartão microSD com a imagem do sistema operacional no slot de cartão na parte superior do Overo COM. Certifique-se de que ele se encaixa firmemente no lugar.
 
-O computador Overo pode ser acessado conectando-o a um outro computador Linux ou Windows, ou até mesmo ser ligado diretamente a um monitor DVI e conectado a diversos periferios, como mouse, teclado, monitor, saida de som, entre outros atraves da placa de expansão Tobi.
+O computador Overo pode ser acessado conectando-o a um outro computador Linux ou Windows, ou até mesmo ser ligado diretamente a um monitor DVI e conectado a diversos periféricos, como mouse, teclado, monitor, saída de som, entre outros, através da placa de expansão Tobi.
 
 Nesse trabalho, iremos optar por liga-lo a um computador Linux e estabelecer uma conexão seria via a porta USB Console por simplicidade. 
 
 Estabelecendo uma conexão serial via console
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Para ligar o computador embarcado ao computador conecte um cabo USB ao computador e ao USB console da placa de expansão tobi. Feito isso, uma luz verde deve se acender indicando a conexão correta. Em seguida verifique em qual porta de comunicação serial a gumstix foi conectada, no Windows isso pode ser verificado acessando o  Gerenciador de Dispositivos" e em seguida "Portas(COM e LPT)", no Linux basta executar o comando:
+Para ligar o computador embarcado ao computador conecte um cabo USB ao computador e ao USB console da placa de expansão tobi. Feito isso, uma luz verde deve se acender indicando a conexão correta. Em seguida verifique em qual porta de comunicação serial a gumstix foi conectada, no Windows isso pode ser verificado acessando o Gerenciador de Dispositivos" e em seguida "Portas(COM e LPT)", no Linux basta executar o comando:
 
 ::
 
@@ -54,7 +58,7 @@ Para ligar o computador embarcado ao computador conecte um cabo USB ao computado
 .. Note::
 	O comando ``dmesg`` é um comando que imprime as mensagens núcleo que, na maioria das vezes, são mensagens dos drivers do dispositivo. Quando acrescentamos ``grep tty`` estamos realizando uma busca nas saídas da função ``dmesg`` pelo termo ``tty`` e restringindo a sua saída aquelas mensagens que contém este termo.
 
-A placa Gumstix deve ser a ultima entrada a aparecer. Por exemplo:
+A placa Gumstix deve ser a última entrada a aparecer. Por exemplo:
 
 ::
 
@@ -71,7 +75,7 @@ Para iniciar o terminal de comunicação com a Gumstix basta executar, por exemp
 
 	$ sudo screen /dev/<Nome do dispositivo USB> 115200
 
-No caso da linha de comando do exemplo apresentada anteriormente, o termo ``ttyUSB0`` foi a porta encontrada ao utilizar o comando "dmesg" e "115200" é a velocidade de comunicação em baud. Nesse momento a comunicação entre a gumstix e o computador deve ser estabelecida e assim que a gumstix for ligada os caracteres devem começar a ser impressos na tela do computador.
+No caso da linha de comando do exemplo apresentada anteriormente, o termo ``ttyUSB0`` foi a porta encontrada ao utilizar o comando "dmesg" e "115200" é a velocidade de comunicação em *baud*. Nesse momento a comunicação entre a gumstix e o computador deve ser estabelecida e assim que a gumstix for ligada os caracteres devem começar a ser impressos na tela do computador.
 
 Inicialize o sistema
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -87,14 +91,14 @@ Para inicializar o sistema basta conectar a fonte de alimentação de 5 Volts à
 
 
 .. Note:: 
-	Se os LEDs azul e verde no COM não acenderem e não for exibido nada no seu terminal, tente pressionar o botão de reset na placa de expansão até ver um processo de inicialização. Se o problema persistir, a imagem pode não ter sido instalada com sucesso. REcomenda-se que você tente instalar novamente ou usar uma imagem diferente.
+	Se os LEDs azul e verde no COM não acenderem e não for exibido nada no seu terminal, tente pressionar o botão de reset na placa de expansão até ver um processo de inicialização. Se o problema persistir, a imagem pode não ter sido instalada com sucesso. Recomenda-se que você tente instalar novamente ou usar uma imagem diferente.
 
 A figura a seguir ilustra este procedimento. Os caracteres são impressos rapidamente e a contagem de tempo é de apenas 1 segundo para os núcleos do projeto Yocto, portanto é necessário ficar atento para interromper o processo.
 
 .. adicionar imagem
 
 Feito isso o processo de boot deve iniciar e diversas mensagens irão aparecer na tela. É importante verificar, na primeira vez que se inicia o sistema operacional, se nenhuma
-mensagem de erro aparece e, se tudo ocorrer bem, ao final do processo será exigido uma senha, se o computador embarcado chegou a esse ponto provavelmente tudo esta em ordem.
+mensagem de erro aparece e, se tudo ocorrer bem, ao final do processo será exigido uma senha, se o computador embarcado chegou a esse ponto provavelmente tudo está em ordem.
 A senha de acesso ao sistema Yocto é root e para o sistema Ubuntu gumstix, caso necessário a senha é igual ao usuário.
 
 Salvando a imagem do SO na memória flash

@@ -35,7 +35,7 @@ Para a conexão de mais periféricos, além da quantidade de portas USB disponí
 .. Tip::
 	O vídeo `Connecting Gumstix Tobi Expansion Board to Video Monitor`_ demonstra como conectar um Overo COM a um monitor e alguns periféricos através da placa Tobi.
 
-.. _ Connecting Gumstix Tobi Expansion Board to Video Monitor: https://www.youtube.com/watch?v=FxxEBn8Z_PA
+.. _Connecting Gumstix Tobi Expansion Board to Video Monitor: https://www.youtube.com/watch?v=FxxEBn8Z_PA
 
 Conectando-se ao Overo
 ~~~~~~~~~~~~~~~~~~~~~~
