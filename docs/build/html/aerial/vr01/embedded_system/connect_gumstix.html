@@ -240,10 +240,37 @@
 </div>
 <div class="section" id="inicialize-o-sistema">
 <h2>Inicialize o sistema<a class="headerlink" href="#inicialize-o-sistema" title="Permalink to this headline">¶</a></h2>
-<p>Feita conexão com o console, o Overo COM estará pronta para ser ligado,</p>
-<p>Para inicializar o sistema basta conectar a fonte de alimentação de 5 Volts à sua placa de expansão. Os indicadores LED no COM devem acender em azul e verde. O processo de inicialização será exibido no terminal da sua máquina host. Porém, antes de ligá-la, é importante comentar que o fabricante recomenda a limpeza de variáveis da memória flash sempre que iniciar uma nova versão do sistema operacional no computador embarcado pela primeira vez. Para fazê-lo basta interromper o processo de boot antes de seu início no momento em que aparece uma contagem regressiva na tela. Uma vez interrompido o boot do sistema basta executar o comando <code class="docutils literal notranslate"><span class="pre">nand</span> <span class="pre">erase</span> <span class="pre">240000</span> <span class="pre">20000</span></code> para limpar as variáveis salvas e <code class="docutils literal notranslate"><span class="pre">reset</span></code> para reiniciar o processo de boot, como mostrado a seguir:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nand</span> <span class="n">erase</span> <span class="mi">240000</span> <span class="mi">20000</span>
-<span class="n">reset</span>
+<p>Feita conexão com o console, o Overo COM estará pronta para ser ligado. Para inicializar o sistema basta conectar a fonte de alimentação de 5 Volts à sua placa de expansão. Os indicadores LED no COM devem acender em azul e verde. O processo de inicialização será exibido no terminal da sua máquina host.</p>
+<p>Porém, antes de ligá-la, é importante comentar que o fabricante recomenda a limpeza de variáveis da memória flash sempre que iniciar uma <strong>nova versão do sistema operacional no computador embarcado pela primeira vez</strong>. Para fazê-lo basta interromper o processo de boot antes de seu início no momento em que aparece uma contagem regressiva na tela. O processo tipico de inicialização será similar ao seguinte:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reading</span> <span class="n">u</span><span class="o">-</span><span class="n">boot</span><span class="o">.</span><span class="n">img</span>
+<span class="n">reading</span> <span class="n">u</span><span class="o">-</span><span class="n">boot</span><span class="o">.</span><span class="n">img</span>
+
+
+<span class="n">U</span><span class="o">-</span><span class="n">Boot</span> <span class="mf">2012.04</span><span class="o">.</span><span class="mi">01</span> <span class="p">(</span><span class="n">Jul</span> <span class="mi">19</span> <span class="mi">2012</span> <span class="o">-</span> <span class="mi">17</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">34</span><span class="p">)</span>
+
+<span class="n">OMAP36XX</span><span class="o">/</span><span class="mi">37</span><span class="n">XX</span><span class="o">-</span><span class="n">GP</span> <span class="n">ES1</span><span class="o">.</span><span class="mi">2</span><span class="p">,</span> <span class="n">CPU</span><span class="o">-</span><span class="n">OPP2</span><span class="p">,</span> <span class="n">L3</span><span class="o">-</span><span class="mi">165</span><span class="n">MHz</span><span class="p">,</span> <span class="n">Max</span> <span class="n">CPU</span> <span class="n">Clock</span> <span class="mi">1</span> <span class="n">Ghz</span>
+<span class="n">Gumstix</span> <span class="n">Overo</span> <span class="n">board</span> <span class="o">+</span> <span class="n">LPDDR</span><span class="o">/</span><span class="n">NAND</span>
+<span class="n">I2C</span><span class="p">:</span>   <span class="n">ready</span>
+<span class="n">DRAM</span><span class="p">:</span>  <span class="mi">512</span> <span class="n">MiB</span>
+<span class="n">NAND</span><span class="p">:</span>  <span class="mi">512</span> <span class="n">MiB</span>
+<span class="n">MMC</span><span class="p">:</span>   <span class="n">OMAP</span> <span class="n">SD</span><span class="o">/</span><span class="n">MMC</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">In</span><span class="p">:</span>    <span class="n">serial</span>
+<span class="n">Out</span><span class="p">:</span>   <span class="n">serial</span>
+<span class="n">Err</span><span class="p">:</span>   <span class="n">serial</span>
+<span class="n">Board</span> <span class="n">revision</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Direct</span> <span class="n">connection</span> <span class="n">on</span> <span class="n">mmc2</span>
+<span class="n">timed</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">wait_for_pin</span><span class="p">:</span> <span class="n">I2C_STAT</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">I2C</span> <span class="n">read</span><span class="p">:</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">error</span>
+<span class="n">Unrecognized</span> <span class="n">expansion</span> <span class="n">board</span>
+<span class="n">Die</span> <span class="n">ID</span> <span class="c1">#2d3800229ff8000001683b060a00b012</span>
+<span class="n">Net</span><span class="p">:</span>   <span class="n">smc911x</span><span class="o">-</span><span class="mi">0</span>
+<span class="n">Hit</span> <span class="nb">any</span> <span class="n">key</span> <span class="n">to</span> <span class="n">stop</span> <span class="n">autoboot</span><span class="p">:</span>  <span class="mi">0</span>
+<span class="n">Overo</span> <span class="c1">#</span>
+</pre></div>
+</div>
+<p>Uma vez interrompido o boot do sistema basta executar o comando <code class="docutils literal notranslate"><span class="pre">nand</span> <span class="pre">erase</span> <span class="pre">240000</span> <span class="pre">20000</span></code> para limpar as variáveis salvas e <code class="docutils literal notranslate"><span class="pre">reset</span></code> para reiniciar o processo de boot, como mostrado a seguir:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># nand erase 240000 20000</span>
+<span class="c1"># reset</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -251,12 +278,73 @@
 <p>Se os LEDs azul e verde no COM não acenderem e não for exibido nada no seu terminal, tente pressionar o botão de reset na placa de expansão até ver um processo de inicialização. Se o problema persistir, a imagem pode não ter sido instalada com sucesso. Recomenda-se que você tente instalar novamente ou usar uma imagem diferente.</p>
 </div>
 <p>A figura a seguir ilustra este procedimento. Os caracteres são impressos rapidamente e a contagem de tempo é de apenas 1 segundo para os núcleos do projeto Yocto, portanto é necessário ficar atento para interromper o processo.</p>
-<p>Feito isso o processo de boot deve iniciar e diversas mensagens irão aparecer na tela. É importante verificar, na primeira vez que se inicia o sistema operacional, se nenhuma
-mensagem de erro aparece e, se tudo ocorrer bem, ao final do processo será exigido uma senha, se o computador embarcado chegou a esse ponto provavelmente tudo está em ordem.
-A senha de acesso ao sistema Yocto é root e para o sistema Ubuntu gumstix, caso necessário a senha é igual ao usuário.</p>
+<p>Feito isso o processo de boot deve iniciar e diversas mensagens irão aparecer na tela. É importante verificar, na primeira vez que se inicia o sistema operacional, se nenhuma mensagem de erro aparece e, se tudo ocorrer bem, ao final do processo será exigido uma senha, se o computador embarcado chegou a esse ponto provavelmente tudo está em ordem.
+A senha de acesso ao sistema Yocto é &quot;root&quot; e para o sistema Ubuntu gumstix, caso necessário, a senha é igual ao usuário.</p>
 </div>
 <div class="section" id="salvando-a-imagem-do-so-na-memoria-flash">
 <h2>Salvando a imagem do SO na memória flash<a class="headerlink" href="#salvando-a-imagem-do-so-na-memoria-flash" title="Permalink to this headline">¶</a></h2>
+<p>O computador embarcado Overo WaterSTORM COM da Gumstix R conta com uma memória interna não volátil de 1 GB do tipo Flash, memória suficiente para armazenarmos o sistema operacional. Apesar de o mais recomendado ser continuar usando o cartão SD, por possuir mais memória e ser transferido entre dispositivos com mais facilidade, ter o sistema operacional salvo na memória flash do computador embarcado pode ser útil.</p>
+<p>O site do fabricante descreve quatro maneiras distintas de se realizar este procedimento a maneira
+que apresentou o melhor resultado foi a última das opções explicadas e é resumida a instalar na memória flash tudo o que foi instalado no cartão de memória e somado ao binário do núcleo através de um script fornecido em seu endereço eletrônico. O script desejado está disponivel em <a class="reference external" href="https://www.gumstix.com/support/faq/write-images-flash#flash-with-uboot">Flashing with U-Boot - Write Images to Flash</a>, porém, todo o processo será detalhadamente descrito a seguir.</p>
+<ol class="arabic simple">
+<li><p>Com o cartão SD bootavel conectado ao seu computador host, acesse o diretorio <code class="docutils literal notranslate"><span class="pre">/boot</span></code> na partição <em>rootfs</em>. Por exemplo, assuma que o <em>rootfs</em> está montado em <strong>/media/user/rootfs/</strong>:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /media/rootfs/boot
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Crie um script para gravar os arquivos na memoria flash com o nome <em>flash-all.cmd</em>. Para isso basta executar o comando:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nano flash-all.cmd
+</pre></div>
+</div>
+<p>Copiar e colar o script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nand erase.chip
+
+# switch to 1-bit ECC and write MLO
+load mmc 0:2 ${loadaddr} /boot/MLO
+nandecc hw
+nand write ${loadaddr} 0x0 ${filesize}
+nand write ${loadaddr} 0x20000 ${filesize}
+nand write ${loadaddr} 0x40000 ${filesize}
+nand write ${loadaddr} 0x60000 ${filesize}
+
+# switch back to BCH8 and write u-boot
+nandecc sw bch8
+load mmc 0:2 ${loadaddr} /boot/u-boot.img
+nand write ${loadaddr} u-boot ${filesize}
+
+# write the kernel (if uImage...otherwise skip)
+load mmc 0:2 ${loadaddr} /boot/uImage
+nand write ${loadaddr} linux ${filesize}
+
+# write the filesystem
+load mmc 0:2 ${loadaddr} /boot/rootfs.ubi
+nand write ${loadaddr} rootfs ${filesize}
+</pre></div>
+</div>
+<p>Em seguida confirme o nome do arquivo (<strong>Ctrl+o</strong>) e saia do editor de texto (<strong>Ctrl+X</strong>).</p>
+<ol class="arabic simple" start="3">
+<li><p>Para tornar o script executável e adiciona-lo à partição de boot do cartão SD bootável, basta executar e seguinte linha de comando, assumindo que a partição de inicialização esteja montada em /media/boot:</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Lembre-se de editar os nomes dos arquivos no script para coincidirem com os nomes dos arquivos que serão adicionados a seguir.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n &quot;flash-all&quot; -d flash-all.cmd /media/boot/flash-all.scr
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>O comando <code class="docutils literal notranslate"><span class="pre">mkimage</span></code> é um comando utilizado para fazer imagens para serem utilizadas pelo &quot;u-boot&quot;, as opções do comando e suas explicações são facilmente obtidas digitando <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">mkimage</span></code> no terminal do Linux.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Desmonte, insira o cartão microSD no seu computador embarcado, inicie-o e aguarde o carregamento do u-boot. Interrompa o processo de inicialização quando vir <strong>Hit any key to stop autoboot</strong> e insira o comando:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># mmc rescan 0; load mmc 0 ${loadaddr} flash-all.scr; source ${loadaddr}</span>
+</pre></div>
+</div>
+<p>Retire o cartão SD e reinicie o seu sistema. Se tudo correu bem, seu sistema deve iniciar normalmente.</p>
 <div class="section" id="referencias">
 <h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
 <blockquote>

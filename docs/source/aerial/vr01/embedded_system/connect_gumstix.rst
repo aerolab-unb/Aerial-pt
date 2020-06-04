@@ -80,14 +80,43 @@ No caso da linha de comando do exemplo apresentada anteriormente, o termo ``ttyU
 Inicialize o sistema
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Feita conexão com o console, o Overo COM estará pronta para ser ligado, 
+Feita conexão com o console, o Overo COM estará pronta para ser ligado. Para inicializar o sistema basta conectar a fonte de alimentação de 5 Volts à sua placa de expansão. Os indicadores LED no COM devem acender em azul e verde. O processo de inicialização será exibido no terminal da sua máquina host. 
 
-Para inicializar o sistema basta conectar a fonte de alimentação de 5 Volts à sua placa de expansão. Os indicadores LED no COM devem acender em azul e verde. O processo de inicialização será exibido no terminal da sua máquina host. Porém, antes de ligá-la, é importante comentar que o fabricante recomenda a limpeza de variáveis da memória flash sempre que iniciar uma nova versão do sistema operacional no computador embarcado pela primeira vez. Para fazê-lo basta interromper o processo de boot antes de seu início no momento em que aparece uma contagem regressiva na tela. Uma vez interrompido o boot do sistema basta executar o comando ``nand erase 240000 20000`` para limpar as variáveis salvas e ``reset`` para reiniciar o processo de boot, como mostrado a seguir:
+Porém, antes de ligá-la, é importante comentar que o fabricante recomenda a limpeza de variáveis da memória flash sempre que iniciar uma **nova versão do sistema operacional no computador embarcado pela primeira vez**. Para fazê-lo basta interromper o processo de boot antes de seu início no momento em que aparece uma contagem regressiva na tela. O processo tipico de inicialização será similar ao seguinte:
 
 ::
 
-	nand erase 240000 20000
-	reset
+	reading u-boot.img
+	reading u-boot.img
+
+
+	U-Boot 2012.04.01 (Jul 19 2012 - 17:31:34)
+
+	OMAP36XX/37XX-GP ES1.2, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz
+	Gumstix Overo board + LPDDR/NAND
+	I2C:   ready
+	DRAM:  512 MiB
+	NAND:  512 MiB
+	MMC:   OMAP SD/MMC: 0
+	In:    serial
+	Out:   serial
+	Err:   serial
+	Board revision: 1
+	Direct connection on mmc2
+	timed out in wait_for_pin: I2C_STAT=1000
+	I2C read: I/O error
+	Unrecognized expansion board
+	Die ID #2d3800229ff8000001683b060a00b012
+	Net:   smc911x-0
+	Hit any key to stop autoboot:  0
+	Overo # 
+
+Uma vez interrompido o boot do sistema basta executar o comando ``nand erase 240000 20000`` para limpar as variáveis salvas e ``reset`` para reiniciar o processo de boot, como mostrado a seguir:
+
+::
+
+	# nand erase 240000 20000
+	# reset
 
 
 .. Note:: 
@@ -97,12 +126,80 @@ A figura a seguir ilustra este procedimento. Os caracteres são impressos rapida
 
 .. adicionar imagem
 
-Feito isso o processo de boot deve iniciar e diversas mensagens irão aparecer na tela. É importante verificar, na primeira vez que se inicia o sistema operacional, se nenhuma
-mensagem de erro aparece e, se tudo ocorrer bem, ao final do processo será exigido uma senha, se o computador embarcado chegou a esse ponto provavelmente tudo está em ordem.
-A senha de acesso ao sistema Yocto é root e para o sistema Ubuntu gumstix, caso necessário a senha é igual ao usuário.
+Feito isso o processo de boot deve iniciar e diversas mensagens irão aparecer na tela. É importante verificar, na primeira vez que se inicia o sistema operacional, se nenhuma mensagem de erro aparece e, se tudo ocorrer bem, ao final do processo será exigido uma senha, se o computador embarcado chegou a esse ponto provavelmente tudo está em ordem.
+A senha de acesso ao sistema Yocto é "root" e para o sistema Ubuntu gumstix, caso necessário, a senha é igual ao usuário.
 
 Salvando a imagem do SO na memória flash
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O computador embarcado Overo WaterSTORM COM da Gumstix R conta com uma memória interna não volátil de 1 GB do tipo Flash, memória suficiente para armazenarmos o sistema operacional. Apesar de o mais recomendado ser continuar usando o cartão SD, por possuir mais memória e ser transferido entre dispositivos com mais facilidade, ter o sistema operacional salvo na memória flash do computador embarcado pode ser útil. 
+
+O site do fabricante descreve quatro maneiras distintas de se realizar este procedimento a maneira
+que apresentou o melhor resultado foi a última das opções explicadas e é resumida a instalar na memória flash tudo o que foi instalado no cartão de memória e somado ao binário do núcleo através de um script fornecido em seu endereço eletrônico. O script desejado está disponivel em `Flashing with U-Boot - Write Images to Flash`_, porém, todo o processo será detalhadamente descrito a seguir.
+
+.. _Flashing with U-Boot - Write Images to Flash: https://www.gumstix.com/support/faq/write-images-flash#flash-with-uboot
+
+1. Com o cartão SD bootavel conectado ao seu computador host, acesse o diretorio ``/boot`` na partição *rootfs*. Por exemplo, assuma que o *rootfs* está montado em **/media/user/rootfs/**:
+
+:: 
+
+	$ cd /media/rootfs/boot
+
+2. Crie um script para gravar os arquivos na memoria flash com o nome *flash-all.cmd*. Para isso basta executar o comando:
+
+::
+
+	$ nano flash-all.cmd
+
+Copiar e colar o script:
+
+::
+
+	nand erase.chip
+
+	# switch to 1-bit ECC and write MLO
+	load mmc 0:2 ${loadaddr} /boot/MLO
+	nandecc hw
+	nand write ${loadaddr} 0x0 ${filesize}
+	nand write ${loadaddr} 0x20000 ${filesize}
+	nand write ${loadaddr} 0x40000 ${filesize}
+	nand write ${loadaddr} 0x60000 ${filesize}
+
+	# switch back to BCH8 and write u-boot
+	nandecc sw bch8
+	load mmc 0:2 ${loadaddr} /boot/u-boot.img
+	nand write ${loadaddr} u-boot ${filesize}
+
+	# write the kernel (if uImage...otherwise skip)
+	load mmc 0:2 ${loadaddr} /boot/uImage
+	nand write ${loadaddr} linux ${filesize}
+
+	# write the filesystem
+	load mmc 0:2 ${loadaddr} /boot/rootfs.ubi
+	nand write ${loadaddr} rootfs ${filesize}
+
+Em seguida confirme o nome do arquivo (**Ctrl+o**) e saia do editor de texto (**Ctrl+X**).
+
+3. Para tornar o script executável e adiciona-lo à partição de boot do cartão SD bootável, basta executar e seguinte linha de comando, assumindo que a partição de inicialização esteja montada em /media/boot:
+
+.. Warning::	
+	Lembre-se de editar os nomes dos arquivos no script para coincidirem com os nomes dos arquivos que serão adicionados a seguir.
+
+::
+
+	$ mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "flash-all" -d flash-all.cmd /media/boot/flash-all.scr
+
+
+.. Note::
+	O comando ``mkimage`` é um comando utilizado para fazer imagens para serem utilizadas pelo "u-boot", as opções do comando e suas explicações são facilmente obtidas digitando ``man mkimage`` no terminal do Linux.
+	
+4. Desmonte, insira o cartão microSD no seu computador embarcado, inicie-o e aguarde o carregamento do u-boot. Interrompa o processo de inicialização quando vir **Hit any key to stop autoboot** e insira o comando:
+
+::
+
+	# mmc rescan 0; load mmc 0 ${loadaddr} flash-all.scr; source ${loadaddr}
+
+Retire o cartão SD e reinicie o seu sistema. Se tudo correu bem, seu sistema deve iniciar normalmente.
 
 Referências
 -----------
