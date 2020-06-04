@@ -287,7 +287,7 @@ A senha de acesso ao sistema Yocto é &quot;root&quot; e para o sistema Ubuntu g
 <p>O site do fabricante descreve quatro maneiras distintas de se realizar este procedimento a maneira
 que apresentou o melhor resultado foi a última das opções explicadas e é resumida a instalar na memória flash tudo o que foi instalado no cartão de memória e somado ao binário do núcleo através de um script fornecido em seu endereço eletrônico. O script desejado está disponivel em <a class="reference external" href="https://www.gumstix.com/support/faq/write-images-flash#flash-with-uboot">Flashing with U-Boot - Write Images to Flash</a>, porém, todo o processo será detalhadamente descrito a seguir.</p>
 <ol class="arabic simple">
-<li><p>Com o cartão SD bootavel conectado ao seu computador host, acesse o diretorio <code class="docutils literal notranslate"><span class="pre">/boot</span></code> na partição <em>rootfs</em>. Por exemplo, assuma que o <em>rootfs</em> está montado em <strong>/media/user/rootfs/</strong>:</p></li>
+<li><p>Com o cartão SD bootavel conectado ao seu computador host, acesse o diretorio <strong>/boot</strong> na partição <strong>rootfs</strong>. Por exemplo, caso o <strong>rootfs</strong> esteja montado em <strong>/media/user/rootfs/</strong>:</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /media/rootfs/boot
 </pre></div>
@@ -325,7 +325,7 @@ nand write ${loadaddr} rootfs ${filesize}
 </div>
 <p>Em seguida confirme o nome do arquivo (<strong>Ctrl+o</strong>) e saia do editor de texto (<strong>Ctrl+X</strong>).</p>
 <ol class="arabic simple" start="3">
-<li><p>Para tornar o script executável e adiciona-lo à partição de boot do cartão SD bootável, basta executar e seguinte linha de comando, assumindo que a partição de inicialização esteja montada em /media/boot:</p></li>
+<li><p>Para tornar o script executável e adiciona-lo à partição de boot do cartão SD bootável, basta executar e seguinte linha de comando (assumindo que a partição de inicialização esteja montada em /media/boot):</p></li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -339,7 +339,15 @@ nand write ${loadaddr} rootfs ${filesize}
 <p>O comando <code class="docutils literal notranslate"><span class="pre">mkimage</span></code> é um comando utilizado para fazer imagens para serem utilizadas pelo &quot;u-boot&quot;, as opções do comando e suas explicações são facilmente obtidas digitando <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">mkimage</span></code> no terminal do Linux.</p>
 </div>
 <ol class="arabic simple" start="4">
-<li><p>Desmonte, insira o cartão microSD no seu computador embarcado, inicie-o e aguarde o carregamento do u-boot. Interrompa o processo de inicialização quando vir <strong>Hit any key to stop autoboot</strong> e insira o comando:</p></li>
+<li><p>Devemos, também, armazenar dentro da pasta <strong>boot</strong> da partição <strong>rootfs</strong> o novo <strong>MLO</strong>, <strong>u-boot.img</strong> e o <strong>binário do núcleo</strong>. Observe que esses <em>bootloaders</em> que serão adicionados à pasta <strong>boot</strong> não são os mesmos que estão na partição <strong>boot</strong> pois estes novos <em>bootloaders</em> devem ser específicos para operar da memória flash. Esses novos arquivos podem ser obtidos com os seguintes comandos:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/MLO
+$ wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/u-boot.img
+$ wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/gumstix-console-image-overo.ubi -O rootfs.ubi
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Desmonte o cartão SD e o insira em seu computador embarcado, inicie o sistema e aguarde o carregamento do u-boot. Interrompa o processo de inicialização quando vir &quot;<strong>Hit any key to stop autoboot</strong>&quot; e insira o comando:</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># mmc rescan 0; load mmc 0 ${loadaddr} flash-all.scr; source ${loadaddr}</span>
 </pre></div>

@@ -139,7 +139,7 @@ que apresentou o melhor resultado foi a última das opções explicadas e é res
 
 .. _Flashing with U-Boot - Write Images to Flash: https://www.gumstix.com/support/faq/write-images-flash#flash-with-uboot
 
-1. Com o cartão SD bootavel conectado ao seu computador host, acesse o diretorio ``/boot`` na partição *rootfs*. Por exemplo, assuma que o *rootfs* está montado em **/media/user/rootfs/**:
+1. Com o cartão SD bootavel conectado ao seu computador host, acesse o diretorio **/boot** na partição **rootfs**. Por exemplo, caso o **rootfs** esteja montado em **/media/user/rootfs/**:
 
 :: 
 
@@ -180,7 +180,7 @@ Copiar e colar o script:
 
 Em seguida confirme o nome do arquivo (**Ctrl+o**) e saia do editor de texto (**Ctrl+X**).
 
-3. Para tornar o script executável e adiciona-lo à partição de boot do cartão SD bootável, basta executar e seguinte linha de comando, assumindo que a partição de inicialização esteja montada em /media/boot:
+3. Para tornar o script executável e adiciona-lo à partição de boot do cartão SD bootável, basta executar e seguinte linha de comando (assumindo que a partição de inicialização esteja montada em /media/boot):
 
 .. Warning::	
 	Lembre-se de editar os nomes dos arquivos no script para coincidirem com os nomes dos arquivos que serão adicionados a seguir.
@@ -192,8 +192,16 @@ Em seguida confirme o nome do arquivo (**Ctrl+o**) e saia do editor de texto (**
 
 .. Note::
 	O comando ``mkimage`` é um comando utilizado para fazer imagens para serem utilizadas pelo "u-boot", as opções do comando e suas explicações são facilmente obtidas digitando ``man mkimage`` no terminal do Linux.
-	
-4. Desmonte, insira o cartão microSD no seu computador embarcado, inicie-o e aguarde o carregamento do u-boot. Interrompa o processo de inicialização quando vir **Hit any key to stop autoboot** e insira o comando:
+
+4. Devemos, também, armazenar dentro da pasta **boot** da partição **rootfs** o novo **MLO**, **u-boot.img** e o **binário do núcleo**. Observe que esses *bootloaders* que serão adicionados à pasta **boot** não são os mesmos que estão na partição **boot** pois estes novos *bootloaders* devem ser específicos para operar da memória flash. Esses novos arquivos podem ser obtidos com os seguintes comandos:
+
+::
+
+	$ wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/MLO
+	$ wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/u-boot.img
+	$ wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/gumstix-console-image-overo.ubi -O rootfs.ubi
+
+5. Desmonte o cartão SD e o insira em seu computador embarcado, inicie o sistema e aguarde o carregamento do u-boot. Interrompa o processo de inicialização quando vir "**Hit any key to stop autoboot**" e insira o comando:
 
 ::
 
