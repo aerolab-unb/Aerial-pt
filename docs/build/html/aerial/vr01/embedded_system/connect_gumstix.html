@@ -179,7 +179,7 @@
 <h1>Primeiros passos com o Gumstix Overo<a class="headerlink" href="#primeiros-passos-com-o-gumstix-overo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="montando-o-gumstix-com-na-placa-de-expansao-tobi">
 <h2>Montando o Gumstix COM na Placa de Expansão Tobi<a class="headerlink" href="#montando-o-gumstix-com-na-placa-de-expansao-tobi" title="Permalink to this headline">¶</a></h2>
-<p>A configuração dos computadores Gumstix Overo consiste em um computador em modulo e uma placa de expansão. O modulo Overo se conecta a uma placa de expansão Tobi através dos dois conectores AVX de 70 pinos localizados na parte inferior do COM. Coloque a placa Tobi em uma superfície plana, antiestética, alinhe a COM com o contorno branco na placa acima dos conectores e pressione delicadamente a COM até que ela se encaixe no lugar.</p>
+<p>A configuração dos computadores Gumstix Overo consiste em um computador em modulo e uma placa de expansão. O modulo Overo se conecta a uma placa de expansão Tobi através dos dois conectores AVX de 70 pinos localizados na parte inferior do COM. Coloque a placa Tobi em uma superfície plana e antiestética, alinhe a COM com o contorno branco na placa acima dos conectores e pressione delicadamente a COM até que ela se encaixe no lugar.</p>
 <blockquote>
 <div><div class="figure align-center">
 <img alt="../../../_images/overo_front.png" src="../../../_images/overo_front.png" />
@@ -190,20 +190,20 @@
 </div></blockquote>
 <p>Para utilizar a câmera, a placa de câmera deve ser conectada à parte superior do Overo COM através de um cabo de fita.</p>
 </div>
-<div class="section" id="conexoes-do-computador">
-<h2>Conexões do computador<a class="headerlink" href="#conexoes-do-computador" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="conexoes-do-overo">
+<h2>Conexões do Overo<a class="headerlink" href="#conexoes-do-overo" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><div class="figure align-center">
 <img alt="../../../_images/Overo_connection.png" src="../../../_images/Overo_connection.png" />
 </div>
 </div></blockquote>
-<p>A placa de expansão Tobi vem com portas USB Host e portas USB On-the-Go (OTG). A porta USB Host é usada exclusivamente para conectar periféricos ao sistema, enquanto a porta USB OTG pode ser usada para conectar periféricos via cabo USB OTG ou para conectar o sistema Gumstix como periférico a um sistema host separado.</p>
-<p>A porta USB Host utiliza uma corrente de 500 mA e aceita uma taxa de amostragem de <em>High-speed</em> (HS) a 480 Mbit/s, enquanto a porta USB OTG tem uma corrente de 100 mA e suporta três diferentes taxas de amostragem, <em>Low Speed</em> (LS) a 1,5 Mbit/s, <em>Full Speed</em> (FS) a 12 Mbit/s e <em>High Speed</em> (HS) a 480 Mbit/s.</p>
+<p>A placa de expansão Tobi vem com uma porta USB Host e uma USB On-the-Go (OTG). A porta USB Host é usada exclusivamente para conectar periféricos ao sistema, enquanto a porta USB OTG pode ser usada para conectar periféricos via cabo USB OTG ou para conectar o sistema Gumstix como periférico a um sistema host separado.</p>
+<p>A porta USB Host utiliza uma corrente de 500 mA e aceita uma taxa de sinalização de <em>High-speed</em> (HS) a 480 Mbit/s, enquanto a porta USB OTG tem uma corrente de 100 mA e suporta três diferentes taxas de sinalização, <em>Low Speed</em> (LS) a 1,5 Mbit/s, <em>Full Speed</em> (FS) a 12 Mbit/s e <em>High Speed</em> (HS) a 480 Mbit/s.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Muitos periféricos USB usam uma taxa de sinalização de <em>Full Speed</em> (FS) e não funcionam na porta USB Host, que é apenas de <em>High Speed</em> (HS). Se você estiver com problemas para conectar periféricos USB diretamente ao sistema Gumstix, conectar os periféricos primeiro a um hub USB com alimentação e depois conectar o hub com alimentação ao sistema Gumstix geralmente resolverá o problema.</p>
 </div>
-<p>Para a conexão de mais periféricos, além da quantidade de portas USB disponíveis na placa de expansão Tobi, recomendamos a utilização de um hub USB. O hub USB <strong>energizado</strong> deve ser conectado a porta USB Host da placa de expansão e um hub USB não <strong>energizado</strong> deve ser conectado a porta OTG USB da placa de expansão com um cabo USB On-the-Go.</p>
+<p>Para a conexão de mais periféricos, além da quantidade de portas USB disponíveis na placa de expansão Tobi, recomendamos a utilização de um hub USB. O hub USB <strong>energizado</strong> deve ser conectado a porta USB Host da placa de expansão e um hub USB <strong>não energizado</strong> deve ser conectado a porta OTG USB da placa de expansão com um cabo USB On-the-Go.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>O vídeo <a class="reference external" href="https://www.youtube.com/watch?v=FxxEBn8Z_PA">Connecting Gumstix Tobi Expansion Board to Video Monitor</a> demonstra como conectar um Overo COM a um monitor e alguns periféricos através da placa Tobi.</p>
@@ -213,11 +213,11 @@
 <h2>Conectando-se ao Overo<a class="headerlink" href="#conectando-se-ao-overo" title="Permalink to this headline">¶</a></h2>
 <p>Primeiramente, insira o seu cartão microSD com a imagem do sistema operacional no slot de cartão na parte superior do Overo COM. Certifique-se de que ele se encaixa firmemente no lugar.</p>
 <p>O computador Overo pode ser acessado conectando-o a um outro computador Linux ou Windows, ou até mesmo ser ligado diretamente a um monitor DVI e conectado a diversos periféricos, como mouse, teclado, monitor, saída de som, entre outros, através da placa de expansão Tobi.</p>
-<p>Nesse trabalho, iremos optar por liga-lo a um computador Linux e estabelecer uma conexão seria via a porta USB Console por simplicidade.</p>
+<p>Neste trabalho, iremos optar por liga-lo a um computador Linux e estabelecer uma conexão seria via a porta USB Console por simplicidade.</p>
 </div>
 <div class="section" id="estabelecendo-uma-conexao-serial-via-console">
 <h2>Estabelecendo uma conexão serial via console<a class="headerlink" href="#estabelecendo-uma-conexao-serial-via-console" title="Permalink to this headline">¶</a></h2>
-<p>Para ligar o computador embarcado ao computador conecte um cabo USB ao computador e ao USB console da placa de expansão tobi. Feito isso, uma luz verde deve se acender indicando a conexão correta. Em seguida verifique em qual porta de comunicação serial a gumstix foi conectada, no Windows isso pode ser verificado acessando o Gerenciador de Dispositivos&quot; e em seguida &quot;Portas(COM e LPT)&quot;, no Linux basta executar o comando:</p>
+<p>Para ligar o computador embarcado ao computador conecte um cabo USB ao computador e ao USB console da placa de expansão Tobi. Feito isso, uma luz verde deve se acender indicando a conexão correta. Em seguida verifique em qual porta de comunicação serial Gumstix Overo está conectada, no Windows isso pode ser verificado acessando o <strong>Gerenciador de Dispositivos</strong> e, em seguida, <strong>Portas(COM e LPT)</strong>. No Linux basta executar o comando:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ dmesg | grep tty
 </pre></div>
 </div>
@@ -231,15 +231,15 @@
 [ 4214.120990] usb 2-1: FTDI USB Serial Device converter now attached to **ttyUSB0**
 </pre></div>
 </div>
-<p>Em seguida será necessário executar um programa para emular o terminal, recomenda-se o programa screen, caso ainda não o tenha instalado basta executar a linha de comando <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">screen</span></code>, ou no caso de utilizar o sistema operacional Windows recomenda-se o PuTTY. Estes programas que emulam terminais e executam apenas a tarefa de imprimir os caracteres recebidos pela porta serial, ou USB no caso, e enviar por essa mesma porta os caracteres digitados.</p>
-<p>Para iniciar o terminal de comunicação com a Gumstix basta executar, por exemplo, a seguinte linha de comando:</p>
+<p>Em seguida será necessário executar um programa para emular o terminal, recomenda-se o programa Screen para Linux. Caso ainda não o tenha instalado basta executar a linha de comando <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">screen</span></code>. Ou no caso do sistema operacional Windows, recomenda-se o PuTTY. Estes programas emulam terminais e executam apenas a tarefa de imprimir os caracteres recebidos pela porta serial, ou USB no caso, e enviar por essa mesma porta os caracteres digitados.</p>
+<p>Para iniciar a comunicação por terminal com o Gumstix Overo basta executar a seguinte linha de comando:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo screen /dev/&lt;Nome do dispositivo USB&gt; 115200
 </pre></div>
 </div>
 <p>No caso da linha de comando do exemplo apresentada anteriormente, o termo <code class="docutils literal notranslate"><span class="pre">ttyUSB0</span></code> foi a porta encontrada ao utilizar o comando &quot;dmesg&quot; e &quot;115200&quot; é a velocidade de comunicação em <em>baud</em>. Nesse momento a comunicação entre a gumstix e o computador deve ser estabelecida e assim que a gumstix for ligada os caracteres devem começar a ser impressos na tela do computador.</p>
 </div>
-<div class="section" id="inicialize-o-sistema">
-<h2>Inicialize o sistema<a class="headerlink" href="#inicialize-o-sistema" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="inicializando-o-overo-com">
+<h2>Inicializando o Overo COM<a class="headerlink" href="#inicializando-o-overo-com" title="Permalink to this headline">¶</a></h2>
 <p>Feita conexão com o console, o Overo COM estará pronta para ser ligado. Para inicializar o sistema basta conectar a fonte de alimentação de 5 Volts à sua placa de expansão. Os indicadores LED no COM devem acender em azul e verde. O processo de inicialização será exibido no terminal da sua máquina host.</p>
 <p>Porém, antes de ligá-la, é importante comentar que o fabricante recomenda a limpeza de variáveis da memória flash sempre que iniciar uma <strong>nova versão do sistema operacional no computador embarcado pela primeira vez</strong>. Para fazê-lo basta interromper o processo de boot antes de seu início no momento em que aparece uma contagem regressiva na tela. O processo tipico de inicialização será similar ao seguinte:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reading</span> <span class="n">u</span><span class="o">-</span><span class="n">boot</span><span class="o">.</span><span class="n">img</span>
