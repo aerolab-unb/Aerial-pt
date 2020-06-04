@@ -188,6 +188,9 @@ Copiar e colar o script:
 
 Em seguida confirme o nome do arquivo (**Ctrl+O**) e saia do editor de texto (**Ctrl+X**).
 
+.. figure:: /img/Aerial/flash-all.png
+	:align: center
+
 4. Para tornar o script executável e adiciona-lo à partição de boot do cartão SD bootável, basta executar e seguinte linha de comando (assumindo que a partição de inicialização esteja montada em /media/boot):
 
 .. Warning::	
@@ -195,8 +198,10 @@ Em seguida confirme o nome do arquivo (**Ctrl+O**) e saia do editor de texto (**
 
 ::
 
-	$ mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "flash-all" -d flash-all.cmd /media/boot/flash-all.scr
+	$ mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "flash-all" -d flash-all.cmd /media/<Nome_de_Usuário>/boot/flash-all.scr
 
+.. figure:: /img/Aerial/flashSD.png
+	:align: center
 
 .. Note::
 	Caso o comando ``mkimage`` não seja encontrado, basta executar o comando ``sudo apt install u-boot-tools`` para instalar o pacote de ferramentes em seu computador. O comando ``mkimage`` é um comando utilizado para fazer imagens para serem utilizadas pelo **u-boot**. As opções de comando e suas explicações são facilmente obtidas digitando ``man mkimage`` no terminal do Linux.
@@ -209,9 +214,12 @@ Em seguida confirme o nome do arquivo (**Ctrl+O**) e saia do editor de texto (**
 
 Essa linha de comando irá executar o script passando os bootloaders, o binário do núcleo e os arquivos raiz do sistema operacional para a memória flash do sistema embarcado e as mensagens apresentadas na figura abaixo devem ser impressas.
 
-.. adicionar imagem
+.. figure:: /img/Aerial/flasing.png
+	:align: center
 
 Retire o cartão SD e reinicie o seu sistema. Se tudo correu bem, seu sistema deve iniciar normalmente.
+
+.. sudo screen /dev/ttyUSB0 115200
 
 Referências
 -----------
