@@ -139,17 +139,25 @@ que apresentou o melhor resultado foi a última das opções explicadas e é res
 
 .. _Flashing with U-Boot - Write Images to Flash: https://www.gumstix.com/support/faq/write-images-flash#flash-with-uboot
 
-1. Com o cartão SD bootavel conectado ao seu computador host, acesse o diretorio **/boot** na partição **rootfs**. Por exemplo, caso o **rootfs** esteja montado em **/media/user/rootfs/**:
+1. Com o cartão SD bootavel conectado ao seu computador host, acesse o diretorio **/boot** na partição **rootfs**. Por exemplo, caso o **rootfs** esteja montado em **/media/<Nome_de_Usuário>/rootfs/**:
 
 :: 
 
-	$ cd /media/rootfs/boot
+	$ cd /media/<Nome_de_Usuário>/rootfs/boot
 
-2. Crie um script para gravar os arquivos na memoria flash com o nome *flash-all.cmd*. Para isso basta executar o comando:
+2. Devemos armazenar dentro da pasta **boot** da partição **rootfs** o novo **MLO**, **u-boot.img** e o **binário do núcleo**. Observe que esses *bootloaders* que serão adicionados à pasta **boot** não são os mesmos que estão na partição **boot** pois estes novos *bootloaders* devem ser específicos para operar da memória flash. Esses novos arquivos podem ser obtidos com os seguintes comandos:
 
 ::
 
-	$ nano flash-all.cmd
+	$ sudo wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/MLO
+	$ sudo wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/u-boot.img
+	$ sudo wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/gumstix-console-image-overo.ubi -O rootfs.ubi
+
+3. Crie um script para gravar os arquivos na memoria flash com o nome *flash-all.cmd*. Para isso basta executar o comando:
+
+::
+
+	$ sudo nano flash-all.cmd
 
 Copiar e colar o script:
 
@@ -178,9 +186,9 @@ Copiar e colar o script:
 	load mmc 0:2 ${loadaddr} /boot/rootfs.ubi
 	nand write ${loadaddr} rootfs ${filesize}
 
-Em seguida confirme o nome do arquivo (**Ctrl+o**) e saia do editor de texto (**Ctrl+X**).
+Em seguida confirme o nome do arquivo (**Ctrl+O**) e saia do editor de texto (**Ctrl+X**).
 
-3. Para tornar o script executável e adiciona-lo à partição de boot do cartão SD bootável, basta executar e seguinte linha de comando (assumindo que a partição de inicialização esteja montada em /media/boot):
+4. Para tornar o script executável e adiciona-lo à partição de boot do cartão SD bootável, basta executar e seguinte linha de comando (assumindo que a partição de inicialização esteja montada em /media/boot):
 
 .. Warning::	
 	Lembre-se de editar os nomes dos arquivos no script para coincidirem com os nomes dos arquivos que serão adicionados a seguir.
@@ -191,21 +199,17 @@ Em seguida confirme o nome do arquivo (**Ctrl+o**) e saia do editor de texto (**
 
 
 .. Note::
-	O comando ``mkimage`` é um comando utilizado para fazer imagens para serem utilizadas pelo "u-boot", as opções do comando e suas explicações são facilmente obtidas digitando ``man mkimage`` no terminal do Linux.
-
-4. Devemos, também, armazenar dentro da pasta **boot** da partição **rootfs** o novo **MLO**, **u-boot.img** e o **binário do núcleo**. Observe que esses *bootloaders* que serão adicionados à pasta **boot** não são os mesmos que estão na partição **boot** pois estes novos *bootloaders* devem ser específicos para operar da memória flash. Esses novos arquivos podem ser obtidos com os seguintes comandos:
-
-::
-
-	$ wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/MLO
-	$ wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/u-boot.img
-	$ wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/gumstix-console-image-overo.ubi -O rootfs.ubi
+	Caso o comando ``mkimage`` não seja encontrado, basta executar o comando ``sudo apt install u-boot-tools`` para instalar o pacote de ferramentes em seu computador. O comando ``mkimage`` é um comando utilizado para fazer imagens para serem utilizadas pelo **u-boot**. As opções de comando e suas explicações são facilmente obtidas digitando ``man mkimage`` no terminal do Linux.
 
 5. Desmonte o cartão SD e o insira em seu computador embarcado, inicie o sistema e aguarde o carregamento do u-boot. Interrompa o processo de inicialização quando vir "**Hit any key to stop autoboot**" e insira o comando:
 
 ::
 
 	# mmc rescan 0; load mmc 0 ${loadaddr} flash-all.scr; source ${loadaddr}
+
+Essa linha de comando irá executar o script passando os bootloaders, o binário do núcleo e os arquivos raiz do sistema operacional para a memória flash do sistema embarcado e as mensagens apresentadas na figura abaixo devem ser impressas.
+
+.. adicionar imagem
 
 Retire o cartão SD e reinicie o seu sistema. Se tudo correu bem, seu sistema deve iniciar normalmente.
 
