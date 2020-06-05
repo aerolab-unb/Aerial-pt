@@ -6,7 +6,6 @@ Esta seção contém os principais tópicos de calibração do piloto automátic
 .. toctree::
    :maxdepth: 2
    
-
    1.6-calibration/1.6.1-Compass
    1.6-calibration/1.6.2-gyroscope
    1.6-calibration/1.6.3-accelerometer

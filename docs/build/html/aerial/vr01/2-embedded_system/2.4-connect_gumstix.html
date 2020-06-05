@@ -216,7 +216,7 @@
 </div>
 <div class="section" id="estabelecendo-uma-conexao-serial-via-console">
 <h2>Estabelecendo uma conexão serial via console<a class="headerlink" href="#estabelecendo-uma-conexao-serial-via-console" title="Permalink to this headline">¶</a></h2>
-<p>Para ligar o computador embarcado ao computador conecte um cabo USB ao computador e ao USB console da placa de expansão Tobi. Feito isso, uma luz verde deve se acender indicando a conexão correta. Em seguida verifique em qual porta de comunicação serial Gumstix Overo está conectada, no Windows isso pode ser verificado acessando o <strong>Gerenciador de Dispositivos</strong> e, em seguida, <strong>Portas(COM e LPT)</strong>. No Linux basta executar o comando:</p>
+<p>Para ligar o computador embarcado ao computador conecte um cabo USB ao computador e ao USB console da placa de expansão Tobi. Feito isso, uma luz verde deve se acender indicando a conexão correta. Em seguida verifique em qual porta de comunicação serial Gumstix Overo está conectada, no Windows isso pode ser verificado acessando o <strong>Gerenciador de Dispositivos</strong> e, em seguida, <strong>Portas (COM e LPT)</strong>. No Linux basta executar o comando:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ dmesg | grep tty
 </pre></div>
 </div>
@@ -224,7 +224,7 @@
 <p class="admonition-title">Note</p>
 <p>O comando <code class="docutils literal notranslate"><span class="pre">dmesg</span></code> é um comando que imprime as mensagens núcleo que, na maioria das vezes, são mensagens dos drivers do dispositivo. Quando acrescentamos <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">tty</span></code> estamos realizando uma busca nas saídas da função <code class="docutils literal notranslate"><span class="pre">dmesg</span></code> pelo termo <code class="docutils literal notranslate"><span class="pre">tty</span></code> e restringindo a sua saída aquelas mensagens que contém este termo.</p>
 </div>
-<p>A placa Gumstix deve ser a última entrada a aparecer. Por exemplo:</p>
+<p>A placa Gumstix deve ser a última entrada a aparecer, por exemplo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@Ubuntu:~$ dmesg | grep tty
 [    0.000000] printk: console [tty0] enabled
 [ 4214.120990] usb 2-1: FTDI USB Serial Device converter now attached to **ttyUSB0**
@@ -235,12 +235,12 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo screen /dev/&lt;Nome do dispositivo USB&gt; 115200
 </pre></div>
 </div>
-<p>No caso da linha de comando do exemplo apresentada anteriormente, o termo <code class="docutils literal notranslate"><span class="pre">ttyUSB0</span></code> foi a porta encontrada ao utilizar o comando <code class="docutils literal notranslate"><span class="pre">dmesg</span></code> e &quot;115200&quot; é a velocidade de comunicação em <em>baud</em>. Nesse momento a comunicação entre a gumstix e o computador deve ser estabelecida e assim que a gumstix for ligada os caracteres devem começar a ser impressos na tela do computador.</p>
+<p>No caso da linha de comando do exemplo apresentada anteriormente, o termo <code class="docutils literal notranslate"><span class="pre">ttyUSB0</span></code> foi a porta encontrada ao utilizar o comando <code class="docutils literal notranslate"><span class="pre">dmesg</span></code> e &quot;115200&quot; é a velocidade de comunicação em <em>baud</em>. Nesse momento a comunicação entre a Gumstix e o computador deve ser estabelecida e assim que a Gumstix for ligada os caracteres devem começar a ser impressos na tela do computador.</p>
 </div>
 <div class="section" id="inicializando-o-overo-com">
 <h2>Inicializando o Overo COM<a class="headerlink" href="#inicializando-o-overo-com" title="Permalink to this headline">¶</a></h2>
 <p>Feita conexão com o console, o Overo COM estará pronta para ser ligado. Para inicializar o sistema basta conectar a fonte de alimentação de 5 Volts à sua placa de expansão. Os indicadores LED no COM devem acender em azul e verde. O processo de inicialização será exibido no terminal da sua máquina host.</p>
-<p>Porém, antes de ligá-la, é importante comentar que o fabricante recomenda a limpeza de variáveis da memória flash sempre que iniciar uma <strong>nova versão do sistema operacional</strong> no computador embarcado pela primeira vez. Para fazê-lo, basta interromper o processo de boot apertando qualquer tecla antes de seu início no momento em que aparece a mensagem &quot;<strong>Hit any key to stop autoboot</strong>&quot; e uma contagem regressiva na tela. O processo tipico de inicialização será similar ao seguinte:</p>
+<p>Porém, antes de ligá-la, é importante comentar que o fabricante recomenda a limpeza de variáveis da memória flash sempre que iniciar uma <strong>nova versão do sistema operacional</strong> no computador embarcado pela primeira vez. Para fazê-lo, basta interromper o processo de boot apertando qualquer tecla antes de seu início quando aparece a mensagem &quot;<strong>Hit any key to stop autoboot</strong>&quot; e uma contagem regressiva na tela. O processo típico de inicialização será similar ao seguinte:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reading</span> <span class="n">u</span><span class="o">-</span><span class="n">boot</span><span class="o">.</span><span class="n">img</span>
 <span class="n">reading</span> <span class="n">u</span><span class="o">-</span><span class="n">boot</span><span class="o">.</span><span class="n">img</span>
 
@@ -298,7 +298,7 @@ $ sudo wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/ma
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li><p>Crie um script para gravar os arquivos na memoria flash com o nome <em>flash-all.cmd</em>. Para isso basta executar o comando:</p></li>
+<li><p>Crie um script para gravar os arquivos na memória flash com o nome <em>flash-all.cmd</em>. Para isso basta executar o comando:</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo nano flash-all.cmd
 </pre></div>
@@ -347,7 +347,7 @@ nand write ${loadaddr} rootfs ${filesize}
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Caso o comando <code class="docutils literal notranslate"><span class="pre">mkimage</span></code> não seja encontrado, basta executar o comando <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">u-boot-tools</span></code> para instalar o pacote de ferramentes em seu computador. O comando <code class="docutils literal notranslate"><span class="pre">mkimage</span></code> é um comando utilizado para fazer imagens para serem utilizadas pelo <strong>u-boot</strong>. As opções de comando e suas explicações são facilmente obtidas digitando <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">mkimage</span></code> no terminal do Linux.</p>
+<p>Caso o comando <code class="docutils literal notranslate"><span class="pre">mkimage</span></code> não seja encontrado, basta executar o comando <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">u-boot-tools</span></code> para instalar o pacote de ferramentas em seu computador. O comando <code class="docutils literal notranslate"><span class="pre">mkimage</span></code> é um comando utilizado para fazer imagens para serem utilizadas pelo <strong>u-boot</strong>. As opções de comando e suas explicações são facilmente obtidas digitando <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">mkimage</span></code> no terminal do Linux.</p>
 </div>
 <ol class="arabic simple" start="5">
 <li><p>Desmonte o cartão SD e o insira em seu computador embarcado, inicie o sistema e aguarde o carregamento do u-boot. Interrompa o processo de inicialização quando vir &quot;<strong>Hit any key to stop autoboot</strong>&quot; e insira o comando:</p></li>
