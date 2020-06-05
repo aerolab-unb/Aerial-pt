@@ -48,7 +48,7 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
 
    vr01/3-gumstix/3.0-intro
 
-References
+Referências
 -----------
 
 * ROCHA, E. M. C. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos. Faculdade de Tecnologia, Universidade de Brasília, 2017.
