@@ -1,2 +1,0 @@
-Parâmetros de estabilidade
-==========================
