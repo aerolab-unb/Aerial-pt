@@ -49,7 +49,7 @@ Neste trabalho, iremos optar por liga-lo a um computador Linux e estabelecer uma
 Estabelecendo uma conexão serial via console
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Para ligar o computador embarcado ao computador conecte um cabo USB ao computador e ao USB console da placa de expansão Tobi. Feito isso, uma luz verde deve se acender indicando a conexão correta. Em seguida verifique em qual porta de comunicação serial Gumstix Overo está conectada, no Windows isso pode ser verificado acessando o **Gerenciador de Dispositivos** e, em seguida, **Portas(COM e LPT)**. No Linux basta executar o comando:
+Para ligar o computador embarcado ao computador conecte um cabo USB ao computador e ao USB console da placa de expansão Tobi. Feito isso, uma luz verde deve se acender indicando a conexão correta. Em seguida verifique em qual porta de comunicação serial Gumstix Overo está conectada, no Windows isso pode ser verificado acessando o **Gerenciador de Dispositivos** e, em seguida, **Portas (COM e LPT)**. No Linux basta executar o comando:
 
 ::
 
@@ -58,7 +58,7 @@ Para ligar o computador embarcado ao computador conecte um cabo USB ao computado
 .. Note::
 	O comando ``dmesg`` é um comando que imprime as mensagens núcleo que, na maioria das vezes, são mensagens dos drivers do dispositivo. Quando acrescentamos ``grep tty`` estamos realizando uma busca nas saídas da função ``dmesg`` pelo termo ``tty`` e restringindo a sua saída aquelas mensagens que contém este termo.
 
-A placa Gumstix deve ser a última entrada a aparecer. Por exemplo:
+A placa Gumstix deve ser a última entrada a aparecer, por exemplo:
 
 ::
 
@@ -75,14 +75,14 @@ Para iniciar a comunicação por terminal com o Gumstix Overo basta executar a s
 
 	$ sudo screen /dev/<Nome do dispositivo USB> 115200
 
-No caso da linha de comando do exemplo apresentada anteriormente, o termo ``ttyUSB0`` foi a porta encontrada ao utilizar o comando ``dmesg`` e "115200" é a velocidade de comunicação em *baud*. Nesse momento a comunicação entre a gumstix e o computador deve ser estabelecida e assim que a gumstix for ligada os caracteres devem começar a ser impressos na tela do computador.
+No caso da linha de comando do exemplo apresentada anteriormente, o termo ``ttyUSB0`` foi a porta encontrada ao utilizar o comando ``dmesg`` e "115200" é a velocidade de comunicação em *baud*. Nesse momento a comunicação entre a Gumstix e o computador deve ser estabelecida e assim que a Gumstix for ligada os caracteres devem começar a ser impressos na tela do computador.
 
 Inicializando o Overo COM
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Feita conexão com o console, o Overo COM estará pronta para ser ligado. Para inicializar o sistema basta conectar a fonte de alimentação de 5 Volts à sua placa de expansão. Os indicadores LED no COM devem acender em azul e verde. O processo de inicialização será exibido no terminal da sua máquina host. 
 
-Porém, antes de ligá-la, é importante comentar que o fabricante recomenda a limpeza de variáveis da memória flash sempre que iniciar uma **nova versão do sistema operacional** no computador embarcado pela primeira vez. Para fazê-lo, basta interromper o processo de boot apertando qualquer tecla antes de seu início no momento em que aparece a mensagem "**Hit any key to stop autoboot**" e uma contagem regressiva na tela. O processo tipico de inicialização será similar ao seguinte:
+Porém, antes de ligá-la, é importante comentar que o fabricante recomenda a limpeza de variáveis da memória flash sempre que iniciar uma **nova versão do sistema operacional** no computador embarcado pela primeira vez. Para fazê-lo, basta interromper o processo de boot apertando qualquer tecla antes de seu início quando aparece a mensagem "**Hit any key to stop autoboot**" e uma contagem regressiva na tela. O processo típico de inicialização será similar ao seguinte:
 
 ::
 
@@ -151,7 +151,7 @@ O site do fabricante descreve quatro maneiras distintas de se realizar este proc
 	$ sudo wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/u-boot.img
 	$ sudo wget https://s3-us-west-2.amazonaws.com/gumstix-yocto/2015-02-25/overo/master/gumstix-console-image-overo.ubi -O rootfs.ubi
 
-3. Crie um script para gravar os arquivos na memoria flash com o nome *flash-all.cmd*. Para isso basta executar o comando:
+3. Crie um script para gravar os arquivos na memória flash com o nome *flash-all.cmd*. Para isso basta executar o comando:
 
 ::
 
@@ -202,7 +202,7 @@ Em seguida confirme o nome do arquivo (**Ctrl+O**) e saia do editor de texto (**
 	:align: center
 
 .. Note::
-	Caso o comando ``mkimage`` não seja encontrado, basta executar o comando ``sudo apt install u-boot-tools`` para instalar o pacote de ferramentes em seu computador. O comando ``mkimage`` é um comando utilizado para fazer imagens para serem utilizadas pelo **u-boot**. As opções de comando e suas explicações são facilmente obtidas digitando ``man mkimage`` no terminal do Linux.
+	Caso o comando ``mkimage`` não seja encontrado, basta executar o comando ``sudo apt install u-boot-tools`` para instalar o pacote de ferramentas em seu computador. O comando ``mkimage`` é um comando utilizado para fazer imagens para serem utilizadas pelo **u-boot**. As opções de comando e suas explicações são facilmente obtidas digitando ``man mkimage`` no terminal do Linux.
 
 5. Desmonte o cartão SD e o insira em seu computador embarcado, inicie o sistema e aguarde o carregamento do u-boot. Interrompa o processo de inicialização quando vir "**Hit any key to stop autoboot**" e insira o comando:
 
