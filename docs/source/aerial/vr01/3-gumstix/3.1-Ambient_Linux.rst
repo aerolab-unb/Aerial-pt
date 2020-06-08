@@ -1,0 +1,165 @@
+Ambientando-se ao Linux
+=======================
+
+Realizados os procedimentos apresentados na seção anterior de forma correta, o computador embarcado estará operando com um sistema operacional Linux muito semelhante ao que estamos habituados em computadores regulares. Logo, podemos realizar alguns procedimentos simples para que possamos explorar e nos habituar um pouco o ambiente ao qual vamos trabalhar. O que será demostrado nessa etapa são procedimentos, comandos e informações padrão dos sistemas Linux executados no computador embarcado Gumstix Overo WaterStorm.
+
+.. Tip::
+    Caso o leitor já esteja habituado ao ambiente de trabalho Linux recomenda-se pular para a proxima seção.
+
+Linhas de Comandos
+~~~~~~~~~~~~~~~~~~
+
+Começaremos o processo de ambientação apresentando linhas de comando basicas que vão ajuda-lo a utilizar o sistema operacional sem grandes problemas. Vale ressaltar que não há necessidade de nenhum conhecimento especial para utilizar os comandos do Linux, já que o terminal é um programa como qualquer outro. 
+
+.. Tip:: 
+    Para obter mais detalhes sobre quaisquer comandos listados aqui basta executar o comando seguido de ``--help`` ou ``man`` . 
+    
+    O comando ``--help`` imprimi uma breve descrição dos comandos seguidos de instruções de uso, por exemplo:
+    ::
+
+        uname --help
+        
+    Para reduzir a quantidade de conteúdo impresso pode se usar ``less``, por exemplo:
+    ::
+
+        ls --help | less
+    
+    Enquanto o comando ``man`` apresenta o manual de instruções do comando solitado. Por exemplo:
+
+    ::
+
+        man cd
+    
+    Os comandos principais são simples, as setas para **cima e baixo** sobem e descem a página, respectivamente, assim como as teclas de setas para **esquerda e direita** fazem a movimentação para leitura dos textos, o **Enter** também faz a página descer. A tecla "**h**" mostra o *help* do comando ``man``, mostrando todas as teclas e atalhos utilizados. E a tecla "**q**" sai da navegação do manual.
+
+1. **Comando** ``cat``
+::
+
+    cat [OPÇÃO] [ARQUIVO]
+
+Seu nome é uma derivação da palavra concatenate (concatenar) e permite que você crie, una e exiba arquivos no formato padrão de tela ou em outro arquivo, entre outras coisas. Para mostrar algumas funções disponíveis. 
+
+Se a opção não for especificada, o comando ``cat`` lê o conteúdo presente no arquivo indicado e o imprime na tela. Por exemplo, ao executar o comando ``cat /etc/issue`` no terminal do Overo, é impresso o ramo e a versão do sistema operacional utilizado. 
+
+::
+
+    exemplo
+
+.. Note::
+    Caso deseje conhecer mais funcionalidades, acesse `Comando Cat Linux - hostinger.com.br`_. 
+
+.. _Comando Cat Linux - hostinger.com.br: https://www.hostinger.com.br/tutoriais/comando-cat-linux/#:~:text=O%20comando%20cat%20do%20Linux,outro%20arquivo%2C%20entre%20outras%20coisas.
+
+.. https://en.wikipedia.org/wiki/Cat_(Unix)
+
+2. **Comando** ``uname`` 
+::
+
+    uname [OPÇÃO]
+
+O comando ``uname``, nome derivado do termo "Unix Name", apresenta informações detalhadas sobre o seu sistema Linux, como o nome da maquina, do sistema operacional, do kernel e assim por diante. 
+
+Por exemplo, a opção ``-a`` solicita a impressão de todas as informações disponíveis pelo programa.
+::
+
+    exemplo
+
+3. **Comando** ``echo`` 
+::
+
+    echo [OPÇÃO] [STRING]
+
+O comando ``echo`` é um comando utilizado para exibir mensagens na tela ou em um arquivo. Ao utilizar o comando seguido de uma *string*, o texto da *string* é impresso na tela do terminal. Por exemplo:
+::
+
+    exemplo
+
+4. **Comando** ``clear`` 
+::
+
+    clear [OPÇÃO]
+
+Utilize o comando ``clear`` para limpar o conteúdo da tela de seu terminal. O comando não necessita de parâmetros, ele utiliza variáveis do ambiente de trabalho atual para determinar como limpar a tela. 
+
+5. **Comando** ``pwd`` 
+::
+
+    pwd [OPÇÃO]
+
+O comando pwd é usado para encontrar o caminho para o diretório atual (da pasta) em que você está. O comando vai retornar um caminho completo, que e basicamente um caminho que começa com uma barra inclinada (/). Por exemplo:
+
+::
+
+    exemplo
+
+6. **Comando** ``cd`` 
+::
+
+    cd [OPÇÃO] [DIRETÓRIO]
+
+Seu nome é um acrônimo da expressão inglesa "*change directory*" ("mudar diretório") e sua finalidade é, como sugere seu nome, mudar o diretório atual de trabalho (isto é, o diretório em que se está) para uma outra especificada. Por exemplo, caso você esteja em /home/user e quer ir para Documents, um subdiretório de user. Para fazer isso, simplesmente digite ``cd Documents``.
+
+Além disso, existem alguns atalhos que podem ser utilizados para navegar rapidamente. São alguns deles:
+::
+
+    cd ..   #(com dois pontos seguidos) move para um diretório acima (anterior).
+
+    cd      #move diretamente para a pasta *home*.
+
+    cd-     #(com um hífen) - move para os diretórios anteriores.
+
+.. Note::
+    O shell do Linux é sensível a tipos de caracteres. Por isso, você precisa digitar o nome do diretório exatamente como ele é escrito (usando letras minúsculas ou maiúsculas).  
+
+7. **Comando** ``ls`` 
+::
+
+    ls [OPÇÃO] [ARQUIVO]
+
+Seu nome deriva das primeiras consoantes da palavra inglesa *list*. O comando ``ls`` é usado para listar o conteudo dentro de um diretorio. Por padrão, esse comando vai mostrar apenas os conteúdos do diretório atual em que você estiver. Seu nome deriva das primeiras consoantes da palavra inglesa *list*.
+
+Ao utilizar o comando ``ls`` sem especificar nenhuma opção ou diretorio, o terminal irá imprimir o conteudo do diretorio atual. Porém, caso deseje ver o conteudo de outros diretorios, digite **ls**, e então, o caminho do diretorio. Por exemplo, escreva ``ls /home/username/Documents`` para ver os conteúdos de **Documents**.
+
+8. **Comando** ``cp`` 
+::
+
+    cp [OPÇÃO]... ORIGEM... DIRETÓRIO
+    
+Este comando é usado para copiar arquivos ou diretorios para um diretorio especifico. 
+
+Por exemplo, o comando ``cp Documento.txt /home/username/Documentos`` irá criar uma cópia de **Documento.txt** no diretório **Documentos**, caso este documento exista. Já o comando ``cp -R /home/user/projeto /home/user/novo_projeto`` irá copiar o diretório **projeto**, com todos seus arquivos, subdiretórios e arquivos dos subdiretórios para o diretório **novo_projeto**.
+
+9. **Comando** ``mv`` 
+::
+
+    uname [OPÇÃO]
+
+10. **Comando** ``mkdir`` 
+::
+
+    mkdir [OPÇÃO] DIRETÓRIO
+
+O  comando ``mkdir`` cria um novo diretório, se ele já não existir. Por exemplo, executar ``mkdir Test`` irá criar um novo diretório chamado **Test**.
+
+
+11. **Comando** ``rmdir`` 
+::
+
+    rmdir [OPÇÃO] DIRETÓRIO
+
+O comando ``rmdir`` tem a função de apagar (deletar) um diretorio. Porem, este comando só permite que sejam apagados diretorios vazios, sem conteudo.
+
+12. **Comando** ``rm`` 
+::
+
+    uname [OPÇÃO]
+
+13. **Comando** ``chmod`` 
+::
+
+    uname [OPÇÃO]
+
+14. **Comando** ``sudo`` 
+::
+
+    uname [OPÇÃO]
