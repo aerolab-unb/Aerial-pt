@@ -264,38 +264,79 @@
 </div>
 <p>Seu nome deriva das primeiras consoantes da palavra inglesa <em>list</em>. O comando <code class="docutils literal notranslate"><span class="pre">ls</span></code> é usado para listar o conteudo dentro de um diretorio. Por padrão, esse comando vai mostrar apenas os conteúdos do diretório atual em que você estiver. Seu nome deriva das primeiras consoantes da palavra inglesa <em>list</em>.</p>
 <p>Ao utilizar o comando <code class="docutils literal notranslate"><span class="pre">ls</span></code> sem especificar nenhuma opção ou diretorio, o terminal irá imprimir o conteudo do diretorio atual. Porém, caso deseje ver o conteudo de outros diretorios, digite <strong>ls</strong>, e então, o caminho do diretorio. Por exemplo, escreva <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/home/username/Documents</span></code> para ver os conteúdos de <strong>Documents</strong>.</p>
+<p>Uma opção muito util do comando <code class="docutils literal notranslate"><span class="pre">ls</span></code> é a opção <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span></code> que além de listar todos os arquivos e pastas no diretório atual também imprime algumas informações úteis sobre cada um deles.</p>
+<p>A figura abaixo apresenta um exemplo de saida do comando  <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span></code>, , nele podemos ver que
+para cada arquivo é impresso uma linha com várias colunas de informação. Explicar o que
+cada coluna significa se faz desnecessário, entretanto é importante saber o que as primeiras
+letras significam, pois muitas vezes essa é a causa de alguns problemas.</p>
+<p>AS 10 primeiras colunas que são compostas por &quot;-&quot; e letras variadas indicam as o tipo do arquivo e as permissões dos usuários quanto aqueles arquivos. Na figura, a primeira coluna, que é sempre indicada pela letra &quot;d&quot;, nós mostra que o arquivo é um diretório, se o arquivo fosse um programa ou um arquivo de texto regular este seria indicado por um &quot;-&quot;. As noves letras seguintes podem ser separadas em grupos de 3 indicando as permissões do dono, grupo e outros, respectivamente. As letras &quot;r&quot;, &quot;w&quot; e &quot;x&quot; indicam leitura, escrita e execução, respectivamente. Se analisarmos, portanto, os dados da pasta &quot;usr&quot; veremos que o dono da pasta possui permissão para ler, escrever e executar, porém seu grupo e outros usuários terão permissão apenas para ler e executar.</p>
 <p>8. <strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">cp</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span><span class="o">...</span> <span class="n">ORIGEM</span><span class="o">...</span> <span class="n">DIRETÓRIO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span> <span class="n">ORIGEM</span> <span class="n">DIRETÓRIO</span>
 </pre></div>
 </div>
 <p>Este comando é usado para copiar arquivos ou diretorios para um diretorio especifico.</p>
 <p>Por exemplo, o comando <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">Documento.txt</span> <span class="pre">/home/username/Documentos</span></code> irá criar uma cópia de <strong>Documento.txt</strong> no diretório <strong>Documentos</strong>, caso este documento exista. Já o comando <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-R</span> <span class="pre">/home/user/projeto</span> <span class="pre">/home/user/novo_projeto</span></code> irá copiar o diretório <strong>projeto</strong>, com todos seus arquivos, subdiretórios e arquivos dos subdiretórios para o diretório <strong>novo_projeto</strong>.</p>
 <p>9. <strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">mv</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uname</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span> <span class="n">ORIGEM</span> <span class="n">DESTINO</span>
 </pre></div>
 </div>
+<p>O nome do comando <code class="docutils literal notranslate"><span class="pre">mv</span></code> deriva das primeiras consoantes da palavra inglesa <em>move</em> (mover) e seu uso habitual é mover arquivos, ainda que ele possa também ser usado para renomear arquivos. Ou seja, este comando copia e altera o caminho do arquivo original para o caminho desejado e, desse modo, apaga o arquivo original (sendo possível ainda renomear e mudar o diretório de um arquivo simultaneamente).</p>
+<p>O comando rm é usado para apagar um diretório e todos os conteúdos que estiverem lá dentro. Se você só quer deletar o diretório – como uma alternativa ao rdmir – use rm -r.
+A sintaxe neste comando é similar ao comando <code class="docutils literal notranslate"><span class="pre">cp</span></code>. Você precisa digitar <code class="docutils literal notranslate"><span class="pre">mv</span></code>, o nome do arquivo e o diretório de destino. Por exemplo: <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">file.txt</span> <span class="pre">/home/username/Documents</span></code>.</p>
+<p>Já para renomear arquivos, o argumento a ser usado é <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">nomeantigo.ext</span> <span class="pre">nomenovo.ext</span></code>, sendo &quot;<strong>nomeantigo.ext</strong>&quot; o arquivo original e &quot;<strong>nomenovo.ext</strong>&quot; o novo arquivo.</p>
 <p>10. <strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">mkdir</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span> <span class="n">DIRETÓRIO</span>
 </pre></div>
 </div>
-<p>O  comando <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> cria um novo diretório, se ele já não existir. Por exemplo, executar <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Test</span></code> irá criar um novo diretório chamado <strong>Test</strong>.</p>
+<p>O  comando <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> cria um novo diretório, se ele já não existir. Por exemplo, executar <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Test</span></code> irá criar um novo diretório chamado <strong>Test</strong>. Seu nome deriva do termo inglês &quot;<em>Make Directory</em>&quot;, que poderia ser traduzido como &quot;<strong>Criar diretorio</strong>&quot;.</p>
 <p>11. <strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">rmdir</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rmdir</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span> <span class="n">DIRETÓRIO</span>
 </pre></div>
 </div>
-<p>O comando <code class="docutils literal notranslate"><span class="pre">rmdir</span></code> tem a função de apagar (deletar) um diretorio. Porem, este comando só permite que sejam apagados diretorios vazios, sem conteudo.</p>
+<p>O comando <code class="docutils literal notranslate"><span class="pre">rmdir</span></code> tem a função de apagar (deletar) um diretorio e sua sintexe é similar a do comando <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>. Porém, este comando só permite que sejam apagados diretorios vazios, sem conteudo. Seu nome vem do termo em inglês <em>Remore Directory</em> (<strong>Remover Diretorio</strong>).</p>
 <p>12. <strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">rm</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uname</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span> <span class="p">[</span><span class="n">ARQUIVO</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>13. <strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">chmod</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uname</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span>
+<p>O comando rm é usado para apagar um arquivo especifico ou diretório com todos os conteúdos que estiverem lá dentro. Por exemplo, executar o comando <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">/home/user/Documentos/texto.txt</span></code> irá apagar o arquivo <em>texto.txt</em>.</p>
+<p>Caso você deseje deletar um diretório especifico (como uma alternativa ao rdmir) use <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">[DIRETÓRIO]</span></code>.</p>
+<ol class="arabic simple" start="13">
+<li><p><strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">chmod</span></code></p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span> <span class="n">MODO</span><span class="p">[,</span><span class="n">MODO</span> <span class="n">ARQUIVO</span>    <span class="c1">#ou</span>
+<span class="n">chmod</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span> <span class="n">MODO</span><span class="o">-</span><span class="n">OCTAL</span> <span class="n">ARQUIVO</span>    <span class="c1">#ou</span>
+<span class="n">chmod</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span> <span class="o">--</span><span class="n">reference</span><span class="o">=</span><span class="n">ARQREF</span> <span class="n">ARQUIVO</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>14. <strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uname</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span>
+<p>O <code class="docutils literal notranslate"><span class="pre">chmod</span></code> (abreviação de <em>change mode</em>, em português <strong>alterar modo</strong>) é um comando que pode alterar permissões de acesso de objetos do sistema (arquivos e diretórios) e sinalizações (flags) de modo especial. Os sinalizadores (flags) são uma maneira de definir opções e passar argumentos para os comandos que você executa.</p>
+<p>Usualmente, o comando <code class="docutils literal notranslate"><span class="pre">chmod</span></code> é usado na forma:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="o">&lt;</span><span class="n">OPÇÃO</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">PERMISSÕES</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">NOME</span> <span class="n">DO</span> <span class="n">ARQUIVO</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+<p>Se nenhuma opção for especificada, o <code class="docutils literal notranslate"><span class="pre">chmod</span></code> modifica as permissões do arquivo especificado pelo nome do arquivo para as permissões especificadas. Há duas maneiras de representar as permissões possiveis: com símbolos (caracteres alfanuméricos) ou com números octais (os dígitos de 0 a 7).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Como esse comando é relativamente complicado, você obter mais informações em <a class="reference external" href="https://www.computerhope.com/unix/uchmod.htm">Linux chmod Command</a>.</p>
+</div>
+<ol class="arabic simple" start="14">
+<li><p><strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span></code></p></li>
+</ol>
+<p>O comando <code class="docutils literal notranslate"><span class="pre">sudo</span></code> permite que usuarios comuns executem tarefas que exigem permissões de outro usuário, em geral o super usuário, para executar tarefas específicas dentro do sistema de maneira segura e controlável pelo administrador. Porém, não é muito aconselhável usá-lo diariamente porque pode ser que um erro aconteça se você fizer algo de errado. O nome é uma forma abreviada de se referir a <em>Substitute User Do</em> (<strong>fazer substituição do usuário</strong>) ou <em>Super User Do</em> (<strong>fazer como super usuário</strong>).</p>
+<p>Geralmente, o comando <code class="docutils literal notranslate"><span class="pre">sudo</span></code> é executado na forma:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="p">[</span><span class="o">-</span><span class="n">u</span> <span class="n">usuário</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">comando</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Onde &lt;comando&gt; é o comando que deseja executar. A opção [-u usuário] serve para especificar qual usuário deve ser utilizado para executar o comando, se omitida, o comando <code class="docutils literal notranslate"><span class="pre">sudo</span></code> assume o usuário root e pede a senha de login para confirmar.</p>
+</div>
+<div class="section" id="explorando-os-arquivos-do-sistema">
+<h2>Explorando os Arquivos do Sistema<a class="headerlink" href="#explorando-os-arquivos-do-sistema" title="Permalink to this headline">¶</a></h2>
+<p>Passadas essas informações e estes comandos básicos, já somos capazes de explorar os arquivos do sistema. Portanto permita-nos migrar para o primeiro diretório do sistema executando &quot;cd ..&quot; duas vezes. E em seguida executar o comando &quot;ls -la&quot; para que possamos visualizar as pastas do sistema. Se tudo for executado como explicado devemos obter algo como mostrado na figura a seguir.</p>
+<p>Dos vários diretórios presentes na figura 3.2 destacam-se os diretórios &quot;/bin&quot;, &quot;/boot&quot;, &quot;/dev&quot;, &quot;/lib&quot; e &quot;/sys&quot;.</p>
+<p>O diretório &quot;/bin&quot; é aonde ficam armazenados os binários dos comandos essenciais do Linux, como os comandos apresentados anteriormente, logo caso se faça necessário acrescentar ao microprocessador mais algum software que se faça necessário ele deve ser adicionado a esta pasta para que possa ser encontrado pelo sistema operacional quando requisitado.</p>
+<p>O diretório &quot;/boot&quot; já foi utilizado neste trabalho e é o local aonde devem ser armazenados os bootloaders e outros programas que fazem parte da inicialização do sistema.</p>
+<p>O diretório &quot;/dev&quot; é o diretório onde ficam armazenados os arquivos de dispositivos do sistema. Arquivo de dispositivo é uma maneira que o sistema Linux utiliza para gerar uma interface de comunicação com drivers de dispositivos. Ele será muito utilizado mais para a frente durante a comunicação serial, por exemplo.</p>
+<p>O diretório &quot;/lib&quot; é o diretório que contém as bibliotecas essenciais para os binários contidos no diretório &quot;/bin&quot;, assim caso seja necessário instalação de um novo software provavelmente também precisaremos adicionar alguma biblioteca a este diretório.</p>
+<p>Por último, o diretório &quot;/sys&quot; é o diretório que contém informações de dispositivos e drivers. Está pasta será muito utilizados caso seja necessário utilizar funções como general purpose input/output (GPIO), I2C e direct memory access (DMA).</p>
 </div>
 </div>
 

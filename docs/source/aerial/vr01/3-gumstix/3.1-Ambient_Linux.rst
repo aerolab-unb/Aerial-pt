@@ -120,10 +120,21 @@ Seu nome deriva das primeiras consoantes da palavra inglesa *list*. O comando ``
 
 Ao utilizar o comando ``ls`` sem especificar nenhuma opção ou diretorio, o terminal irá imprimir o conteudo do diretorio atual. Porém, caso deseje ver o conteudo de outros diretorios, digite **ls**, e então, o caminho do diretorio. Por exemplo, escreva ``ls /home/username/Documents`` para ver os conteúdos de **Documents**.
 
+Uma opção muito util do comando ``ls`` é a opção ``ls -la`` que além de listar todos os arquivos e pastas no diretório atual também imprime algumas informações úteis sobre cada um deles.
+
+A figura abaixo apresenta um exemplo de saida do comando  ``ls -la``, , nele podemos ver que
+para cada arquivo é impresso uma linha com várias colunas de informação. Explicar o que
+cada coluna significa se faz desnecessário, entretanto é importante saber o que as primeiras
+letras significam, pois muitas vezes essa é a causa de alguns problemas.
+
+.. imagem
+
+AS 10 primeiras colunas que são compostas por "-" e letras variadas indicam as o tipo do arquivo e as permissões dos usuários quanto aqueles arquivos. Na figura, a primeira coluna, que é sempre indicada pela letra "d", nós mostra que o arquivo é um diretório, se o arquivo fosse um programa ou um arquivo de texto regular este seria indicado por um "-". As noves letras seguintes podem ser separadas em grupos de 3 indicando as permissões do dono, grupo e outros, respectivamente. As letras "r", "w" e "x" indicam leitura, escrita e execução, respectivamente. Se analisarmos, portanto, os dados da pasta "usr" veremos que o dono da pasta possui permissão para ler, escrever e executar, porém seu grupo e outros usuários terão permissão apenas para ler e executar.
+
 8. **Comando** ``cp`` 
 ::
 
-    cp [OPÇÃO]... ORIGEM... DIRETÓRIO
+    cp [OPÇÃO] ORIGEM DIRETÓRIO
     
 Este comando é usado para copiar arquivos ou diretorios para um diretorio especifico. 
 
@@ -132,34 +143,90 @@ Por exemplo, o comando ``cp Documento.txt /home/username/Documentos`` irá criar
 9. **Comando** ``mv`` 
 ::
 
-    uname [OPÇÃO]
+    mv [OPÇÃO] ORIGEM DESTINO
+
+O nome do comando ``mv`` deriva das primeiras consoantes da palavra inglesa *move* (mover) e seu uso habitual é mover arquivos, ainda que ele possa também ser usado para renomear arquivos. Ou seja, este comando copia e altera o caminho do arquivo original para o caminho desejado e, desse modo, apaga o arquivo original (sendo possível ainda renomear e mudar o diretório de um arquivo simultaneamente).
+
+O comando rm é usado para apagar um diretório e todos os conteúdos que estiverem lá dentro. Se você só quer deletar o diretório – como uma alternativa ao rdmir – use rm -r.
+A sintaxe neste comando é similar ao comando ``cp``. Você precisa digitar ``mv``, o nome do arquivo e o diretório de destino. Por exemplo: ``mv file.txt /home/username/Documents``.  
+
+Já para renomear arquivos, o argumento a ser usado é ``mv nomeantigo.ext nomenovo.ext``, sendo "**nomeantigo.ext**" o arquivo original e "**nomenovo.ext**" o novo arquivo. 
 
 10. **Comando** ``mkdir`` 
 ::
 
     mkdir [OPÇÃO] DIRETÓRIO
 
-O  comando ``mkdir`` cria um novo diretório, se ele já não existir. Por exemplo, executar ``mkdir Test`` irá criar um novo diretório chamado **Test**.
-
+O  comando ``mkdir`` cria um novo diretório, se ele já não existir. Por exemplo, executar ``mkdir Test`` irá criar um novo diretório chamado **Test**. Seu nome deriva do termo inglês "*Make Directory*", que poderia ser traduzido como "**Criar diretorio**".
 
 11. **Comando** ``rmdir`` 
 ::
 
     rmdir [OPÇÃO] DIRETÓRIO
 
-O comando ``rmdir`` tem a função de apagar (deletar) um diretorio. Porem, este comando só permite que sejam apagados diretorios vazios, sem conteudo.
+O comando ``rmdir`` tem a função de apagar (deletar) um diretorio e sua sintexe é similar a do comando ``mkdir``. Porém, este comando só permite que sejam apagados diretorios vazios, sem conteudo. Seu nome vem do termo em inglês *Remore Directory* (**Remover Diretorio**).
 
 12. **Comando** ``rm`` 
 ::
 
-    uname [OPÇÃO]
+    rm [OPÇÃO] [ARQUIVO]
+
+O comando rm é usado para apagar um arquivo especifico ou diretório com todos os conteúdos que estiverem lá dentro. Por exemplo, executar o comando ``rm /home/user/Documentos/texto.txt`` irá apagar o arquivo *texto.txt*.
+
+Caso você deseje deletar um diretório especifico (como uma alternativa ao rdmir) use ``rm -r [DIRETÓRIO]``.
 
 13. **Comando** ``chmod`` 
+
 ::
 
-    uname [OPÇÃO]
+    chmod [OPÇÃO] MODO[,MODO ARQUIVO    #ou
+    chmod [OPÇÃO] MODO-OCTAL ARQUIVO    #ou
+    chmod [OPÇÃO] --reference=ARQREF ARQUIVO.
+
+
+O ``chmod`` (abreviação de *change mode*, em português **alterar modo**) é um comando que pode alterar permissões de acesso de objetos do sistema (arquivos e diretórios) e sinalizações (flags) de modo especial. Os sinalizadores (flags) são uma maneira de definir opções e passar argumentos para os comandos que você executa.
+
+Usualmente, o comando ``chmod`` é usado na forma:
+
+::
+
+    chmod <OPÇÃO> <PERMISSÕES> <NOME DO ARQUIVO>
+
+Se nenhuma opção for especificada, o ``chmod`` modifica as permissões do arquivo especificado pelo nome do arquivo para as permissões especificadas. Há duas maneiras de representar as permissões possiveis: com símbolos (caracteres alfanuméricos) ou com números octais (os dígitos de 0 a 7).
+
+.. Tip::
+    Como esse comando é relativamente complicado, você obter mais informações em `Linux chmod Command`_.
+
+.. _Linux chmod Command: https://www.computerhope.com/unix/uchmod.htm
+
+.. https://pt.wikipedia.org/wiki/Chmod
+
 
 14. **Comando** ``sudo`` 
+
+O comando ``sudo`` permite que usuarios comuns executem tarefas que exigem permissões de outro usuário, em geral o super usuário, para executar tarefas específicas dentro do sistema de maneira segura e controlável pelo administrador. Porém, não é muito aconselhável usá-lo diariamente porque pode ser que um erro aconteça se você fizer algo de errado. O nome é uma forma abreviada de se referir a *Substitute User Do* (**fazer substituição do usuário**) ou *Super User Do* (**fazer como super usuário**).
+
+Geralmente, o comando ``sudo`` é executado na forma:
+
 ::
 
-    uname [OPÇÃO]
+    sudo [-u usuário] <comando>
+
+Onde <comando> é o comando que deseja executar. A opção [-u usuário] serve para especificar qual usuário deve ser utilizado para executar o comando, se omitida, o comando ``sudo`` assume o usuário root e pede a senha de login para confirmar.
+
+Explorando os Arquivos do Sistema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Passadas essas informações e estes comandos básicos, já somos capazes de explorar os arquivos do sistema. Portanto permita-nos migrar para o primeiro diretório do sistema executando "cd .." duas vezes. E em seguida executar o comando "ls -la" para que possamos visualizar as pastas do sistema. Se tudo for executado como explicado devemos obter algo como mostrado na figura a seguir.
+
+Dos vários diretórios presentes na figura 3.2 destacam-se os diretórios "/bin", "/boot", "/dev", "/lib" e "/sys".
+
+O diretório "/bin" é aonde ficam armazenados os binários dos comandos essenciais do Linux, como os comandos apresentados anteriormente, logo caso se faça necessário acrescentar ao microprocessador mais algum software que se faça necessário ele deve ser adicionado a esta pasta para que possa ser encontrado pelo sistema operacional quando requisitado.
+
+O diretório "/boot" já foi utilizado neste trabalho e é o local aonde devem ser armazenados os bootloaders e outros programas que fazem parte da inicialização do sistema.
+
+O diretório "/dev" é o diretório onde ficam armazenados os arquivos de dispositivos do sistema. Arquivo de dispositivo é uma maneira que o sistema Linux utiliza para gerar uma interface de comunicação com drivers de dispositivos. Ele será muito utilizado mais para a frente durante a comunicação serial, por exemplo.
+
+O diretório "/lib" é o diretório que contém as bibliotecas essenciais para os binários contidos no diretório "/bin", assim caso seja necessário instalação de um novo software provavelmente também precisaremos adicionar alguma biblioteca a este diretório.
+
+Por último, o diretório "/sys" é o diretório que contém informações de dispositivos e drivers. Está pasta será muito utilizados caso seja necessário utilizar funções como general purpose input/output (GPIO), I2C e direct memory access (DMA).
