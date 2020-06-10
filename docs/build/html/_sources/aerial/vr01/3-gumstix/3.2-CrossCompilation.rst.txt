@@ -1,2 +1,18 @@
 Compilação Cruzada
 ==================
+
+A compilação cruzada ocorre quando um dispositivo compila um código fonte para uma plataforma diferente daquela que compilou o código, geralmente temos um ambiente de desenvolvimento que está em uma arquitetura diferente da arquitetura da placa em que vamos rodar nosso programa. Para que nossos notebooks ou desktops possam gerar um binário, programa que rode em outra arquitetura, acontece o *Cross Compile* (Compilação Cruzada, da tradução direta do inglês). Por exemplo, em nosso caso, um computador com Linux Ubuntu, utilizando um processador Intel ou AMD com arquitetura x86, irá compilar um código para o computador embarcado rodando um sistema Linux adaptado rodando em uma arquitetura completamente diferente.
+
+Utilizar a compilação cruzada para trabalhar com sistemas embarcados é muito comum, principalmente quando estes não possuem capacidade de processamento para suportar um compilador. Para nós seria possível compilar no próprio sistema embarcado, porém, apesar de os recursos não serem tão limitados assim, não queremos desperdiça-los. Além disso programar em um computador regular com a disposição de diversos tipos de IDE diferentes é muito melhor do que programar em um computador embarcado com recursos de interface limitadas.
+
+.. Logo, para realizar a compilação cruzada iremos utilizar um compilador cruzado, um compilador capaz de criar executável código para uma plataforma que não aquele em que o compilador está em execução.
+
+Para realizarmos esse processo de compilação cruzada precisamos primeiro obter um *software development kit*, também conhecido como Kit de desenvolvimento de software, SDK ou *devkit*. O SDK nada mais é que um conjunto de ferramentas de desenvolvimento de software que possibilita a criação e compilação dos softwares para um sistema diferente. 
+
+.. Note
+    O projeto Yocto oferece um tutorial para se obter o SDK para seu sistema em sua página `Cross Compile with Yocto SDK`_.
+
+.. Cross Compile with Yocto SDK: https://github.com/gumstix/yocto-manifest/wiki/Cross-Compile-with-Yocto-SDK
+
+Instalando o SDK
+~~~~~~~~~~~~~~~~
