@@ -179,6 +179,90 @@
 <p>Para realizarmos esse processo de compilação cruzada precisamos primeiro obter um <em>software development kit</em>, também conhecido como Kit de desenvolvimento de software, SDK ou <em>devkit</em>. O SDK nada mais é que um conjunto de ferramentas de desenvolvimento de software que possibilita a criação e compilação dos softwares para um sistema diferente.</p>
 <div class="section" id="instalando-o-sdk">
 <h2>Instalando o SDK<a class="headerlink" href="#instalando-o-sdk" title="Permalink to this headline">¶</a></h2>
+<p>Para obter o SDK para a imagem do sistema operacional que estamos utilizando basta executar os procedimentos a seguir:</p>
+<ol class="arabic simple">
+<li><p><strong>Criação dos diretorios</strong></p></li>
+</ol>
+<p>Criaremos um diretório chamado <strong>workspace</strong> onde você não apenas instalará o SDK, mas também compilará o código de exemplo. Escolha um local conveniente para você e exeecute os comandos.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir workspace
+$ cd workspace
+$ wget http://gumstix-yocto.s3.amazonaws.com/sdk.sh
+</pre></div>
+</div>
+<div class="figure align-center">
+<img alt="../../../_images/sdk_download.png" src="../../../_images/sdk_download.png" />
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>O comando <code class="docutils literal notranslate"><span class="pre">wget</span></code> irá efetuar download do SDK para sistemas Gumstix. Esse processo pode demorar um pouco, a depender da sua velocidade de download.</p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Verificando as permissões</strong></p></li>
+</ol>
+<p>Após o fim do download, verifique as permissões do arquivo executando o comando <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span> <span class="pre">sdk.sh</span></code>. Se o terminal retornar que há permissão para executar este arquivo, pule para o proximo procedimento. Caso contrario, será necessario alterar as permissões do arquivo atraves do comando <code class="docutils literal notranslate"><span class="pre">chmod</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Relembrando, os três primeiras espaços indicam as permissões do dono e, basicamente, temos 3 permissões basicas, &quot;r&quot;, &quot;w&quot; e &quot;x&quot; indicando permissão para leitura, escrita e execução, respectivamente.</p>
+</div>
+<p>Por exemplo, na imagem abaixo, o arquivo possui permissão para leitura e escrita, mas não pode ser executado.</p>
+<div class="figure align-center">
+<img alt="../../../_images/sdk_permission.png" src="../../../_images/sdk_permission.png" />
+</div>
+<p>Para adicionar a permissão para execução, basta executar o comando <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">sdk.sh</span></code> e</p>
+<div class="figure align-center">
+<img alt="../../../_images/sdk_permission2.png" src="../../../_images/sdk_permission2.png" />
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Instalação</strong></p></li>
+</ol>
+<p>Execute o arquivo <em>sdk.sh</em>. Assim que solicitado, digite o diretorio que deseja instalar o SDK (recomendamos a criação de um repositorio chamado <em>sdk</em>) e confirme.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./sdk.sh
+</pre></div>
+</div>
+<div class="figure align-center">
+<img alt="../../../_images/sdk_install.png" src="../../../_images/sdk_install.png" />
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Configurando o ambiente</strong></p></li>
+</ol>
+<p>A instalação do SDK irá gerar uma pasta com o conteúdo apresentado na figura abaixo.</p>
+<div class="figure align-center">
+<img alt="../../../_images/sdk_ls.png" src="../../../_images/sdk_ls.png" />
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>O diretório &quot;sysroot&quot; contém os arquivos raiz dos dois sistemas, tanto do sistema que irá compilar o código quanto do sistema que irá executar o programa, e o primeiro arquivo da lista importa os endereços e variáveis importantes para a compilação do código.</p>
+</div>
+<p>Para podermos prosseguir com a compilação do código é necessária a execução da seguinte linha de comando:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">sdk</span><span class="o">/</span><span class="n">environment</span><span class="o">-</span><span class="n">setup</span><span class="o">-</span><span class="n">cortexa8hf</span><span class="o">-</span><span class="n">neon</span><span class="o">-</span><span class="n">poky</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnueabi</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<img alt="../../../_images/sdk_source.png" src="../../../_images/sdk_source.png" />
+</div>
+</div>
+<div class="section" id="compilando-hello-world">
+<h2>Compilando Hello World<a class="headerlink" href="#compilando-hello-world" title="Permalink to this headline">¶</a></h2>
+<p>Uma vez realizada a instalação, podemos testar a compilação cruzada criando um simples script. Vamos criar um arquivo no editor de texto chamado <em>helloworld.c</em>, colar o codigo abaixo e salvar no diretorio <em>workspace</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">printf</span> <span class="p">(</span><span class="s2">&quot;Hello World!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Agora podemos executar o comando <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">&lt;nome_do_código&gt;.c</span></code> para criar um arquivo binário executável do <em>helloworld.c</em>.</p>
+<div class="figure align-center">
+<img alt="../../../_images/sdk_compile.png" src="../../../_images/sdk_compile.png" />
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>O comando &quot;make&quot; é na verdade a simplificação de uma extensa linha de comando que chama um compilador <strong>arm-poky-Linux-gnueabi-gcc</strong> e dá a ele os parâmetros contidos na pasta SDK. Tudo isso graças ao comando &quot;source&quot; utilizado
+anteriormente.</p>
+</div>
+<p>Uma vez obtido o executável do código basta copiá-lo para uma das pastas do cartão de memória transferi-lo para o Overo e executá-lo. Lembre-se que o diretório principal é o diretório <code class="docutils literal notranslate"><span class="pre">/home/root/</span></code>, então se o arquivo for colocado dentro deste diretório será bem fácil encontra-lo.</p>
+<p>Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente. Quando iniciado, vamos até o diretório em que o programa foi salvo e o executamos com o comando &quot;./nome_do_programa&quot;. Se tudo ocorrer bem, o programa deverá ser executado, similar a figura abaixo.</p>
 </div>
 </div>
 
