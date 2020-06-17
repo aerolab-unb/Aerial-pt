@@ -9,3 +9,4 @@ Neste capítulo serão discutidos conhecimentos básicos necessários para a man
 
    3.1-Ambient_Linux
    3.2-CrossCompilation
+   3.3-register
