@@ -19,9 +19,9 @@ Instalando o SDK
 
 Para obter o SDK para a imagem do sistema operacional que estamos utilizando basta executar os procedimentos a seguir:
 
-1. **Criação dos diretorios**
+1. **Criação dos diretórios**
 
-Criaremos um diretório chamado **workspace** onde você não apenas instalará o SDK, mas também compilará o código de exemplo. Escolha um local conveniente para você e exeecute os comandos. 
+Criaremos um diretório chamado **workspace** onde você não apenas instalará o SDK, mas também compilará o código de exemplo. Escolha um local conveniente para você e execute os comandos. 
 
 ::
 
@@ -39,10 +39,10 @@ Criaremos um diretório chamado **workspace** onde você não apenas instalará 
 
 2. **Verificando as permissões**
 
-Após o fim do download, verifique as permissões do arquivo executando o comando ``ls -la sdk.sh``. Se o terminal retornar que há permissão para executar este arquivo, pule para o proximo procedimento. Caso contrario, será necessario alterar as permissões do arquivo atraves do comando ``chmod``. 
+Após o fim do download, verifique as permissões do arquivo executando o comando ``ls -la sdk.sh``. Se o terminal retornar que há permissão para executar este arquivo, pule para o próximo procedimento. Caso contrário, será necessário alterar as permissões do arquivo através do comando ``chmod``. 
 
 .. Note::
-    Relembrando, os três primeiras espaços indicam as permissões do dono e, basicamente, temos 3 permissões basicas, "r", "w" e "x" indicando permissão para leitura, escrita e execução, respectivamente. 
+    Relembrando, os três primeiras espaços indicam as permissões do dono e, basicamente, temos 3 permissões básicas, "r", "w" e "x" indicando permissão para leitura, escrita e execução, respectivamente. 
 
 Por exemplo, na imagem abaixo, o arquivo possui permissão para leitura e escrita, mas não pode ser executado.
 
@@ -56,7 +56,7 @@ Para adicionar a permissão para execução, basta executar o comando ``chmod +x
 
 3. **Instalação**
 
-Execute o arquivo *sdk.sh*. Assim que solicitado, digite o diretorio que deseja instalar o SDK (recomendamos a criação de um repositorio chamado *sdk*) e confirme. 
+Execute o arquivo *sdk.sh*. Assim que solicitado, digite o diretório que deseja instalar o SDK (recomendamos a criação de um repositório chamado *sdk*) e confirme. 
 
 ::
 
@@ -65,7 +65,7 @@ Execute o arquivo *sdk.sh*. Assim que solicitado, digite o diretorio que deseja 
 .. figure:: /img/Aerial/sdk_install.png
 	:align: center
 
-.. Alguns erros de executação podem aparecer, mas estes não interferem no uso do SDK
+.. comentar erros
 
 4. **Configurando o ambiente**
 
@@ -89,7 +89,7 @@ Para podermos prosseguir com a compilação do código é necessária a execuç�
 Compilando Hello World
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Uma vez realizada a instalação, podemos testar a compilação cruzada criando um simples script. Vamos criar um arquivo no editor de texto chamado *helloworld.c*, colar o codigo abaixo e salvar no diretorio *workspace*.
+Uma vez realizada a instalação, podemos testar a compilação cruzada criando um simples script. Vamos criar um arquivo no editor de texto chamado *helloworld.c*, colar o código abaixo e salvar no diretório *workspace*.
 
 ::
 
@@ -109,9 +109,10 @@ Agora podemos executar o comando ``make <nome_do_código>.c`` para criar um arqu
     O comando "make" é na verdade a simplificação de uma extensa linha de comando que chama um compilador **arm-poky-Linux-gnueabi-gcc** e dá a ele os parâmetros contidos na pasta SDK. Tudo isso graças ao comando "source" utilizado 
     anteriormente.
 
+
 Uma vez obtido o executável do código basta copiá-lo para uma das pastas do cartão de memória transferi-lo para o Overo e executá-lo. Lembre-se que o diretório principal é o diretório ``/home/root/``, então se o arquivo for colocado dentro deste diretório será bem fácil encontra-lo.
 
-Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente. Quando iniciado, vamos até o diretório em que o programa foi salvo e o executamos com o comando ``./nome_do_programa``. Se tudo ocorrer bem, o programa deverá ser executado, similar a figura abaixo.
+Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente. Quando iniciado, vamos até o diretório em que o programa foi salvo e o executamos com o comando ``./nome_do_código``. Se tudo ocorrer bem, o programa deverá ser executado, similar a figura abaixo.
 
 .. figure:: /img/Aerial/sdk_compile2.png
 	:align: center

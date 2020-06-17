@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Mobile Robots" href="../../../mobile.html" />
+    <link rel="next" title="Registradores" href="3.3-register.html" />
     <link rel="prev" title="Ambientando-se ao Linux" href="3.1-Ambient_Linux.html" /> 
 </head>
 
@@ -91,6 +91,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="3.0-intro.html">Utilizando o computador embarcado</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="3.1-Ambient_Linux.html">Ambientando-se ao Linux</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Compilação Cruzada</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.3-register.html">Registradores</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../vr01.html#referencias">Referências</a></li>
@@ -181,9 +182,9 @@
 <h2>Instalando o SDK<a class="headerlink" href="#instalando-o-sdk" title="Permalink to this headline">¶</a></h2>
 <p>Para obter o SDK para a imagem do sistema operacional que estamos utilizando basta executar os procedimentos a seguir:</p>
 <ol class="arabic simple">
-<li><p><strong>Criação dos diretorios</strong></p></li>
+<li><p><strong>Criação dos diretórios</strong></p></li>
 </ol>
-<p>Criaremos um diretório chamado <strong>workspace</strong> onde você não apenas instalará o SDK, mas também compilará o código de exemplo. Escolha um local conveniente para você e exeecute os comandos.</p>
+<p>Criaremos um diretório chamado <strong>workspace</strong> onde você não apenas instalará o SDK, mas também compilará o código de exemplo. Escolha um local conveniente para você e execute os comandos.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir workspace
 $ cd workspace
 $ wget http://gumstix-yocto.s3.amazonaws.com/sdk.sh
@@ -199,10 +200,10 @@ $ wget http://gumstix-yocto.s3.amazonaws.com/sdk.sh
 <ol class="arabic simple" start="2">
 <li><p><strong>Verificando as permissões</strong></p></li>
 </ol>
-<p>Após o fim do download, verifique as permissões do arquivo executando o comando <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span> <span class="pre">sdk.sh</span></code>. Se o terminal retornar que há permissão para executar este arquivo, pule para o proximo procedimento. Caso contrario, será necessario alterar as permissões do arquivo atraves do comando <code class="docutils literal notranslate"><span class="pre">chmod</span></code>.</p>
+<p>Após o fim do download, verifique as permissões do arquivo executando o comando <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span> <span class="pre">sdk.sh</span></code>. Se o terminal retornar que há permissão para executar este arquivo, pule para o próximo procedimento. Caso contrário, será necessário alterar as permissões do arquivo através do comando <code class="docutils literal notranslate"><span class="pre">chmod</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Relembrando, os três primeiras espaços indicam as permissões do dono e, basicamente, temos 3 permissões basicas, &quot;r&quot;, &quot;w&quot; e &quot;x&quot; indicando permissão para leitura, escrita e execução, respectivamente.</p>
+<p>Relembrando, os três primeiras espaços indicam as permissões do dono e, basicamente, temos 3 permissões básicas, &quot;r&quot;, &quot;w&quot; e &quot;x&quot; indicando permissão para leitura, escrita e execução, respectivamente.</p>
 </div>
 <p>Por exemplo, na imagem abaixo, o arquivo possui permissão para leitura e escrita, mas não pode ser executado.</p>
 <div class="figure align-center">
@@ -215,7 +216,7 @@ $ wget http://gumstix-yocto.s3.amazonaws.com/sdk.sh
 <ol class="arabic simple" start="3">
 <li><p><strong>Instalação</strong></p></li>
 </ol>
-<p>Execute o arquivo <em>sdk.sh</em>. Assim que solicitado, digite o diretorio que deseja instalar o SDK (recomendamos a criação de um repositorio chamado <em>sdk</em>) e confirme.</p>
+<p>Execute o arquivo <em>sdk.sh</em>. Assim que solicitado, digite o diretório que deseja instalar o SDK (recomendamos a criação de um repositório chamado <em>sdk</em>) e confirme.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./sdk.sh
 </pre></div>
 </div>
@@ -243,7 +244,7 @@ $ wget http://gumstix-yocto.s3.amazonaws.com/sdk.sh
 </div>
 <div class="section" id="compilando-hello-world">
 <h2>Compilando Hello World<a class="headerlink" href="#compilando-hello-world" title="Permalink to this headline">¶</a></h2>
-<p>Uma vez realizada a instalação, podemos testar a compilação cruzada criando um simples script. Vamos criar um arquivo no editor de texto chamado <em>helloworld.c</em>, colar o codigo abaixo e salvar no diretorio <em>workspace</em>.</p>
+<p>Uma vez realizada a instalação, podemos testar a compilação cruzada criando um simples script. Vamos criar um arquivo no editor de texto chamado <em>helloworld.c</em>, colar o código abaixo e salvar no diretório <em>workspace</em>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;</span>
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
 <span class="p">{</span>
@@ -262,7 +263,7 @@ $ wget http://gumstix-yocto.s3.amazonaws.com/sdk.sh
 anteriormente.</p>
 </div>
 <p>Uma vez obtido o executável do código basta copiá-lo para uma das pastas do cartão de memória transferi-lo para o Overo e executá-lo. Lembre-se que o diretório principal é o diretório <code class="docutils literal notranslate"><span class="pre">/home/root/</span></code>, então se o arquivo for colocado dentro deste diretório será bem fácil encontra-lo.</p>
-<p>Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente. Quando iniciado, vamos até o diretório em que o programa foi salvo e o executamos com o comando <code class="docutils literal notranslate"><span class="pre">./nome_do_programa</span></code>. Se tudo ocorrer bem, o programa deverá ser executado, similar a figura abaixo.</p>
+<p>Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente. Quando iniciado, vamos até o diretório em que o programa foi salvo e o executamos com o comando <code class="docutils literal notranslate"><span class="pre">./nome_do_código</span></code>. Se tudo ocorrer bem, o programa deverá ser executado, similar a figura abaixo.</p>
 <div class="figure align-center">
 <img alt="../../../_images/sdk_compile2.png" src="../../../_images/sdk_compile2.png" />
 </div>
@@ -277,7 +278,7 @@ anteriormente.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../../mobile.html" class="btn btn-neutral float-right" title="Mobile Robots" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="3.3-register.html" class="btn btn-neutral float-right" title="Registradores" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="3.1-Ambient_Linux.html" class="btn btn-neutral float-left" title="Ambientando-se ao Linux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

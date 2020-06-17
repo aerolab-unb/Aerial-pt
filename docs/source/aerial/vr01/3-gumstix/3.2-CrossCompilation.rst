@@ -64,7 +64,9 @@ Execute o arquivo *sdk.sh*. Assim que solicitado, digite o diretório que deseja
 
 .. figure:: /img/Aerial/sdk_install.png
 	:align: center
+
 .. comentar erros
+
 4. **Configurando o ambiente**
 
 A instalação do SDK irá gerar uma pasta com o conteúdo apresentado na figura abaixo.
@@ -107,9 +109,10 @@ Agora podemos executar o comando ``make <nome_do_código>.c`` para criar um arqu
     O comando "make" é na verdade a simplificação de uma extensa linha de comando que chama um compilador **arm-poky-Linux-gnueabi-gcc** e dá a ele os parâmetros contidos na pasta SDK. Tudo isso graças ao comando "source" utilizado 
     anteriormente.
 
+
 Uma vez obtido o executável do código basta copiá-lo para uma das pastas do cartão de memória transferi-lo para o Overo e executá-lo. Lembre-se que o diretório principal é o diretório ``/home/root/``, então se o arquivo for colocado dentro deste diretório será bem fácil encontra-lo.
 
-Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente. Quando iniciado, vamos até o diretório em que o programa foi salvo e o executamos com o comando ``./nome_do_código ``. Se tudo ocorrer bem, o programa deverá ser executado, similar a figura abaixo.
+Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente. Quando iniciado, vamos até o diretório em que o programa foi salvo e o executamos com o comando ``./nome_do_código``. Se tudo ocorrer bem, o programa deverá ser executado, similar a figura abaixo.
 
 .. figure:: /img/Aerial/sdk_compile2.png
 	:align: center
