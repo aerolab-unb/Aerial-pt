@@ -37,7 +37,7 @@ Começaremos o processo de ambientação apresentando linhas de comando básicas
 
     cat [OPÇÃO] [ARQUIVO]
 
-Seu nome é uma derivação da palavra *concatenate* (**concatenar**) e permite que você crie, una e exiba arquivos no formato padrão de tela ou em outro arquivo, entre outras coisas. Para mostrar algumas funções disponíveis. 
+Seu nome é uma derivação da palavra *concatenate* (**concatenar**) e permite que você crie, una e exiba arquivos no formato padrão de tela ou em outro arquivo, entre outras coisas. 
 
 Se a opção não for especificada, o comando ``cat`` lê o conteúdo presente no arquivo indicado e o imprime na tela. Por exemplo, ao executar o comando ``cat /etc/issue`` no terminal do Overo, é impresso o ramo e a versão do sistema operacional utilizado. 
 

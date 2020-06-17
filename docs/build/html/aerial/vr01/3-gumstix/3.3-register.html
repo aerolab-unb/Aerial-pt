@@ -182,15 +182,81 @@
 <p>Seguindo as etapas das seções anteriores, somos capazes de iniciar o sistema e gerar programas a serem executados pelo sistema operacional. O próximo passo é, portanto, controlar os sinais que podem ser enviados a outros dispositivos pelo computador embarcado para estabelecer a comunicação entre os dispositivos.</p>
 <p>A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a espaços de memória do sistema e quando alteramos o bit armazenado neste espaço de memória alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.</p>
 <p>Posteriormente, a comunicação entre dispositivos será melhor discutida, mas neste momento o que mais nos importa são os &quot;espaços de memória&quot; citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de registrador. Os registradores estão no topo da hierarquia de memória, sendo assim, é um tipo de memória mais rápida de uma unidade central de processamento.</p>
-<p>Sendo assim, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de ON/OFF de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de <a class="reference external" href="https://en.wikipedia.org/wiki/General-purpose_input/output">General Purpose Input/Output ou GPIO</a>.</p>
-<p><em>General Purpose Input/Output</em> (GPIO) são, basicamente, pinos de  comunicação de entrada e saída de sinais digitais, de um circuito integrado ou placa de circuito eletrônico, sem finalidade prédefinida, podendo assim ter funções definidas pelo projetista ou usuario para prover uma interface entre outros dispositivos (periféricos, modens, microcontroladores, microprocessadores etc).</p>
-<p>Como comentado anteriormente, estamos utilizando o computador embarcado Overo junto a uma placa de expansão Tobi. Uma das funções desta placa é fornecer acesso ao usuário aos pinos do computador embarcado, portanto os pinos do computador embarcado que podemos acessar fisicamente são os pinos da placa de expansão Tobi. Na figura abaixo podemos visualizar um diagrama que contém, de maneira resumida, quais funções ou pinos do computador embarcado estão conectadas a cada pino da placa de expansão tobi. Observe que alguns desses pinos possuem mais de uma função.</p>
+<p>Sendo assim, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de <strong>ON/OFF</strong> de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de <a class="reference external" href="https://en.wikipedia.org/wiki/General-purpose_input/output">General Purpose Input/Output ou GPIO</a>.</p>
+<p><em>General Purpose Input/Output</em> (<strong>GPIO</strong>) são, basicamente, pinos de  comunicação de entrada e saída de sinais digitais, de um circuito integrado ou placa de circuito eletrônico, sem finalidade prédefinida, podendo assim ter funções definidas pelo projetista ou usuario para prover uma interface entre outros dispositivos (periféricos, modens, microcontroladores, microprocessadores etc).</p>
+<p>Como comentado anteriormente, estamos utilizando o computador embarcado Overo junto a uma placa de expansão Tobi. Uma das funções desta placa é fornecer acesso ao usuário aos pinos do computador embarcado, portanto os pinos do computador embarcado que podemos acessar fisicamente são os pinos da placa de expansão Tobi. Na figura abaixo podemos visualizar um diagrama que contém, de maneira resumida, quais funções ou pinos do computador embarcado estão conectadas a cada pino da placa de expansão Tobi. Observe que alguns desses pinos possuem mais de uma função.</p>
 <div class="figure align-center" id="id1">
 <img alt="../../../_images/Pinos_Tobi.png" src="../../../_images/Pinos_Tobi.png" />
 <p class="caption"><span class="caption-text">Diagrama dos pinos da placa de expansão tobi.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="controle-do-gpio-via-terminal">
 <h2>Controle do GPIO via terminal<a class="headerlink" href="#controle-do-gpio-via-terminal" title="Permalink to this headline">¶</a></h2>
+<p>A maneira mais simples, porém menos eficiente de se controlar o GPIO está descrita no próprio site da fabricante, disponivel em <a class="reference external" href="https://www.gumstix.com/support/faq/overo-gpio/#cross-compilation">Control Overo GPIO</a> . Lá eles indicam controlar o GPIO pelo próprio terminal do sistema Linux através de um sistema <em>sysfs</em>. O sistema <em>sysfs</em> é um sistema de pseudo arquivos oferecidos pelo núcleo do Linux para o controle e comunicação com dispositivos e drivers através do terminal do Linux.</p>
+<p>Se, por exemplo, desejarmos controlar a saída do <strong>GPIO10</strong> através deste método para piscar um led precisaremos exportar o <strong>GPIO10</strong> para o espaço do usuário escrevendo <code class="docutils literal notranslate"><span class="pre">10</span></code> no arquivo <em>/sys/class/gpio/export</em>, o que irá gerar um diretório com outros arquivos para a manipulação do <strong>GPIO10</strong>. Em seguida, devemos definir sua direção como de saída escrevendo <code class="docutils literal notranslate"><span class="pre">out</span></code> em <em>/sys/class/gpio/gpio10/direction</em> e definir seu valor como alto ou baixo escrevendo <code class="docutils literal notranslate"><span class="pre">1</span></code> ou <code class="docutils literal notranslate"><span class="pre">0</span></code> em <em>/sys/class/gpio/gpio10/value</em>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A função de configuração de interrupção também é acessível pelo terminal.</p>
+</div>
+<p>Este processo pode ser feito tanto pelo terminal do usuário com o comando <code class="docutils literal notranslate"><span class="pre">echo</span></code>, quanto por um programa que abra esse arquivo e escreve nela por nós.</p>
+<p>Por exemplo, para controlar o <strong>GPIO146</strong> atraves do terminal podemos executar os seguintes comandos (exemplo utilizado no site da Gumstix):</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lembrando que, por exemplo, o comando <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">teste</span> <span class="pre">&gt;</span> <span class="pre">pasta/arquivo</span></code> irá sobreescrever todo o arquivo pela &quot;teste&quot; e o comando <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">pasta/arquivo</span></code> irá exibir o conteudo do arquivo.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@overo</span><span class="c1"># echo 146 &gt; /sys/class/gpio/export</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="p">:</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">class</span><span class="o">/</span><span class="n">gpio</span><span class="c1"># cat gpio146/direction</span>
+<span class="ow">in</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="c1"># echo out &gt; /sys/class/gpio/gpio146/direction</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="p">:</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">class</span><span class="o">/</span><span class="n">gpio</span><span class="c1"># cat gpio146/direction</span>
+<span class="n">out</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="c1"># cat /sys/class/gpio/gpio146/value</span>
+<span class="mi">0</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="c1"># echo 1 &gt; /sys/class/gpio/gpio146/value</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="c1"># cat /sys/class/gpio/gpio146/value</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+<p>Esse comando controlará o pino 27 da placa Tobi.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Se você não possuir um medidor, um LED de 1,8V pode ser utilizado. Use o pino 1 como aterramento.</p>
+</div>
+<p>Porém, como já comentado, esse método é bem lento e não pode ser utilizado para comunicação entre dispositivos. Entretanto para atividades com períodos superiores a 100 milissegundos este método pode ser utilizado tranquilamente.</p>
+<p>Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante ao código apresentado abaixo, que escreve diretamente nos arquivos do <strong>GPIO</strong>. Essa abordagem foi testada e melhorou consideravelmente, através de um simples codigo, o tempo de resposta do GPIO.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="c1">#include &lt;string.h&gt;</span>
+<span class="c1">#include &lt;stdlib.h&gt;</span>
+<span class="c1">#include &lt;unistd.h&gt;</span>
+<span class="c1">#include &lt;fcntl.h&gt;</span>
+<span class="c1">#include &lt;termios.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
+
+    <span class="nb">int</span> <span class="n">arq</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/sys/class/gpio/export&quot;</span><span class="p">,</span> <span class="n">O_WRONLY</span><span class="p">);</span>
+    <span class="n">write</span><span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">arq</span><span class="p">);</span>
+
+    <span class="n">arq</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/sys/class/gpio/gpio10/direction&quot;</span><span class="p">,</span> <span class="n">O_WRONLY</span><span class="p">);</span>
+    <span class="n">write</span> <span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">arq</span><span class="p">)</span> <span class="p">;</span>
+
+    <span class="n">arq</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/sys/class/gpio/gpio10/value&quot;</span><span class="p">,</span> <span class="n">O_RDWR</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="o">//</span><span class="n">usleep</span> <span class="p">(</span><span class="mi">500000</span><span class="p">);</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="o">//</span><span class="n">usleep</span> <span class="p">(</span><span class="mi">500000</span><span class="p">)</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">close</span> <span class="p">(</span><span class="n">arq</span><span class="p">);</span>
+
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Para testar o código, o pino 18 (pino do <strong>GPIO</strong> 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.</p>
+</div>
+<div class="section" id="controle-do-gpio-via-registradores">
+<h2>Controle do GPIO via registradores<a class="headerlink" href="#controle-do-gpio-via-registradores" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
