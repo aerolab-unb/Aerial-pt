@@ -182,7 +182,7 @@
 <p>Seguindo as etapas das seções anteriores, somos capazes de iniciar o sistema e gerar programas a serem executados pelo sistema operacional. O próximo passo é, portanto, controlar os sinais que podem ser enviados a outros dispositivos pelo computador embarcado para estabelecer a comunicação entre os dispositivos.</p>
 <p>A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a espaços de memória do sistema e quando alteramos o bit armazenado neste espaço de memória alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.</p>
 <p>Posteriormente, a comunicação entre dispositivos será melhor discutida, mas neste momento o que mais nos importa são os &quot;espaços de memória&quot; citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de registrador. Os registradores estão no topo da hierarquia de memória, sendo assim, é um tipo de memória mais rápida de uma unidade central de processamento.</p>
-<p>Sendo assim, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de <strong>ON/OFF</strong> de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de <a class="reference external" href="https://en.wikipedia.org/wiki/General-purpose_input/output">General Purpose Input/Output ou GPIO</a>.</p>
+<p>Sendo assim, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de <strong>ON/OFF</strong> de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de <a class="reference external" href="https://en.wikipedia.org/wiki/General-purpose_input/output">General Purpose Input/Output</a> (<strong>GPIO</strong>).</p>
 <p><em>General Purpose Input/Output</em> (<strong>GPIO</strong>) são, basicamente, pinos de  comunicação de entrada e saída de sinais digitais, de um circuito integrado ou placa de circuito eletrônico, sem finalidade prédefinida, podendo assim ter funções definidas pelo projetista ou usuario para prover uma interface entre outros dispositivos (periféricos, modens, microcontroladores, microprocessadores etc).</p>
 <p>Como comentado anteriormente, estamos utilizando o computador embarcado Overo junto a uma placa de expansão Tobi. Uma das funções desta placa é fornecer acesso ao usuário aos pinos do computador embarcado, portanto os pinos do computador embarcado que podemos acessar fisicamente são os pinos da placa de expansão Tobi. Na figura abaixo podemos visualizar um diagrama que contém, de maneira resumida, quais funções ou pinos do computador embarcado estão conectadas a cada pino da placa de expansão Tobi. Observe que alguns desses pinos possuem mais de uma função.</p>
 <div class="figure align-center" id="id1">
@@ -197,11 +197,10 @@
 <p class="admonition-title">Tip</p>
 <p>A função de configuração de interrupção também é acessível pelo terminal.</p>
 </div>
-<p>Este processo pode ser feito tanto pelo terminal do usuário com o comando <code class="docutils literal notranslate"><span class="pre">echo</span></code>, quanto por um programa que abra esse arquivo e escreve nela por nós.</p>
-<p>Por exemplo, para controlar o <strong>GPIO146</strong> atraves do terminal podemos executar os seguintes comandos (exemplo utilizado no site da Gumstix):</p>
+<p>Este processo pode ser feito tanto pelo terminal do usuário com o comando <code class="docutils literal notranslate"><span class="pre">echo</span></code>, quanto por um programa que abra esse arquivo e escreve nela por nós. Por exemplo, para controlar o <strong>GPIO146</strong> atraves do terminal podemos executar os seguintes comandos (exemplo utilizado no site da Gumstix):</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Lembrando que, por exemplo, o comando <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">teste</span> <span class="pre">&gt;</span> <span class="pre">pasta/arquivo</span></code> irá sobreescrever todo o arquivo pela &quot;teste&quot; e o comando <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">pasta/arquivo</span></code> irá exibir o conteudo do arquivo.</p>
+<p>Lembrando que o comando <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">teste</span> <span class="pre">&gt;</span> <span class="pre">pasta/arquivo</span></code> irá sobreescrever todo o arquivo pela palavra &quot;teste&quot; e o comando <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">pasta/arquivo</span></code> irá exibir o conteudo do arquivo.</p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@overo</span><span class="c1"># echo 146 &gt; /sys/class/gpio/export</span>
 <span class="n">root</span><span class="nd">@overo</span><span class="p">:</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">class</span><span class="o">/</span><span class="n">gpio</span><span class="c1"># cat gpio146/direction</span>
@@ -254,9 +253,38 @@
 </pre></div>
 </div>
 <p>Para testar o código, o pino 18 (pino do <strong>GPIO</strong> 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.</p>
+<div class="figure align-center">
+<img alt="../../../_images/teste1-gpio.png" src="../../../_images/teste1-gpio.png" />
+</div>
 </div>
 <div class="section" id="controle-do-gpio-via-registradores">
 <h2>Controle do GPIO via registradores<a class="headerlink" href="#controle-do-gpio-via-registradores" title="Permalink to this headline">¶</a></h2>
+<p>Outra maneira de se controlar o GPIO é escrevendo diretamente nos registradores do sistema. Apesar de o procedimento ser um pouco mais complexo essa, na verdade, é a maneira mais comum e mais recomendada de se realizar esse procedimento oferecendo resultados muito mais rápidos.</p>
+<p>Para utilizar este método precisamos, primeiro, definir em quais registradores devemos escrever e o que devemos escrever neles. Essa informação só pode ser encontrada no <a class="reference download internal" download="" href="../../../_downloads/478aee14d85d8b9ee0d031e35242bb99/TRM_DM3730.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Technical</span> <span class="pre">Reference</span> <span class="pre">Manual</span> <span class="pre">(TRM)</span></code></a> do processador DM3730, disponivel no site da Texas Instruments.</p>
+<p>Como é explicado na seção <strong>25</strong> do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de
+base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../../_images/interface-gpio.png" src="../../../_images/interface-gpio.png" />
+<p class="caption"><span class="caption-text">Diagrama da interface de GPIO.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A figura foi retirada do <em>Technical Reference Manual</em> do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730, neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.</p>
+</div>
+<p>O registrador &quot;<strong>GPIO_OE</strong>&quot; é o registrador que define a direção do pino que esta sendo configurado. A abreviação &quot;OE&quot; vem de <em>output enable</em>. Esse registrador possui um offset de endereço igual a &quot;0x034&quot;, ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo &quot;RW&quot;, sendo assim, se o valor <strong>0</strong> estiver armazenado no pino correspondente à porta GPIO essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor <strong>1</strong> a porta estará configurada como input.</p>
+<p>O registrador &quot;<strong>GPIO_SETDATAOUT</strong>&quot; é o registrador que tem a função de colocar o bit correspondente no registrador &quot;<strong>GPIO_DATAOUT</strong>&quot; em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a &quot;0x094&quot;. Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo &quot;RW&quot;. A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em <strong>GPIO_DATAOUT</strong>&quot;.</p>
+<p>Além dos registradores apresentados na seção 25 do <em>Technical Reference Manual</em>, também é necessário configurar um registrador do <em>System Control Module</em> (<strong>SCM</strong>). O SCM é um módulo que permite o Controle através de <em>software</em> de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo <em>pullup</em> ou <em>pulldown</em>, por exemplo.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mais informações sobre o SCM podem ser encontradas na seção 13 do TRM.</p>
+</div>
+<div class="section" id="referencias">
+<h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.</p></li>
+<li><p>TEXAS INSTRUMENTS. AM/DM37x Multimedia Device Technical Reference Manual. 12500 TI Blvd, Dallas, TX 75243, EUA, 2012. Version R. Disponível em: <a class="reference external" href="http://www.ti.com/">ti.com</a>.</p></li>
+</ul>
+</div>
 </div>
 </div>
 

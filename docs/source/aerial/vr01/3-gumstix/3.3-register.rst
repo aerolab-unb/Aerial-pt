@@ -10,9 +10,9 @@ A comunicação entre dispositivos é feita pela alteração dos níveis de tens
 
 Posteriormente, a comunicação entre dispositivos será melhor discutida, mas neste momento o que mais nos importa são os "espaços de memória" citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de registrador. Os registradores estão no topo da hierarquia de memória, sendo assim, é um tipo de memória mais rápida de uma unidade central de processamento.
 
-Sendo assim, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de **ON/OFF** de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de `General Purpose Input/Output ou GPIO`_.
+Sendo assim, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de **ON/OFF** de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de `General Purpose Input/Output`_ (**GPIO**).
 
-.. _General Purpose Input/Output ou GPIO: https://en.wikipedia.org/wiki/General-purpose_input/output
+.. _General Purpose Input/Output: https://en.wikipedia.org/wiki/General-purpose_input/output
 
 *General Purpose Input/Output* (**GPIO**) são, basicamente, pinos de  comunicação de entrada e saída de sinais digitais, de um circuito integrado ou placa de circuito eletrônico, sem finalidade prédefinida, podendo assim ter funções definidas pelo projetista ou usuario para prover uma interface entre outros dispositivos (periféricos, modens, microcontroladores, microprocessadores etc).
 
@@ -39,12 +39,10 @@ Se, por exemplo, desejarmos controlar a saída do **GPIO10** através deste mét
 
 .. Este processo pode ser feito tanto pelo terminal do usuário com o comando "echo", por exemplo "echo 10 > /sys/class/gpio/export" e também podemos fazer um programa que abra esse arquivo e escreve nela por nós. 
 
-Este processo pode ser feito tanto pelo terminal do usuário com o comando ``echo``, quanto por um programa que abra esse arquivo e escreve nela por nós. 
-
-Por exemplo, para controlar o **GPIO146** atraves do terminal podemos executar os seguintes comandos (exemplo utilizado no site da Gumstix):
+Este processo pode ser feito tanto pelo terminal do usuário com o comando ``echo``, quanto por um programa que abra esse arquivo e escreve nela por nós. Por exemplo, para controlar o **GPIO146** atraves do terminal podemos executar os seguintes comandos (exemplo utilizado no site da Gumstix):
 
 .. Note::
-    Lembrando que, por exemplo, o comando ``echo teste > pasta/arquivo`` irá sobreescrever todo o arquivo pela "teste" e o comando ``cat pasta/arquivo`` irá exibir o conteudo do arquivo.
+    Lembrando que o comando ``echo teste > pasta/arquivo`` irá sobreescrever todo o arquivo pela palavra "teste" e o comando ``cat pasta/arquivo`` irá exibir o conteudo do arquivo.
 
 ::
 
@@ -103,5 +101,42 @@ Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante a
 
 Para testar o código, o pino 18 (pino do **GPIO** 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.
 
+.. figure:: /img/Aerial/teste1-gpio.png
+	:align: center
+
 Controle do GPIO via registradores
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Outra maneira de se controlar o GPIO é escrevendo diretamente nos registradores do sistema. Apesar de o procedimento ser um pouco mais complexo essa, na verdade, é a maneira mais comum e mais recomendada de se realizar esse procedimento oferecendo resultados muito mais rápidos.
+
+Para utilizar este método precisamos, primeiro, definir em quais registradores devemos escrever e o que devemos escrever neles. Essa informação só pode ser encontrada no :download:`Technical Reference Manual (TRM) <TRM_DM3730.pdf>` do processador DM3730, disponivel no site da Texas Instruments.
+
+Como é explicado na seção **25** do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de
+base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.
+
+.. figure:: /img/Aerial/interface-gpio.png
+    :align: center
+    
+    
+    Diagrama da interface de GPIO.
+
+.. Note::
+    A figura foi retirada do *Technical Reference Manual* do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730, neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.
+
+O registrador "**GPIO_OE**" é o registrador que define a direção do pino que esta sendo configurado. A abreviação "OE" vem de *output enable*. Esse registrador possui um offset de endereço igual a "0x034", ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo "RW", sendo assim, se o valor **0** estiver armazenado no pino correspondente à porta GPIO essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor **1** a porta estará configurada como input.
+
+O registrador "**GPIO_SETDATAOUT**" é o registrador que tem a função de colocar o bit correspondente no registrador "**GPIO_DATAOUT**" em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a "0x094". Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo "RW". A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em **GPIO_DATAOUT**".
+
+Além dos registradores apresentados na seção 25 do *Technical Reference Manual*, também é necessário configurar um registrador do *System Control Module* (**SCM**). O SCM é um módulo que permite o Controle através de *software* de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo *pullup* ou *pulldown*, por exemplo.
+
+.. Note:: 
+    Mais informações sobre o SCM podem ser encontradas na seção 13 do TRM.
+    
+Referências
+-----------
+
+* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+* TEXAS INSTRUMENTS. AM/DM37x Multimedia Device Technical Reference Manual. 12500 TI Blvd, Dallas, TX 75243, EUA, 2012. Version R. Disponível em: `ti.com`_.
+
+.. _ti.com: http://www.ti.com/

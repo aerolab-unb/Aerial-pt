@@ -116,3 +116,8 @@ Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente
 
 .. figure:: /img/Aerial/sdk_compile2.png
 	:align: center
+
+Referências
+-----------
+
+   	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.

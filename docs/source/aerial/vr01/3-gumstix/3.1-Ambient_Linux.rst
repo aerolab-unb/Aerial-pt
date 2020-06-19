@@ -248,3 +248,11 @@ O diretório "**/dev**" é o diretório onde ficam armazenados os arquivos de di
 O diretório "**/lib**" é o diretório que contém as bibliotecas essenciais para os binários contidos no diretório "/bin", assim caso seja necessário instalação de um novo software provavelmente também precisaremos adicionar alguma biblioteca a este diretório.
 
 Por último, o diretório "**/sys**" é o diretório que contém informações de dispositivos e drivers. Está pasta será muito utilizado caso seja necessário utilizar funções como *general purpose input/output* (**GPIO**), **I2C** e *direct memory access* (**DMA**).
+
+
+Referências
+-----------
+
+   	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+    
