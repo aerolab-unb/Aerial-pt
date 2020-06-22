@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Controle do GPIO via terminal &mdash; CoopRobo 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Robots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../aerial.html">Aerial Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mobile.html">Mobile Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manipulators.html">Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs-ref.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../camera.html">Camera</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CoopRobo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Controle do GPIO via terminal</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/aerial/vr01/3-gumstix/3.3.1-GPIO_terminal.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="controle-do-gpio-via-terminal">
+<h1>Controle do GPIO via terminal<a class="headerlink" href="#controle-do-gpio-via-terminal" title="Permalink to this headline">¶</a></h1>
+<p>A maneira mais simples, porém menos eficiente de se controlar o GPIO está descrita no próprio site da fabricante, disponivel em <a class="reference external" href="https://www.gumstix.com/support/faq/overo-gpio/#cross-compilation">Control Overo GPIO</a> . Lá eles indicam controlar o GPIO pelo próprio terminal do sistema Linux através de um sistema <em>sysfs</em>. O sistema <em>sysfs</em> é um sistema de pseudo arquivos oferecidos pelo núcleo do Linux para o controle e comunicação com dispositivos e drivers através do terminal do Linux.</p>
+<p>Se, por exemplo, desejarmos controlar a saída do <strong>GPIO10</strong> através deste método para piscar um led precisaremos exportar o <strong>GPIO10</strong> para o espaço do usuário escrevendo <code class="docutils literal notranslate"><span class="pre">10</span></code> no arquivo <em>/sys/class/gpio/export</em>, o que irá gerar um diretório com outros arquivos para a manipulação do <strong>GPIO10</strong>. Em seguida, devemos definir sua direção como de saída escrevendo <code class="docutils literal notranslate"><span class="pre">out</span></code> em <em>/sys/class/gpio/gpio10/direction</em> e definir seu valor como alto ou baixo escrevendo <code class="docutils literal notranslate"><span class="pre">1</span></code> ou <code class="docutils literal notranslate"><span class="pre">0</span></code> em <em>/sys/class/gpio/gpio10/value</em>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A função de configuração de interrupção também é acessível pelo terminal.</p>
+</div>
+<p>Este processo pode ser feito tanto pelo terminal do usuário com o comando <code class="docutils literal notranslate"><span class="pre">echo</span></code>, quanto por um programa que abra esse arquivo e escreve nela por nós. Por exemplo, para controlar o <strong>GPIO146</strong> atraves do terminal podemos executar os seguintes comandos (exemplo utilizado no site da Gumstix):</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lembrando que o comando <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">teste</span> <span class="pre">&gt;</span> <span class="pre">pasta/arquivo</span></code> irá sobreescrever todo o arquivo pela palavra &quot;teste&quot; e o comando <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">pasta/arquivo</span></code> irá exibir o conteudo do arquivo.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@overo</span><span class="c1"># echo 146 &gt; /sys/class/gpio/export</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="p">:</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">class</span><span class="o">/</span><span class="n">gpio</span><span class="c1"># cat gpio146/direction</span>
+<span class="ow">in</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="c1"># echo out &gt; /sys/class/gpio/gpio146/direction</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="p">:</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">class</span><span class="o">/</span><span class="n">gpio</span><span class="c1"># cat gpio146/direction</span>
+<span class="n">out</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="c1"># cat /sys/class/gpio/gpio146/value</span>
+<span class="mi">0</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="c1"># echo 1 &gt; /sys/class/gpio/gpio146/value</span>
+<span class="n">root</span><span class="nd">@overo</span><span class="c1"># cat /sys/class/gpio/gpio146/value</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+<p>Esse comando controlará o pino 27 da placa Tobi.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Se você não possuir um medidor, um LED de 1,8V pode ser utilizado. Use o pino 1 como aterramento.</p>
+</div>
+<p>Porém, como já comentado, esse método é bem lento e não pode ser utilizado para comunicação entre dispositivos. Entretanto para atividades com períodos superiores a 100 milissegundos este método pode ser utilizado tranquilamente.</p>
+<p>Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante ao código apresentado abaixo, que escreve diretamente nos arquivos do <strong>GPIO</strong>. Essa abordagem foi testada e melhorou consideravelmente, através de um simples codigo, o tempo de resposta do GPIO.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="c1">#include &lt;string.h&gt;</span>
+<span class="c1">#include &lt;stdlib.h&gt;</span>
+<span class="c1">#include &lt;unistd.h&gt;</span>
+<span class="c1">#include &lt;fcntl.h&gt;</span>
+<span class="c1">#include &lt;termios.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
+
+    <span class="nb">int</span> <span class="n">arq</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/sys/class/gpio/export&quot;</span><span class="p">,</span> <span class="n">O_WRONLY</span><span class="p">);</span>
+    <span class="n">write</span><span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">arq</span><span class="p">);</span>
+
+    <span class="n">arq</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/sys/class/gpio/gpio10/direction&quot;</span><span class="p">,</span> <span class="n">O_WRONLY</span><span class="p">);</span>
+    <span class="n">write</span> <span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">arq</span><span class="p">)</span> <span class="p">;</span>
+
+    <span class="n">arq</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/sys/class/gpio/gpio10/value&quot;</span><span class="p">,</span> <span class="n">O_RDWR</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="o">//</span><span class="n">usleep</span> <span class="p">(</span><span class="mi">500000</span><span class="p">);</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="o">//</span><span class="n">usleep</span> <span class="p">(</span><span class="mi">500000</span><span class="p">)</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">close</span> <span class="p">(</span><span class="n">arq</span><span class="p">);</span>
+
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Para testar o código, o pino 18 (pino do <strong>GPIO</strong> 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.</p>
+<div class="figure align-center">
+<img alt="../../../_images/teste1-gpio.png" src="../../../_images/teste1-gpio.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Gabriel Araujo
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -24,8 +24,113 @@ Como comentado anteriormente, estamos utilizando o computador embarcado Overo ju
     
     Diagrama dos pinos da placa de expansão tobi.
 
-.. include:: 3.3.1-GPIO_terminal.rst
-.. include:: 3.3.2-GPIO_register.rst
+
+Controle do GPIO via terminal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A maneira mais simples, porém menos eficiente de se controlar o GPIO está descrita no próprio site da fabricante, disponivel em `Control Overo GPIO`_ . Lá eles indicam controlar o GPIO pelo próprio terminal do sistema Linux através de um sistema *sysfs*. O sistema *sysfs* é um sistema de pseudo arquivos oferecidos pelo núcleo do Linux para o controle e comunicação com dispositivos e drivers através do terminal do Linux.
+
+.. _Control Overo GPIO: https://www.gumstix.com/support/faq/overo-gpio/#cross-compilation
+
+Se, por exemplo, desejarmos controlar a saída do **GPIO10** através deste método para piscar um led precisaremos exportar o **GPIO10** para o espaço do usuário escrevendo ``10`` no arquivo */sys/class/gpio/export*, o que irá gerar um diretório com outros arquivos para a manipulação do **GPIO10**. Em seguida, devemos definir sua direção como de saída escrevendo ``out`` em */sys/class/gpio/gpio10/direction* e definir seu valor como alto ou baixo escrevendo ``1`` ou ``0`` em */sys/class/gpio/gpio10/value*. 
+
+.. Tip::
+    A função de configuração de interrupção também é acessível pelo terminal.
+
+.. Este processo pode ser feito tanto pelo terminal do usuário com o comando "echo", por exemplo "echo 10 > /sys/class/gpio/export" e também podemos fazer um programa que abra esse arquivo e escreve nela por nós. 
+
+Este processo pode ser feito tanto pelo terminal do usuário com o comando ``echo``, quanto por um programa que abra esse arquivo e escreve nela por nós. Por exemplo, para controlar o **GPIO146** atraves do terminal podemos executar os seguintes comandos (exemplo utilizado no site da Gumstix):
+
+.. Note::
+    Lembrando que o comando ``echo teste > pasta/arquivo`` irá sobreescrever todo o arquivo pela palavra "teste" e o comando ``cat pasta/arquivo`` irá exibir o conteudo do arquivo.
+
+::
+
+    root@overo# echo 146 > /sys/class/gpio/export
+    root@overo:/sys/class/gpio# cat gpio146/direction
+    in
+    root@overo# echo out > /sys/class/gpio/gpio146/direction
+    root@overo:/sys/class/gpio# cat gpio146/direction
+    out
+    root@overo# cat /sys/class/gpio/gpio146/value
+    0
+    root@overo# echo 1 > /sys/class/gpio/gpio146/value
+    root@overo# cat /sys/class/gpio/gpio146/value
+    1
+
+Esse comando controlará o pino 27 da placa Tobi. 
+
+.. Tip::
+    Se você não possuir um medidor, um LED de 1,8V pode ser utilizado. Use o pino 1 como aterramento.
+
+Porém, como já comentado, esse método é bem lento e não pode ser utilizado para comunicação entre dispositivos. Entretanto para atividades com períodos superiores a 100 milissegundos este método pode ser utilizado tranquilamente.
+
+Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante ao código apresentado abaixo, que escreve diretamente nos arquivos do **GPIO**. Essa abordagem foi testada e melhorou consideravelmente, através de um simples codigo, o tempo de resposta do GPIO. 
+
+:: 
+
+    #include <stdio.h>
+    #include <string.h>
+    #include <stdlib.h>
+    #include <unistd.h>
+    #include <fcntl.h>
+    #include <termios.h>
+
+    int main(){
+
+        int arq = open("/sys/class/gpio/export", O_WRONLY);
+        write(arq, "10", 2);
+        close(arq);
+
+        arq = open("/sys/class/gpio/gpio10/direction", O_WRONLY);
+        write (arq, "out", 3);
+        close(arq) ;
+
+        arq = open("/sys/class/gpio/gpio10/value", O_RDWR);
+        while (1){
+            write(arq, "1", 1);
+            //usleep (500000);
+            write(arq, "0", 1);
+            //usleep (500000) ;
+        }
+        close (arq);
+        
+    return 0;
+    }
+
+
+Para testar o código, o pino 18 (pino do **GPIO** 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.
+
+.. figure:: /img/Aerial/teste1-gpio.png
+	:align: center
+
+Controle do GPIO via registradores
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Outra maneira de se controlar o GPIO é escrevendo diretamente nos registradores do sistema. Apesar de o procedimento ser um pouco mais complexo essa, na verdade, é a maneira mais comum e mais recomendada de se realizar esse procedimento oferecendo resultados muito mais rápidos.
+
+Para utilizar este método precisamos, primeiro, definir em quais registradores devemos escrever e o que devemos escrever neles. Essa informação só pode ser encontrada no :download:`Technical Reference Manual (TRM) <TRM_DM3730.pdf>` do processador DM3730, disponivel no site da Texas Instruments.
+
+Como é explicado na seção **25** do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de
+base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.
+
+.. figure:: /img/Aerial/interface-gpio.png
+    :align: center
+    
+    
+    Diagrama da interface de GPIO.
+
+.. Note::
+    A figura foi retirada do *Technical Reference Manual* do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730, neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.
+
+O registrador "**GPIO_OE**" é o registrador que define a direção do pino que esta sendo configurado. A abreviação "OE" vem de *output enable*. Esse registrador possui um offset de endereço igual a "0x034", ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo "RW", sendo assim, se o valor **0** estiver armazenado no pino correspondente à porta GPIO essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor **1** a porta estará configurada como input.
+
+O registrador "**GPIO_SETDATAOUT**" é o registrador que tem a função de colocar o bit correspondente no registrador "**GPIO_DATAOUT**" em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a "0x094". Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo "RW". A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em **GPIO_DATAOUT**".
+
+Além dos registradores apresentados na seção 25 do *Technical Reference Manual*, também é necessário configurar um registrador do *System Control Module* (**SCM**). O SCM é um módulo que permite o Controle através de *software* de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo *pullup* ou *pulldown*, por exemplo.
+
+.. Note:: 
+    Mais informações sobre o SCM podem ser encontradas na seção 13 do *Technical Reference Manual*.
 
 Referências
 -----------

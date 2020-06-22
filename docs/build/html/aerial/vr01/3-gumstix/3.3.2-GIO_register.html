@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Controle do GPIO via registradores &mdash; CoopRobo 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Robots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../aerial.html">Aerial Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mobile.html">Mobile Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manipulators.html">Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs-ref.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../camera.html">Camera</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CoopRobo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Controle do GPIO via registradores</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/aerial/vr01/3-gumstix/3.3.2-GIO_register.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="controle-do-gpio-via-registradores">
+<h1>Controle do GPIO via registradores<a class="headerlink" href="#controle-do-gpio-via-registradores" title="Permalink to this headline">¶</a></h1>
+<p>Outra maneira de se controlar o GPIO é escrevendo diretamente nos registradores do sistema. Apesar de o procedimento ser um pouco mais complexo essa, na verdade, é a maneira mais comum e mais recomendada de se realizar esse procedimento oferecendo resultados muito mais rápidos.</p>
+<p>Para utilizar este método precisamos, primeiro, definir em quais registradores devemos escrever e o que devemos escrever neles. Essa informação só pode ser encontrada no <a class="reference download internal" download="" href="../../../_downloads/478aee14d85d8b9ee0d031e35242bb99/TRM_DM3730.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Technical</span> <span class="pre">Reference</span> <span class="pre">Manual</span> <span class="pre">(TRM)</span></code></a> do processador DM3730, disponivel no site da Texas Instruments.</p>
+<p>Como é explicado na seção <strong>25</strong> do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de
+base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.</p>
+<div class="figure align-center" id="id1">
+<img alt="../../../_images/interface-gpio.png" src="../../../_images/interface-gpio.png" />
+<p class="caption"><span class="caption-text">Diagrama da interface de GPIO.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A figura foi retirada do <em>Technical Reference Manual</em> do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730, neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.</p>
+</div>
+<p>O registrador &quot;<strong>GPIO_OE</strong>&quot; é o registrador que define a direção do pino que esta sendo configurado. A abreviação &quot;OE&quot; vem de <em>output enable</em>. Esse registrador possui um offset de endereço igual a &quot;0x034&quot;, ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo &quot;RW&quot;, sendo assim, se o valor <strong>0</strong> estiver armazenado no pino correspondente à porta GPIO essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor <strong>1</strong> a porta estará configurada como input.</p>
+<p>O registrador &quot;<strong>GPIO_SETDATAOUT</strong>&quot; é o registrador que tem a função de colocar o bit correspondente no registrador &quot;<strong>GPIO_DATAOUT</strong>&quot; em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a &quot;0x094&quot;. Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo &quot;RW&quot;. A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em <strong>GPIO_DATAOUT</strong>&quot;.</p>
+<p>Além dos registradores apresentados na seção 25 do <em>Technical Reference Manual</em>, também é necessário configurar um registrador do <em>System Control Module</em> (<strong>SCM</strong>). O SCM é um módulo que permite o Controle através de <em>software</em> de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo <em>pullup</em> ou <em>pulldown</em>, por exemplo.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mais informações sobre o SCM podem ser encontradas na seção 13 do TRM.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Gabriel Araujo
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

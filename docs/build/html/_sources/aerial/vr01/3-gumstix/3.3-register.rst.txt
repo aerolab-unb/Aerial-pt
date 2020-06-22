@@ -131,7 +131,7 @@ Além dos registradores apresentados na seção 25 do *Technical Reference Manua
 
 .. Note:: 
     Mais informações sobre o SCM podem ser encontradas na seção 13 do TRM.
-    
+
 Referências
 -----------
 
