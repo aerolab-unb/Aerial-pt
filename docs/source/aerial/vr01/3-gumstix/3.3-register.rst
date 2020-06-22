@@ -153,9 +153,88 @@ O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram reali
 
 .. _Fórum de Discussões da Gumstix: http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html
 
-.. include:: teste2-gpio.c
+::
+
+    #include <stdio.h>    // for lprint instruction
+    #include <fcntl.h>    // ok for mmap param
+    #include <sys/mman.h> // ok for mmap
+    #include <unistd.h>
+
+    #define SCM_INTERFACE_BASE 0x48002000
+    #define SCM_PADCONFS_BASE 0x48002030
+    #define CONTROL_PADCONF_SYS_NIRQ (*(volatile unsigned long *)0x480021E0)
+    #define CONTROL_PADCONF_SYS_NIRQ_OFFSET 0x1B0
+
+    #define GPIO6_BASE 0x49058000
+    #define GPIO6_SYSCONFIG_OFFSET 0x10
+    #define GPIO6_CLEARDATAOUT_OFFSET 0x90
+    #define GPIO6_SETDATAOUT_OFFSET 0x94
+
+    % *<henriquepita9 @gmail.com> 2018 - 07 - 03T21 : 22 : 24.877Z : % % ^.
+
+    #define GPIO6_OE_OFFSET 0x34
+    #define GPIO6_CTRL_OFFSET 0x30
+
+    #define MAP_SIZE (volatile unsigned long)4 * 1024
+    #define MAP_MASK (volatile unsigned long)(MAP_SIZE - 1)
+
+    #define u32 volatile unsigned long
+    u32 *A;
+    u32 *B;
+
+    int main(void)
+    {
+        unsigned long i;
+        int fd;
+
+        fd = open("/dev/mem", O_RDWR | O_SYNC);
+
+        A = (u32 *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, SCM_INTERFACE_BASE & ~MAP_MASK);
+
+        *(u32 *)((u32)A + 0x30 + CONTROL_PADCONF_SYS_NIRQ_OFFSET) &= (0xfff8ffff);
+        *(u32 *)((u32)A + 0x30 + CONTROL_PADCONF_SYS_NIRQ_OFFSET) |= (0x00040000); //imposta mode 4 sul registro configurazione pad 186; habilita uso pin digitale
+
+        close(fd);
+        /*****************************************************/
+
+        fd = open("/dev/mem", O_RDWR | O_SYNC);
+        B = (volatile unsigned long *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO6_BASE & ~MAP_MASK); // COM1 0x4806A000
+
+        //gpio_186 handling
+        *(u32 *)((u32)B + GPIO6_SYSCONFIG_OFFSET) &= 0xffffffe0;
+        *(u32 *)((u32)B + GPIO6_SYSCONFIG_OFFSET) |= 0x00000014; // bit2=1 enable/wake up, free running clock
+
+        *(u32 *)((u32)B + GPIO6_CTRL_OFFSET) &= 0xfffffff8; // bit0=0, bit1=0, bit2=0 module enabled , clock not gated, clock= interface clock not divided
+
+        *(u32 *)((u32)B + GPIO6_OE_OFFSET) &= 0xfbffffff; //bit26=0, gpio_186 output
+
+        // generate a pulse stream on gpio_186 pin output
+
+        for (i = 0; i < 100000; i++)
+        {
+            *(u32 *)((u32)B + (GPIO6_SETDATAOUT_OFFSET)) |= 0x04000000;
+            // printf("Saida = 1\n");
+            // usleep(500000);
+            *(u32 *)((u32)B + (GPIO6_CLEARDATAOUT_OFFSET)) |= 0x04000000;
+            // printf("Saida = 0\n");
+            // usleep(500000);
+        }
+        close(fd);
+        return (0);
+    }
 
 
+:download:`Código para realização do teste de velocidade <teste2-gpio.c>`
+
+O código da listagem 3.2 foi testado da mesma maneira que o código da listagem 3.1 apresentado na seção anterior, na figura 3.9 é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nanossegundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado apresentado na figura 3.7. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
+
+Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um últimoproblema que ainda não foi resolvido envolvendo escrita em registradores.
+
+O problema atual ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador o valor do registrador retorna ao valor que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o "devmem2". Esse problema está exemplificado na figura 3.10.
+
+Na figura executamos o comando "devmem2" para modificar o registrador "0x49058030" que é o registrador que controla o clock de todo o bloco do "GPIO6", a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto o mesmo comando é executado instantes depois no modo de leitura e retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado.
+
+Esse problema foi descoberto a pouco tempo e, portanto, se trata de um problema ainda não resolvido. Não se sabe ao certo porque esse comportamento está ocorrendo, porém acredita-se que exista algum processo do sistema operacional que retorne os registradores para os valores iniciais. Esse problema não ocorre, no entanto, para o método da seção 3.3.1, este método opera até que receba uma ordem de parada do usuário. Corrigir este problema demandaria um pouco mais de tempo.
 
 Referências
 -----------
