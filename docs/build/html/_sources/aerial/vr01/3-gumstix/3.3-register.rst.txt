@@ -98,6 +98,7 @@ Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante a
     return 0;
     }
 
+:download:`Download do código para realização do teste de velocidade <teste1-gpio.c>`
 
 Para testar o código, o pino 18 (pino do **GPIO** 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.
 
@@ -130,7 +131,113 @@ O registrador "**GPIO_SETDATAOUT**" é o registrador que tem a função de coloc
 Além dos registradores apresentados na seção 25 do *Technical Reference Manual*, também é necessário configurar um registrador do *System Control Module* (**SCM**). O SCM é um módulo que permite o Controle através de *software* de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo *pullup* ou *pulldown*, por exemplo.
 
 .. Note:: 
-    Mais informações sobre o SCM podem ser encontradas na seção 13 do TRM.
+    Mais informações sobre o SCM podem ser encontradas na seção 13 do *Technical Reference Manual*.
+
+Os registradores do SCM são divididos em cinco classes. Entretanto, para nossa aplicação, iremos utilizar apenas uma o bloco de registradores de configuração e multiplexação. Esse bloco é um conjunto de registradores de 32 bits, que configura 2 pinos e define, além dos dois parâmetros mencionados anteriormente, a função de *wakeup*. Aos registradores pertencentes a esse bloco é dado o nome de *Configuration Register Functionality*.
+
+Para encontrarmos qual o endereço de cada registrador deste tipo podemos procurar na tabela 13-4 do TRM. Nessa tabela será dado o endereço físico exato de cada registrador (base+offset). No caso o endereço base é o próprio endereço dos registradores "PADCONFS" da interface do SCM, encontrado na seção 13.6.1 do TRM e o endereço offset de cada registrador deste bloco pode ser encontrado na tabela 13-73 do mesmo documento.
+
+Após a identificação dos registradores podemos iniciar a elaboração de um código para modifica-los. Assim nos deparamos com mais um desafio, sistemas operacionais trabalham com dois conceitos de memória, memória física e memória virtual. Memória física é a memória do hardware, aquela qual sabemos o endereço e pois verificamos no TRM. Entretanto se criarmos um ponteiro que aponta para a memória "0x4800000", por exemplo, ele não irá apontar para a memória física que possui este endereço pois o sistema operacional mapeia um espaço da memória física diferente para cada programa com os principais objetivos de aumentar a segurança e evitar conflitos de dados entre programas.
+
+Entretanto para ter acesso à memória física do sistema precisamos solicitar ao sistema operacional que mapeie esse espaço de memória para a aplicação. Uma maneira de realizar esse procedimento é através da função "mmap()". 
+
+.. Note::
+    Detalhes do funcionamento dessa função e seus parâmetro podem ser encontrados em `mmap(2) — Linux manual page`_.
+
+.. _mmap(2) — Linux manual page: https://man7.org/linux/man-pages/man2/mmap.2.html
+
+Vamos supor que queremos mapear o espaço de memória físico de "**0x45000000**" até "**0x45001000**" e para isso decidimos usar a função ``mmap()``. Portanto, chamamos a função da seguinte maneira, por exemplo, ``mmap(NULL,0x1000,PROT_WRITE || PROT_READ,MAP_SHARED,fd,0x45000000)``, executando isso a função irá retornar um ponteiro que aponta para um endereço de memória virtual endereçado no endereço de memória física "**0x45000000**". Em que, para ter acesso à memória física do dispositivo, "**fd**" é o file descriptor direcionado para "/dev/mem". 
+
+Com essas informações, temos tudo o que é necessário para implementar testes acerca deste modo de operação. A seguir temos um código que aplica o método descrito nesta seção para alternar o nível de tensão do pino "186". Esse código foi implementado para se realizar o mesmo teste da seção "Controle do GPIO via terminal".
+
+O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram realizadas pequenas alterações para evitar o excesso de informação e facilitar sua compreensão.
+
+.. _Fórum de Discussões da Gumstix: http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html
+
+::
+
+    #include <stdio.h>    // for lprint instruction
+    #include <fcntl.h>    // ok for mmap param
+    #include <sys/mman.h> // ok for mmap
+    #include <unistd.h>
+
+    #define SCM_INTERFACE_BASE 0x48002000
+    #define SCM_PADCONFS_BASE 0x48002030
+    #define CONTROL_PADCONF_SYS_NIRQ (*(volatile unsigned long *)0x480021E0)
+    #define CONTROL_PADCONF_SYS_NIRQ_OFFSET 0x1B0
+
+    #define GPIO6_BASE 0x49058000
+    #define GPIO6_SYSCONFIG_OFFSET 0x10
+    #define GPIO6_CLEARDATAOUT_OFFSET 0x90
+    #define GPIO6_SETDATAOUT_OFFSET 0x94
+
+    #define GPIO6_OE_OFFSET 0x34
+    #define GPIO6_CTRL_OFFSET 0x30
+
+    #define MAP_SIZE (volatile unsigned long)4 * 1024
+    #define MAP_MASK (volatile unsigned long)(MAP_SIZE - 1)
+
+    #define u32 volatile unsigned long
+    u32 *A;
+    u32 *B;
+
+    int main(void)
+    {
+        unsigned long i;
+        int fd;
+
+        fd = open("/dev/mem", O_RDWR | O_SYNC);
+
+        A = (u32 *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, SCM_INTERFACE_BASE & ~MAP_MASK);
+
+        *(u32 *)((u32)A + 0x30 + CONTROL_PADCONF_SYS_NIRQ_OFFSET) &= (0xfff8ffff);
+        *(u32 *)((u32)A + 0x30 + CONTROL_PADCONF_SYS_NIRQ_OFFSET) |= (0x00040000); //imposta mode 4 sul registro configurazione pad 186; habilita uso pin digitale
+
+        close(fd);
+        /*****************************************************/
+
+        fd = open("/dev/mem", O_RDWR | O_SYNC);
+        B = (volatile unsigned long *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO6_BASE & ~MAP_MASK); // COM1 0x4806A000
+
+        //gpio_186 handling
+        *(u32 *)((u32)B + GPIO6_SYSCONFIG_OFFSET) &= 0xffffffe0;
+        *(u32 *)((u32)B + GPIO6_SYSCONFIG_OFFSET) |= 0x00000014; // bit2=1 enable/wake up, free running clock
+
+        *(u32 *)((u32)B + GPIO6_CTRL_OFFSET) &= 0xfffffff8; // bit0=0, bit1=0, bit2=0 module enabled , clock not gated, clock= interface clock not divided
+
+        *(u32 *)((u32)B + GPIO6_OE_OFFSET) &= 0xfbffffff; //bit26=0, gpio_186 output
+
+        // generate a pulse stream on gpio_186 pin output
+
+        for (i = 0; i < 100000; i++)
+        {
+            *(u32 *)((u32)B + (GPIO6_SETDATAOUT_OFFSET)) |= 0x04000000;
+            // printf("Saida = 1\n");
+            // usleep(500000);
+            *(u32 *)((u32)B + (GPIO6_CLEARDATAOUT_OFFSET)) |= 0x04000000;
+            // printf("Saida = 0\n");
+            // usleep(500000);
+        }
+        close(fd);
+        return (0);
+    }
+
+
+:download:`Download do código para realização do teste de velocidade <teste2-gpio.c>`
+
+O código acima foi testado da mesma maneira que o código apresentado na seção anterior, na figura a seguir é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nanossegundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado apresentado na figura 3.7. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
+
+.. adicionar imagem
+
+Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um último problema que ainda não foi resolvido envolvendo escrita em registradores.
+
+O problema atual ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador o valor do registrador retorna ao valor que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o "devmem2". Esse problema está exemplificado na figura abaixo.
+
+.. adicionar imagem
+
+Na figura executamos o comando ``devmem2`` para modificar o registrador "**0x49058030**" que é o registrador que controla o clock de todo o bloco do "**GPIO6**", a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando é executado instantes depois no modo de leitura e retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado.
+
+Esse problema foi descoberto a pouco tempo e, portanto, se trata de um problema ainda não resolvido. Não se sabe ao certo porque esse comportamento está ocorrendo, porém acredita-se que exista algum processo do sistema operacional que retorne os registradores para os valores iniciais. Esse problema não ocorre, no entanto, para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário. Corrigir este problema demandaria um pouco mais de tempo.
 
 Referências
 -----------

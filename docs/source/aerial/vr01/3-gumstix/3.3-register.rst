@@ -98,6 +98,7 @@ Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante a
     return 0;
     }
 
+:download:`Download do código para realização do teste de velocidade <teste1-gpio.c>`
 
 Para testar o código, o pino 18 (pino do **GPIO** 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.
 
@@ -145,7 +146,7 @@ Entretanto para ter acesso à memória física do sistema precisamos solicitar a
 
 .. _mmap(2) — Linux manual page: https://man7.org/linux/man-pages/man2/mmap.2.html
 
-Vamos supor que queremos mapear o espaço de memória físico de ``0x45000000`` até ``0x45001000`` e para isso decidimos usar a função ``mmap()``. Portanto chamamos a função da seguinte maneira, por exemplo, ``mmap(NULL,0x1000,PROT_WRITE || PROT_READ,MAP_SHARED,fd,0x45000000)``, executando isso a função irá retornar um ponteiro que aponta para um endereço de memória virtual endereçado no endereço de memória física ``0x45000000``. Em que, para ter acesso à memória física do dispositivo, "**fd**" é o file descriptor direcionado para "/dev/mem". 
+Vamos supor que queremos mapear o espaço de memória físico de "**0x45000000**" até "**0x45001000**" e para isso decidimos usar a função ``mmap()``. Portanto, chamamos a função da seguinte maneira, por exemplo, ``mmap(NULL,0x1000,PROT_WRITE || PROT_READ,MAP_SHARED,fd,0x45000000)``, executando isso a função irá retornar um ponteiro que aponta para um endereço de memória virtual endereçado no endereço de memória física "**0x45000000**". Em que, para ter acesso à memória física do dispositivo, "**fd**" é o file descriptor direcionado para "/dev/mem". 
 
 Com essas informações, temos tudo o que é necessário para implementar testes acerca deste modo de operação. A seguir temos um código que aplica o método descrito nesta seção para alternar o nível de tensão do pino "186". Esse código foi implementado para se realizar o mesmo teste da seção "Controle do GPIO via terminal".
 
@@ -169,8 +170,6 @@ O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram reali
     #define GPIO6_SYSCONFIG_OFFSET 0x10
     #define GPIO6_CLEARDATAOUT_OFFSET 0x90
     #define GPIO6_SETDATAOUT_OFFSET 0x94
-
-    % *<henriquepita9 @gmail.com> 2018 - 07 - 03T21 : 22 : 24.877Z : % % ^.
 
     #define GPIO6_OE_OFFSET 0x34
     #define GPIO6_CTRL_OFFSET 0x30
@@ -224,17 +223,21 @@ O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram reali
     }
 
 
-:download:`Código para realização do teste de velocidade <teste2-gpio.c>`
+:download:`Download do código para realização do teste de velocidade <teste2-gpio.c>`
 
-O código da listagem 3.2 foi testado da mesma maneira que o código da listagem 3.1 apresentado na seção anterior, na figura 3.9 é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nanossegundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado apresentado na figura 3.7. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
+O código acima foi testado da mesma maneira que o código apresentado na seção anterior, na figura a seguir é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nanossegundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado apresentado na figura 3.7. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
 
-Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um últimoproblema que ainda não foi resolvido envolvendo escrita em registradores.
+.. adicionar imagem
 
-O problema atual ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador o valor do registrador retorna ao valor que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o "devmem2". Esse problema está exemplificado na figura 3.10.
+Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um último problema que ainda não foi resolvido envolvendo escrita em registradores.
 
-Na figura executamos o comando "devmem2" para modificar o registrador "0x49058030" que é o registrador que controla o clock de todo o bloco do "GPIO6", a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto o mesmo comando é executado instantes depois no modo de leitura e retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado.
+O problema atual ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador o valor do registrador retorna ao valor que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o "devmem2". Esse problema está exemplificado na figura abaixo.
 
-Esse problema foi descoberto a pouco tempo e, portanto, se trata de um problema ainda não resolvido. Não se sabe ao certo porque esse comportamento está ocorrendo, porém acredita-se que exista algum processo do sistema operacional que retorne os registradores para os valores iniciais. Esse problema não ocorre, no entanto, para o método da seção 3.3.1, este método opera até que receba uma ordem de parada do usuário. Corrigir este problema demandaria um pouco mais de tempo.
+.. adicionar imagem
+
+Na figura executamos o comando ``devmem2`` para modificar o registrador "**0x49058030**" que é o registrador que controla o clock de todo o bloco do "**GPIO6**", a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando é executado instantes depois no modo de leitura e retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado.
+
+Esse problema foi descoberto a pouco tempo e, portanto, se trata de um problema ainda não resolvido. Não se sabe ao certo porque esse comportamento está ocorrendo, porém acredita-se que exista algum processo do sistema operacional que retorne os registradores para os valores iniciais. Esse problema não ocorre, no entanto, para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário. Corrigir este problema demandaria um pouco mais de tempo.
 
 Referências
 -----------

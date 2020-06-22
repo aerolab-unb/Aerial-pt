@@ -252,6 +252,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p><a class="reference download internal" download="" href="../../../_downloads/289190a901ad06922411e4f9aaa0a400/teste1-gpio.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">para</span> <span class="pre">realização</span> <span class="pre">do</span> <span class="pre">teste</span> <span class="pre">de</span> <span class="pre">velocidade</span></code></a></p>
 <p>Para testar o código, o pino 18 (pino do <strong>GPIO</strong> 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.</p>
 <div class="figure align-center">
 <img alt="../../../_images/teste1-gpio.png" src="../../../_images/teste1-gpio.png" />
@@ -276,8 +277,92 @@ base, sendo que cada um desses registradores possui um comprimento de 32 bits ou
 <p>Além dos registradores apresentados na seção 25 do <em>Technical Reference Manual</em>, também é necessário configurar um registrador do <em>System Control Module</em> (<strong>SCM</strong>). O SCM é um módulo que permite o Controle através de <em>software</em> de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo <em>pullup</em> ou <em>pulldown</em>, por exemplo.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Mais informações sobre o SCM podem ser encontradas na seção 13 do TRM.</p>
+<p>Mais informações sobre o SCM podem ser encontradas na seção 13 do <em>Technical Reference Manual</em>.</p>
 </div>
+<p>Os registradores do SCM são divididos em cinco classes. Entretanto, para nossa aplicação, iremos utilizar apenas uma o bloco de registradores de configuração e multiplexação. Esse bloco é um conjunto de registradores de 32 bits, que configura 2 pinos e define, além dos dois parâmetros mencionados anteriormente, a função de <em>wakeup</em>. Aos registradores pertencentes a esse bloco é dado o nome de <em>Configuration Register Functionality</em>.</p>
+<p>Para encontrarmos qual o endereço de cada registrador deste tipo podemos procurar na tabela 13-4 do TRM. Nessa tabela será dado o endereço físico exato de cada registrador (base+offset). No caso o endereço base é o próprio endereço dos registradores &quot;PADCONFS&quot; da interface do SCM, encontrado na seção 13.6.1 do TRM e o endereço offset de cada registrador deste bloco pode ser encontrado na tabela 13-73 do mesmo documento.</p>
+<p>Após a identificação dos registradores podemos iniciar a elaboração de um código para modifica-los. Assim nos deparamos com mais um desafio, sistemas operacionais trabalham com dois conceitos de memória, memória física e memória virtual. Memória física é a memória do hardware, aquela qual sabemos o endereço e pois verificamos no TRM. Entretanto se criarmos um ponteiro que aponta para a memória &quot;0x4800000&quot;, por exemplo, ele não irá apontar para a memória física que possui este endereço pois o sistema operacional mapeia um espaço da memória física diferente para cada programa com os principais objetivos de aumentar a segurança e evitar conflitos de dados entre programas.</p>
+<p>Entretanto para ter acesso à memória física do sistema precisamos solicitar ao sistema operacional que mapeie esse espaço de memória para a aplicação. Uma maneira de realizar esse procedimento é através da função &quot;mmap()&quot;.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Detalhes do funcionamento dessa função e seus parâmetro podem ser encontrados em <a class="reference external" href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap(2) — Linux manual page</a>.</p>
+</div>
+<p>Vamos supor que queremos mapear o espaço de memória físico de &quot;<strong>0x45000000</strong>&quot; até &quot;<strong>0x45001000</strong>&quot; e para isso decidimos usar a função <code class="docutils literal notranslate"><span class="pre">mmap()</span></code>. Portanto, chamamos a função da seguinte maneira, por exemplo, <code class="docutils literal notranslate"><span class="pre">mmap(NULL,0x1000,PROT_WRITE</span> <span class="pre">||</span> <span class="pre">PROT_READ,MAP_SHARED,fd,0x45000000)</span></code>, executando isso a função irá retornar um ponteiro que aponta para um endereço de memória virtual endereçado no endereço de memória física &quot;<strong>0x45000000</strong>&quot;. Em que, para ter acesso à memória física do dispositivo, &quot;<strong>fd</strong>&quot; é o file descriptor direcionado para &quot;/dev/mem&quot;.</p>
+<p>Com essas informações, temos tudo o que é necessário para implementar testes acerca deste modo de operação. A seguir temos um código que aplica o método descrito nesta seção para alternar o nível de tensão do pino &quot;186&quot;. Esse código foi implementado para se realizar o mesmo teste da seção &quot;Controle do GPIO via terminal&quot;.</p>
+<p>O código abaixo foi obtido no <a class="reference external" href="http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html">Fórum de Discussões da Gumstix</a> e foram realizadas pequenas alterações para evitar o excesso de informação e facilitar sua compreensão.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;    // for lprint instruction</span>
+<span class="c1">#include &lt;fcntl.h&gt;    // ok for mmap param</span>
+<span class="c1">#include &lt;sys/mman.h&gt; // ok for mmap</span>
+<span class="c1">#include &lt;unistd.h&gt;</span>
+
+<span class="c1">#define SCM_INTERFACE_BASE 0x48002000</span>
+<span class="c1">#define SCM_PADCONFS_BASE 0x48002030</span>
+<span class="c1">#define CONTROL_PADCONF_SYS_NIRQ (*(volatile unsigned long *)0x480021E0)</span>
+<span class="c1">#define CONTROL_PADCONF_SYS_NIRQ_OFFSET 0x1B0</span>
+
+<span class="c1">#define GPIO6_BASE 0x49058000</span>
+<span class="c1">#define GPIO6_SYSCONFIG_OFFSET 0x10</span>
+<span class="c1">#define GPIO6_CLEARDATAOUT_OFFSET 0x90</span>
+<span class="c1">#define GPIO6_SETDATAOUT_OFFSET 0x94</span>
+
+<span class="c1">#define GPIO6_OE_OFFSET 0x34</span>
+<span class="c1">#define GPIO6_CTRL_OFFSET 0x30</span>
+
+<span class="c1">#define MAP_SIZE (volatile unsigned long)4 * 1024</span>
+<span class="c1">#define MAP_MASK (volatile unsigned long)(MAP_SIZE - 1)</span>
+
+<span class="c1">#define u32 volatile unsigned long</span>
+<span class="n">u32</span> <span class="o">*</span><span class="n">A</span><span class="p">;</span>
+<span class="n">u32</span> <span class="o">*</span><span class="n">B</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">unsigned</span> <span class="n">long</span> <span class="n">i</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">fd</span><span class="p">;</span>
+
+    <span class="n">fd</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/dev/mem&quot;</span><span class="p">,</span> <span class="n">O_RDWR</span> <span class="o">|</span> <span class="n">O_SYNC</span><span class="p">);</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">u32</span> <span class="o">*</span><span class="p">)</span><span class="n">mmap</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span> <span class="n">MAP_SIZE</span><span class="p">,</span> <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_SHARED</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="n">SCM_INTERFACE_BASE</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">MAP_MASK</span><span class="p">);</span>
+
+    <span class="o">*</span><span class="p">(</span><span class="n">u32</span> <span class="o">*</span><span class="p">)((</span><span class="n">u32</span><span class="p">)</span><span class="n">A</span> <span class="o">+</span> <span class="mh">0x30</span> <span class="o">+</span> <span class="n">CONTROL_PADCONF_SYS_NIRQ_OFFSET</span><span class="p">)</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="mh">0xfff8ffff</span><span class="p">);</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">u32</span> <span class="o">*</span><span class="p">)((</span><span class="n">u32</span><span class="p">)</span><span class="n">A</span> <span class="o">+</span> <span class="mh">0x30</span> <span class="o">+</span> <span class="n">CONTROL_PADCONF_SYS_NIRQ_OFFSET</span><span class="p">)</span> <span class="o">|=</span> <span class="p">(</span><span class="mh">0x00040000</span><span class="p">);</span> <span class="o">//</span><span class="n">imposta</span> <span class="n">mode</span> <span class="mi">4</span> <span class="n">sul</span> <span class="n">registro</span> <span class="n">configurazione</span> <span class="n">pad</span> <span class="mi">186</span><span class="p">;</span> <span class="n">habilita</span> <span class="n">uso</span> <span class="n">pin</span> <span class="n">digitale</span>
+
+    <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+    <span class="o">/*****************************************************/</span>
+
+    <span class="n">fd</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/dev/mem&quot;</span><span class="p">,</span> <span class="n">O_RDWR</span> <span class="o">|</span> <span class="n">O_SYNC</span><span class="p">);</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="n">volatile</span> <span class="n">unsigned</span> <span class="n">long</span> <span class="o">*</span><span class="p">)</span><span class="n">mmap</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span> <span class="n">MAP_SIZE</span><span class="p">,</span> <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_SHARED</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="n">GPIO6_BASE</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">MAP_MASK</span><span class="p">);</span> <span class="o">//</span> <span class="n">COM1</span> <span class="mh">0x4806A000</span>
+
+    <span class="o">//</span><span class="n">gpio_186</span> <span class="n">handling</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">u32</span> <span class="o">*</span><span class="p">)((</span><span class="n">u32</span><span class="p">)</span><span class="n">B</span> <span class="o">+</span> <span class="n">GPIO6_SYSCONFIG_OFFSET</span><span class="p">)</span> <span class="o">&amp;=</span> <span class="mh">0xffffffe0</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">u32</span> <span class="o">*</span><span class="p">)((</span><span class="n">u32</span><span class="p">)</span><span class="n">B</span> <span class="o">+</span> <span class="n">GPIO6_SYSCONFIG_OFFSET</span><span class="p">)</span> <span class="o">|=</span> <span class="mh">0x00000014</span><span class="p">;</span> <span class="o">//</span> <span class="n">bit2</span><span class="o">=</span><span class="mi">1</span> <span class="n">enable</span><span class="o">/</span><span class="n">wake</span> <span class="n">up</span><span class="p">,</span> <span class="n">free</span> <span class="n">running</span> <span class="n">clock</span>
+
+    <span class="o">*</span><span class="p">(</span><span class="n">u32</span> <span class="o">*</span><span class="p">)((</span><span class="n">u32</span><span class="p">)</span><span class="n">B</span> <span class="o">+</span> <span class="n">GPIO6_CTRL_OFFSET</span><span class="p">)</span> <span class="o">&amp;=</span> <span class="mh">0xfffffff8</span><span class="p">;</span> <span class="o">//</span> <span class="n">bit0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bit1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bit2</span><span class="o">=</span><span class="mi">0</span> <span class="n">module</span> <span class="n">enabled</span> <span class="p">,</span> <span class="n">clock</span> <span class="ow">not</span> <span class="n">gated</span><span class="p">,</span> <span class="n">clock</span><span class="o">=</span> <span class="n">interface</span> <span class="n">clock</span> <span class="ow">not</span> <span class="n">divided</span>
+
+    <span class="o">*</span><span class="p">(</span><span class="n">u32</span> <span class="o">*</span><span class="p">)((</span><span class="n">u32</span><span class="p">)</span><span class="n">B</span> <span class="o">+</span> <span class="n">GPIO6_OE_OFFSET</span><span class="p">)</span> <span class="o">&amp;=</span> <span class="mh">0xfbffffff</span><span class="p">;</span> <span class="o">//</span><span class="n">bit26</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">gpio_186</span> <span class="n">output</span>
+
+    <span class="o">//</span> <span class="n">generate</span> <span class="n">a</span> <span class="n">pulse</span> <span class="n">stream</span> <span class="n">on</span> <span class="n">gpio_186</span> <span class="n">pin</span> <span class="n">output</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">*</span><span class="p">(</span><span class="n">u32</span> <span class="o">*</span><span class="p">)((</span><span class="n">u32</span><span class="p">)</span><span class="n">B</span> <span class="o">+</span> <span class="p">(</span><span class="n">GPIO6_SETDATAOUT_OFFSET</span><span class="p">))</span> <span class="o">|=</span> <span class="mh">0x04000000</span><span class="p">;</span>
+        <span class="o">//</span> <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Saida = 1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+        <span class="o">//</span> <span class="n">usleep</span><span class="p">(</span><span class="mi">500000</span><span class="p">);</span>
+        <span class="o">*</span><span class="p">(</span><span class="n">u32</span> <span class="o">*</span><span class="p">)((</span><span class="n">u32</span><span class="p">)</span><span class="n">B</span> <span class="o">+</span> <span class="p">(</span><span class="n">GPIO6_CLEARDATAOUT_OFFSET</span><span class="p">))</span> <span class="o">|=</span> <span class="mh">0x04000000</span><span class="p">;</span>
+        <span class="o">//</span> <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Saida = 0</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+        <span class="o">//</span> <span class="n">usleep</span><span class="p">(</span><span class="mi">500000</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../../_downloads/08b7c5130cdec9e0a1920e7954049e2b/teste2-gpio.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">para</span> <span class="pre">realização</span> <span class="pre">do</span> <span class="pre">teste</span> <span class="pre">de</span> <span class="pre">velocidade</span></code></a></p>
+<p>O código acima foi testado da mesma maneira que o código apresentado na seção anterior, na figura a seguir é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nanossegundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado apresentado na figura 3.7. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.</p>
+<p>Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um último problema que ainda não foi resolvido envolvendo escrita em registradores.</p>
+<p>O problema atual ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador o valor do registrador retorna ao valor que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o &quot;devmem2&quot;. Esse problema está exemplificado na figura abaixo.</p>
+<p>Na figura executamos o comando <code class="docutils literal notranslate"><span class="pre">devmem2</span></code> para modificar o registrador &quot;<strong>0x49058030</strong>&quot; que é o registrador que controla o clock de todo o bloco do &quot;<strong>GPIO6</strong>&quot;, a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando é executado instantes depois no modo de leitura e retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado.</p>
+<p>Esse problema foi descoberto a pouco tempo e, portanto, se trata de um problema ainda não resolvido. Não se sabe ao certo porque esse comportamento está ocorrendo, porém acredita-se que exista algum processo do sistema operacional que retorne os registradores para os valores iniciais. Esse problema não ocorre, no entanto, para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário. Corrigir este problema demandaria um pouco mais de tempo.</p>
 <div class="section" id="referencias">
 <h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
