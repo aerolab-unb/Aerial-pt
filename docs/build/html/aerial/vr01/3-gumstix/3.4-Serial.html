@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Utilizando o computador embarcado &mdash; CoopRobo 1.0.0 documentation</title>
+  <title>Comunicação Serial &mdash; CoopRobo 1.0.0 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Ambientando-se ao Linux" href="3.1-Ambient_Linux.html" />
-    <link rel="prev" title="Primeiros passos com o Gumstix Overo" href="../2-embedded_system/2.4-connect_gumstix.html" /> 
+    <link rel="next" title="Mobile Robots" href="../../../mobile.html" />
+    <link rel="prev" title="Registradores" href="3.3-register.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,11 +88,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../1-autopilot/1.0-pilot.html">Piloto Automatico</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../1-autopilot/1.1-config_pilot.html">Configuração do Piloto Automatico</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../2-embedded_system/2.0-embedded_system.html">Sistema Embarcado</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Utilizando o computador embarcado</a><ul>
+<li class="toctree-l3 current"><a class="reference internal" href="3.0-intro.html">Utilizando o computador embarcado</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="3.1-Ambient_Linux.html">Ambientando-se ao Linux</a></li>
 <li class="toctree-l4"><a class="reference internal" href="3.2-CrossCompilation.html">Compilação Cruzada</a></li>
 <li class="toctree-l4"><a class="reference internal" href="3.3-register.html">Registradores</a></li>
-<li class="toctree-l4"><a class="reference internal" href="3.4-Serial.html">Comunicação Serial</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Comunicação Serial</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../vr01.html#referencias">Referências</a></li>
@@ -153,13 +153,15 @@
         
           <li><a href="../../vr01.html">VR-01</a> &raquo;</li>
         
-      <li>Utilizando o computador embarcado</li>
+          <li><a href="3.0-intro.html">Utilizando o computador embarcado</a> &raquo;</li>
+        
+      <li>Comunicação Serial</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../_sources/aerial/vr01/3-gumstix/3.0-intro.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/aerial/vr01/3-gumstix/3.4-Serial.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -172,29 +174,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="utilizando-o-computador-embarcado">
-<h1>Utilizando o computador embarcado<a class="headerlink" href="#utilizando-o-computador-embarcado" title="Permalink to this headline">¶</a></h1>
-<p>Neste capítulo serão discutidos conhecimentos básicos necessários para a manipulação do computador embarcado Gumstix Overo, do sistema operacional linux e do sistema operacional específico instalado e, posteriormente, são realizados testes do GPIO e da comunicação serial do computador embarcado. As informações descritas nessas etapas são essenciais para a compreensão de diversos topicos e serão utilizadas ao longo do trabalho.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="3.1-Ambient_Linux.html">Ambientando-se ao Linux</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="3.1-Ambient_Linux.html#linhas-de-comandos">Linhas de Comandos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3.1-Ambient_Linux.html#explorando-os-arquivos-do-sistema">Explorando os Arquivos do Sistema</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="3.2-CrossCompilation.html">Compilação Cruzada</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="3.2-CrossCompilation.html#instalando-o-sdk">Instalando o SDK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3.2-CrossCompilation.html#compilando-hello-world">Compilando Hello World</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="3.3-register.html">Registradores</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="3.3-register.html#controle-do-gpio-via-terminal">Controle do GPIO via terminal</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3.3-register.html#controle-do-gpio-via-registradores">Controle do GPIO via registradores</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="3.4-Serial.html">Comunicação Serial</a></li>
-</ul>
-</div>
+  <div class="section" id="comunicacao-serial">
+<h1>Comunicação Serial<a class="headerlink" href="#comunicacao-serial" title="Permalink to this headline">¶</a></h1>
+<p>Nessa seção será discutido mais especificamente o sistema de comunicação serial. No caso do Overo, temos três sistemas de comunicação serial assíncrona universal ou Universal Asynchronous Receiver/Transmitter (UART) implementado por hardware à nossa disposição; o que faz desnecessário qualquer implementação manual através de software utilizando GPIO.</p>
+<p>Primeiro precisamos entender como funciona o protocolo de comunicação UART. Essa comunicação funciona através da conexão do transmissor (TX) de um dispositivo com o receptor (RX) de outro dispositivo, no caso, apenas o TX realiza alterações no nível de tensão da linha, sendo assim, a comunicação é, para cada conexão, uma via de mão única. Logo, para realizar uma comunicação de mão dupla iremos utilizar duas conexões, uma será a ligação de RX do dispositivo 1 com o TX do dispositivo 2 e a outra ligação será o oposto, RX do dispositivo 2 com TX do dispositivo 1.</p>
+<p>Podemos analisar a situação da comunicação a nível de bit. Por exemplo, para uma comunicação UART do tipo &quot;8N1&quot; (8 bits de dados, 0 bits de paridade e 1 bit de parada) teremos o canal em estado idle, que significa &quot;não operando&quot;, é representado pelo nível de tensão estático em alto, quando pretende-se iniciar a comunicação é enviado um pulso de nível baixo, logo em seguida são enviados os oito bits de dados que será acompanhado de um bits de parada em estado alto.</p>
+<p>É importante comentar que a função do bit de parada é realizar uma pausa na transmissão para algum processamento interno dos dispositivos, não é necessário, portanto, nenhum tempo adicional entre os dados transmitidos.</p>
+<p>Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em baudrate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.</p>
+<p>A figura 3.114 é um esquemático que ilustra o que foi explicado nos parágrafos anteriores, na ilustração a velocidade de comunicação é de 10.000.000 baud/s.</p>
 </div>
 
 
@@ -205,10 +192,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="3.1-Ambient_Linux.html" class="btn btn-neutral float-right" title="Ambientando-se ao Linux" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../../../mobile.html" class="btn btn-neutral float-right" title="Mobile Robots" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../2-embedded_system/2.4-connect_gumstix.html" class="btn btn-neutral float-left" title="Primeiros passos com o Gumstix Overo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="3.3-register.html" class="btn btn-neutral float-left" title="Registradores" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
