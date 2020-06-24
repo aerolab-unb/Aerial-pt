@@ -6,11 +6,11 @@ Registradores
 
 Seguindo as etapas das seções anteriores, somos capazes de iniciar o sistema e gerar programas a serem executados pelo sistema operacional. O próximo passo é, portanto, controlar os sinais que podem ser enviados a outros dispositivos pelo computador embarcado para estabelecer a comunicação entre os dispositivos.
 
-A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a espaços de memória do sistema e quando alteramos o bit armazenado neste espaço de memória alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.
+A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a **espaços de memória do sistema** e quando alteramos o bit armazenado neste espaço de memória alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.
 
-Posteriormente, a comunicação entre dispositivos será melhor discutida, mas neste momento o que mais nos importa são os "espaços de memória" citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de registrador. Os registradores estão no topo da hierarquia de memória, sendo assim, é um tipo de memória mais rápida de uma unidade central de processamento.
+Posteriormente, a comunicação entre dispositivos será melhor discutida, mas neste momento o que mais nos importa são os "**espaços de memória**" citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de **registrador**. Os registradores estão no topo da hierarquia de memória, sendo assim o tipo de memória mais rápida de uma unidade central de processamento.
 
-Sendo assim, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de **ON/OFF** de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de `General Purpose Input/Output`_ (**GPIO**).
+Dessa forma, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de **ON/OFF** de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de `General Purpose Input/Output`_ (**GPIO**).
 
 .. _General Purpose Input/Output: https://en.wikipedia.org/wiki/General-purpose_input/output
 
@@ -116,10 +116,11 @@ Controle do GPIO via registradores
 
 Outra maneira de se controlar o GPIO é escrevendo diretamente nos registradores do sistema. Apesar de o procedimento ser um pouco mais complexo essa, na verdade, é a maneira mais comum e mais recomendada de se realizar esse procedimento oferecendo resultados muito mais rápidos.
 
-Para utilizar este método precisamos, primeiro, definir em quais registradores devemos escrever e o que devemos escrever neles. Essa informação só pode ser encontrada no :download:`Technical Reference Manual (TRM) <TRM_DM3730.pdf>` do processador DM3730, disponivel no site da Texas Instruments.
+Para utilizar este método precisamos, primeiro, definir em quais registradores devemos escrever e o que devemos escrever neles. Essa informação só pode ser encontrada no :download:`Technical Reference Manual (TRM) <TRM_DM3730.pdf>` do processador DM3730, disponivel no site da `Texas Instruments`_.
 
-Como é explicado na seção **25** do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de
-base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.
+.. _Texas Instruments: https://www.ti.com/
+
+Como é explicado na seção **25** do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.
 
 .. figure:: /img/Aerial/interface-gpio.png
     :align: center
