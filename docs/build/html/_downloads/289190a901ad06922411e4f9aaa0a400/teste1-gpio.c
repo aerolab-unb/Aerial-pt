@@ -17,12 +17,16 @@ int main()
     close(arq);
 
     arq = open("/sys/class/gpio/gpio10/value", O_RDWR);
-    while (1)
+    
+    for (int i = 0; i < 10000; i++)
     {
         write(arq, "1", 1);
         //usleep (500000);
         write(arq, "0", 1);
         //usleep (500000) ;
+        
+        //printf("i = %d \n", i);       
+        
     }
     close(arq);
 

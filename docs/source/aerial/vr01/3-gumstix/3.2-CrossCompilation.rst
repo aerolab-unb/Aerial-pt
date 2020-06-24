@@ -100,7 +100,7 @@ Uma vez realizada a instalação, podemos testar a compilação cruzada criando 
     return 0;
     }
 
-Agora podemos executar o comando ``make <nome_do_código>.c`` para criar um arquivo binário executável do *helloworld.c*. 
+Agora podemos executar o comando ``make <nome_do_código>`` para criar um arquivo binário executável do *helloworld.c*. 
 
 .. figure:: /img/Aerial/sdk_compile.png
 	:align: center

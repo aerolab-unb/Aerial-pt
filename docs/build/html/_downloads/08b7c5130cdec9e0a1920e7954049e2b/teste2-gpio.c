@@ -26,6 +26,7 @@ u32 *B;
 int main(void)
 {
     unsigned long i;
+    int j;
     int fd;
 
     fd = open("/dev/mem", O_RDWR | O_SYNC);
@@ -51,14 +52,17 @@ int main(void)
 
     // generate a pulse stream on gpio_186 pin output
 
-    for (i = 0; i < 100000; i++)
+    for (j = 0; j < 1000; j++)
     {
         *(u32 *)((u32)B + (GPIO6_SETDATAOUT_OFFSET)) |= 0x04000000;
-        // printf("Saida = 1\n");
+        //printf("Saida = 1\n");
         // usleep(500000);
         *(u32 *)((u32)B + (GPIO6_CLEARDATAOUT_OFFSET)) |= 0x04000000;
         // printf("Saida = 0\n");
         // usleep(500000);
+        
+        //printf("j = %d \n", j);
+        
     }
     close(fd);
     return (0);
