@@ -1,0 +1,14 @@
+Comunicação Serial
+==================
+
+Nessa seção será discutido mais especificamente o sistema de comunicação serial. No caso do Overo, temos três sistemas de comunicação serial assíncrona universal ou Universal Asynchronous Receiver/Transmitter (UART) implementado por hardware à nossa disposição; o que faz desnecessário qualquer implementação manual através de software utilizando GPIO.
+
+Primeiro precisamos entender como funciona o protocolo de comunicação UART. Essa comunicação funciona através da conexão do transmissor (TX) de um dispositivo com o receptor (RX) de outro dispositivo, no caso, apenas o TX realiza alterações no nível de tensão da linha, sendo assim, a comunicação é, para cada conexão, uma via de mão única. Logo, para realizar uma comunicação de mão dupla iremos utilizar duas conexões, uma será a ligação de RX do dispositivo 1 com o TX do dispositivo 2 e a outra ligação será o oposto, RX do dispositivo 2 com TX do dispositivo 1.
+
+Podemos analisar a situação da comunicação a nível de bit. Por exemplo, para uma comunicação UART do tipo "8N1" (8 bits de dados, 0 bits de paridade e 1 bit de parada) teremos o canal em estado idle, que significa "não operando", é representado pelo nível de tensão estático em alto, quando pretende-se iniciar a comunicação é enviado um pulso de nível baixo, logo em seguida são enviados os oito bits de dados que será acompanhado de um bits de parada em estado alto.
+
+É importante comentar que a função do bit de parada é realizar uma pausa na transmissão para algum processamento interno dos dispositivos, não é necessário, portanto, nenhum tempo adicional entre os dados transmitidos.
+
+Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em baudrate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.
+
+A figura 3.114 é um esquemático que ilustra o que foi explicado nos parágrafos anteriores, na ilustração a velocidade de comunicação é de 10.000.000 baud/s.
