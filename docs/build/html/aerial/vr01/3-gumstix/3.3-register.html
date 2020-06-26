@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<html class="writer-html5" lang="en,pt-BR" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -25,15 +30,11 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Comunicação Serial" href="3.4-Serial.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> CoopRobo
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> CoopRobo
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -109,6 +111,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -147,7 +150,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
         
@@ -181,9 +184,9 @@
 <p>Este topico precisa ser testado e reeditado.</p>
 </div>
 <p>Seguindo as etapas das seções anteriores, somos capazes de iniciar o sistema e gerar programas a serem executados pelo sistema operacional. O próximo passo é, portanto, controlar os sinais que podem ser enviados a outros dispositivos pelo computador embarcado para estabelecer a comunicação entre os dispositivos.</p>
-<p>A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a espaços de memória do sistema e quando alteramos o bit armazenado neste espaço de memória alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.</p>
-<p>Posteriormente, a comunicação entre dispositivos será melhor discutida, mas neste momento o que mais nos importa são os &quot;espaços de memória&quot; citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de registrador. Os registradores estão no topo da hierarquia de memória, sendo assim, é um tipo de memória mais rápida de uma unidade central de processamento.</p>
-<p>Sendo assim, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de <strong>ON/OFF</strong> de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de <a class="reference external" href="https://en.wikipedia.org/wiki/General-purpose_input/output">General Purpose Input/Output</a> (<strong>GPIO</strong>).</p>
+<p>A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a <strong>espaços de memória do sistema</strong> e quando alteramos o bit armazenado neste espaço de memória alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.</p>
+<p>Posteriormente, a comunicação entre dispositivos será melhor discutida, mas neste momento o que mais nos importa são os &quot;<strong>espaços de memória</strong>&quot; citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de <strong>registrador</strong>. Os registradores estão no topo da hierarquia de memória, sendo assim o tipo de memória mais rápida de uma unidade central de processamento.</p>
+<p>Dessa forma, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de <strong>ON/OFF</strong> de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de <a class="reference external" href="https://en.wikipedia.org/wiki/General-purpose_input/output">General Purpose Input/Output</a> (<strong>GPIO</strong>).</p>
 <p><em>General Purpose Input/Output</em> (<strong>GPIO</strong>) são, basicamente, pinos de  comunicação de entrada e saída de sinais digitais, de um circuito integrado ou placa de circuito eletrônico, sem finalidade prédefinida, podendo assim ter funções definidas pelo projetista ou usuario para prover uma interface entre outros dispositivos (periféricos, modens, microcontroladores, microprocessadores etc).</p>
 <p>Como comentado anteriormente, estamos utilizando o computador embarcado Overo junto a uma placa de expansão Tobi. Uma das funções desta placa é fornecer acesso ao usuário aos pinos do computador embarcado, portanto os pinos do computador embarcado que podemos acessar fisicamente são os pinos da placa de expansão Tobi. Na figura abaixo podemos visualizar um diagrama que contém, de maneira resumida, quais funções ou pinos do computador embarcado estão conectadas a cada pino da placa de expansão Tobi. Observe que alguns desses pinos possuem mais de uma função.</p>
 <div class="figure align-center" id="id1">
@@ -268,9 +271,8 @@
 <div class="section" id="controle-do-gpio-via-registradores">
 <h2>Controle do GPIO via registradores<a class="headerlink" href="#controle-do-gpio-via-registradores" title="Permalink to this headline">¶</a></h2>
 <p>Outra maneira de se controlar o GPIO é escrevendo diretamente nos registradores do sistema. Apesar de o procedimento ser um pouco mais complexo essa, na verdade, é a maneira mais comum e mais recomendada de se realizar esse procedimento oferecendo resultados muito mais rápidos.</p>
-<p>Para utilizar este método precisamos, primeiro, definir em quais registradores devemos escrever e o que devemos escrever neles. Essa informação só pode ser encontrada no <a class="reference download internal" download="" href="../../../_downloads/478aee14d85d8b9ee0d031e35242bb99/TRM_DM3730.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Technical</span> <span class="pre">Reference</span> <span class="pre">Manual</span> <span class="pre">(TRM)</span></code></a> do processador DM3730, disponivel no site da Texas Instruments.</p>
-<p>Como é explicado na seção <strong>25</strong> do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de
-base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.</p>
+<p>Para utilizar este método precisamos, primeiro, definir em quais registradores devemos escrever e o que devemos escrever neles. Essa informação só pode ser encontrada no <a class="reference download internal" download="" href="../../../_downloads/478aee14d85d8b9ee0d031e35242bb99/TRM_DM3730.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Technical</span> <span class="pre">Reference</span> <span class="pre">Manual</span> <span class="pre">(TRM)</span></code></a> do processador DM3730, disponivel no site da <a class="reference external" href="https://www.ti.com/">Texas Instruments</a>.</p>
+<p>Como é explicado na seção <strong>25</strong> do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.</p>
 <div class="figure align-center" id="id2">
 <img alt="../../../_images/interface-gpio.png" src="../../../_images/interface-gpio.png" />
 <p class="caption"><span class="caption-text">Diagrama da interface de GPIO.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
@@ -404,11 +406,19 @@ base, sendo que cada um desses registradores possui um comprimento de 32 bits ou
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019, Gabriel Araujo
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -419,7 +429,6 @@ base, sendo que cada um desses registradores possui um comprimento de 32 bits ou
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
