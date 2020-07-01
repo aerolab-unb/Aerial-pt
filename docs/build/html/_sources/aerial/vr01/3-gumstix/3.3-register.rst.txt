@@ -2,19 +2,19 @@ Registradores
 =============
 
 .. Warning::
-    Este topico precisa ser testado e reeditado.
+    Este tópico precisa ser testado e reeditado.
 
-Seguindo as etapas das seções anteriores, somos capazes de iniciar o sistema e gerar programas a serem executados pelo sistema operacional. O próximo passo é, portanto, controlar os sinais que podem ser enviados a outros dispositivos pelo computador embarcado para estabelecer a comunicação entre os dispositivos.
+Seguindo os procedimentos das seções anteriores somos capazes de iniciar o sistema e gerar programas a serem executados pelo sistema operacional. O próximo passo é, portanto, controlar os sinais que podem ser enviados a outros dispositivos pelo computador embarcado para estabelecer a comunicação entre os dispositivos.
 
 A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a **espaços de memória do sistema** e quando alteramos o bit armazenado neste espaço de memória alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.
 
-Posteriormente, a comunicação entre dispositivos será melhor discutida, mas neste momento o que mais nos importa são os "**espaços de memória**" citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de **registrador**. Os registradores estão no topo da hierarquia de memória, sendo assim o tipo de memória mais rápida de uma unidade central de processamento.
+Posteriormente, a comunicação entre dispositivos será mais bem discutida, mas neste momento o que mais nos importa são os "**espaços de memória**" citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de **registrador**. Os registradores estão no topo da hierarquia de memória, sendo assim o tipo de memória mais rápida de uma unidade central de processamento.
 
 Dessa forma, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de **ON/OFF** de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de `General Purpose Input/Output`_ (**GPIO**).
 
 .. _General Purpose Input/Output: https://en.wikipedia.org/wiki/General-purpose_input/output
 
-*General Purpose Input/Output* (**GPIO**) são, basicamente, pinos de  comunicação de entrada e saída de sinais digitais, de um circuito integrado ou placa de circuito eletrônico, sem finalidade prédefinida, podendo assim ter funções definidas pelo projetista ou usuario para prover uma interface entre outros dispositivos (periféricos, modens, microcontroladores, microprocessadores etc).
+*General Purpose Input/Output* (**GPIO**) são, basicamente, pinos de  comunicação de entrada e saída de sinais digitais, de um circuito integrado ou placa de circuito eletrônico, sem finalidade pré-definida, podendo assim ter funções definidas pelo projetista ou usuário para prover uma interface entre outros dispositivos (periféricos, modens, microcontroladores, microprocessadores etc.).
 
 Como comentado anteriormente, estamos utilizando o computador embarcado Overo junto a uma placa de expansão Tobi. Uma das funções desta placa é fornecer acesso ao usuário aos pinos do computador embarcado, portanto os pinos do computador embarcado que podemos acessar fisicamente são os pinos da placa de expansão Tobi. Na figura abaixo podemos visualizar um diagrama que contém, de maneira resumida, quais funções ou pinos do computador embarcado estão conectadas a cada pino da placa de expansão Tobi. Observe que alguns desses pinos possuem mais de uma função.
 
@@ -22,27 +22,27 @@ Como comentado anteriormente, estamos utilizando o computador embarcado Overo ju
     :align: center
     
     
-    Diagrama dos pinos da placa de expansão tobi.
+    Diagrama dos pinos da placa de expansão Tobi.
 
 
 Controle do GPIO via terminal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A maneira mais simples, porém menos eficiente de se controlar o GPIO está descrita no próprio site da fabricante, disponivel em `Control Overo GPIO`_ . Lá eles indicam controlar o GPIO pelo próprio terminal do sistema Linux através de um sistema *sysfs*. O sistema *sysfs* é um sistema de pseudo arquivos oferecidos pelo núcleo do Linux para o controle e comunicação com dispositivos e drivers através do terminal do Linux.
+A maneira mais simples, porém menos eficiente de se controlar o GPIO está descrita no próprio site da fabricante, disponível em `Control Overo GPIO`_ . Lá eles indicam controlar o GPIO pelo próprio terminal do sistema Linux através de um sistema *sysfs*. O sistema *sysfs* é um sistema de “arquivos“ oferecidos pelo núcleo do Linux para o controle e comunicação com dispositivos e drivers através do terminal do Linux.
 
 .. _Control Overo GPIO: https://www.gumstix.com/support/faq/overo-gpio/#cross-compilation
 
-Se, por exemplo, desejarmos controlar a saída do **GPIO10** através deste método para piscar um led precisaremos exportar o **GPIO10** para o espaço do usuário escrevendo ``10`` no arquivo */sys/class/gpio/export*, o que irá gerar um diretório com outros arquivos para a manipulação do **GPIO10**. Em seguida, devemos definir sua direção como de saída escrevendo ``out`` em */sys/class/gpio/gpio10/direction* e definir seu valor como alto ou baixo escrevendo ``1`` ou ``0`` em */sys/class/gpio/gpio10/value*. 
+Se, por exemplo, desejarmos controlar a saída do **GPIO10** através deste método para piscar um LED precisaremos exportar o **GPIO10** para o espaço do usuário escrevendo ``10`` no arquivo */sys/class/gpio/export*, o que irá gerar um diretório com outros arquivos para a manipulação do **GPIO10**. Em seguida, devemos definir sua direção como de saída escrevendo ``out`` em */sys/class/gpio/gpio10/direction* e definir seu valor como alto ou baixo escrevendo ``1`` ou ``0`` em */sys/class/gpio/gpio10/value*. 
 
 .. Tip::
     A função de configuração de interrupção também é acessível pelo terminal.
 
 .. Este processo pode ser feito tanto pelo terminal do usuário com o comando "echo", por exemplo "echo 10 > /sys/class/gpio/export" e também podemos fazer um programa que abra esse arquivo e escreve nela por nós. 
 
-Este processo pode ser feito tanto pelo terminal do usuário com o comando ``echo``, quanto por um programa que abra esse arquivo e escreve nela por nós. Por exemplo, para controlar o **GPIO146** atraves do terminal podemos executar os seguintes comandos (exemplo utilizado no site da Gumstix):
+Este processo pode ser feito tanto pelo terminal do usuário com o comando ``echo``, quanto por um programa que abra esse arquivo e escreve nela por nós. Por exemplo, para controlar o **GPIO146** através do terminal podemos executar os seguintes comandos (exemplo utilizado no site da Gumstix):
 
 .. Note::
-    Lembrando que o comando ``echo teste > pasta/arquivo`` irá sobreescrever todo o arquivo pela palavra "teste" e o comando ``cat pasta/arquivo`` irá exibir o conteudo do arquivo.
+    Lembrando que o comando ``echo teste > pasta/arquivo`` irá sobrescrever todo o arquivo pela palavra "teste" e o comando ``cat pasta/arquivo`` irá exibir o conteúdo do arquivo.
 
 ::
 
@@ -65,7 +65,7 @@ Esse comando controlará o pino 27 da placa Tobi.
 
 Porém, como já comentado, esse método é bem lento e não pode ser utilizado para comunicação entre dispositivos. Entretanto para atividades com períodos superiores a 100 milissegundos este método pode ser utilizado tranquilamente.
 
-Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante ao código apresentado abaixo, que escreve diretamente nos arquivos do **GPIO**. Essa abordagem foi testada e melhorou consideravelmente, através de um simples codigo, o tempo de resposta do GPIO. 
+Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante ao código apresentado abaixo, que escreve diretamente nos arquivos do **GPIO**. Essa abordagem foi testada e melhorou consideravelmente, através de um simples código, o tempo de resposta do GPIO. 
 
 :: 
 
@@ -131,7 +131,7 @@ Como é explicado na seção **25** do TRM do processador DM3730, a partir da p�
 .. Note::
     A figura foi retirada do *Technical Reference Manual* do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730, neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.
 
-O registrador "**GPIO_OE**" é o registrador que define a direção do pino que esta sendo configurado. A abreviação "OE" vem de *output enable*. Esse registrador possui um offset de endereço igual a "0x034", ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo "RW", sendo assim, se o valor **0** estiver armazenado no pino correspondente à porta GPIO essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor **1** a porta estará configurada como input.
+O registrador "**GPIO_OE**" é o registrador que define a direção do pino que está sendo configurado. A abreviação "OE" vem de *output enable*. Esse registrador possui um offset de endereço igual a "0x034", ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo "Read/White", ou assim, se o pino correspondente à porta GPIO estiver armazenando o valor **0**, essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor **1** a porta estará configurada como input.
 
 O registrador "**GPIO_SETDATAOUT**" é o registrador que tem a função de colocar o bit correspondente no registrador "**GPIO_DATAOUT**" em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a "0x094". Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo "RW". A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em **GPIO_DATAOUT**".
 
@@ -153,7 +153,7 @@ Entretanto para ter acesso à memória física do sistema precisamos solicitar a
 
 .. _mmap(2) — Linux manual page: https://man7.org/linux/man-pages/man2/mmap.2.html
 
-Vamos supor que queremos mapear o espaço de memória físico de "**0x45000000**" até "**0x45001000**" e para isso decidimos usar a função ``mmap()``. Portanto, chamamos a função da seguinte maneira, por exemplo, ``mmap(NULL,0x1000,PROT_WRITE || PROT_READ,MAP_SHARED,fd,0x45000000)``, executando isso a função irá retornar um ponteiro que aponta para um endereço de memória virtual endereçado no endereço de memória física "**0x45000000**". Em que, para ter acesso à memória física do dispositivo, "**fd**" é o file descriptor direcionado para "/dev/mem". 
+Vamos supor que queremos mapear o espaço de memória físico de "**0x45000000**" até "**0x45001000**" e para isso decidimos usar a função ``mmap()``. Portanto, chamamos a função da seguinte maneira, por exemplo, ``mmap(NULL,0x1000,PROT_WRITE || PROT_READ,MAP_SHARED,fd,0x45000000)``, executando isso a função irá retornar um ponteiro que aponta para um endereço de memória virtual endereçado no endereço de memória física "**0x45000000**". Em que, para ter acesso à memória física do dispositivo, "**fd**" é o *file descriptor* direcionado para "/dev/mem". 
 
 Com essas informações, temos tudo o que é necessário para implementar testes acerca deste modo de operação. A seguir temos um código que aplica o método descrito nesta seção para alternar o nível de tensão do pino "186". Esse código foi implementado para se realizar o mesmo teste da seção "Controle do GPIO via terminal".
 
@@ -236,9 +236,11 @@ O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram reali
 
 :download:`Download do código 2 <teste2-gpio.c>`
 
-O código acima foi testado da mesma maneira que o código apresentado na seção anterior, na figura a seguir é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nanossegundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado apresentado na figura 3.7. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
+O código acima foi testado da mesma maneira que o código apresentado na seção anterior. Já na figura abaixp é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nano segundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado do outro método. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto, é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
 
 .. adicionar imagem
+
+.. tentar solucionar!!
 
 Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um último problema que ainda não foi resolvido envolvendo escrita em registradores.
 

@@ -1,8 +1,10 @@
+// Local includes definition
 #include <stdio.h>    // for lprint instruction
-#include <fcntl.h>    // ok for mmap param
+#include <fcntl.h>    // ok for mmap 
 #include <sys/mman.h> // ok for mmap
 #include <unistd.h>
 
+// Defines pointers to access memory
 #define SCM_INTERFACE_BASE 0x48002000
 #define SCM_PADCONFS_BASE 0x48002030
 #define CONTROL_PADCONF_SYS_NIRQ (*(volatile unsigned long *)0x480021E0)
@@ -19,27 +21,32 @@
 #define MAP_SIZE (volatile unsigned long)4 * 1024
 #define MAP_MASK (volatile unsigned long)(MAP_SIZE - 1)
 
+// Defines "volatile unsigned long" how "u32"
 #define u32 volatile unsigned long
+
+// Defines commom pointers
 u32 *A;
 u32 *B;
 
 int main(void)
 {
+    // Defines local variables
     unsigned long i;
     int j;
     int fd;
 
-    fd = open("/dev/mem", O_RDWR | O_SYNC);
+    fd = open("/dev/mem", O_RDWR | O_SYNC); // "O_RDWR" opens the file for reading and writing & "O_SYNC" guarantees that the call will not return before all data has been transferred to the disk
 
-    A = (u32 *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, SCM_INTERFACE_BASE & ~MAP_MASK);
+    A = (u32 *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, SCM_INTERFACE_BASE & ~MAP_MASK); // creates a new mapping in the virtual address space
 
     *(u32 *)((u32)A + 0x30 + CONTROL_PADCONF_SYS_NIRQ_OFFSET) &= (0xfff8ffff);
     *(u32 *)((u32)A + 0x30 + CONTROL_PADCONF_SYS_NIRQ_OFFSET) |= (0x00040000); //set mode 4 on the pad 186 configuration register; enables digital pin use
 
     close(fd);
-    /*****************************************************/
+    /********/
 
     fd = open("/dev/mem", O_RDWR | O_SYNC);
+    
     B = (volatile unsigned long *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO6_BASE & ~MAP_MASK); // COM1 0x4806A000
 
     //gpio_186 handling
