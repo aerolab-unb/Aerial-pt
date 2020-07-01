@@ -39,12 +39,12 @@ int main()
             write(arq, "1", 1);
             printf("Saida = 1\n\n");
         }
+        
         case 2:
             break;
         }
         while (i != 2);
 
         close(arq);
-
         return 0;
     }
