@@ -78,7 +78,6 @@ Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante a
 
     int main()
     {
-
         int arq = open("/sys/class/gpio/export", O_WRONLY);
         write(arq, "10", 2);
         close(arq);
@@ -94,17 +93,14 @@ Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante a
             write(arq, "1", 1);
             //usleep (500000);
             write(arq, "0", 1);
-            //usleep (500000) ;
-            
-            //printf("i = %d \n", i);       
-            
+            //usleep (500000) ;   
         }
         close(arq);
 
         return 0;
     }
 
-:download:`Download do código 1 <teste1-gpio.c>`
+:download:`Download do código 1 comentado <teste1-gpio.c>`
 
 Para testar o código, o pino 18 (pino do **GPIO** 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.
 
@@ -120,7 +116,7 @@ Para utilizar este método precisamos, primeiro, definir em quais registradores 
 
 .. _Texas Instruments: https://www.ti.com/
 
-Como é explicado na seção **25** do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.
+Como é explicado na seção **25** do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos, totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.
 
 .. figure:: /img/Aerial/interface-gpio.png
     :align: center
@@ -129,18 +125,20 @@ Como é explicado na seção **25** do TRM do processador DM3730, a partir da p�
     Diagrama da interface de GPIO.
 
 .. Note::
-    A figura foi retirada do *Technical Reference Manual* do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730, neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.
+    A figura foi retirada do *Technical Reference Manual* do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730.
+
+Neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.
 
 O registrador "**GPIO_OE**" é o registrador que define a direção do pino que está sendo configurado. A abreviação "OE" vem de *output enable*. Esse registrador possui um offset de endereço igual a "0x034", ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo "Read/White", ou assim, se o pino correspondente à porta GPIO estiver armazenando o valor **0**, essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor **1** a porta estará configurada como input.
 
-O registrador "**GPIO_SETDATAOUT**" é o registrador que tem a função de colocar o bit correspondente no registrador "**GPIO_DATAOUT**" em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a "0x094". Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo "RW". A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em **GPIO_DATAOUT**".
+O registrador "**GPIO_SETDATAOUT**" é o registrador que tem a função de colocar o bit correspondente ao registrador "**GPIO_DATAOUT**" em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a "0x094". Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo "RW". A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em **GPIO_DATAOUT**".
 
 Além dos registradores apresentados na seção 25 do *Technical Reference Manual*, também é necessário configurar um registrador do *System Control Module* (**SCM**). O SCM é um módulo que permite o Controle através de *software* de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo *pullup* ou *pulldown*, por exemplo.
 
+Os registradores do SCM são divididos em cinco classes. Entretanto, para nossa aplicação iremos utilizar apenas uma, o bloco de registradores de configuração e multiplexação. Esse bloco é um conjunto de registradores de 32 bits, que configura 2 pinos e define, além dos dois parâmetros mencionados anteriormente, a função de *wakeup*. Aos registradores pertencentes a esse bloco é dado o nome de *Configuration Register Functionality*.
+
 .. Note:: 
     Mais informações sobre o SCM podem ser encontradas na seção 13 do *Technical Reference Manual*.
-
-Os registradores do SCM são divididos em cinco classes. Entretanto, para nossa aplicação, iremos utilizar apenas uma o bloco de registradores de configuração e multiplexação. Esse bloco é um conjunto de registradores de 32 bits, que configura 2 pinos e define, além dos dois parâmetros mencionados anteriormente, a função de *wakeup*. Aos registradores pertencentes a esse bloco é dado o nome de *Configuration Register Functionality*.
 
 Para encontrarmos qual o endereço de cada registrador deste tipo podemos procurar na tabela 13-4 do TRM. Nessa tabela será dado o endereço físico exato de cada registrador (base+offset). No caso o endereço base é o próprio endereço dos registradores "PADCONFS" da interface do SCM, encontrado na seção 13.6.1 do TRM e o endereço offset de cada registrador deste bloco pode ser encontrado na tabela 13-73 do mesmo documento.
 
@@ -234,7 +232,7 @@ O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram reali
     }
 
 
-:download:`Download do código 2 <teste2-gpio.c>`
+:download:`Download do código 2 comentado <teste2-gpio.c>`
 
 O código acima foi testado da mesma maneira que o código apresentado na seção anterior. Já na figura abaixp é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nano segundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado do outro método. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto, é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
 

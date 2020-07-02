@@ -30,4 +30,4 @@ A documentação detalhada sobre pousos automáticos pode ser encontrada em `Aut
 
 .. Detailed documentation on automatic landings can be found at `Automatic Landing`_.
 
-.. _Automatic Landing: . http://ardupilot.org/plane/docs/automatic-landing.html.
+.. _Automatic Landing: https://ardupilot.org/plane/docs/automatic-landing.html
