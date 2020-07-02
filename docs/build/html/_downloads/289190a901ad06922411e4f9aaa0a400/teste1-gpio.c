@@ -18,14 +18,16 @@ int main()
 
     arq = open("/sys/class/gpio/gpio10/value", O_RDWR); // Opens the file for reading and writing
     
-    for (int i = 0; i < 10000; i++) // repeats the command i times
+    for (int i = 0; i < 1000; i++) // repeats the command i times
     {
         write(arq, "1", 1); // write "1"
-        //usleep (500000);
+        printf("Saida = 1\n");
+        usleep (1000000);
         write(arq, "0", 1); // write "0"
-        //usleep (500000) ;
+        printf("Saida = 0\n");
+        usleep (1000000) ;
         
-        //printf("i = %d \n", i);       
+        printf("i = %d \n", i);       
         
     }
     close(arq);

@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en,pt-BR" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,18 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -30,11 +25,15 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Comunicação Serial" href="3.4-Serial.html" />
@@ -52,7 +51,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> CoopRobo
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
           
 
           
@@ -75,7 +74,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -111,7 +109,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -150,7 +147,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
         
@@ -235,7 +232,6 @@
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
 <span class="p">{</span>
-
     <span class="nb">int</span> <span class="n">arq</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/sys/class/gpio/export&quot;</span><span class="p">,</span> <span class="n">O_WRONLY</span><span class="p">);</span>
     <span class="n">write</span><span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
     <span class="n">close</span><span class="p">(</span><span class="n">arq</span><span class="p">);</span>
@@ -252,9 +248,6 @@
         <span class="o">//</span><span class="n">usleep</span> <span class="p">(</span><span class="mi">500000</span><span class="p">);</span>
         <span class="n">write</span><span class="p">(</span><span class="n">arq</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
         <span class="o">//</span><span class="n">usleep</span> <span class="p">(</span><span class="mi">500000</span><span class="p">)</span> <span class="p">;</span>
-
-        <span class="o">//</span><span class="n">printf</span><span class="p">(</span><span class="s2">&quot;i = </span><span class="si">%d</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-
     <span class="p">}</span>
     <span class="n">close</span><span class="p">(</span><span class="n">arq</span><span class="p">);</span>
 
@@ -262,7 +255,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><a class="reference download internal" download="" href="../../../_downloads/289190a901ad06922411e4f9aaa0a400/teste1-gpio.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">1</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/289190a901ad06922411e4f9aaa0a400/teste1-gpio.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">1</span> <span class="pre">comentado</span></code></a></p>
 <p>Para testar o código, o pino 18 (pino do <strong>GPIO</strong> 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.</p>
 <div class="figure align-center">
 <img alt="../../../_images/teste1-gpio.png" src="../../../_images/teste1-gpio.png" />
@@ -272,23 +265,24 @@
 <h2>Controle do GPIO via registradores<a class="headerlink" href="#controle-do-gpio-via-registradores" title="Permalink to this headline">¶</a></h2>
 <p>Outra maneira de se controlar o GPIO é escrevendo diretamente nos registradores do sistema. Apesar de o procedimento ser um pouco mais complexo essa, na verdade, é a maneira mais comum e mais recomendada de se realizar esse procedimento oferecendo resultados muito mais rápidos.</p>
 <p>Para utilizar este método precisamos, primeiro, definir em quais registradores devemos escrever e o que devemos escrever neles. Essa informação só pode ser encontrada no <a class="reference download internal" download="" href="../../../_downloads/478aee14d85d8b9ee0d031e35242bb99/TRM_DM3730.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Technical</span> <span class="pre">Reference</span> <span class="pre">Manual</span> <span class="pre">(TRM)</span></code></a> do processador DM3730, disponivel no site da <a class="reference external" href="https://www.ti.com/">Texas Instruments</a>.</p>
-<p>Como é explicado na seção <strong>25</strong> do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.</p>
+<p>Como é explicado na seção <strong>25</strong> do TRM do processador DM3730, a partir da página 3477, a interface de controle combina seis bancos de GPIO. Cada modulo de GPIO providencia 32 pinos, totalizando 192 pinos que podem ser utilizados como input e/ou output. Em nosso caso apenas alguns desses 192 pinos estão fisicamente acessíveis, como pode ser visto na figura apresentada abaixo. Cada banco de GPIO possui 26 registradores distribuídos a partir de um endereço de base, sendo que cada um desses registradores possui um comprimento de 32 bits ou 4 bytes.</p>
 <div class="figure align-center" id="id2">
 <img alt="../../../_images/interface-gpio.png" src="../../../_images/interface-gpio.png" />
 <p class="caption"><span class="caption-text">Diagrama da interface de GPIO.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>A figura foi retirada do <em>Technical Reference Manual</em> do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730, neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.</p>
+<p>A figura foi retirada do <em>Technical Reference Manual</em> do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730.</p>
 </div>
+<p>Neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.</p>
 <p>O registrador &quot;<strong>GPIO_OE</strong>&quot; é o registrador que define a direção do pino que está sendo configurado. A abreviação &quot;OE&quot; vem de <em>output enable</em>. Esse registrador possui um offset de endereço igual a &quot;0x034&quot;, ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo &quot;Read/White&quot;, ou assim, se o pino correspondente à porta GPIO estiver armazenando o valor <strong>0</strong>, essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor <strong>1</strong> a porta estará configurada como input.</p>
-<p>O registrador &quot;<strong>GPIO_SETDATAOUT</strong>&quot; é o registrador que tem a função de colocar o bit correspondente no registrador &quot;<strong>GPIO_DATAOUT</strong>&quot; em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a &quot;0x094&quot;. Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo &quot;RW&quot;. A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em <strong>GPIO_DATAOUT</strong>&quot;.</p>
+<p>O registrador &quot;<strong>GPIO_SETDATAOUT</strong>&quot; é o registrador que tem a função de colocar o bit correspondente ao registrador &quot;<strong>GPIO_DATAOUT</strong>&quot; em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a &quot;0x094&quot;. Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo &quot;RW&quot;. A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em <strong>GPIO_DATAOUT</strong>&quot;.</p>
 <p>Além dos registradores apresentados na seção 25 do <em>Technical Reference Manual</em>, também é necessário configurar um registrador do <em>System Control Module</em> (<strong>SCM</strong>). O SCM é um módulo que permite o Controle através de <em>software</em> de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo <em>pullup</em> ou <em>pulldown</em>, por exemplo.</p>
+<p>Os registradores do SCM são divididos em cinco classes. Entretanto, para nossa aplicação iremos utilizar apenas uma, o bloco de registradores de configuração e multiplexação. Esse bloco é um conjunto de registradores de 32 bits, que configura 2 pinos e define, além dos dois parâmetros mencionados anteriormente, a função de <em>wakeup</em>. Aos registradores pertencentes a esse bloco é dado o nome de <em>Configuration Register Functionality</em>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Mais informações sobre o SCM podem ser encontradas na seção 13 do <em>Technical Reference Manual</em>.</p>
 </div>
-<p>Os registradores do SCM são divididos em cinco classes. Entretanto, para nossa aplicação, iremos utilizar apenas uma o bloco de registradores de configuração e multiplexação. Esse bloco é um conjunto de registradores de 32 bits, que configura 2 pinos e define, além dos dois parâmetros mencionados anteriormente, a função de <em>wakeup</em>. Aos registradores pertencentes a esse bloco é dado o nome de <em>Configuration Register Functionality</em>.</p>
 <p>Para encontrarmos qual o endereço de cada registrador deste tipo podemos procurar na tabela 13-4 do TRM. Nessa tabela será dado o endereço físico exato de cada registrador (base+offset). No caso o endereço base é o próprio endereço dos registradores &quot;PADCONFS&quot; da interface do SCM, encontrado na seção 13.6.1 do TRM e o endereço offset de cada registrador deste bloco pode ser encontrado na tabela 13-73 do mesmo documento.</p>
 <p>Após a identificação dos registradores podemos iniciar a elaboração de um código para modifica-los. Assim nos deparamos com mais um desafio, sistemas operacionais trabalham com dois conceitos de memória, memória física e memória virtual. Memória física é a memória do hardware, aquela qual sabemos o endereço e pois verificamos no TRM. Entretanto se criarmos um ponteiro que aponta para a memória &quot;0x4800000&quot;, por exemplo, ele não irá apontar para a memória física que possui este endereço pois o sistema operacional mapeia um espaço da memória física diferente para cada programa com os principais objetivos de aumentar a segurança e evitar conflitos de dados entre programas.</p>
 <p>Entretanto para ter acesso à memória física do sistema precisamos solicitar ao sistema operacional que mapeie esse espaço de memória para a aplicação. Uma maneira de realizar esse procedimento é através da função &quot;mmap()&quot;.</p>
@@ -370,12 +364,29 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><a class="reference download internal" download="" href="../../../_downloads/08b7c5130cdec9e0a1920e7954049e2b/teste2-gpio.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">2</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/08b7c5130cdec9e0a1920e7954049e2b/teste2-gpio.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">2</span> <span class="pre">comentado</span></code></a></p>
 <p>O código acima foi testado da mesma maneira que o código apresentado na seção anterior. Já na figura abaixp é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nano segundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado do outro método. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto, é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.</p>
 <p>Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um último problema que ainda não foi resolvido envolvendo escrita em registradores.</p>
 <p>O problema atual ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador o valor do registrador retorna ao valor que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o &quot;devmem2&quot;. Esse problema está exemplificado na figura abaixo.</p>
+<div class="figure align-center">
+<img alt="../../../_images/ErroRegistrador.png" src="../../../_images/ErroRegistrador.png" />
+</div>
 <p>Na figura executamos o comando <code class="docutils literal notranslate"><span class="pre">devmem2</span></code> para modificar o registrador &quot;<strong>0x49058030</strong>&quot; que é o registrador que controla o clock de todo o bloco do &quot;<strong>GPIO6</strong>&quot;, a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando é executado instantes depois no modo de leitura e retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado.</p>
 <p>Esse problema foi descoberto a pouco tempo e, portanto, se trata de um problema ainda não resolvido. Não se sabe ao certo porque esse comportamento está ocorrendo, porém acredita-se que exista algum processo do sistema operacional que retorne os registradores para os valores iniciais. Esse problema não ocorre, no entanto, para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário. Corrigir este problema demandaria um pouco mais de tempo.</p>
+<p>Resolução do problema descrito acima:</p>
+<p>Usando o Technical Reference Manual (TRM) do processador DM3730, disponivel no site da Texas Instruments, como é explicado na seção 25.6.2 do TRM do processador DM3730, na página 3511, o gpio_ctrl pode ter seu clock dividido por certos valores pré-cadastrados, sendo eles 2, 4 ou 8.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mh">0x0</span><span class="p">:</span> <span class="n">clock</span> <span class="n">da</span> <span class="n">interface</span>
+<span class="mh">0x1</span><span class="p">:</span> <span class="n">clock</span> <span class="n">utliziado</span> <span class="n">é</span> <span class="n">o</span> <span class="n">clock</span> <span class="n">da</span> <span class="n">interface</span> <span class="n">dividido</span> <span class="n">por</span> <span class="mi">2</span>
+<span class="mh">0x2</span><span class="p">:</span> <span class="n">clock</span> <span class="n">utilizado</span> <span class="n">é</span> <span class="n">o</span> <span class="n">clock</span> <span class="n">da</span> <span class="n">interface</span> <span class="n">dividido</span> <span class="n">por</span> <span class="mi">4</span>
+<span class="mh">0x3</span><span class="p">:</span> <span class="n">clock</span> <span class="n">utilizado</span> <span class="n">é</span> <span class="n">o</span> <span class="n">clock</span> <span class="n">da</span> <span class="n">interface</span> <span class="n">dividido</span> <span class="n">por</span> <span class="mi">8</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Utilizando o comando <code class="docutils literal notranslate"><span class="pre">devmem2</span></code> para modificar o registrador &quot;<strong>0x49058030</strong>&quot; e realizando o teste para que o clock seja divido por 4 (mesma tentativa do teste não sucedido), nota-se que não é mais retornado o valor anteriormente armazenado (nulo). Como podemos observar na figura abaixo.</p>
+<div class="figure align-center">
+<img alt="../../../_images/GpioCtrl.png" src="../../../_images/GpioCtrl.png" />
+</div>
 <div class="section" id="referencias">
 <h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -406,19 +417,11 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2019, Gabriel Araujo
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -429,6 +432,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
