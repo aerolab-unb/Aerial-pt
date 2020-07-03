@@ -17,13 +17,12 @@ int main()
     close(arq);
 
     arq = open("/sys/class/gpio/gpio10/value", O_RDWR);
-    
-    system("cls");
 
     do
     {
+        system("clear");
 
-        printf("0 ->bit 0 \n1 ->bit 1\n2 ->SAIR\n");
+        printf("0->bit 0       1->bit 1       2->SAIR\n");
         scanf("%i", &i);
 
         switch (i)
@@ -39,12 +38,16 @@ int main()
             write(arq, "1", 1);
             printf("Saida = 1\n\n");
         }
-        
+
         case 2:
             break;
-        }
-        while (i != 2);
 
-        close(arq);
-        return 0;
-    }
+        default
+            printf ("Valor invalido!\n");
+ 
+        }
+    } while (i != 2);
+
+    close(arq);
+    return 0;
+}
