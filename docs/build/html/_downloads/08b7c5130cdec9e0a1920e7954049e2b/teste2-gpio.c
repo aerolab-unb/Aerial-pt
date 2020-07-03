@@ -14,7 +14,6 @@
 #define GPIO6_SYSCONFIG_OFFSET 0x10
 #define GPIO6_CLEARDATAOUT_OFFSET 0x90
 #define GPIO6_SETDATAOUT_OFFSET 0x94
-
 #define GPIO6_OE_OFFSET 0x34
 #define GPIO6_CTRL_OFFSET 0x30
 
@@ -59,17 +58,17 @@ int main(void)
 
     // generate a pulse stream on gpio_186 pin output
 
-    for (j = 0; j < 1000; j++)
+    for (j = 0; j < 100; j++)
     {
         *(u32 *)((u32)B + (GPIO6_SETDATAOUT_OFFSET)) |= 0x04000000;
         printf("Saida = 1\n");
-        usleep(1000000);
+        usleep(3000000);
         
         *(u32 *)((u32)B + (GPIO6_CLEARDATAOUT_OFFSET)) |= 0x04000000;
         printf("Saida = 0\n");
-        usleep(1000000);
+        usleep(3000000);
         
-        //printf("j = %d \n", j);
+        // printf("j = %d \n", j);
         
     }
     close(fd);

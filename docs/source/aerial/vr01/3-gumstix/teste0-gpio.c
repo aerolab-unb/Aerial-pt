@@ -7,8 +7,10 @@
 
 int main()
 {
-    int i;
-    int arq = open("/sys/class/gpio/export", O_WRONLY);
+    int j=3;
+    int arq;
+    
+    arq = open("/sys/class/gpio/export", O_WRONLY);
     write(arq, "10", 2);
     close(arq);
 
@@ -17,36 +19,34 @@ int main()
     close(arq);
 
     arq = open("/sys/class/gpio/gpio10/value", O_RDWR);
+    // system("clear");
 
-    do
+    while(j !=2 )
     {
-        system("clear");
-
         printf("0->bit 0       1->bit 1       2->SAIR\n");
-        scanf("%i", &i);
+        scanf("%i", &j);
 
-        switch (i)
+        switch (j)
         {
         case 0:
         {
             write(arq, "0", 1);
-            printf("Saida = 0\n\n");
+            printf("Saida = 0 \n\n");
         }
 
         case 1:
         {
             write(arq, "1", 1);
-            printf("Saida = 1\n\n");
+            printf("Saida = 1 \n\n");
         }
 
         case 2:
             break;
 
-        default
-            printf ("Valor invalido!\n");
- 
+        default:
+            printf("Valor invalido!\n");
         }
-    } while (i != 2);
+    }
 
     close(arq);
     return 0;
