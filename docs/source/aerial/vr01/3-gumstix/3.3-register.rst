@@ -242,18 +242,21 @@ O código acima foi testado da mesma maneira que o código apresentado na seçã
 
 Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um último problema que ainda não foi resolvido envolvendo escrita em registradores.
 
-O problema atual ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador o valor do registrador retorna ao valor que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o "devmem2". Esse problema está exemplificado na figura abaixo.
+O problema ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador o valor do registrador retorna ao valor que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o "devmem2". Esse problema está exemplificado na figura abaixo.
+Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados. Para finalizar este último tópico é necessário destacar um último problema encontrado envolvendo escrita em registradores.
+
+O problema ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador o valor do registrador retorna ao valor que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o "devmem2". Esse problema está exemplificado na figura abaixo.
 
 .. figure:: /img/Aerial/ErroRegistrador.png
     :align: center
 
-Na figura executamos o comando ``devmem2`` para modificar o registrador "**0x49058030**" que é o registrador que controla o clock de todo o bloco do "**GPIO6**", a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando é executado instantes depois no modo de leitura e retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado.
+Na figura executamos o comando ``devmem2`` para modificar o registrador "**0x49058030**" que é o registrador que controla o clock de todo o bloco do "**GPIO6**", a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando é executado instantes depois no modo de leitura e retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado. Vale ressaltar que este problema não ocorre para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário.
 
-Esse problema foi descoberto a pouco tempo e, portanto, se trata de um problema ainda não resolvido. Não se sabe ao certo porque esse comportamento está ocorrendo, porém acredita-se que exista algum processo do sistema operacional que retorne os registradores para os valores iniciais. Esse problema não ocorre, no entanto, para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário. Corrigir este problema demandaria um pouco mais de tempo.
+.. Esse problema foi descoberto a pouco tempo e, portanto, se trata de um problema ainda não resolvido. Não se sabe ao certo porque esse comportamento está ocorrendo, porém acredita-se que exista algum processo do sistema operacional que retorne os registradores para os valores iniciais. Esse problema não ocorre, no entanto, para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário. Corrigir este problema demandaria um pouco mais de tempo.
 
-Resolução do problema descrito acima:
+.. Resolução do problema descrito acima:
 
-Usando o Technical Reference Manual (TRM) do processador DM3730, disponivel no site da Texas Instruments, como é explicado na seção 25.6.2 do TRM do processador DM3730, na página 3511, o gpio_ctrl pode ter seu clock dividido por certos valores pré-cadastrados, sendo eles 2, 4 ou 8.
+Procurando resoluções para o problema, encontrou-se no Technical Reference Manual (TRM) do processador DM3730, na seção 25.6.2, página 3511, uma explicação que o **gpio_ctrl** só pode ter seu clock dividido por certos valores pré-cadastrados, sendo eles 2, 4 ou 8.
 
  ::
   
@@ -262,11 +265,11 @@ Usando o Technical Reference Manual (TRM) do processador DM3730, disponivel no s
    0x2: clock utilizado é o clock da interface dividido por 4
    0x3: clock utilizado é o clock da interface dividido por 8 
     
-Utilizando o comando ``devmem2`` para modificar o registrador "**0x49058030**" e realizando o teste para que o clock seja divido por 4 (mesma tentativa do teste não sucedido), nota-se que não é mais retornado o valor anteriormente armazenado (nulo). Como podemos observar na figura abaixo.
+Utilizando o comando ``devmem2`` para modificar o registrador "**0x49058030**" e realizando o teste para que o clock seja divido por 4 (mesma tentativa do teste não sucedido), nota-se que não é mais retornado o valor anteriormente armazenado (nulo), como podemos observar na figura abaixo.
 
 .. figure:: /img/Aerial/GpioCtrl.png
     :align: center
-
+    
 
 Referências
 -----------
