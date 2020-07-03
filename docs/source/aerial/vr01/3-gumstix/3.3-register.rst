@@ -266,8 +266,6 @@ Utilizando o comando ``devmem2`` para modificar o registrador "**0x49058030**" e
 
 .. figure:: /img/Aerial/GpioCtrl.png
     :align: center
-    
-    
 
 
 Referências
