@@ -1,13 +1,10 @@
-/**************************************************************************************** 
-                             LOCAL INCLUDES DEFINITION 
- ****************************************************************************************/
+// LOCAL INCLUDES DEFINITION 
 #include <stdio.h>    // for lprint instruction
 #include <fcntl.h>    // ok for mmap 
 #include <sys/mman.h> // ok for mmap
 #include <unistd.h>
-/**************************************************************************************** 
-                             LOCAL PARAMETERS DEFINITION 
- ****************************************************************************************/
+
+// LOCAL PARAMETERS DEFINITION 
 #define SCM_INTERFACE_BASE 0x48002000
 #define SCM_PADCONFS_BASE 0x48002030
 #define CONTROL_PADCONF_SYS_NIRQ (*(volatile unsigned long *)0x480021E0)
@@ -22,27 +19,20 @@
 
 #define MAP_SIZE (volatile unsigned long)4 * 1024
 #define MAP_MASK (volatile unsigned long)(MAP_SIZE - 1)
-/**************************************************************************************** 
-                             COMMON VARIABLES DEFINITION 
- ****************************************************************************************/
+
+// COMMON VARIABLES DEFINITION 
 #define u32 volatile unsigned long
 u32 *A;
 u32 *B;
-/**************************************************************************************** 
-                             LOCAL FUNCTIONS DEFINITION 
- ****************************************************************************************/
-
-/**************************************************************************************** 
-  Function name:     int main(void) 
-  Last modification: 04/08/2012 
-  Version:           1.10 
-  Notes: 
- ****************************************************************************************/
+ 
+// LOCAL FUNCTIONS DEFINITION 
 int main(void)
 {
     unsigned long i;
     int fd;
-    printf("\n\n\n\n\n\n\n");
+    
+    system("clear");
+
     printf("\n\n");
     printf("   ------------------------------------------\n");
     printf("   |               SPI Sample                |\n");
@@ -50,7 +40,6 @@ int main(void)
     printf("   |   Direct Register Access GPIO           |\n");
     printf("   ------------------------------------------\n");
     printf("Base address  GPIO6: 0x%04x\n", (GPIO6_BASE)); // OK
-    printf("\n");
 
     fd = open("/dev/mem", O_RDWR | O_SYNC);
     if (fd < 0)
@@ -64,7 +53,8 @@ int main(void)
         printf("Mapping failed    value 0x%04x\n", A);
         close(fd);
         return 0;
-    } // %d.\n
+    } 
+    // %d.\n
     if (A <= 0)
     {
         printf("Mapping failed\n");
@@ -88,13 +78,15 @@ int main(void)
         printf("Could not open file\n");
         return 0;
     }
+
     B = (volatile unsigned long *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO6_BASE & ~MAP_MASK); // COM1 0x4806A000
     if (B == MAP_FAILED)
     {
         printf("Mapping failed    value 0x%04x\n", B);
         close(fd);
         return 0;
-    } // %d.\n
+    } 
+    // %d.\n
     if (B <= 0)
     {
         printf("Mapping failed\n");
@@ -127,8 +119,9 @@ int main(void)
     *(u32 *)((u32)B + GPIO6_OE_OFFSET) &= 0xfbffffff; // bit26=0, gpio_186 output
     printf("Pointer+offset content mod: 0x%08x\n", *(u32 *)((u32)B + GPIO6_OE_OFFSET));
     printf("***\n");
+
     // generate a pulse stream on gpio_186 pin output
-    for (i = 0; i < 100000; i++)
+    for (i = 0; i < 100; i++)
     {
         *(u32 *)((u32)B + (GPIO6_CLEARDATAOUT_OFFSET)) |= 0x04000000;
         printf("Saida = 1\n");

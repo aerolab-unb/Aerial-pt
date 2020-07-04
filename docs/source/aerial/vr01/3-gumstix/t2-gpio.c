@@ -31,7 +31,6 @@ int main(void)
 {
     // Defines local variables
     unsigned long i;
-    int j;
     int fd;
 
     fd = open("/dev/mem", O_RDWR | O_SYNC); // "O_RDWR" opens the file for reading and writing & "O_SYNC" guarantees that the call will not return before all data has been transferred to the disk
@@ -58,7 +57,7 @@ int main(void)
 
     // generate a pulse stream on gpio_186 pin output
 
-    for (j = 0; j < 100; j++)
+    for (i = 0; ji < 100; i++)
     {
         *(u32 *)((u32)B + (GPIO6_SETDATAOUT_OFFSET)) |= 0x04000000;
         printf("Saida = 1\n");
@@ -67,9 +66,7 @@ int main(void)
         *(u32 *)((u32)B + (GPIO6_CLEARDATAOUT_OFFSET)) |= 0x04000000;
         printf("Saida = 0\n");
         usleep(3000000);
-        
-        // printf("j = %d \n", j);
-        
+                
     }
     close(fd);
     return (0);

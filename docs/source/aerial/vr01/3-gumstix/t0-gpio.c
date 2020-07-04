@@ -19,7 +19,7 @@ int main()
     close(arq);
 
     arq = open("/sys/class/gpio/gpio10/value", O_RDWR);
-    // system("clear");
+    system("clear");
 
     while(j !=2 )
     {
