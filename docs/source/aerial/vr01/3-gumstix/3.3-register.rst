@@ -100,7 +100,7 @@ Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante a
         return 0;
     }
 
-:download:`Download do código 1 comentado <teste1-gpio.c>`
+:download:`Download do código 1 comentado <t1-gpio.c>`
 
 Para testar o código, o pino 18 (pino do **GPIO** 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.
 
@@ -232,13 +232,15 @@ O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram reali
     }
 
 
-:download:`Download do código 2 comentado <teste2-gpio.c>`
+:download:`Download do código 2 comentado <t2-gpio.c>`
 
 O código acima foi testado da mesma maneira que o código apresentado na seção anterior. Já na figura abaixp é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nano segundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado do outro método. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto, é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
 
 .. adicionar imagem
 
-Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um último problema que ainda não foi resolvido envolvendo escrita em registradores.
+Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um último problema recentemente resolvido envolvendo escrita em registradores.
+
+.. verificar se este problema ocorre com qualquer registrador
 
 O problema ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador seu valor retorna ao que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o "devmem2". Esse problema está exemplificado na figura abaixo.
 
@@ -263,7 +265,7 @@ Utilizando o comando ``devmem2`` para modificar o registrador "**0x49058030**" e
 .. figure:: /img/Aerial/GpioCtrl.png
     :align: center
 
-Este mesmo procedimento é aplicavel para o controle de clock de outros blocos de GPIO, sendo necessario apenas selecionar o endereço fisico do registrador correspondente, como pode ser visto na imagem abaixo.
+Este mesmo procedimento é aplicavel para o controle de clock de outros blocos de GPIO, sendo necessario apenas selecionar o endereço fisico do registrador correspondente, como pode ser visto na figura abaixo (tabela 25-29  do TRM, apresentada na pagina 3522).
 
 .. figure:: /img/Aerial/GPIO_CTRL.png
     :align: center
@@ -274,5 +276,10 @@ Referências
 * PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
 
 * TEXAS INSTRUMENTS. AM/DM37x Multimedia Device Technical Reference Manual. 12500 TI Blvd, Dallas, TX 75243, EUA, 2012. Version R. Disponível em: `ti.com`_.
+
+* Direct register access control of GPIO ARM interface on Overo Water +TOBI - `Gumstix Discussion Forum`_ 
+
+
+.. _Gumstix Discussion Forum: http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html
 
 .. _ti.com: http://www.ti.com/
