@@ -254,16 +254,16 @@ Problemas de escrita em registradores
 -------------------------------------
 .. verificar se este problema ocorre com qualquer registrador
 
-Para finalizar este último tópico é necessário destacar dois problemas recentemente encontrados envolvendo escrita em registradores.
+Para finalizar este último tópico é necessário destacar alguns problemas recentemente encontrados envolvendo escrita em registradores.
 
-O primeiro problema encontrado ocorre sempre que tentamos alterar o valor dos registradores "**0x49058030**" e "**0x**", responsaveis por controlar o clock de todo o bloco do "**GPIO6**" e do "**GPIO_adicionar**", respectivamente. 
+O primeiro problema encontrado ocorre sempre que tentamos alterar o valor dos registradores "**0x49050030**", "**0x49056030**" e "**0x49058030**", responsaveis por controlar o clock de todo o bloco do "**GPIO_2**", "**GPIO_5**" e "**GPIO_6**", respectivamente. 
 
 O que ocorre é que instantes após a alteração do valor do registrador, seu valor retorna ao que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o ``devmem2``. Esse problema está exemplificado na figura abaixo.
 
-.. figure:: /img/Aerial/ErroRegistrador.png
+.. figure:: /img/Aerial/register-erro.png
     :align: center
 
-Na figura executamos o comando ``devmem2 0x49058030 w 0x2`` para modificar o registrador "**0x49058030**" que é o registrador que controla o clock de todo o bloco do "**GPIO6**", a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, como indicado  Technical Reference Manual (TRM) do processador DM3730, na seção 25.6.2, página 3511, onde é explicado que o **GPIO_CTRL** pode ter seu clock dividido por certos valores pré-cadastrados, como apresentado na figura abaixo.
+Na figura executamos o comando ``devmem2 0x49058030 w 0x2`` para modificar o registrador **0x49058030** que é o registrador que controla o clock de todo o bloco do **GPIO6**, a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 2, como indicado no Technical Reference Manual (TRM) do processador DM3730, na tabela 25-29, página 3528, onde é explicado que o **GPIO_CTRL** pode ter seu clock dividido por certos valores pré-cadastrados, como apresentado na figura abaixo.
 
 .. figure:: /img/Aerial/GPIO_CTRL.png
     :align: center
@@ -272,10 +272,18 @@ Porém, logo após a execução do comando é realizado um procedimento de leitu
 
 .. Resolução do problema descrito:
 
-.. figure:: /img/Aerial/GPIO_CTRL.png
+O segundo problema encontrado ocorre quando tentamos alterar o valor dos registradores **0x49052030** e **0x49054030**, responsaveis por controlar o clock de todo o bloco do **GPIO_3** e do **GPIO_4**, respectivamente. Nesses registradores em especifico, ao tentar executar o comando ``devmem2`` para alterar o clock de um determinado bloco de GPIO ou apenas realizar uma leitura, o sistema retorna o erro "*bus error*" como apresentado na figura abaixo, onde executamos o mesmo comando no registrador **0x**. 
+
+.. figure:: /img/Aerial/register-bus_erro.png
     :align: center
 
-O segundo problema encontrado ocorre quando tentamos alterar o valor dos registradores "**0x**" e "**0x**", responsaveis por controlar o clock de todo o bloco do "**GPIO_adicionar**" e do "**GPIO_adicionar**", respectivamente. Nesses registradores em especifico, ao tentar executar o comando ``devmem2`` para alterar o clock de um determinado bloco de GPIO ou apenas realizar uma leitura, o sistema retorna o erro "*bus error*" como apresentado na figura abaixo. 
+Dessa forma, foi possivel apenas alterar o clock do bloco do **GPIO_1**, como pode ser visto na imagem abaixo. 
+
+.. figure:: /img/Aerial/register-clock.png
+    :align: center
+
+Não sabemos por quais motivos esses fenomenos estão ocrrendo com os blocos de 2 a 6, porém suspeitasse que alguns processos do sistema operacional estejam impedindo que o clock de tais blocos sejam alterados, provavelmente por algum circuito interno ou operação depender de tais valores pre-definidos ou até por alguma restrição no consumo de energia. 
+
 
 Referências
 -----------
