@@ -159,13 +159,19 @@ O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram reali
 
 .. _Fórum de Discussões da Gumstix: http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html
 
+.. Todos os codigos precisam ser testados no laboratorio e bugs devem ser corrigidos
+.. Essa edição é temporaria
+
 ::
 
+    // Local includes definition
     #include <stdio.h>    // for lprint instruction
-    #include <fcntl.h>    // ok for mmap param
+    #include <stdlib.h>
+    #include <fcntl.h>    // ok for mmap 
     #include <sys/mman.h> // ok for mmap
     #include <unistd.h>
 
+    // Defines local parameters (from TRM)
     #define SCM_INTERFACE_BASE 0x48002000
     #define SCM_PADCONFS_BASE 0x48002030
     #define CONTROL_PADCONF_SYS_NIRQ (*(volatile unsigned long *)0x480021E0)
@@ -175,100 +181,101 @@ O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram reali
     #define GPIO6_SYSCONFIG_OFFSET 0x10
     #define GPIO6_CLEARDATAOUT_OFFSET 0x90
     #define GPIO6_SETDATAOUT_OFFSET 0x94
-
     #define GPIO6_OE_OFFSET 0x34
     #define GPIO6_CTRL_OFFSET 0x30
 
     #define MAP_SIZE (volatile unsigned long)4 * 1024
     #define MAP_MASK (volatile unsigned long)(MAP_SIZE - 1)
 
+    // Defines "volatile unsigned long" how "u32"
     #define u32 volatile unsigned long
+
+    // Defines commom variables
     u32 *A;
     u32 *B;
 
-    int main(void)
+    int main() // Local functions definition
     {
+        // Defines local variables
         unsigned long i;
-        int j;
         int fd;
+        int j;
 
-        fd = open("/dev/mem", O_RDWR | O_SYNC);
+        fd = open("/dev/mem", O_RDWR | O_SYNC); // "O_RDWR" opens the file for reading and writing & "O_SYNC" guarantees that the call will not return before all data has been transferred to the disk
 
-        A = (u32 *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, SCM_INTERFACE_BASE & ~MAP_MASK);
+        A = (u32 *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, SCM_INTERFACE_BASE & ~MAP_MASK); // creates a new mapping in the virtual address space
 
-        *(u32 *)((u32)A + 0x30 + CONTROL_PADCONF_SYS_NIRQ_OFFSET) &= (0xfff8ffff);
         *(u32 *)((u32)A + 0x30 + CONTROL_PADCONF_SYS_NIRQ_OFFSET) |= (0x00040000); //set mode 4 on the pad 186 configuration register; enables digital pin use
 
         close(fd);
-        /*****************************************************/
+        /********/
 
         fd = open("/dev/mem", O_RDWR | O_SYNC);
+        
         B = (volatile unsigned long *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO6_BASE & ~MAP_MASK); // COM1 0x4806A000
 
         //gpio_186 handling
-        *(u32 *)((u32)B + GPIO6_SYSCONFIG_OFFSET) &= 0xffffffe0;
-        *(u32 *)((u32)B + GPIO6_SYSCONFIG_OFFSET) |= 0x00000014; // bit2=1 enable/wake up, free running clock
+        *(u32 *)((u32)B + GPIO6_SYSCONFIG_OFFSET) |= 0x00000004; // bit2=1 enable/wake up, free running clock
 
-        *(u32 *)((u32)B + GPIO6_CTRL_OFFSET) &= 0xfffffff8; // bit0=0, bit1=0, bit2=0 module enabled , clock not gated, clock= interface clock not divided
+        //*(u32 *)((u32)B + GPIO6_CTRL_OFFSET) &= 0xfffffffe; // bit0=0 module enabled, clock not gated , clock=interface clock divided by 8
 
-        *(u32 *)((u32)B + GPIO6_OE_OFFSET) &= 0xfbffffff; //bit26=0, gpio_186 output
+        *(u32 *)((u32)B+GPIO6_CTRL_OFFSET)&= 0xfffffff8;  // bit0=0,bit1=0,bit2=0 module enabled, clock not gated , clock=interface clock not divided
+
+        *(u32 *)((u32)B + GPIO6_OE_OFFSET) &= 0xfbffffff; // bit26=0, gpio_186 output
 
         // generate a pulse stream on gpio_186 pin output
 
-        for (j = 0; j < 1000; j++)
+        for (j = 0; j < 1000000; j++)
         {
+            *(u32 *)((u32)B + (GPIO6_CLEARDATAOUT_OFFSET)) |= 0x04000000;
+            //printf("Saida = 0\n");
+            //usleep(1000000);
+
+
             *(u32 *)((u32)B + (GPIO6_SETDATAOUT_OFFSET)) |= 0x04000000;
             //printf("Saida = 1\n");
-            // usleep(500000);
-            *(u32 *)((u32)B + (GPIO6_CLEARDATAOUT_OFFSET)) |= 0x04000000;
-            // printf("Saida = 0\n");
-            // usleep(500000);
-            
-            //printf("j = %d \n", j);
-            
+            //usleep(1000000);
         }
         close(fd);
         return (0);
     }
 
 
-:download:`Download do código 2 comentado <t2-gpio.c>`
+:download:`Download do código 2 comentado <t2-fusao.c>`
 
 O código acima foi testado da mesma maneira que o código apresentado na seção anterior. Já na figura abaixp é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nano segundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado do outro método. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto, é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
 
 .. adicionar imagem
 
-Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados, para finalizar este último tópico é necessário destacar um último problema recentemente resolvido envolvendo escrita em registradores.
+Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados.
 
+
+Problemas de escrita em registradores
+-------------------------------------
 .. verificar se este problema ocorre com qualquer registrador
 
-O problema ocorre sempre que alteramos qualquer valor de qualquer registrador, o que ocorre é que instantes após a alteração do valor do registrador seu valor retorna ao que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o "devmem2". Esse problema está exemplificado na figura abaixo.
+Para finalizar este último tópico é necessário destacar dois problemas recentemente encontrados envolvendo escrita em registradores.
+
+O primeiro problema encontrado ocorre sempre que tentamos alterar o valor dos registradores "**0x49058030**" e "**0x**", responsaveis por controlar o clock de todo o bloco do "**GPIO6**" e do "**GPIO_adicionar**", respectivamente. 
+
+O que ocorre é que instantes após a alteração do valor do registrador, seu valor retorna ao que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o ``devmem2``. Esse problema está exemplificado na figura abaixo.
 
 .. figure:: /img/Aerial/ErroRegistrador.png
     :align: center
 
-Na figura executamos o comando ``devmem2`` para modificar o registrador "**0x49058030**" que é o registrador que controla o clock de todo o bloco do "**GPIO6**", a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando é executado instantes depois no modo de leitura e retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado. Vale ressaltar que este problema não ocorre para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário.
-
-.. Resolução do problema descrito:
-
-Procurando resoluções para o problema, encontrou-se no Technical Reference Manual (TRM) do processador DM3730, na seção 25.6.2, página 3511, uma explicação que o **GPIO_CTRL** só pode ter seu clock dividido por certos valores pré-cadastrados, sendo eles 2, 4 ou 8.
-
- ::
-  
-   0x0: clock da interface
-   0x1: clock utliziado é o clock da interface dividido por 2
-   0x2: clock utilizado é o clock da interface dividido por 4
-   0x3: clock utilizado é o clock da interface dividido por 8 
-    
-Utilizando o comando ``devmem2`` para modificar o registrador "**0x49058030**" e realizando o teste para que o clock seja divido por 4 (mesma tentativa do teste não sucedido), nota-se que não é mais retornado o valor anteriormente armazenado (nulo), como podemos observar na figura abaixo.
-
-.. figure:: /img/Aerial/GpioCtrl.png
-    :align: center
-
-Este mesmo procedimento é aplicavel para o controle de clock de outros blocos de GPIO, sendo necessario apenas selecionar o endereço fisico do registrador correspondente, como pode ser visto na figura abaixo (tabela 25-29  do TRM, apresentada na pagina 3522).
+Na figura executamos o comando ``devmem2 0x49058030 w 0x2`` para modificar o registrador "**0x49058030**" que é o registrador que controla o clock de todo o bloco do "**GPIO6**", a modificação deveria realizar uma redução na velocidade do clock dividindo-o por 4, como indicado  Technical Reference Manual (TRM) do processador DM3730, na seção 25.6.2, página 3511, onde é explicado que o **GPIO_CTRL** pode ter seu clock dividido por certos valores pré-cadastrados, como apresentado na figura abaixo.
 
 .. figure:: /img/Aerial/GPIO_CTRL.png
     :align: center
+
+Porém, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando, executado instantes depois no modo de leitura, retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado. Vale ressaltar que este problema não ocorre para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário.
+
+.. Resolução do problema descrito:
+
+.. figure:: /img/Aerial/GPIO_CTRL.png
+    :align: center
+
+O segundo problema encontrado ocorre quando tentamos alterar o valor dos registradores "**0x**" e "**0x**", responsaveis por controlar o clock de todo o bloco do "**GPIO_adicionar**" e do "**GPIO_adicionar**", respectivamente. Nesses registradores em especifico, ao tentar executar o comando ``devmem2`` para alterar o clock de um determinado bloco de GPIO ou apenas realizar uma leitura, o sistema retorna o erro "*bus error*" como apresentado na figura abaixo. 
 
 Referências
 -----------

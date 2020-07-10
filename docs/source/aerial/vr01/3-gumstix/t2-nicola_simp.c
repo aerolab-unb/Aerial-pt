@@ -1,3 +1,9 @@
+/*
+Codigo do Nicola um pouco simplificado, ativa o gpio-186 (pino 17 da placa Tobi)
+
+http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html
+*/
+
 // LOCAL INCLUDES DEFINITION 
 #include <stdio.h>    // for lprint instruction
 #include <fcntl.h>    // ok for mmap 

@@ -1,3 +1,5 @@
+// controla o pino 18 da placa Tobi
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

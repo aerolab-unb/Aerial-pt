@@ -1,13 +1,19 @@
-/****************************************************************************************
-                             LOCAL INCLUDES DEFINITION
- ****************************************************************************************/
-#include <stdio.h>
-#include "init_SPI_1.h"
+/*
+Codigo retirado do Forum Gumstix, escrito pelo usuario Nicola, ativa o gpio-186 (pino 17 da placa Tobi)
+
+http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html
+*/
+
+/************************************************
+        LOCAL INCLUDES DEFINITION 
+*************************************************/
+#include <stdio.h>    // for lprint instruction
 #include <fcntl.h>    //ok for mmap param
 #include <sys/mman.h> //ok for mmap
-/****************************************************************************************
-                             LOCAL PARAMETERS DEFINITION
- ****************************************************************************************/
+
+/************************************************ 
+LOCAL PARAMETERS DEFINITION 
+*************************************************/
 #define SCM_INTERFACE_BASE 0x48002000
 #define SCM_PADCONFS_BASE 0x48002030
 #define CONTROL_PADCONF_SYS_NIRQ (*(volatile unsigned long *)0x480021E0)
@@ -22,16 +28,24 @@
 
 #define MAP_SIZE (volatile unsigned long)4 * 1024
 #define MAP_MASK (volatile unsigned long)(MAP_SIZE - 1)
-/****************************************************************************************
-                             COMMON VARIABLES DEFINITION
- ****************************************************************************************/
+
+/************************************************ 
+        COMMON VARIABLES DEFINITION 
+*************************************************/
 #define u32 volatile unsigned long
 u32 *A;
 u32 *B;
-/****************************************************************************************
-                             LOCAL FUNCTIONS DEFINITION
- ****************************************************************************************/
 
+/************************************************ 
+        LOCAL FUNCTIONS DEFINITION 
+ *************************************************/
+
+/************************************************ 
+  Function name:     int main(void) 
+  Last modification: 04/08/2012 
+  Version:           1.10 
+  Notes: 
+*************************************************/
 int main(void)
 {
     unsigned long i;
@@ -50,20 +64,20 @@ int main(void)
     if (fd < 0)
     {
         printf("Could not open file\n");
-        return;
+        return 0;
     }
     A = (u32 *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, SCM_INTERFACE_BASE & ~MAP_MASK);
     if (A == MAP_FAILED)
     {
         printf("Mapping failed    value 0x%04x\n", A);
         close(fd);
-        return;
+        return 0;
     } // %d.\n
     if (A <= 0)
     {
         printf("Mapping failed\n");
         close(fd);
-        return;
+        return 0;
     }
     printf("SCM_SCM_BASE 0x%08x\n", SCM_INTERFACE_BASE);
     printf("SCM_PADCONFS_BASE 0x%08x\n", SCM_INTERFACE_BASE + 0x30);
@@ -80,20 +94,20 @@ int main(void)
     if (fd < 0)
     {
         printf("Could not open file\n");
-        return;
+        return 0;
     }
     B = (volatile unsigned long *)mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO6_BASE & ~MAP_MASK); // COM1 0x4806A000
     if (B == MAP_FAILED)
     {
         printf("Mapping failed    value 0x%04x\n", B);
         close(fd);
-        return;
+        return 0;
     } // %d.\n
     if (B <= 0)
     {
         printf("Mapping failed\n");
         close(fd);
-        return;
+        return 0;
     }
 
     printf("Map_Size: 0x%08x     ", MAP_SIZE);
@@ -127,7 +141,9 @@ int main(void)
         *(u32 *)((u32)B + (GPIO6_CLEARDATAOUT_OFFSET)) |= 0x04000000;
         *(u32 *)((u32)B + (GPIO6_SETDATAOUT_OFFSET)) |= 0x04000000;
     }
+
     close(fd);
     printf("pointers to memory are ok\n");
-    return (0);
+    return 0;
+
 } // eof
