@@ -2,7 +2,6 @@
                              LOCAL INCLUDES DEFINITION
  ****************************************************************************************/
 #include <stdio.h>
-#include "init_mem.h"
 #include "init_SPI_1.h"
 #include <fcntl.h>    //ok for mmap param
 #include <sys/mman.h> //ok for mmap

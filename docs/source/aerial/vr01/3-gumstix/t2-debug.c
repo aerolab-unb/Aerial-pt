@@ -31,8 +31,6 @@ int main(void)
     unsigned long i;
     int fd;
     
-    system("clear");
-
     printf("\n\n");
     printf("   ------------------------------------------\n");
     printf("   |               SPI Sample                |\n");

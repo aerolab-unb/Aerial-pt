@@ -57,7 +57,7 @@ int main(void)
 
     // generate a pulse stream on gpio_186 pin output
 
-    for (i = 0; ji < 100; i++)
+    for (i = 0; i < 100; i++)
     {
         *(u32 *)((u32)B + (GPIO6_SETDATAOUT_OFFSET)) |= 0x04000000;
         printf("Saida = 1\n");
