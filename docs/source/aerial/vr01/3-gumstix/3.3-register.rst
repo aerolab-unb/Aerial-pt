@@ -104,6 +104,8 @@ Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante a
 
 Para testar o código, o pino 18 (pino do **GPIO** 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.
 
+.. trocar esta imagem
+
 .. figure:: /img/Aerial/teste1-gpio.png
 	:align: center
 
@@ -269,8 +271,6 @@ Tal modificação deveria realizar uma redução na velocidade do clock dividind
     :align: center
 
 Porém, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando, executado instantes depois no modo de leitura, retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado. Vale ressaltar que este problema não ocorre para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário.
-
-.. Resolução do problema descrito:
 
 O segundo problema encontrado ocorre quando tentamos alterar o valor dos registradores **0x49052030** e **0x49054030**, responsáveis por controlar o clock de todo o bloco do **GPIO_3** e do **GPIO_4**, respectivamente. Nesses registradores em específico, ao tentar executar o comando ``devmem2`` para alterar o clock de um determinado bloco de GPIO ou apenas realizar uma leitura, o sistema retorna o erro "*bus error*" como apresentado na figura abaixo, onde executamos o mesmo comando no registrador **0x**. 
 
