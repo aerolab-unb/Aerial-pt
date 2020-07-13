@@ -104,6 +104,8 @@ Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante a
 
 Para testar o código, o pino 18 (pino do **GPIO** 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.
 
+.. trocar esta imagem
+
 .. figure:: /img/Aerial/teste1-gpio.png
 	:align: center
 
@@ -258,6 +260,11 @@ Para finalizar este último tópico é necessário destacar alguns problemas rec
 
 O primeiro problema encontrado ocorre sempre que tentamos alterar o valor dos registradores "**0x49050030**", "**0x49056030**" e "**0x49058030**", responsáveis por controlar o clock de todo o bloco do "**GPIO_2**", "**GPIO_5**" e "**GPIO_6**", respectivamente. 
 
+.. Note:: 
+    ``devmem2`` é um comando que executa um programa simples para ler ou escrever em qualquer espaço de memoria. Mais informações podem ser encontradas em `devmem2 - Ubuntu Manual`_.
+
+.. _devmem2 - Ubuntu Manual: http://manpages.ubuntu.com/manpages/focal/man1/devmem2.1.html#name
+
 O que ocorre é que instantes após a alteração do valor do registrador, seu valor retorna ao que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o ``devmem2``. Esse problema está exemplificado na figura abaixo, onde executamos o comando ``devmem2 0x49058030 w 0x2`` para modificar o registrador **0x49058030** que é o registrador que controla o clock de todo o bloco do **GPIO6**.
 
 .. figure:: /img/Aerial/register-erro.png
@@ -270,8 +277,6 @@ Tal modificação deveria realizar uma redução na velocidade do clock dividind
 
 Porém, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando, executado instantes depois no modo de leitura, retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado. Vale ressaltar que este problema não ocorre para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário.
 
-.. Resolução do problema descrito:
-
 O segundo problema encontrado ocorre quando tentamos alterar o valor dos registradores **0x49052030** e **0x49054030**, responsáveis por controlar o clock de todo o bloco do **GPIO_3** e do **GPIO_4**, respectivamente. Nesses registradores em específico, ao tentar executar o comando ``devmem2`` para alterar o clock de um determinado bloco de GPIO ou apenas realizar uma leitura, o sistema retorna o erro "*bus error*" como apresentado na figura abaixo, onde executamos o mesmo comando no registrador **0x**. 
 
 .. figure:: /img/Aerial/register-bus_erro.png
@@ -283,6 +288,7 @@ Dessa forma, foi possível apenas alterar o clock do bloco do **GPIO_1**, como p
     :align: center
 
 Não sabemos por quais motivos esses fenômenos estão ocorrendo com os blocos de 2 a 6, porém suspeitasse que alguns processos do sistema operacional estejam impedindo que o clock de tais blocos seja alterados, provavelmente por algum circuito interno ou operação depender de tais valores pré-definidos ou até por alguma restrição no consumo de energia. 
+
 
 
 Referências

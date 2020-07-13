@@ -380,6 +380,10 @@
 <h3>Problemas de escrita em registradores<a class="headerlink" href="#problemas-de-escrita-em-registradores" title="Permalink to this headline">¶</a></h3>
 <p>Para finalizar este último tópico é necessário destacar alguns problemas recentemente encontrados envolvendo escrita em registradores.</p>
 <p>O primeiro problema encontrado ocorre sempre que tentamos alterar o valor dos registradores &quot;<strong>0x49050030</strong>&quot;, &quot;<strong>0x49056030</strong>&quot; e &quot;<strong>0x49058030</strong>&quot;, responsáveis por controlar o clock de todo o bloco do &quot;<strong>GPIO_2</strong>&quot;, &quot;<strong>GPIO_5</strong>&quot; e &quot;<strong>GPIO_6</strong>&quot;, respectivamente.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">devmem2</span></code> é um comando que executa um programa simples para ler ou escrever em qualquer espaço de memoria. Mais informações podem ser encontradas em <a class="reference external" href="http://manpages.ubuntu.com/manpages/focal/man1/devmem2.1.html#name">devmem2 - Ubuntu Manual</a>.</p>
+</div>
 <p>O que ocorre é que instantes após a alteração do valor do registrador, seu valor retorna ao que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o <code class="docutils literal notranslate"><span class="pre">devmem2</span></code>. Esse problema está exemplificado na figura abaixo, onde executamos o comando <code class="docutils literal notranslate"><span class="pre">devmem2</span> <span class="pre">0x49058030</span> <span class="pre">w</span> <span class="pre">0x2</span></code> para modificar o registrador <strong>0x49058030</strong> que é o registrador que controla o clock de todo o bloco do <strong>GPIO6</strong>.</p>
 <div class="figure align-center">
 <img alt="../../../_images/register-erro.png" src="../../../_images/register-erro.png" />
