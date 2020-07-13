@@ -25,7 +25,7 @@ Podemos analisar a situação da comunicação a nível de bit. Por exemplo, par
 
 Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em Baud rate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.
 
-.. 30 O QUE?
+.. 30 O QUE?????????
 
 .. Note::
     O termo "Baud rate" é utilizado como medida de velocidade de transmissão de dados entre dispositivos. Um baud é uma medida de velocidade de sinalização e representa o número de mudanças na linha de transmissão (seja em frequência, amplitude, fase etc...) ou eventos por segundo.
@@ -49,7 +49,10 @@ Por padrão, a placa de expansão Tobi disponibiliza apenas dois dos UARTs dispo
 
 Caso as duas portas seriais já mencionadas não sejam suficientes, existe ainda a porta serial UART2. Porém, por padrão, está não está disponivel em nenhum dos pinos da placa Tobi para nossa utilização. Na verdade ela foi reservada para comunicar-se com o bluetooth, contudo apenas versões posteriores do computador embarcado Overo por nos utilizado possuem bluetooth, portanto podemos, caso necessário, exportar a UART2 para os pinos e utiliza-los. Para utilizar esta porta serial é necessário modificar o *u-boot* de modo a multiplexar sua função ao GPIO 146/147 que, como mostrado na figura anterior, estão ligados aos pinos 29 e 27. Portanto para faze-lo é necessário modificar o arquivo "overo.h" removendo as linhas de comando referentes ao modo de GPIO dos pinos 146 e 147, remover as linhas que desabilitam a UART2 e adicionar as linhas que habilitam a comunicação serial pela UART2.
 
-Para entender, detalhadamente, o que precisa ser feito e quais registradores serão alterados deve-se consultar a seção de comunicação serial do Technical Reference Manual (TRM) do procesador. Contudo existe um tópico no fórum de discussões da gumstix5 que indica diretamente quais alterações devem ser feitos no "u-boot" para que se possa utilizar a UART2, apesar disso a solução apresentada nesse fórum não foi testada durante este trabalho.
+Para entender, detalhadamente, o que precisa ser feito e quais registradores serão alterados deve-se consultar a seção de comunicação serial do Technical Reference Manual (TRM) do procesador. Contudo existe um tópico no `Fórum de Discussões da Gumstix`_ que indica diretamente quais alterações devem ser feitos no "u-boot" para que se possa utilizar a UART2, apesar disso a solução apresentada nesse fórum não foi testada durante este trabalho.
+
+.. _Fórum de Discussões da Gumstix: http://gumstix.8.x6.nabble.com/Using-UART-2-on-an-Overo-td660403.html
+
 
 .. testar esse metodo e detalhar como é feito
 .. http://gumstix.8.x6.nabble.com/template/NamlServlet.jtp?macro=search_page&node=558772&query=UART2
@@ -67,3 +70,4 @@ Referências
 .. https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter
 .. https://en.wikipedia.org/wiki/Asynchronous_serial_communication
 .. http://newtoncbraga.com.br/index.php/telecom-artigos/1709-#:~:text=UART%20%C3%A9%20o%20acr%C3%B4nimo%20de,conforme%20mostra%20a%20figura%201.
+.. https://ece353.engr.wisc.edu/serial-interfaces/uart-basics/
