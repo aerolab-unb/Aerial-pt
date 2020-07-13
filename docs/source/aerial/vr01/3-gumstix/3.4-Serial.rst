@@ -32,6 +32,8 @@ A figura 3.114 é um esquemático que ilustra o que foi explicado nos parágrafo
 
 .. figure:: /img/Aerial/UART_8N1.png
     :align: center
+    :width: 500px
+
 
 Particularidades da Gumstix Overo
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
