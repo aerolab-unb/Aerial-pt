@@ -23,12 +23,12 @@ Podemos analisar a situação da comunicação a nível de bit. Por exemplo, par
 
 É importante destacar que a função do bit de parada é realizar uma pausa na transmissão para algum processamento interno dos dispositivos, não é necessário, portanto, nenhum tempo adicional entre os dados transmitidos.
 
-Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em Baudrate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.
+Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em Baud rate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.
 
 .. Note::
     O termo "Baud rate" é utilizado como medida de velocidade de transmissão de dados entre dispositivos. Um baud é uma medida de velocidade de sinalização e representa o número de mudanças na linha de transmissão (seja em frequência, amplitude, fase etc...) ou eventos por segundo.
 
-A figura 3.114 é um esquemático que ilustra o que foi explicado nos parágrafos anteriores, na ilustração a velocidade de comunicação é de 10.000.000 baud/s.
+A figura a seguir apresenta um esquemático que ilustra o funcionamento da comunicação UART. Na ilustração a velocidade de comunicação é de 10.000.000 baud/s.
 
 .. figure:: /img/Aerial/UART_8N1.png
     :align: center
