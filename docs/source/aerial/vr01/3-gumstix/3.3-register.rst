@@ -260,6 +260,11 @@ Para finalizar este último tópico é necessário destacar alguns problemas rec
 
 O primeiro problema encontrado ocorre sempre que tentamos alterar o valor dos registradores "**0x49050030**", "**0x49056030**" e "**0x49058030**", responsáveis por controlar o clock de todo o bloco do "**GPIO_2**", "**GPIO_5**" e "**GPIO_6**", respectivamente. 
 
+.. Note:: 
+    ``devmem2`` é um comando que executa um programa simples para ler ou escrever em qualquer espaço de memoria. Mais informações podem ser encontradas em `devmem2 - Ubuntu Manual`_.
+
+.. _devmem2 - Ubuntu Manual: http://manpages.ubuntu.com/manpages/focal/man1/devmem2.1.html#name
+
 O que ocorre é que instantes após a alteração do valor do registrador, seu valor retorna ao que possuía antes de ser alterado. Como o teste desta seção apresentou frequência muito alta ele não foi interrompido por este efeito, porém o fenômeno ocorre inclusive quando alteramos valores dos registradores por comandos do terminal, como o ``devmem2``. Esse problema está exemplificado na figura abaixo, onde executamos o comando ``devmem2 0x49058030 w 0x2`` para modificar o registrador **0x49058030** que é o registrador que controla o clock de todo o bloco do **GPIO6**.
 
 .. figure:: /img/Aerial/register-erro.png
