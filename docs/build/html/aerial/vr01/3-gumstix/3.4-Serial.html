@@ -232,9 +232,61 @@
 <p>Mais informações sobre a biblioteca &quot;<strong>termios.h</strong>&quot; podem ser encontrados em <a class="reference external" href="https://man7.org/linux/man-pages/man0/termios.h.0p.html">termios.h — Linux manual page</a>.</p>
 </div>
 <p>São dois os parâmetros da comunicação UART, além dos mencionados anteriormente, que se destacam, sendo eles o número mínimo de bits que se espera ler em cada tentativa de leitura e o tempo máximo de espera por um novo caractere após a transmissão do último caractere após o número mínimo de caracteres ser atingido.</p>
-<p>O número mínimo de bits que se espera ser lido e o tempo máximo de espera pelo próximo bit em décimos de segundo podem ser configurados com os seguintes comandos <code class="docutils literal notranslate"><span class="pre">termios.c_cc[VMIN]</span> <span class="pre">=</span></code> e <code class="docutils literal notranslate"><span class="pre">termios.c_cc[VTIME]</span> <span class="pre">=</span></code>, em que <code class="docutils literal notranslate"><span class="pre">termios</span></code> é o nome de sua estrutura. Para a configuração de velocidade recomenda-se usar a função <code class="docutils literal notranslate"><span class="pre">cfsetspeed()</span></code>. A função <code class="docutils literal notranslate"><span class="pre">cfmakeraw()</span></code> configura, além de outros parâmetros, o funcionamento sem bit de paridade e com 8 bits de dados.</p>
-<p>Após realizados os ajustes na estrutura é necessário executar a função <code class="docutils literal notranslate"><span class="pre">cfsetattr()</span></code> para que as alterações sejam feitas na UART.</p>
-<p>O código a seguir é um exemplo de função, que foi usado nos testes do computador embarcado. No teste dois computadores embarcados idênticos que futuramente serão colocados nos aviões são conectados e executam o código da listagem 3.4. O objetivo deste teste é realizar a comunicação serial entre os dois dispositivos e verificar alguma possível falha.</p>
+<p>O número mínimo de bits que se espera ser lido e o tempo máximo de espera pelo próximo bit em décimos de segundo podem ser configurados com os seguintes comandos <code class="docutils literal notranslate"><span class="pre">termios.c_cc[VMIN]</span> <span class="pre">=</span></code> e <code class="docutils literal notranslate"><span class="pre">termios.c_cc[VTIME]</span> <span class="pre">=</span></code>, em que <code class="docutils literal notranslate"><span class="pre">termios</span></code> é o nome de sua estrutura. Para a configuração de velocidade recomenda-se usar a função <code class="docutils literal notranslate"><span class="pre">cfsetspeed()</span></code>.Já a função <code class="docutils literal notranslate"><span class="pre">cfmakeraw()</span></code> configura, além de outros parâmetros, o funcionamento sem bit de paridade e com 8 bits de dados. Após realizados os ajustes na estrutura é necessário ainda executar a função <code class="docutils literal notranslate"><span class="pre">cfsetattr()</span></code> para que as alterações sejam feitas na UART.</p>
+<p>Abaixo encontra-se o codigo utlizado para configurar a comunicação serial dos computadores Overo. Observe que nessa função de configuração não foi utilizada a flag &quot;O_NONBLOCK&quot; na função &quot;open()&quot; e foi definido como 1 o número mínimo de caracteres a serem retornados após uma tentativa de leitura, portanto caso o código seja executado e nenhuma informação seja enviada para este canal o processador aguardará eternamente por esse caractere. A contagem de tempo, definida como 0,1 segundo, só inicia após o número mínimo de caracteres ser atingido.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;termios.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">configUART1</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">struct</span> <span class="n">terios</span> <span class="n">cUART1</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">UART1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/dev/ttyO0&quot;</span><span class="p">,</span><span class="n">O_RDWR</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">tcgetattr</span><span class="p">(</span><span class="n">UART1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">cUART1</span><span class="p">))</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Erro tcgetattr&quot;</span><span class="p">);</span>
+    <span class="n">cfmakeraw</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cUART1</span><span class="p">);</span>
+    <span class="n">cfsetspeed</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cUART1</span><span class="p">,</span><span class="n">B115200</span><span class="p">);</span>
+    <span class="n">cUART1</span><span class="o">.</span><span class="n">c_cflag</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="n">CSTOPB</span><span class="p">;</span>
+
+    <span class="n">cUART1</span><span class="o">.</span><span class="n">c_cc</span><span class="p">[</span><span class="n">VMIN</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">cUART1</span><span class="o">.</span><span class="n">c_cc</span><span class="p">[</span><span class="n">VTIME</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tcsetattr</span><span class="p">(</span><span class="n">UART1</span><span class="p">,</span> <span class="n">TCSANOW</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cUART1</span><span class="p">))</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Erro tcsetattr&quot;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">UART1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../../_downloads/33788a138952bb7ad44170e98661553f/t1-UART.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">1</span> <span class="pre">comentado</span></code></a></p>
+<p>Uma vez feita a configuração, foi implementado também o código a seguir com a finalidade de testar a comunicação entre dois computadores,. No teste, um dispositivo envia uma mensagem para o outro dispositivo que responde com uma mensagem semelhante para o primeiro dispositivo, em seguida ambos os dispositivos imprimem a mensagem recebida.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;termios.h&gt;</span>
+<span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="c1">#include &lt;string.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="nb">int</span> <span class="n">UART1</span> <span class="o">=</span> <span class="n">configUART1</span><span class="p">();</span>
+    <span class="n">char</span> <span class="n">dis</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">out</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">string</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Que dispositivo eu sou?&quot;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%c</span><span class="s2">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dis</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="n">dis</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">strcat</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="s2">&quot;Ola! Essa e uma mensagem do dispositivo &quot;</span><span class="p">);</span>
+    <span class="n">strcat</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">dis</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">testa</span> <span class="n">UART</span>
+    <span class="n">write</span><span class="p">(</span><span class="n">UART1</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">string</span><span class="p">));</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">read</span><span class="p">(</span><span class="n">UART1</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Mensagem lida pelo dispositivo </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dis</span><span class="p">,</span> <span class="n">out</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">UART1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Como os dois dispositivos são idênticos, será necessário conectar o pino 10 de um dispositivo com o pino 9 do outro dispositivo e vice versa. Utilizando esse código como base é possível enviar qualquer mensagem de um dispositivo ao outro.</p>
+<p>A figura a seguir apresenta o resultado do teste dos códigos apresentados. Nessa figura podemos ver dois terminais do Linux, cada um vinculado a um computador embarcado, e ambos chamam a mesma função, logo em seguida vemos a mensagem lida por cada um dos dispositivos.</p>
 <div class="section" id="referencias">
 <h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
