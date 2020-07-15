@@ -92,15 +92,71 @@ São dois os parâmetros da comunicação UART, além dos mencionados anteriorme
 
 .. a
 
-O número mínimo de bits que se espera ser lido e o tempo máximo de espera pelo próximo bit em décimos de segundo podem ser configurados com os seguintes comandos ``termios.c_cc[VMIN] =`` e ``termios.c_cc[VTIME] =``, em que ``termios`` é o nome de sua estrutura. Para a configuração de velocidade recomenda-se usar a função ``cfsetspeed()``. A função ``cfmakeraw()`` configura, além de outros parâmetros, o funcionamento sem bit de paridade e com 8 bits de dados.
+O número mínimo de bits que se espera ser lido e o tempo máximo de espera pelo próximo bit em décimos de segundo podem ser configurados com os seguintes comandos ``termios.c_cc[VMIN] =`` e ``termios.c_cc[VTIME] =``, em que ``termios`` é o nome de sua estrutura. Para a configuração de velocidade recomenda-se usar a função ``cfsetspeed()``.Já a função ``cfmakeraw()`` configura, além de outros parâmetros, o funcionamento sem bit de paridade e com 8 bits de dados. Após realizados os ajustes na estrutura é necessário ainda executar a função ``cfsetattr()`` para que as alterações sejam feitas na UART.
 
-Após realizados os ajustes na estrutura é necessário executar a função ``cfsetattr()`` para que as alterações sejam feitas na UART.
+Abaixo encontra-se o codigo utlizado para configurar a comunicação serial dos computadores Overo. Observe que nessa função de configuração não foi utilizada a flag "O_NONBLOCK" na função "open()" e foi definido como 1 o número mínimo de caracteres a serem retornados após uma tentativa de leitura, portanto caso o código seja executado e nenhuma informação seja enviada para este canal o processador aguardará eternamente por esse caractere. A contagem de tempo, definida como 0,1 segundo, só inicia após o número mínimo de caracteres ser atingido.
 
-O código a seguir é um exemplo de função, que foi usado nos testes do computador embarcado. No teste dois computadores embarcados idênticos que futuramente serão colocados nos aviões são conectados e executam o código da listagem 3.4. O objetivo deste teste é realizar a comunicação serial entre os dois dispositivos e verificar alguma possível falha.
 
 ::
 
-    
+    #include <termios.h>
+
+    int configUART1()
+    {
+        struct terios cUART1;
+        int UART1 = open("/dev/ttyO0",O_RDWR);
+
+        if(tcgetattr(UART1,&cUART1))
+            printf("Erro tcgetattr");
+        cfmakeraw(&cUART1);
+        cfsetspeed(&cUART1,B115200);
+        cUART1.c_cflag &= ~CSTOPB;
+
+        cUART1.c_cc[VMIN] = 1;
+        cUART1.c_cc[VTIME] = 1;
+        if (tcsetattr(UART1, TCSANOW, &cUART1))
+            printf("Erro tcsetattr");
+            
+        return UART1;
+    }
+
+:download:`Download do código 1 comentado <t1-UART.c>`
+
+Uma vez feita a configuração, foi implementado também o código a seguir com a finalidade de testar a comunicação entre dois computadores,. No teste, um dispositivo envia uma mensagem para o outro dispositivo que responde com uma mensagem semelhante para o primeiro dispositivo, em seguida ambos os dispositivos imprimem a mensagem recebida.
+
+:: 
+
+    #include <termios.h>
+    #include <stdio.h>
+    #include <string.h>
+
+    int main()
+    {
+
+        int UART1 = configUART1();
+        char dis[2], out[100], string[100];
+
+        printf("Que dispositivo eu sou?");
+        scanf("%c", &dis[0]);
+        dis[1] = 0;
+        string[0] = 0;
+        strcat(string, "Ola! Essa e uma mensagem do dispositivo ");
+        strcat(string, dis);
+
+        // testa UART
+        write(UART1, string, strlen(string));
+        sleep(1);
+        read(UART1, out, 100);
+        printf("Mensagem lida pelo dispositivo %s: %s\n", dis, out);
+        close(UART1);
+        return 0;
+    }
+
+Como os dois dispositivos são idênticos, será necessário conectar o pino 10 de um dispositivo com o pino 9 do outro dispositivo e vice versa. Utilizando esse código como base é possível enviar qualquer mensagem de um dispositivo ao outro.
+
+A figura a seguir apresenta o resultado do teste dos códigos apresentados. Nessa figura podemos ver dois terminais do Linux, cada um vinculado a um computador embarcado, e ambos chamam a mesma função, logo em seguida vemos a mensagem lida por cada um dos dispositivos.
+
+.. figura
 
 Referências
 -----------
