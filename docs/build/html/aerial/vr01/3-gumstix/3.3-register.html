@@ -295,7 +295,10 @@
 </div>
 <p>Vamos supor que queremos mapear o espaço de memória físico de &quot;<strong>0x45000000</strong>&quot; até &quot;<strong>0x45001000</strong>&quot; e para isso decidimos usar a função <code class="docutils literal notranslate"><span class="pre">mmap()</span></code>. Portanto, chamamos a função da seguinte maneira, por exemplo, <code class="docutils literal notranslate"><span class="pre">mmap(NULL,0x1000,PROT_WRITE</span> <span class="pre">||</span> <span class="pre">PROT_READ,MAP_SHARED,fd,0x45000000)</span></code>, executando isso a função irá retornar um ponteiro que aponta para um endereço de memória virtual endereçado no endereço de memória física &quot;<strong>0x45000000</strong>&quot;. Em que, para ter acesso à memória física do dispositivo, &quot;<strong>fd</strong>&quot; é o <em>file descriptor</em> direcionado para &quot;/dev/mem&quot;.</p>
 <p>Com essas informações, temos tudo o que é necessário para implementar testes acerca deste modo de operação. A seguir temos um código que aplica o método descrito nesta seção para alternar o nível de tensão do pino &quot;186&quot;. Esse código foi implementado para se realizar o mesmo teste da seção &quot;Controle do GPIO via terminal&quot;.</p>
-<p>O código abaixo foi obtido no <a class="reference external" href="http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html">Fórum de Discussões da Gumstix</a> e foram realizadas pequenas alterações para evitar o excesso de informação e facilitar sua compreensão.</p>
+<dl class="simple">
+<dt>..Note::</dt><dd><p>O código abaixo foi obtido no <a class="reference external" href="http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html">Fórum de Discussões da Gumstix</a> e foram realizadas pequenas alterações para evitar o excesso de informação e facilitar sua compreensão.</p>
+</dd>
+</dl>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Local</span> <span class="n">includes</span> <span class="n">definition</span>
 <span class="c1">#include &lt;stdio.h&gt;    // for lprint instruction</span>
 <span class="c1">#include &lt;stdlib.h&gt;</span>

@@ -23,12 +23,14 @@ Podemos analisar a situação da comunicação a nível de bit. Por exemplo, par
 
 É importante destacar que a função do bit de parada é realizar uma pausa na transmissão para algum processamento interno dos dispositivos, não é necessário, portanto, nenhum tempo adicional entre os dados transmitidos.
 
-Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em Baudrate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.
+Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em Baud rate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.
+
+.. 30 O QUE?????????
 
 .. Note::
     O termo "Baud rate" é utilizado como medida de velocidade de transmissão de dados entre dispositivos. Um baud é uma medida de velocidade de sinalização e representa o número de mudanças na linha de transmissão (seja em frequência, amplitude, fase etc...) ou eventos por segundo.
 
-A figura 3.114 é um esquemático que ilustra o que foi explicado nos parágrafos anteriores, na ilustração a velocidade de comunicação é de 10.000.000 baud/s.
+A figura a seguir apresenta um esquemático que ilustra o funcionamento da comunicação UART. Na ilustração a velocidade de comunicação é de 10.000.000 baud/s.
 
 .. figure:: /img/Aerial/UART_8N1.png
     :align: center
@@ -38,14 +40,63 @@ A figura 3.114 é um esquemático que ilustra o que foi explicado nos parágrafo
 Particularidades da Gumstix Overo
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-O computador embarcado Overo conectado a uma placa de expansão tobi possui dois desses UARTs disponíveis, por padrão, para nosso uso nos pinos apresentados na figura 3.5. Como pode ser visto a UART1 está conectada aos pinos 10 e 9 e a UART3 está conectada aos pinos 22 e 21. Ainda é importante dizer que a porta serial UART3 é o mesmo pino utilizado pelo "USB console", ou seja, é o mesmo pino que usamos para controlar a gumstix pelo computador, ou seja, em configuração padrão as mensagens do sistema e as mensagens para o sistema são enviadas por esta porta.
+Por padrão, a placa de expansão Tobi disponibiliza apenas dois dos UARTs disponíveis no computador em modulo Overo para uso atraves dos seus pinos. Como pode ser visto na imagem abaixo, a UART1 está conectada aos pinos 10 e 9 e a UART3 está conectada aos pinos 22 e 21. Ainda é importante dizer que a porta serial UART3 é o mesmo pino utilizado pelo "USB console", ou seja, é o mesmo pino que usamos para controlar a gumstix pelo computador, ou seja, em configuração padrão as mensagens do sistema e as mensagens para o sistema são enviadas por esta porta.
 
-Caso as duas portas seriais já mencionadas não sejam suficientes para a aplicação existe, também, a porta serial UART2 que não está, por padrão, disponível em um dos pinos para nossa utilização. Na verdade ela foi reservada para comunicar-se com o bluetooth, contudo apenas versões posteriores ao nosso computador embarcado possuem bluetooth, portanto podemos, caso necessário, exportar a UART2 para os pinos e utiliza-los.
+.. figure:: /img/Aerial/Pinos_Tobi.png
+    :align: center
 
-Para utilizar esta porta serial é necessário modificar o u-boot de modo a multiplexar sua função ao GPIO 146/147 que, como mostrado na figura 3.5, estão ligados aos pinos 29 e 27. Portanto para faze-lo é necessário modificar o arquivo "overo.h" removendo as linhas de comando referentes ao modo de GPIO dos pinos 146 e 147, remover as linhas que desabilitam a UART2 e adicionar as linhas que habilitam a comunicação serial pela UART2.
+    Diagrama dos pinos da placa de expansão tobi.
 
-Para entender detalhadamente o que precisa ser feito e quais registradores serão alterados deve-se consultar a seção de comunicação serial de [5]. Contudo existe um tópico no fórum de discussões da gumstix5 que indica diretamente quais alterações devem ser feitos no "uboot" para que se possa utilizar a UART2, apesar disso a solução apresentada nesse fórum não foi testada durante este trabalho.
+Caso as duas portas seriais já mencionadas não sejam suficientes, existe ainda a porta serial UART2. Porém, por padrão, está não está disponivel em nenhum dos pinos da placa Tobi para nossa utilização. Na verdade ela foi reservada para comunicar-se com o bluetooth, contudo apenas versões posteriores do computador embarcado Overo por nos utilizado possuem bluetooth, portanto podemos, caso necessário, exportar a UART2 para os pinos e utiliza-los. Para utilizar esta porta serial é necessário modificar o *u-boot* de modo a multiplexar sua função ao GPIO 146/147 que, como mostrado na figura anterior, estão ligados aos pinos 29 e 27. Portanto para faze-lo é necessário modificar o arquivo "overo.h" removendo as linhas de comando referentes ao modo de GPIO dos pinos 146 e 147, remover as linhas que desabilitam a UART2 e adicionar as linhas que habilitam a comunicação serial pela UART2.
 
+Para entender, detalhadamente, o que precisa ser feito e quais registradores serão alterados deve-se consultar a seção de comunicação serial do Technical Reference Manual (TRM) do procesador. Contudo existe um tópico no `Fórum de Discussões da Gumstix`_ que indica diretamente quais alterações devem ser feitos no "u-boot" para que se possa utilizar a UART2, apesar disso a solução apresentada nesse fórum não foi testada durante este trabalho.
+
+.. _Fórum de Discussões da Gumstix: http://gumstix.8.x6.nabble.com/Using-UART-2-on-an-Overo-td660403.html
+
+.. testar esse metodo e detalhar como é feito
+.. http://gumstix.8.x6.nabble.com/template/NamlServlet.jtp?macro=search_page&node=558772&query=UART2
+.. http://gumstix.8.x6.nabble.com/Using-UART-2-on-an-Overo-td660403.html
+
+Configuração da UART
+~~~~~~~~~~~~~~~~~~~~
+
+Como já comentado anteriormente, o computador embarcado possui um hardware específico para comunicação UART, ou seja, não é necessário realizar uma implementação manual, para utilizar a comunicação UART basta escrever em alguns registradores para enviar a mensagem.
+
+Na verdade, em nosso caso é ainda mais simples pois o sistema operacional instalado já traz configurado drivers para a aplicação da comunicação serial. Portanto, não é necessário acessar a memória física do dispositivo, precisamos apenas escrever no driver o que deve ser transmitido.
+
+Os drivers de comunicação serial são arquivos do tipo caractere com nome "**ttyOx**", em que "**x**" é um número exclusivo para cada uma das UARTs. Esses drivers estão localizados em "**/dev**" e funcionam como comunicação em terminal.
+
+Por exemplo, o driver "**ttyO2**" é o driver de comunicação serial da porta "**USB Console**" a mesma que conectamos ao computador, ou seja, ao escrever nessa porta estaremos escrevendo no computador conectado à Gumstix e ao ler essa porta estaremos lendo o computador. Em outras palavras, escrever ou ler nesse driver terá o mesmo resultado final de chamar, respectivamente, a função ``printf()`` ou ``scanf()``, quando um computador estiver conectado a essa porta com o terminal aberto.
+
+A configuração das portas seriais pode ser feita de duas maneiras, por linhas de comando no terminal Linux ou por um código que altere as configurações do hardware. A mais simples e, novamente, mais limitada ou menos eficiente é a configuração por meio de linhas de comando, a configuração por esse modo costuma ser usada apenas quando feita por um usuário humano em tempo real.
+
+Para realizar a configuração por meio do terminal Linux devemos utilizar o comando ``stty``, já que esse comando possui uma enorme quantidade de parâmetros que permite estabelecer a comunicação serial da forma desejada.
+
+.. Note::
+    Para visualizar todos os parâmetros do comando ``stty`` basta executar ``stty –help`` no terminal.
+
+Se, por exemplo, for executada a linha de comando ``stty -F /dev/ttyO0 -a`` serão impressas todas as configurações da comunicação serial **UART1** do dispositivo. Para imprimir apenas as principais configurações, deve-se suprimir o ``-a``, a última opção do comando. Caso a alteração da velocidade seja desejável, ela pode ser alterada simplesmente acrescentando a velocidade desejada ao final da linha de comando.
+
+A figura abaixo apresenta um exemplo de configuração da UART1 por meio do terminal de comandos Linux.
+
+.. imagem
+
+A outra maneira de configurar a comunicação serial feita por esses drivers sem alterar manualmente o conteúdo do endereço físico da memória é com o auxílio da biblioteca "**termios.h**". Essa biblioteca possui uma ampla variedade de funções que configuram a comunicação serial com base nos parâmetros de uma estrutura "**termios**", também definida nesta biblioteca.
+
+.. Note::
+    Mais informações sobre a biblioteca "**termios.h**" podem ser encontrados em `termios.h — Linux manual page`_.
+
+.. _termios.h — Linux manual page: https://man7.org/linux/man-pages/man0/termios.h.0p.html
+
+São dois os parâmetros da comunicação UART, além dos mencionados anteriormente, que se destacam, sendo eles o número mínimo de bits que se espera ler em cada tentativa de leitura e o tempo máximo de espera por um novo caractere após a transmissão do último caractere após o número mínimo de caracteres ser atingido.
+
+.. a
+
+O número mínimo de bits que se espera ser lido e o tempo máximo de espera pelo próximo bit em décimos de segundo podem ser configurados com os seguintes comandos ``termios.c_cc[VMIN] =`` e ``termios.c_cc[VTIME] =``, em que ``termios`` é o nome de sua estrutura. Para a configuração de velocidade recomenda-se usar a função ``cfsetspeed()``. A função ``cfmakeraw()`` configura, além de outros parâmetros, o funcionamento sem bit de paridade e com 8 bits de dados.
+
+Após realizados os ajustes na estrutura é necessário executar a função ``cfsetattr()`` para que as alterações sejam feitas na UART.
+
+O código a seguir é um exemplo de função, que foi usado nos testes do computador embarcado. No teste dois computadores embarcados idênticos que futuramente serão colocados nos aviões são conectados e executam o código da listagem 3.4. O objetivo deste teste é realizar a comunicação serial entre os dois dispositivos e verificar alguma possível falha.
 
 Referências
 -----------
@@ -56,3 +107,4 @@ Referências
 .. https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter
 .. https://en.wikipedia.org/wiki/Asynchronous_serial_communication
 .. http://newtoncbraga.com.br/index.php/telecom-artigos/1709-#:~:text=UART%20%C3%A9%20o%20acr%C3%B4nimo%20de,conforme%20mostra%20a%20figura%201.
+.. https://ece353.engr.wisc.edu/serial-interfaces/uart-basics/
