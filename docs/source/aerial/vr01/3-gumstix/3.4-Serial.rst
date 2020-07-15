@@ -98,6 +98,10 @@ Após realizados os ajustes na estrutura é necessário executar a função ``cf
 
 O código a seguir é um exemplo de função, que foi usado nos testes do computador embarcado. No teste dois computadores embarcados idênticos que futuramente serão colocados nos aviões são conectados e executam o código da listagem 3.4. O objetivo deste teste é realizar a comunicação serial entre os dois dispositivos e verificar alguma possível falha.
 
+::
+
+    
+
 Referências
 -----------
 
