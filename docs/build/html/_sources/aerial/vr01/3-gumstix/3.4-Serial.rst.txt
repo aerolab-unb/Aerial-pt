@@ -99,51 +99,81 @@ Abaixo encontra-se o codigo utlizado para configurar a comunicação serial dos 
 
 ::
 
-    #include <termios.h>
+   #include <termios.h> //POSIX terminal control definitions
+   #include <sys/types.h> 
+   #include <sys/stat.h>
+   #include <fcntl.h> // File control definitions
+   #include <stdio.h> // Standard input/output definitions
+   #include <errno.h> // Error number definitions
+   #include <unistd.h> // UNIX standard function definitions
+   #include <stdlib.h> // C standard library
+   #include <string.h> // String function definitions EX: strcat
 
-    int configUART1()
-    {
-        struct terios cUART1;
-        int UART1 = open("/dev/ttyO0",O_RDWR);
+   int open_port(void){
+       int UART1;
+       UART1 = open("/dev/ttyO0", O_RDWR);
 
-        if(tcgetattr(UART1,&cUART1))
-            printf("Erro tcgetattr");
-        cfmakeraw(&cUART1);
-        cfsetspeed(&cUART1,B115200);
-        cUART1.c_cflag &= ~CSTOPB;
+       if (UART1 == -1){
+          fprintf(stderr, "open_port: Unable to open /dev/ttyO0 %s \n",strerror(errno));
+          exit(EXIT_FAILURE);
+       }
+       return UART1;
+   }
 
-        cUART1.c_cc[VMIN] = 1;
-        cUART1.c_cc[VTIME] = 1;
-        if (tcsetattr(UART1, TCSANOW, &cUART1))
-            printf("Erro tcsetattr");
-            
-        return UART1;
-    }
+   int config_UART1(void){
+       int UART1 = 0;
+       struct termios cUART1;
+       int rc; //Return value
 
-:download:`Download do código 1 comentado <t1-UART.c>`
+       UART1 = open_port(); //Open tty device for read and write
 
-Uma vez feita a configuração, foi implementado também o código a seguir com a finalidade de testar a comunicação entre dois computadores,. No teste, um dispositivo envia uma mensagem para o outro dispositivo que responde com uma mensagem semelhante para o primeiro dispositivo, em seguida ambos os dispositivos imprimem a mensagem recebida.
+       //Get de current options for the port
+       if ((rc = tcgetattr(UART1, &cUART1)) < 0){
+          fprintf(stderr, "Failed to get attr: %d, %s\n", UART1, strerror(errno));
+          exit(EXIT_FAILURE);
+       }    
+
+      //Set the baud rates to 115200
+      cfsetispeed(&cUART1, B115200);
+
+      //Set the baud rates to 115200
+      cfsetospeed(&cUART1, B115200);
+
+      cfmakeraw(&cUART1);
+      cUART1.c_cflag &= ~CSTOPB; //1 stop bit
+      cUART1.c_cflag &= ~PARENB; //No parity
+      cUART1.c_cflag &= ~CSIZE; 
+      cUART1.c_cflag |= CS8; // 8 bits
+      cUART1.c_cc[VMIN] = 1;
+      cUART1.c_cc[VTIME] = 1;
+
+      //Set the new attributes
+      if ((rc = tcsetattr(UART1, TCSANOW, &cUART1)) < 0){
+         fprintf(stderr, "Failed to set attr: %d, %s\n", UART1,strerror(errno));
+         exit(EXIT_FAILURE);
+      }
+   close(UART1);
+   return EXIT_SUCCESS;
+   }
+
+:download:`Download do código <uartconfig.c>`
+
+Uma vez feita a configuração, foi implementado também o código a seguir com a finalidade de testar a comunicação entre dois computadores. No teste, um dispositivo envia uma mensagem para o outro dispositivo que responde com uma mensagem semelhante para o primeiro dispositivo, em seguida ambos os dispositivos imprimem a mensagem recebida.
 
 :: 
 
-    #include <termios.h>
-    #include <stdio.h>
-    #include <string.h>
-
-    int main()
-    {
-
-        int UART1 = configUART1();
+    int main(){
+        int UART1;
+        UART1 = config_UART1();
         char dis[2], out[100], string[100];
-
         printf("Que dispositivo eu sou?");
         scanf("%c", &dis[0]);
         dis[1] = 0;
         string[0] = 0;
-        strcat(string, "Ola! Essa e uma mensagem do dispositivo ");
+        strcat(string, "Olá! Essa é uma mensagem do dispositivo ");
         strcat(string, dis);
 
-        // testa UART
+        //Testa a UART
         write(UART1, string, strlen(string));
         sleep(1);
         read(UART1, out, 100);
@@ -151,8 +181,12 @@ Uma vez feita a configuração, foi implementado também o código a seguir com 
         close(UART1);
         return 0;
     }
+    
+    
+:download:`Download do código <testecomunicação.c>`
 
 Como os dois dispositivos são idênticos, será necessário conectar o pino 10 de um dispositivo com o pino 9 do outro dispositivo e vice versa. Utilizando esse código como base é possível enviar qualquer mensagem de um dispositivo ao outro.
+
 
 A figura a seguir apresenta o resultado do teste dos códigos apresentados. Nessa figura podemos ver dois terminais do Linux, cada um vinculado a um computador embarcado, e ambos chamam a mesma função, logo em seguida vemos a mensagem lida por cada um dos dispositivos.
 
