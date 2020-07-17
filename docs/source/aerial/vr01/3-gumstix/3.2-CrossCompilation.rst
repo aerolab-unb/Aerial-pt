@@ -120,4 +120,8 @@ Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente
 Referências
 -----------
 
-   	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+* `Cross Compile with Yocto SDK`_ - github.com/gumstix
+
+.. _Cross Compile with Yocto SDK: https://github.com/gumstix/yocto-manifest/wiki/Cross-Compile-with-Yocto-SDK
