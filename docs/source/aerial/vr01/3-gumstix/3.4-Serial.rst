@@ -190,7 +190,7 @@ Referências
 * `Asynchronous serial communication`_ - wikipedia.org 
 * `Como funcionam as UARTs`_ - newtoncbraga.com.br
 * `UART Basics`_ - ece353.engr.wisc.edu
-* `termios.h(0p) — Linux manual page`_ - man7.org
+* `termios.h(0p) - Linux manual page`_ - man7.org
 * `cfsetspeed(3) - Linux man page`_ - linux.die.net
 
 .. _Universal asynchronous receiver-transmitter: https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter

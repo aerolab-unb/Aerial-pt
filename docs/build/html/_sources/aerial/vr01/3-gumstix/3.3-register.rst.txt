@@ -100,7 +100,7 @@ Outra abordagem, utilizando o mesmo método, é utilizar um código semelhante a
         return 0;
     }
 
-:download:`Download do código 1 comentado <t1-gpio.c>`
+:download:`Download do código 1 comentado <GPIO/t1-gpio.c>`
 
 Para testar o código, o pino 18 (pino do **GPIO** 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.
 
@@ -244,7 +244,7 @@ Com essas informações, temos tudo o que é necessário para implementar testes
     }
 
 
-:download:`Download do código 2 comentado <t2-fusao.c>`
+:download:`Download do código 2 comentado <GPIO/t2-fusao.c>`
 
 O código acima foi testado da mesma maneira que o código apresentado na seção anterior. Já na figura a seguir é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nano segundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado do outro método. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto, é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.
 

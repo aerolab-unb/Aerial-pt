@@ -258,7 +258,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><a class="reference download internal" download="" href="../../../_downloads/6ea3688d8b766ecbadc051100928dffe/t1-gpio.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">1</span> <span class="pre">comentado</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/f890b0dc5a279b64838d46b88993c227/t1-gpio.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">1</span> <span class="pre">comentado</span></code></a></p>
 <p>Para testar o código, o pino 18 (pino do <strong>GPIO</strong> 10) foi conectado a um osciloscópio com o objetivo de medir o período da forma de onda. O resultado dessa medida pode ser visto na figura abaixo, nela podemos ver a amplitude da forma de onda de 1,96 V, frequência de 33,76 kHz e período de 29,62 microssegundos. Para a maioria das aplicações podemos utilizar esse método.</p>
 <div class="figure align-center">
 <img alt="../../../_images/teste1-gpio.png" src="../../../_images/teste1-gpio.png" />
@@ -376,7 +376,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><a class="reference download internal" download="" href="../../../_downloads/f7749fe40b5a78b8696c291fedc8dfb7/t2-fusao.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">2</span> <span class="pre">comentado</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/b99690df20e7c56a3d7f1eb3eb9f091b/t2-fusao.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">2</span> <span class="pre">comentado</span></code></a></p>
 <p>O código acima foi testado da mesma maneira que o código apresentado na seção anterior. Já na figura a seguir é possível ver o resultado deste teste. Observe que dessa vez o tempo obtido foi 720,3 nano segundos, ou seja, aproximadamente 42 vezes mais rápido que o resultado do outro método. Além disso, podemos observar que a forma de onda não é mais um sinal retangular exato, a presença de um efeito capacitivo retardando o processo é evidente, portanto, é possível que essa seja a velocidade máxima em que o sinal de um pino pode ser alterado.</p>
 <p>Muito dificilmente alguma aplicação envolvendo GPIO não será satisfeita por algum dos métodos aqui apresentados.</p>
 <div class="section" id="problemas-de-escrita-em-registradores">
