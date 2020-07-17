@@ -26,7 +26,7 @@ int configUART1()
 int main()
 {
 
-    int UART1 = configUART1();
+    int UART1 = configUART1(); // call the UART configuration function
     char dis[2], out[100], string[100];
 
     printf("Que dispositivo eu sou?");

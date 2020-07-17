@@ -90,8 +90,6 @@ A outra maneira de configurar a comunicação serial feita por esses drivers sem
 
 São dois os parâmetros da comunicação UART, além dos mencionados anteriormente, que se destacam, sendo eles o número mínimo de bits que se espera ler em cada tentativa de leitura e o tempo máximo de espera por um novo caractere após a transmissão do último caractere após o número mínimo de caracteres ser atingido.
 
-.. a
-
 O número mínimo de bits que se espera ser lido e o tempo máximo de espera pelo próximo bit em décimos de segundo podem ser configurados com os seguintes comandos ``termios.c_cc[VMIN] =`` e ``termios.c_cc[VTIME] =``, em que ``termios`` é o nome de sua estrutura. Para a configuração de velocidade recomenda-se usar a função ``cfsetspeed()``.Já a função ``cfmakeraw()`` configura, além de outros parâmetros, o funcionamento sem bit de paridade e com 8 bits de dados. Após realizados os ajustes na estrutura é necessário ainda executar a função ``cfsetattr()`` para que as alterações sejam feitas na UART.
 
 Abaixo encontra-se o codigo utlizado para configurar a comunicação serial dos computadores Overo. Observe que nessa função de configuração não foi utilizada a flag "O_NONBLOCK" na função "open()" e foi definido como 1 o número mínimo de caracteres a serem retornados após uma tentativa de leitura, portanto caso o código seja executado e nenhuma informação seja enviada para este canal o processador aguardará eternamente por esse caractere. A contagem de tempo, definida como 0,1 segundo, só inicia após o número mínimo de caracteres ser atingido.
@@ -99,81 +97,74 @@ Abaixo encontra-se o codigo utlizado para configurar a comunicação serial dos 
 
 ::
 
-   #include <termios.h> //POSIX terminal control definitions
-   #include <sys/types.h> 
-   #include <sys/stat.h>
-   #include <fcntl.h> // File control definitions
-   #include <stdio.h> // Standard input/output definitions
-   #include <errno.h> // Error number definitions
-   #include <unistd.h> // UNIX standard function definitions
-   #include <stdlib.h> // C standard library
-   #include <string.h> // String function definitions EX: strcat
+    #include <stdio.h>
+    #include <string.h>
+    #include <unistd.h>
+    #include <fcntl.h>
+    #include <termios.h>
 
-   int open_port(void){
-       int UART1;
-       UART1 = open("/dev/ttyO0", O_RDWR);
+    void main()
+    {
+        struct termios cUART1;
+        int UART1 = open("/dev/ttyO0", O_RDWR);
 
-       if (UART1 == -1){
-          fprintf(stderr, "open_port: Unable to open /dev/ttyO0 %s \n",strerror(errno));
-          exit(EXIT_FAILURE);
-       }
-       return UART1;
-   }
+        if(tcgetattr(UART1,&cUART1))
+            printf("Erro tcgetattr");
+        cfmakeraw(&cUART1);
+        cfsetspeed(&cUART1,B115200); 
+        cUART1.c_cflag &= ~CSTOPB;
 
-   int config_UART1(void){
-       int UART1 = 0;
-       struct termios cUART1;
-       int rc; //Return value
+        cUART1.c_cc[VMIN] = 1;
+        cUART1.c_cc[VTIME] = 1;
+        if (tcsetattr(UART1, TCSANOW, &cUART1))
+            printf("Erro tcsetattr");
 
-       UART1 = open_port(); //Open tty device for read and write
+    }
 
-       //Get de current options for the port
-       if ((rc = tcgetattr(UART1, &cUART1)) < 0){
-          fprintf(stderr, "Failed to get attr: %d, %s\n", UART1, strerror(errno));
-          exit(EXIT_FAILURE);
-       }    
+:download:`Download do código comentado <UART/config_UART.c>`
 
-      //Set the baud rates to 115200
-      cfsetispeed(&cUART1, B115200);
+.. Note::
+    Com a finalidade simplificar a configuração do UART dentro de um outro codigo, foram efetuadas algumas modificações no codigo anterior para converte-lo em um função para configuração de comunicação serial, como pode ser visto abaixo:
 
-      //Set the baud rates to 115200
-      cfsetospeed(&cUART1, B115200);
+    ::
 
-      cfmakeraw(&cUART1);
-      cUART1.c_cflag &= ~CSTOPB; //1 stop bit
-      cUART1.c_cflag &= ~PARENB; //No parity
-      cUART1.c_cflag &= ~CSIZE; 
-      cUART1.c_cflag |= CS8; // 8 bits
-      cUART1.c_cc[VMIN] = 1;
-      cUART1.c_cc[VTIME] = 1;
+        int configUART1()
+        {
+            struct termios cUART1;
+            int UART1 = open("/dev/ttyO0", O_RDWR);
 
-      //Set the new attributes
-      if ((rc = tcsetattr(UART1, TCSANOW, &cUART1)) < 0){
-         fprintf(stderr, "Failed to set attr: %d, %s\n", UART1,strerror(errno));
-         exit(EXIT_FAILURE);
-      }
-   close(UART1);
-   return EXIT_SUCCESS;
-   }
+            if(tcgetattr(UART1,&cUART1))
+                printf("Erro tcgetattr");
+            cfmakeraw(&cUART1);
+            cfsetspeed(&cUART1,B115200); 
+            cUART1.c_cflag &= ~CSTOPB;
 
-:download:`Download do código <uartconfig.c>`
+            cUART1.c_cc[VMIN] = 1;
+            cUART1.c_cc[VTIME] = 1;
+            if (tcsetattr(UART1, TCSANOW, &cUART1))
+                printf("Erro tcsetattr");
+                
+            return UART1;
+        }
 
 Uma vez feita a configuração, foi implementado também o código a seguir com a finalidade de testar a comunicação entre dois computadores. No teste, um dispositivo envia uma mensagem para o outro dispositivo que responde com uma mensagem semelhante para o primeiro dispositivo, em seguida ambos os dispositivos imprimem a mensagem recebida.
 
 :: 
 
-    int main(){
-        int UART1;
-        UART1 = config_UART1();
+    int main()
+    {
+
+        int UART1 = configUART1();  // call the UART configuration function
         char dis[2], out[100], string[100];
+
         printf("Que dispositivo eu sou?");
         scanf("%c", &dis[0]);
         dis[1] = 0;
         string[0] = 0;
-        strcat(string, "Olá! Essa é uma mensagem do dispositivo ");
+        strcat(string, "Ola! Essa e uma mensagem do dispositivo ");
         strcat(string, dis);
 
-        //Testa a UART
+        // testa UART
         write(UART1, string, strlen(string));
         sleep(1);
         read(UART1, out, 100);
@@ -183,10 +174,9 @@ Uma vez feita a configuração, foi implementado também o código a seguir com 
     }
     
     
-:download:`Download do código <testecomunicação.c>`
+:download:`Download do código completo <UART/comun_UART.c>`
 
-Como os dois dispositivos são idênticos, será necessário conectar o pino 10 de um dispositivo com o pino 9 do outro dispositivo e vice versa. Utilizando esse código como base é possível enviar qualquer mensagem de um dispositivo ao outro.
-
+Como os dois dispositivos são idênticos, será necessário conectar o pino 10 de um dispositivo com o pino 9 do outro dispositivo e vice versa. Utilizando esse código como base é possível enviar qualquer mensagem de até 100 caracteres de um dispositivo ao outro.
 
 A figura a seguir apresenta o resultado do teste dos códigos apresentados. Nessa figura podemos ver dois terminais do Linux, cada um vinculado a um computador embarcado, e ambos chamam a mesma função, logo em seguida vemos a mensagem lida por cada um dos dispositivos.
 
@@ -196,9 +186,16 @@ Referências
 -----------
 
 * PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+* `Universal asynchronous receiver-transmitter`_ - wikipedia.org
+* `Asynchronous serial communication`_ - wikipedia.org 
+* `Como funcionam as UARTs`_ - newtoncbraga.com.br
+* `UART Basics`_ - ece353.engr.wisc.edu
+* `termios.h(0p) — Linux manual page`_ - man7.org
+* `cfsetspeed(3) - Linux man page`_ - linux.die.net
 
-.. https://pt.qwe.wiki/wiki/Asynchronous_serial_communication
-.. https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter
-.. https://en.wikipedia.org/wiki/Asynchronous_serial_communication
-.. http://newtoncbraga.com.br/index.php/telecom-artigos/1709-#:~:text=UART%20%C3%A9%20o%20acr%C3%B4nimo%20de,conforme%20mostra%20a%20figura%201.
-.. https://ece353.engr.wisc.edu/serial-interfaces/uart-basics/
+.. _Universal asynchronous receiver-transmitter: https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter
+.. _Asynchronous serial communication: https://en.wikipedia.org/wiki/Asynchronous_serial_communication
+.. _Como funcionam as UARTs: http://newtoncbraga.com.br/index.php/telecom-artigos/1709-#:~:text=UART é o acrônimo de,conforme mostra a figura 1
+.. _UART Basics: https://ece353.engr.wisc.edu/serial-interfaces/uart-basics/
+.. _termios.h(0p) - Linux manual page: https://man7.org/linux/man-pages/man0/termios.h.0p.html
+.. _cfsetspeed(3) - Linux man page: https://linux.die.net/man/3/cfsetspeed
