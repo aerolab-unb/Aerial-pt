@@ -84,13 +84,8 @@ O comando ``echo`` é um comando utilizado para exibir mensagens na tela ou em u
 
 Utilize o comando ``clear`` para limpar o conteúdo da tela de seu terminal. O comando não necessita de parâmetros, ele utiliza variáveis do ambiente de trabalho atual para determinar como limpar a tela. 
 
-.. figure:: /img/Aerial/comand-clear1.png
-    :width: 320px
-    :align: left
-
-.. figure:: /img/Aerial/comand-clear2.png
-    :width: 320px	
-    :align: right
+.. figure:: /img/Aerial/comand-clear.png
+    :align: center
 
 
 
