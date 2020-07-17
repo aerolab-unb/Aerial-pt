@@ -3,7 +3,7 @@ Comunicação Serial
 
 A principal caracteristica da comunicação serial é o processo de enviar dados um bit de cada vez, de forma sequencial, atravez de um canal de comunicação ou barramento. Diferente da comunicação paralela, em que todos os bits de cada simbolo são enviados juntos. 
 
-Com a finalidade de possibilitar a conversão, transmissão e recepção de dados de forma serial, sendo estes originalmente dispostos de maneira paralela, surge o formato **UART**, acrônimo de Universal Asynchrounous Receiver/Transmiter ou Receptor/Transmissor Universal Assíncrono.
+Com a finalidade de possibilitar a conversão, transmissão e recepção de dados de forma serial, sendo estes originalmente dispostos de maneira paralela, surge o formato **UART**, acrônimo de *Universal Asynchrounous Receiver/Transmiter* ou Receptor/Transmissor Universal Assíncrono.
 
 O termo "Universal" refere-se a caracteristica do formato dos dados e velocidade serem configuráveis, enquanto "Assincrono" diz respeito a forma de comunicação em série ocorre, em que as interfaces dos pontos de extremidade que comunicam não estão continuamente sincronizada por um sinal de clock comum.
 
