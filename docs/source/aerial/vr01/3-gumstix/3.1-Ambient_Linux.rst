@@ -106,7 +106,7 @@ O comando pwd é usado para encontrar o caminho para o diretório atual (da past
 
     ls [OPÇÃO] [ARQUIVO]
 
-Seu nome deriva das primeiras consoantes da palavra inglesa *list*. O comando ``ls`` é usado para listar o conteúdo dentro de um diretório. Por padrão, esse comando vai mostrar apenas os conteúdos do diretório atual em que você estiver. Seu nome deriva das primeiras consoantes da palavra inglesa *list*.
+Seu nome deriva das primeiras consoantes da palavra inglesa *list*. O comando ``ls`` é usado para listar o conteúdo dentro de um diretório. Por padrão, esse comando vai mostrar apenas os conteúdos do diretório atual em que você estiver.
 
 Ao utilizar o comando ``ls`` sem especificar nenhuma opção ou diretório, o terminal irá imprimir o conteúdo do diretório atual. Porém, caso deseje ver o conteúdo de outros diretórios, digite **ls**, e então, o caminho do diretório. Por exemplo, escreva ``ls /home/username/Documents`` para ver os conteúdos de **Documents**.
 
