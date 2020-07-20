@@ -106,7 +106,7 @@ O comando pwd é usado para encontrar o caminho para o diretório atual (da past
 
     ls [OPÇÃO] [ARQUIVO]
 
-Seu nome deriva das primeiras consoantes da palavra inglesa *list*. O comando ``ls`` é usado para listar o conteúdo dentro de um diretório. Por padrão, esse comando vai mostrar apenas os conteúdos do diretório atual em que você estiver. Seu nome deriva das primeiras consoantes da palavra inglesa *list*.
+Seu nome deriva das primeiras consoantes da palavra inglesa *list*. O comando ``ls`` é usado para listar o conteúdo dentro de um diretório. Por padrão, esse comando vai mostrar apenas os conteúdos do diretório atual em que você estiver.
 
 Ao utilizar o comando ``ls`` sem especificar nenhuma opção ou diretório, o terminal irá imprimir o conteúdo do diretório atual. Porém, caso deseje ver o conteúdo de outros diretórios, digite **ls**, e então, o caminho do diretório. Por exemplo, escreva ``ls /home/username/Documents`` para ver os conteúdos de **Documents**.
 
@@ -117,14 +117,14 @@ Uma opção muito util do comando ``ls`` é a opção ``ls -la`` que além de li
 
 A figura apresenta um exemplo de saída do comando ``ls -la``, nele podemos ver que para cada arquivo é impresso uma linha com várias colunas de informação. Explicar o que cada coluna significa se faz desnecessário, entretanto é importante saber o que as primeiras letras significam, pois muitas vezes essa é a causa de alguns problemas.
 
-AS 10 primeiras colunas que são compostas por "-" e letras variadas indicam as o tipo do arquivo e as permissões dos usuários quanto aqueles arquivos. Na figura, a primeira coluna, que é sempre indicada pela letra "d", mostrando que o arquivo é um diretório, se o arquivo fosse um programa ou um arquivo de texto regular este seria indicado por um "-". As noves letras seguintes podem ser separadas em grupos de 3 indicando as permissões do dono, grupo e outros, respectivamente. As letras "r", "w" e "x" indicam leitura, escrita e execução, respectivamente. Se analisarmos, portanto, os dados da pasta "usr" veremos que o dono da pasta possui permissão para ler, escrever e executar, porém seu grupo e outros usuários terão permissão apenas para ler e executar.
+As 10 primeiras colunas que são compostas por "**-**" e letras variadas indicam o tipo de arquivo e as permissões dos usuários quanto aqueles arquivos. Na figura, a primeira coluna, que é sempre indicada pela letra "**d**", mostrando que o arquivo é um diretório, se o arquivo fosse um programa ou um arquivo de texto regular este seria indicado por um "**-**". As noves letras seguintes podem ser separadas em grupos de 3 indicando as permissões do dono, grupo e outros, respectivamente. As letras "**r**", "**w**" e "**x**" indicam **leitura**, **escrita** e **execução**, respectivamente. Se analisarmos, portanto, os dados da pasta "usr" veremos que o dono da pasta possui permissão para ler, escrever e executar, porém seu grupo e outros usuários terão permissão apenas para ler e executar.
 
 7. **Comando** ``cd`` 
 ::
 
     cd [OPÇÃO] [DIRETÓRIO]
 
-Seu nome é um acrônimo da expressão inglesa "*change directory*" ("mudar diretório") e sua finalidade é, como sugere seu nome, mudar o diretório atual de trabalho (isto é, o diretório em que se está) para uma outra especificada. Por exemplo, caso você esteja em /home/user e quer ir para Documents, um subdiretório do usuario. Para fazer isso, simplesmente digite ``cd Documents``.
+Seu nome é um acrônimo da expressão inglesa "*change directory*" (mudar diretório) e sua finalidade é, como sugere seu nome, mudar do diretório atual de trabalho, o diretório em que se está, para um outro diretorio. Por exemplo, caso você esteja em **/home/user** e queira ir para **Documents**, um subdiretório do usuario, basta digitar ``cd Documents``.
 
 .. figure:: /img/Aerial/comand-cd.png
 	:align: center
@@ -132,11 +132,11 @@ Seu nome é um acrônimo da expressão inglesa "*change directory*" ("mudar dire
 Além disso, existem alguns atalhos que podem ser utilizados para navegar rapidamente. São alguns deles:
 ::
 
-    cd ..   #(com dois pontos seguidos) move para um diretório acima (anterior).
+    cd ..   # (com dois pontos seguidos) move para um diretório acima (anterior).
 
-    cd      #move diretamente para a pasta *home*.
+    cd      # move diretamente para a pasta home.
 
-    cd-     #(com um hífen) - move para os diretórios anteriores.
+    cd-     # (com um hífen) move para os diretórios anteriores.
 
 .. Note::
     O terminal do Linux é sensível a tipos de caracteres. Por isso, você precisa digitar o nome do diretório exatamente como ele é escrito (usando letras minúsculas ou maiúsculas).  
@@ -146,9 +146,7 @@ Além disso, existem alguns atalhos que podem ser utilizados para navegar rapida
 
     cp [OPÇÃO] ORIGEM DIRETÓRIO
     
-Este comando é usado para copiar arquivos ou diretórios para um diretório específico. 
-
-Por exemplo, o comando ``cp Documento.txt /home/username/Documentos`` irá criar uma cópia de **Documento.txt** no diretório **Documentos**, caso este documento exista. Já o comando ``cp -R /home/user/projeto /home/user/novo_projeto`` irá copiar o diretório **projeto**, com todos seus arquivos, subdiretórios e arquivos dos subdiretórios para o diretório **novo_projeto**.
+Este comando é usado para copiar arquivos ou diretórios para um diretório específico. Por exemplo, o comando ``cp Documento.txt /home/username/Documentos`` irá criar uma cópia de **Documento.txt** no diretório **Documentos**, caso este documento exista. Já o comando ``cp -R /home/user/projeto /home/user/novo_projeto`` irá copiar o diretório **projeto**, com todos seus arquivos, subdiretórios e arquivos dos subdiretórios para o diretório **novo_projeto**.
 
 9. **Comando** ``mv`` 
 ::
