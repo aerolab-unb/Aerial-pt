@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<html class="writer-html5" lang="en,pt-BR" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -25,15 +30,11 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Compilação Cruzada" href="3.2-CrossCompilation.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> CoopRobo
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> CoopRobo
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -95,6 +97,7 @@
 <li class="toctree-l4"><a class="reference internal" href="3.4-Serial.html">Comunicação Serial</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../4-modem/4.0-intro.html">Comunicação Via Modem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../vr01.html#referencias">Referências</a></li>
 </ul>
 </li>
@@ -109,6 +112,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -147,7 +151,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
         
@@ -325,6 +329,35 @@
 </pre></div>
 </div>
 <p>Se nenhuma opção for especificada, o <code class="docutils literal notranslate"><span class="pre">chmod</span></code> modifica as permissões do arquivo especificado pelo nome do arquivo para as permissões especificadas. Há duas maneiras de representar as permissões possíveis: com símbolos (caracteres alfanuméricos) ou com números octais (os dígitos de 0 a 7).</p>
+<p>O comando <code class="docutils literal notranslate"><span class="pre">chmod</span></code> permite configurar permissões de duas maneiras: simbolicamente e numericamente. Aqui iremos nos ater a explicar apenas o método simbólico.</p>
+<p>Como visto anteriormente, os caracteres <strong>r, w e x</strong> representam três tipos de permissões: leitura, gravação e execução, respectivamente. Porém, para especificar o grupo de usuarios ao conceder ou remover uma permissão, o comando utiliza mais alguns simbolos. Para visualizar de forma mais clara, imagine que tais símbolos se encontram em duas listas, e a combinação deles gera a permissão:</p>
+<p><strong>Grupos de usuários:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">:</span> <span class="n">usuário</span> <span class="n">dono</span> <span class="n">do</span> <span class="n">arquivo</span>
+<span class="n">g</span><span class="p">:</span> <span class="n">grupo</span> <span class="n">de</span> <span class="n">usuários</span> <span class="n">do</span> <span class="n">dono</span> <span class="n">do</span> <span class="n">arquivo</span>
+<span class="n">O</span> <span class="p">(</span><span class="n">letra</span> <span class="s1">&#39;o&#39;</span> <span class="n">maiúscula</span><span class="p">):</span> <span class="n">todos</span> <span class="n">os</span> <span class="n">outros</span> <span class="n">usuários</span>
+<span class="n">a</span><span class="p">:</span> <span class="n">todos</span> <span class="n">os</span> <span class="n">tipos</span> <span class="n">de</span> <span class="n">usuário</span> <span class="p">(</span><span class="n">dono</span><span class="p">,</span> <span class="n">grupo</span> <span class="n">e</span> <span class="n">outros</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Tipo de permissão:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="p">:</span> <span class="n">se</span> <span class="n">refere</span> <span class="n">às</span> <span class="n">permissões</span> <span class="n">de</span> <span class="n">leitura</span>
+<span class="n">w</span><span class="p">:</span> <span class="n">se</span> <span class="n">refere</span> <span class="n">às</span> <span class="n">permissões</span> <span class="n">de</span> <span class="n">escritura</span>
+<span class="n">x</span><span class="p">:</span> <span class="n">se</span> <span class="n">refere</span> <span class="n">às</span> <span class="n">permissões</span> <span class="n">de</span> <span class="n">execução</span>
+</pre></div>
+</div>
+<p><strong>Para poder combinar os símbolos destas duas listas, usam-se os operadores:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="p">:</span> <span class="n">adiciona</span> <span class="n">permissão</span>
+<span class="o">-</span> <span class="p">:</span> <span class="n">remove</span> <span class="n">permissão</span>
+<span class="o">=</span> <span class="p">:</span> <span class="n">define</span> <span class="n">permissão</span>
+</pre></div>
+</div>
+<p>Para mostrar como as combinações podem ser feitas, oberve os exemplos abaixo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="n">u</span><span class="o">+</span><span class="n">w</span> <span class="n">teste</span><span class="o">.</span><span class="n">exe</span>     <span class="c1"># adiciona permissão de gravação no arquivo para um usuário</span>
+
+<span class="n">chmod</span> <span class="n">g</span><span class="o">+</span><span class="n">rw</span> <span class="n">teste</span><span class="o">.</span><span class="n">exe</span>     <span class="c1"># adiciona permissão de leitura e gravação ao seu grupo</span>
+
+<span class="n">chmod</span> <span class="n">g</span><span class="o">=</span><span class="n">rwx</span> <span class="n">teste</span><span class="o">.</span><span class="n">exe</span>     <span class="c1"># adiciona todas as permissões disponíveis para o grupo</span>
+</pre></div>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Como esse comando é relativamente complicado, você obter mais informações em <a class="reference external" href="https://www.computerhope.com/unix/uchmod.htm">Linux chmod Command</a>.</p>
@@ -382,11 +415,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019, Gabriel Araujo
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -397,7 +438,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
