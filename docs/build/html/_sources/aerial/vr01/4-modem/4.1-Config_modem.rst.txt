@@ -1,0 +1,96 @@
+Configuração do Modem
+=====================
+
+Para que seja feita a configuração dos modens é necessário que este seja conectado a um
+computador regular. A comunicação de um computador regular com o modem é feita, da mesma maneira que a comunicação de um computador regular com o computador embarcado, ou seja, por uma comunicação serial. Por padrão a comunicação serial do modem é feita por uma comunicação UART de 9600 baud/s, 8 bits de dados, sem bit de paridade e 1 bit de parada, além dessas configurações da comunicação UART é adotado o padrão físico de conexão serial RS-232.
+
+Logo para conectar um computador regular ao modem é necessário, primeiro, um cabo conversor de USB para RS-232. Assim como na comunicação com o computador embarcado recomenda-se a utilização de um computador linux com o programa "screen"para a configuração dos modens.
+
+A configuração do modem só pode ser feita utilizando as configurações padrões do modem, ou seja, sempre que o modo configuração for ativado o modem retorna, temporariamente, para as configurações descritas no parágrafo anterior, após sair do modo de configuração o modem volta a operar de acordo com as configurações determinada em seus registradores.
+
+O modo de configuração pode ser iniciado de duas maneiras. Em ambos os casos é necessário, primeiro, conectar o computador regular ao modem, iniciar o terminal do computador regular e executar o programa "screen".
+
+::
+ 
+  $ sudo screen /dev/<Nome do dispositivo USB> 9600
+  
+No caso da linha de comando do exemplo apresentada anteriormente, o termo ``ttyUSB0`` foi a porta encontrada ao utilizar o comando ``dmesg`` e "9600" é a velocidade de comunicação em *baud*. Nesse momento a comunicação entre o modem e o computador deve ser estabelecida e assim que o modem for ligado os caracteres devem começar a ser impressos na tela do computador.  
+ 
+A primeira maneira de acessar o modo de configuração é pressionar e segurar o botão "CONFIG", energizar o modem e só depois soltar o botão, a outra opção consiste em ligar o modem normalmente e, depois que este estiver no modo de dados (modo de operação regular) enviar a sequência de caracteres "+++" e esperar 1 segundo. Realizado qualquer um dos dois métodos a mensagem "NO CARRIER OK" deve aparecer no monitor indicando a entrada no modo de configuração. 
+  
+.. figure:: /img/Aerial/NOCARRIER.png
+    :align: center  
+    
+Comandos Básicos
+~~~~~~~~~~~~~~~~
+
+Uma vez acessado o modo de configuração, podemos começar a dar comandos ao modem. Todos os comandos do modem possuem um prefixo de dois caracteres "AT", logo depois desses dois caracteres deve ser inserido o comando propriamente dito. Por exemplo, o comando que retorna para o modo de transmissão de dados é o comando "A", portanto para retornar ao modo de dados deve-se digitar "ATA".  
+
+O comando "I" retorna informações sobre o modem P900. O comando "login" protege o modo de configuração por uma senha a ser definida pelo usuário. O comando "M" ativa um menu do modo de operação rede, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. O comando "&Fn" configura o modem com alguma das configurações padrão de fábrica. O comando "&V" imprime os registradores do modem e seus valores. O comando "Sn=<value>" altera o valor do registrador "n". Por último o comando "&W" escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.  
+
+Registradores
+~~~~~~~~~~~~~
+
+O modem apresenta muitos registradores, não será relatado todos aqui, entretanto quase todas as características do modem podem ser alteradas, porém, para faze-las, recomenda-se consultar o manual para especificações detalhadas.
+   
+O caractere para entrada no modo de configuração pode ser desabilitado/alterado no registrador "2". A função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores "101", "102" e "103", respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registrador "110" e "111", respectivamente. O tipo de modo de operação é determinado pelo registrador "133". O modo de comunicação serial é determinado pelo registrador "142". O modo de acesso ao canal de comunicação pode ser alterado no registrador "244".  
+
+A tabela a seguir mostra os principais valores que devem ser colocados nos respectivos registadores para que o modem funcione como desejado.
+
++-------------+-------------------------+------------+
+| Registrador |           Nome          |    Valor   |
++=============+=========================+============+
+| S81         |       CS Threshold      |      60    |
++-------------+-------------------------+------------+
+| S101        |      Operating Mode     |      4     |
++-------------+-------------------------+------------+
+| S102        |     Serial Baud Rate    |      7     |
++-------------+-------------------------+------------+          
+| S103        |     Wireless Link Rate  |      0     |
++-------------+-------------------------+------------+
+| S104        |      Network Address    | 1286608618 |
++-------------+-------------------------+------------+
+| S115        |      Repeat Interval    |      5     |
++-------------+-------------------------+------------+
+| S126        | Attempt Before Re-route |      9     |
++-------------+-------------------------+------------+
+| S133        |       Network Type      |      2     |
++-------------+-------------------------+------------+
+| S142        |   Serial Channel Mode   |      0     |
++-------------+-------------------------+------------+
+| S244        |    Channel Acess Mode   |      1     |
++-------------+-------------------------+------------+
+
+A figura a seguir mostra a resposta ao comando AT&V do modem e como o modem foi configurado.
+
+.. figure:: /img/Aerial/Config_Modem.png
+    :align: center 
+
+Modos de Operação
+~~~~~~~~~~~~~~~~~
+
+O modem possui três modos de operação: modo de rede, modo ponto-a-ponto e modo ponto-a-multiponto.
+
+O modo de rede é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura.
+
+O modo de configuração ponto-a-ponto é um modo de operação em que a comunicação é apenas entre um modem "mestre" e um modem "escravo". Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.
+ 
+E, por último, existe o modo ponto-a-multiponto onde um modem mestre se comunica com vários modens escravos, toda a informação originada dos escravos é direcionada ao mestre e, quando necessário ou desejável, cabe ao mestre repassar essa informação ao destino final, nessa topologia toda a informação passa pelo mestre, que controla a rede.
+
+Evidentemente, para a nossa aplicação, a topologia mais interessante é a topologia de rede. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.
+
+Modos de Acesso ao Canal
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Existem, também, três modos de acesso ao canal, "Aloha", "RTS/CTS" e "TDMA".
+
+O modo "Aloha" é um protocolo de acesso ao meio no qual sempre que um dispositivos possui dados a serem enviados esse dispositivo aguarda um período aleatório e tenta enviar esse dado. Caso, nessa tentativa, seja recebido pelo dispositivo algum outro sinal é assumido que houve colisão de dados e portanto a transmissão de dados é abortada, aguardam-se, novamente, um período de tempo aleatório até que a mensagem seja novamente enviada. O processo se repete até que o dado tenha sido inteiramente enviado sem que haja colisão.
+
+O modo "RTS/CTS" do inglês Request to Send / Clear to Send é um modo que tem o objetivo de diminuir a colisão de transferência de dados, inclusive devido ao problema do terminal escondido. Nesse modo cada modem escravo, quando possui dados para enviar, solicita permissão de envio para o modem mestre por um canal alternativo, o modem mestre verifica se o canal principal está ocupado e responde à solicitação permitindo ou não a transferência de dados. As mensagens de solicitação e liberação são endereçadas para garantir que dois modens distintos não entendam que estão liberados para enviar informações.
+
+Por último o modo "TDMA" do inglês Time Domain Multiple Access, nesse modo a cada modem é definido um intervalo de tempo ao qual o modem pode transmitir dados. Após o fim do intervalo de tempo de um modem se inicia o intervalo de tempo do modem seguinte e assim por diante, quando o intervalo de tempo do último modem acabar o processo se reinicia. Uma desvantagem desse modo é a necessidade de esperar um intervalo de tempo de um dispositivo mesmo que ele não possua dados para transmitir.
+
+Dos modos apresentados o modo RTS/CTS é o modo que, aparentemente, vai apresentar melhor resultado pois não é necessário esperar por dispositivos que não tem dados a enviar e apresenta pequenas chances de colisão de dados.
+
+
+

@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en,pt-BR" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,18 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -30,11 +25,15 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Compilação Cruzada" href="3.2-CrossCompilation.html" />
@@ -52,7 +51,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> CoopRobo
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
           
 
           
@@ -75,7 +74,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -111,7 +109,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -150,7 +147,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
         
@@ -296,9 +293,8 @@
 </pre></div>
 </div>
 <p>O nome do comando <code class="docutils literal notranslate"><span class="pre">mv</span></code> deriva das primeiras consoantes da palavra inglesa <em>move</em> (mover) e seu uso habitual é mover arquivos, ainda que ele possa também ser usado para renomear arquivos. Ou seja, este comando copia e altera o caminho do arquivo original para o caminho desejado e, desse modo, apaga o arquivo original (sendo possível ainda renomear e mudar o diretório de um arquivo simultaneamente).</p>
-<p>O comando rm é usado para apagar um diretório e todos os conteúdos que estiverem lá dentro. Se você só quer deletar o diretório – como uma alternativa ao rdmir – use rm -r.
-A sintaxe neste comando é similar ao comando <code class="docutils literal notranslate"><span class="pre">cp</span></code>. Você precisa digitar <code class="docutils literal notranslate"><span class="pre">mv</span></code>, o nome do arquivo e o diretório de destino. Por exemplo: <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">file.txt</span> <span class="pre">/home/username/Documents</span></code>.</p>
-<p>Já para renomear arquivos, o argumento a ser usado é <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">nomeantigo.ext</span> <span class="pre">nomenovo.ext</span></code>, sendo &quot;<strong>nomeantigo.ext</strong>&quot; o arquivo original e &quot;<strong>nomenovo.ext</strong>&quot; o novo arquivo.</p>
+<p>A sintaxe neste comando é similar ao comando <code class="docutils literal notranslate"><span class="pre">cp</span></code>. Você precisa digitar <code class="docutils literal notranslate"><span class="pre">mv</span></code>, o nome do arquivo e o diretório de destino. Por exemplo: <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">file.txt</span> <span class="pre">/home/username/Documents</span></code>.</p>
+<p>Já para renomear arquivos, o argumento a ser usado é <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">Nome_Velho.txt</span> <span class="pre">Nome_Novo.txt</span></code>, sendo &quot;<strong>Nome_Velho.txt</strong>&quot; o arquivo original e &quot;<strong>Nome_Novo.txt</strong>&quot; o novo arquivo.</p>
 <p>10. <strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">mkdir</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="p">[</span><span class="n">OPÇÃO</span><span class="p">]</span> <span class="n">DIRETÓRIO</span>
 </pre></div>
@@ -386,19 +382,11 @@ A sintaxe neste comando é similar ao comando <code class="docutils literal notr
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2019, Gabriel Araujo
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -409,6 +397,7 @@ A sintaxe neste comando é similar ao comando <code class="docutils literal notr
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

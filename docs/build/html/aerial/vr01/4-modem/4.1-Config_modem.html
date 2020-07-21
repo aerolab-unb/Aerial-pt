@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuração do Modem &mdash; CoopRobo 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Modem e Computador Embarcado" href="4.2-Modem_e_Computador.html" />
+    <link rel="prev" title="Comunicação Via Modem" href="4.0-intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Robots</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../aerial.html">Aerial Robots</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../vr01.html">VR-01</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../1-autopilot/1.0-pilot.html">Piloto Automatico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1-autopilot/1.1-config_pilot.html">Configuração do Piloto Automatico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2-embedded_system/2.0-embedded_system.html">Sistema Embarcado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3-gumstix/3.0-intro.html">Utilizando o computador embarcado</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="4.0-intro.html">Comunicação Via Modem</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Configuração do Modem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4.2-Modem_e_Computador.html">Modem e Computador Embarcado</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../vr01.html#referencias">Referências</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mobile.html">Mobile Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manipulators.html">Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs-ref.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../camera.html">Camera</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CoopRobo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
+        
+          <li><a href="../../vr01.html">VR-01</a> &raquo;</li>
+        
+          <li><a href="4.0-intro.html">Comunicação Via Modem</a> &raquo;</li>
+        
+      <li>Configuração do Modem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/aerial/vr01/4-modem/4.1-Config_modem.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuracao-do-modem">
+<h1>Configuração do Modem<a class="headerlink" href="#configuracao-do-modem" title="Permalink to this headline">¶</a></h1>
+<p>Para que seja feita a configuração dos modens é necessário que este seja conectado a um
+computador regular. A comunicação de um computador regular com o modem é feita, da mesma maneira que a comunicação de um computador regular com o computador embarcado, ou seja, por uma comunicação serial. Por padrão a comunicação serial do modem é feita por uma comunicação UART de 9600 baud/s, 8 bits de dados, sem bit de paridade e 1 bit de parada, além dessas configurações da comunicação UART é adotado o padrão físico de conexão serial RS-232.</p>
+<p>Logo para conectar um computador regular ao modem é necessário, primeiro, um cabo conversor de USB para RS-232. Assim como na comunicação com o computador embarcado recomenda-se a utilização de um computador linux com o programa &quot;screen&quot;para a configuração dos modens.</p>
+<p>A configuração do modem só pode ser feita utilizando as configurações padrões do modem, ou seja, sempre que o modo configuração for ativado o modem retorna, temporariamente, para as configurações descritas no parágrafo anterior, após sair do modo de configuração o modem volta a operar de acordo com as configurações determinada em seus registradores.</p>
+<p>O modo de configuração pode ser iniciado de duas maneiras. Em ambos os casos é necessário, primeiro, conectar o computador regular ao modem, iniciar o terminal do computador regular e executar o programa &quot;screen&quot;.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo screen /dev/&lt;Nome do dispositivo USB&gt; 9600
+</pre></div>
+</div>
+<p>No caso da linha de comando do exemplo apresentada anteriormente, o termo <code class="docutils literal notranslate"><span class="pre">ttyUSB0</span></code> foi a porta encontrada ao utilizar o comando <code class="docutils literal notranslate"><span class="pre">dmesg</span></code> e &quot;9600&quot; é a velocidade de comunicação em <em>baud</em>. Nesse momento a comunicação entre o modem e o computador deve ser estabelecida e assim que o modem for ligado os caracteres devem começar a ser impressos na tela do computador.</p>
+<p>A primeira maneira de acessar o modo de configuração é pressionar e segurar o botão &quot;CONFIG&quot;, energizar o modem e só depois soltar o botão, a outra opção consiste em ligar o modem normalmente e, depois que este estiver no modo de dados (modo de operação regular) enviar a sequência de caracteres &quot;+++&quot; e esperar 1 segundo. Realizado qualquer um dos dois métodos a mensagem &quot;NO CARRIER OK&quot; deve aparecer no monitor indicando a entrada no modo de configuração.</p>
+<div class="figure align-center">
+<img alt="../../../_images/NOCARRIER.png" src="../../../_images/NOCARRIER.png" />
+</div>
+<div class="section" id="comandos-basicos">
+<h2>Comandos Básicos<a class="headerlink" href="#comandos-basicos" title="Permalink to this headline">¶</a></h2>
+<p>Uma vez acessado o modo de configuração, podemos começar a dar comandos ao modem. Todos os comandos do modem possuem um prefixo de dois caracteres &quot;AT&quot;, logo depois desses dois caracteres deve ser inserido o comando propriamente dito. Por exemplo, o comando que retorna para o modo de transmissão de dados é o comando &quot;A&quot;, portanto para retornar ao modo de dados deve-se digitar &quot;ATA&quot;.</p>
+<p>O comando &quot;I&quot; retorna informações sobre o modem P900. O comando &quot;login&quot; protege o modo de configuração por uma senha a ser definida pelo usuário. O comando &quot;M&quot; ativa um menu do modo de operação rede, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. O comando &quot;&amp;Fn&quot; configura o modem com alguma das configurações padrão de fábrica. O comando &quot;&amp;V&quot; imprime os registradores do modem e seus valores. O comando &quot;Sn=&lt;value&gt;&quot; altera o valor do registrador &quot;n&quot;. Por último o comando &quot;&amp;W&quot; escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.</p>
+</div>
+<div class="section" id="registradores">
+<h2>Registradores<a class="headerlink" href="#registradores" title="Permalink to this headline">¶</a></h2>
+<p>O modem apresenta muitos registradores, não será relatado todos aqui, entretanto quase todas as características do modem podem ser alteradas, porém, para faze-las, recomenda-se consultar o manual para especificações detalhadas.</p>
+<p>O caractere para entrada no modo de configuração pode ser desabilitado/alterado no registrador &quot;2&quot;. A função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores &quot;101&quot;, &quot;102&quot; e &quot;103&quot;, respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registrador &quot;110&quot; e &quot;111&quot;, respectivamente. O tipo de modo de operação é determinado pelo registrador &quot;133&quot;. O modo de comunicação serial é determinado pelo registrador &quot;142&quot;. O modo de acesso ao canal de comunicação pode ser alterado no registrador &quot;244&quot;.</p>
+<p>A tabela a seguir mostra os principais valores que devem ser colocados nos respectivos registadores para que o modem funcione como desejado.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 50%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Registrador</p></th>
+<th class="head"><p>Nome</p></th>
+<th class="head"><p>Valor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>S81</p></td>
+<td><p>CS Threshold</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>S101</p></td>
+<td><p>Operating Mode</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>S102</p></td>
+<td><p>Serial Baud Rate</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>S103</p></td>
+<td><p>Wireless Link Rate</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>S104</p></td>
+<td><p>Network Address</p></td>
+<td><p>1286608618</p></td>
+</tr>
+<tr class="row-odd"><td><p>S115</p></td>
+<td><p>Repeat Interval</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>S126</p></td>
+<td><p>Attempt Before Re-route</p></td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-odd"><td><p>S133</p></td>
+<td><p>Network Type</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>S142</p></td>
+<td><p>Serial Channel Mode</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>S244</p></td>
+<td><p>Channel Acess Mode</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>A figura a seguir mostra a resposta ao comando AT&amp;V do modem e como o modem foi configurado.</p>
+<div class="figure align-center">
+<img alt="../../../_images/Config_Modem.png" src="../../../_images/Config_Modem.png" />
+</div>
+</div>
+<div class="section" id="modos-de-operacao">
+<h2>Modos de Operação<a class="headerlink" href="#modos-de-operacao" title="Permalink to this headline">¶</a></h2>
+<p>O modem possui três modos de operação: modo de rede, modo ponto-a-ponto e modo ponto-a-multiponto.</p>
+<p>O modo de rede é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura.</p>
+<p>O modo de configuração ponto-a-ponto é um modo de operação em que a comunicação é apenas entre um modem &quot;mestre&quot; e um modem &quot;escravo&quot;. Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.</p>
+<p>E, por último, existe o modo ponto-a-multiponto onde um modem mestre se comunica com vários modens escravos, toda a informação originada dos escravos é direcionada ao mestre e, quando necessário ou desejável, cabe ao mestre repassar essa informação ao destino final, nessa topologia toda a informação passa pelo mestre, que controla a rede.</p>
+<p>Evidentemente, para a nossa aplicação, a topologia mais interessante é a topologia de rede. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.</p>
+</div>
+<div class="section" id="modos-de-acesso-ao-canal">
+<h2>Modos de Acesso ao Canal<a class="headerlink" href="#modos-de-acesso-ao-canal" title="Permalink to this headline">¶</a></h2>
+<p>Existem, também, três modos de acesso ao canal, &quot;Aloha&quot;, &quot;RTS/CTS&quot; e &quot;TDMA&quot;.</p>
+<p>O modo &quot;Aloha&quot; é um protocolo de acesso ao meio no qual sempre que um dispositivos possui dados a serem enviados esse dispositivo aguarda um período aleatório e tenta enviar esse dado. Caso, nessa tentativa, seja recebido pelo dispositivo algum outro sinal é assumido que houve colisão de dados e portanto a transmissão de dados é abortada, aguardam-se, novamente, um período de tempo aleatório até que a mensagem seja novamente enviada. O processo se repete até que o dado tenha sido inteiramente enviado sem que haja colisão.</p>
+<p>O modo &quot;RTS/CTS&quot; do inglês Request to Send / Clear to Send é um modo que tem o objetivo de diminuir a colisão de transferência de dados, inclusive devido ao problema do terminal escondido. Nesse modo cada modem escravo, quando possui dados para enviar, solicita permissão de envio para o modem mestre por um canal alternativo, o modem mestre verifica se o canal principal está ocupado e responde à solicitação permitindo ou não a transferência de dados. As mensagens de solicitação e liberação são endereçadas para garantir que dois modens distintos não entendam que estão liberados para enviar informações.</p>
+<p>Por último o modo &quot;TDMA&quot; do inglês Time Domain Multiple Access, nesse modo a cada modem é definido um intervalo de tempo ao qual o modem pode transmitir dados. Após o fim do intervalo de tempo de um modem se inicia o intervalo de tempo do modem seguinte e assim por diante, quando o intervalo de tempo do último modem acabar o processo se reinicia. Uma desvantagem desse modo é a necessidade de esperar um intervalo de tempo de um dispositivo mesmo que ele não possua dados para transmitir.</p>
+<p>Dos modos apresentados o modo RTS/CTS é o modo que, aparentemente, vai apresentar melhor resultado pois não é necessário esperar por dispositivos que não tem dados a enviar e apresenta pequenas chances de colisão de dados.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="4.2-Modem_e_Computador.html" class="btn btn-neutral float-right" title="Modem e Computador Embarcado" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="4.0-intro.html" class="btn btn-neutral float-left" title="Comunicação Via Modem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Gabriel Araujo
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

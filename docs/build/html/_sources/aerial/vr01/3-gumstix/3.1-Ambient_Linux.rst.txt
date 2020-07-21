@@ -155,10 +155,9 @@ Este comando é usado para copiar arquivos ou diretórios para um diretório esp
 
 O nome do comando ``mv`` deriva das primeiras consoantes da palavra inglesa *move* (mover) e seu uso habitual é mover arquivos, ainda que ele possa também ser usado para renomear arquivos. Ou seja, este comando copia e altera o caminho do arquivo original para o caminho desejado e, desse modo, apaga o arquivo original (sendo possível ainda renomear e mudar o diretório de um arquivo simultaneamente).
 
-O comando rm é usado para apagar um diretório e todos os conteúdos que estiverem lá dentro. Se você só quer deletar o diretório – como uma alternativa ao rdmir – use rm -r.
 A sintaxe neste comando é similar ao comando ``cp``. Você precisa digitar ``mv``, o nome do arquivo e o diretório de destino. Por exemplo: ``mv file.txt /home/username/Documents``.  
 
-Já para renomear arquivos, o argumento a ser usado é ``mv nomeantigo.ext nomenovo.ext``, sendo "**nomeantigo.ext**" o arquivo original e "**nomenovo.ext**" o novo arquivo. 
+Já para renomear arquivos, o argumento a ser usado é ``mv Nome_Velho.txt Nome_Novo.txt``, sendo "**Nome_Velho.txt**" o arquivo original e "**Nome_Novo.txt**" o novo arquivo. 
 
 10. **Comando** ``mkdir`` 
 ::
