@@ -197,9 +197,7 @@ Usualmente, o comando ``chmod`` é usado na forma:
 
     chmod <OPÇÃO> <PERMISSÕES> <NOME DO ARQUIVO>
 
-Se nenhuma opção for especificada, o ``chmod`` modifica as permissões do arquivo especificado pelo nome do arquivo para as permissões especificadas. Há duas maneiras de representar as permissões possíveis: com símbolos (caracteres alfanuméricos) ou com números octais (os dígitos de 0 a 7).
-
-O comando ``chmod`` permite configurar permissões de duas maneiras: simbolicamente e numericamente. Aqui iremos nos ater a explicar apenas o método simbólico.
+Se nenhuma opção for especificada, o ``chmod`` modifica as permissões do arquivo para as permissões especificadas. Há duas maneiras de representar as permissões possíveis: com símbolos (caracteres alfanuméricos) ou com números octais (os dígitos de 0 a 7). Aqui iremos nos ater a explicar apenas o método simbólico.
 
 Como visto anteriormente, os caracteres **r, w e x** representam três tipos de permissões: leitura, gravação e execução, respectivamente. Porém, para especificar o grupo de usuarios ao conceder ou remover uma permissão, o comando utiliza mais alguns simbolos. Para visualizar de forma mais clara, imagine que tais símbolos se encontram em duas listas, e a combinação deles gera a permissão:
 
@@ -225,7 +223,7 @@ Como visto anteriormente, os caracteres **r, w e x** representam três tipos de 
     - : remove permissão
     = : define permissão
 
-Para mostrar como as combinações podem ser feitas, oberve os exemplos abaixo:
+Para mostrar como as combinações podem ser feitas, observe os exemplos abaixo:
 
 ::
 
@@ -236,7 +234,7 @@ Para mostrar como as combinações podem ser feitas, oberve os exemplos abaixo:
     chmod g=rwx teste.exe     # adiciona todas as permissões disponíveis para o grupo
 
 .. Tip::
-    Como esse comando é relativamente complicado, você obter mais informações em `Linux chmod Command`_.
+    Como esse comando é relativamente complicado, mais informações podem ser obtidas em `Linux chmod Command`_.
 
 .. _Linux chmod Command: https://www.computerhope.com/unix/uchmod.htm
 
