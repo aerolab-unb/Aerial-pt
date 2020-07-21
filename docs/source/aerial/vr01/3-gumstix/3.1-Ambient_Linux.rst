@@ -201,13 +201,43 @@ Usualmente, o comando ``chmod`` é usado na forma:
 
 Se nenhuma opção for especificada, o ``chmod`` modifica as permissões do arquivo especificado pelo nome do arquivo para as permissões especificadas. Há duas maneiras de representar as permissões possíveis: com símbolos (caracteres alfanuméricos) ou com números octais (os dígitos de 0 a 7).
 
+O comando ``chmod`` permite configurar permissões de duas maneiras: simbolicamente e numericamente. Aqui iremos nos ater a explicar apenas o método simbólico.
+
+Como visto anteriormente, os caracteres **r, w e x** representam três tipos de permissões: leitura, gravação e execução, respectivamente. Porém, para especificar o grupo de usuarios ao conceder ou remover uma permissão, o comando utiliza mais alguns simbolos. Para visualizar de forma mais clara, imagine que tais símbolos se encontram em duas listas, e a combinação deles gera a permissão:
+
+**Grupos de usuários:**
+* u: usuário dono do arquivo
+* g: grupo de usuários do dono do arquivo
+* O (letra 'o' maiúscula): todos os outros usuários
+* a: todos os tipos de usuário (dono, grupo e outros)
+
+**Tipo de permissão:**
+* r: se refere às permissões de leitura
+* w: se refere às permissões de escritura
+* x: se refere às permissões de execução
+
+**Para poder combinar os símbolos destas duas listas, usam-se os operadores:**
+
+* + : adiciona permissão
+* - : remove permissão
+* = : define permissão
+
+Para mostrar como as combinações podem ser feitas, oberve os exemplos abaixo:
+
+::
+
+    chmod u+w teste.exe     # adiciona permissão de gravação no arquivo para um usuário
+
+    chmod g+rw teste.exe     # adiciona permissão de leitura e gravação ao seu grupo
+
+    chmod g=rwx teste.exe     # adiciona todas as permissões disponíveis para o grupo
+
 .. Tip::
     Como esse comando é relativamente complicado, você obter mais informações em `Linux chmod Command`_.
 
 .. _Linux chmod Command: https://www.computerhope.com/unix/uchmod.htm
 
 .. https://pt.wikipedia.org/wiki/Chmod
-
 
 14. **Comando** ``sudo`` 
 
