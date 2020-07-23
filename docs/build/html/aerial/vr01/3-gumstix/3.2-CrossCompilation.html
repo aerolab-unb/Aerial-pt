@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<html class="writer-html5" lang="en,pt-BR" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -25,15 +30,11 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Registradores" href="3.3-register.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> CoopRobo
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> CoopRobo
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -110,6 +112,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -148,7 +151,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
         
@@ -182,6 +185,10 @@
 <p>Para realizarmos esse processo de compilação cruzada precisamos primeiro obter um <em>software development kit</em>, também conhecido como Kit de desenvolvimento de software, SDK ou <em>devkit</em>. O SDK nada mais é que um conjunto de ferramentas de desenvolvimento de software que possibilita a criação e compilação dos softwares para um sistema diferente.</p>
 <div class="section" id="instalando-o-sdk">
 <h2>Instalando o SDK<a class="headerlink" href="#instalando-o-sdk" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>O projeto Yocto oferece um tutorial de como obter e instalar o SDK para seu sistema na página do GitHub <a class="reference external" href="https://github.com/gumstix/yocto-manifest/wiki/Cross-Compile-with-Yocto-SDK">Cross Compile with Yocto SDK</a>. Todavia, todos os procedimentos realizados e os resultados obtidos na instalação serão descritos nesse tópico.</p>
+</div>
 <p>Para obter o SDK para a imagem do sistema operacional que estamos utilizando basta executar os procedimentos a seguir:</p>
 <ol class="arabic simple">
 <li><p><strong>Criação dos diretórios</strong></p></li>
@@ -211,14 +218,14 @@ $ wget http://gumstix-yocto.s3.amazonaws.com/sdk.sh
 <div class="figure align-center">
 <img alt="../../../_images/sdk_permission.png" src="../../../_images/sdk_permission.png" />
 </div>
-<p>Para adicionar a permissão para execução, basta executar o comando <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">sdk.sh</span></code> e</p>
+<p>Para adicionar a permissão para execução, basta executar o comando <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">sdk.sh</span></code>.</p>
 <div class="figure align-center">
 <img alt="../../../_images/sdk_permission2.png" src="../../../_images/sdk_permission2.png" />
 </div>
 <ol class="arabic simple" start="3">
 <li><p><strong>Instalação</strong></p></li>
 </ol>
-<p>Execute o arquivo <em>sdk.sh</em>. Assim que solicitado, digite o diretório que deseja instalar o SDK (recomendamos a criação de um repositório chamado <em>sdk</em>) e confirme.</p>
+<p>Para iniciar a instalação, execute o arquivo <em>sdk.sh</em>. Assim que solicitado, digite o diretório que deseja instalar o SDK (recomendamos a criação de um repositório chamado <em>sdk</em>) e confirme.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./sdk.sh
 </pre></div>
 </div>
@@ -261,8 +268,7 @@ $ wget http://gumstix-yocto.s3.amazonaws.com/sdk.sh
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>O comando &quot;make&quot; é na verdade a simplificação de uma extensa linha de comando que chama um compilador <strong>arm-poky-Linux-gnueabi-gcc</strong> e dá a ele os parâmetros contidos na pasta SDK. Tudo isso graças ao comando &quot;source&quot; utilizado
-anteriormente.</p>
+<p>O comando &quot;make&quot; é na verdade a simplificação de uma extensa linha de comando que chama um compilador <strong>arm-poky-Linux-gnueabi-gcc</strong> e dá a ele os parâmetros contidos na pasta SDK. Tudo isso graças ao comando &quot;source&quot; utilizado anteriormente.</p>
 </div>
 <p>Uma vez obtido o executável do código basta copiá-lo para uma das pastas do cartão de memória transferi-lo para o Overo e executá-lo. Lembre-se que o diretório principal é o diretório <code class="docutils literal notranslate"><span class="pre">/home/root/</span></code>, então se o arquivo for colocado dentro deste diretório será bem fácil encontra-lo.</p>
 <p>Depois de inserido o cartão de memória no Overo, podemos inicia-lo normalmente. Quando iniciado, vamos até o diretório em que o programa foi salvo e o executamos com o comando <code class="docutils literal notranslate"><span class="pre">./nome_do_código</span></code>. Se tudo ocorrer bem, o programa deverá ser executado, similar a figura abaixo.</p>
@@ -299,11 +305,19 @@ anteriormente.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019, Gabriel Araujo
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -314,7 +328,6 @@ anteriormente.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
