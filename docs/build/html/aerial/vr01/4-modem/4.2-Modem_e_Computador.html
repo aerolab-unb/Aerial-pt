@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en,pt-BR" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,18 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -30,11 +25,15 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Mobile Robots" href="../../../mobile.html" />
@@ -52,7 +51,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> CoopRobo
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
           
 
           
@@ -75,7 +74,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -110,7 +108,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -149,7 +146,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
         
@@ -178,6 +175,46 @@
             
   <div class="section" id="modem-e-computador-embarcado">
 <h1>Modem e Computador Embarcado<a class="headerlink" href="#modem-e-computador-embarcado" title="Permalink to this headline">¶</a></h1>
+<p>A conexão do computador embarcado com o modem é uma configuração de fundamental importância. O computador embarcado possui um pino para transmissão e outro para recepção via UART enquanto o modem apresenta conexões por meio de uma interface elétrica do tipo &quot;RS232&quot; ou &quot;RS485&quot;.</p>
+<p>Imagine, por exemplo, que o nosso computador embarcado fosse ligado diretamente a
+outro computador embarcado a 1 km de distância, nesse caso é razoável imaginar que a
+comunicação não iria funcionar, pois a tensão de 1,8 V e o excesso de ruído na linha de
+transmissão iriam maquiar os bits enviados. Para resolver problemas como isso surgiram as
+interfaces de comunicação, que definem apenas as características elétricas do processo de
+comunicação e não são o protocolos de comunicação.</p>
+<div class="section" id="interface-rs-232">
+<h2>Interface RS-232<a class="headerlink" href="#interface-rs-232" title="Permalink to this headline">¶</a></h2>
+<p>A interface de comunicação RS-232 é a configuração padrão do modem é ela é um pouco mais complexa. Essa interface não tem o objetivo de transmitir o sinal a grandes distâncias, seu objetivo é, na verdade, além de diminuir as perdas causadas pelo ruído do sistema, organizar a informação enviada pelos dispositivos de modo que estes sinais possam ser trabalhados individualmente. Essa interface utiliza uma conexão com 9 pinos (ou fios) nomeados como &quot;DCD&quot;, &quot;RXD&quot;, &quot;TXD&quot;, &quot;DTR&quot;, &quot;GND&quot;, &quot;DSR&quot;, &quot;RTS&quot; e &quot;CTS &quot;. O ultimo pino da conexão não tem aplicação na interface RS-232.</p>
+<div class="figure align-center">
+<img alt="../../../_images/RS-232.png" src="../../../_images/RS-232.png" />
+</div>
+<p>Na figura acima temos um exemplo de conector de um cabo para o formato RS-232, observe que nessa imagem o pino 9 possui uma finalidade, entretanto, em nosso caso, isso não se aplica.</p>
+<p>O &quot;data carrier detect&quot; (DTC) é simplesmente um sinal de alto e baixo enviado pelo modem ao microprocessador, esse sinal indica com o sinal &quot;baixo&quot; quando o modem estabeleceu a conexão com outro modem ou uma rede. Esse sinal pode ser configurado para funcionar de uma maneira mais específica dependendo do tipo de conexão realizado, para mais detalhes pode-se consultar o manual do microhard p900, página 99, comando &quot;&amp;C&quot;.</p>
+<p>A conexão &quot;RXD&quot; (receiver data) é o próprio canal de comunicação em si ele é a saída do modem que transmite ao dispositivo a mensagem recebida da rede. Em analogia a conexão &quot;TXD&quot; (Transmiter Data) é o canal de comunicação de entrada do modem, de onde o modem recebe a mensagem do computador embarcado.</p>
+<p>O &quot;DTR&quot; (data terminal ready) é um sinal que informa ao modem que o dispositivo conectado está pronto para receber dados, esse sinal é ativado no estado &quot;baixo&quot;. Analogamente o &quot;DSR&quot; (Data Set Ready) é o sinal que informa ao computador embarcado quando o modem está pronto para receber dados.</p>
+<p>Os canais de &quot;RTS&quot; e &quot;CTS&quot; são canais para implementação de handshaking, mais detalhes podem ser encontrados no manual do microhard p900.</p>
+<p>O nível de tensão determinado por essa interface é de -15 V a 15 V, onde o nível de tensão de 3 V a 15 V significa o nível lógico &quot;baixo&quot; e o nível de tensão de -3 V a -15 V representa o nível lógico &quot;alto&quot;.</p>
+<p>Para realizar a conversão da comunicação UART para RS-232 podemos usar um CI &quot;MAX232&quot; da Texas Instruments, por exemplo, esse dispositivo realiza toda a conversão de níveis de tensão e a única modificação que deveria ser feita é um ajuste de tensão &quot;alto&quot; do computador embarcado de 1,8 V para 3,3 V ou 5 V, esse ajuste pode ser feito por um divisor de tensão ou buffer. Mais detalhes sobre o MAX232 podem ser obtidos em seu manual disponível no link abaixo para download ou no site da fabricante (<a class="reference external" href="https://www.ti.com/lit/ds/symlink/max232.pdf">Texas Instruments</a>).</p>
+<p><a class="reference download internal" download="" href="../../../_downloads/db59870e6ac2264363cfb005cd639ff1/max232.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">Manual</span> <span class="pre">MAX232</span></code></a></p>
+</div>
+<div class="section" id="interface-rs-485">
+<h2>Interface RS-485<a class="headerlink" href="#interface-rs-485" title="Permalink to this headline">¶</a></h2>
+<p>A interface RS-485 é mais simples que a interface RS-232, o objetivo principal dessa interface é a transmissão de dados a longa distância e redução do impacto dos ruídos. Essa interface opera apenas com 5 pinos para a comunicação full duplex e 3 pinos para a comunicação half duplex. Como a comunicação em apenas um sentido (half duplex) não faz sentido em nossa aplicação ela será deixada de lado. Os 5 pinos do RS-485 são &quot;RX+&quot;, &quot;RX-&quot;, &quot;TX+&quot;, &quot;TX-&quot; e &quot;GND&quot;.</p>
+<p>Como podemos ver essa interface é muito mais simples, pois não divide a informação necessária para a comunicação em diversos canais. Nessa interface o alcance dos valores de tensão são de -7 V a 12 V, apesar de valores negativos não serem comuns. E os sinais lógicos são avaliados como a diferença entre o pino positivo e o pino negativo, se essa diferença for positiva, temos o nível lógico &quot;alto&quot; e se ela for negativa temos o nível lógico &quot;baixo&quot;.</p>
+<p>Por exemplo, se durante um instante da transmissão de um sinal o canal &quot;TX+&quot; apresenta tensão de 6 V e o canal &quot;TX-&quot; apresenta o nível de tensão de 4 V, temos uma diferença de tensão de 2 V, logo o nível lógico será &quot;alto&quot;. Invertendo-se os níveis de tensão do exemplo teremos uma diferença de tensão de - 2 V e, consequentemente, o nível lógico será &quot;baixo&quot;.</p>
+<p>A figura abaixo ilustra o funcionamento da comunicação através da interface RS-485.</p>
+<div class="figure align-center">
+<img alt="../../../_images/Funcionamento-RS-485.png" src="../../../_images/Funcionamento-RS-485.png" />
+</div>
+<p>A conversão da comunicação UART para a interface RS-485 pode ser realizada por meio de um CI &quot;MAX485&quot; da Maxim Integrated, o datasheet deste dispositivo pode ser obtido no site da fabricante (<a class="reference external" href="https://datasheets.maximintegrated.com/en/ds/MAX1487-MAX491.pdf">Maxim Integrated</a>) ou no link para download abaixo. Esse dispositivo converte a comunicação UART para o padrão RS-485, novamente a única alteração adicional que deve ser feita durante a implementação deste hardware é o ajuste do nível de tensão originado e destinado ao computador embarcado.</p>
+<p><a class="reference download internal" download="" href="../../../_downloads/e8d4274610b4e3780e7f79a89bc5237d/MAX1487-MAX491.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">Manual</span> <span class="pre">MAX485</span></code></a></p>
+<div class="section" id="referencias">
+<h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.</p></li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -200,19 +237,11 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2019, Gabriel Araujo
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -223,6 +252,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

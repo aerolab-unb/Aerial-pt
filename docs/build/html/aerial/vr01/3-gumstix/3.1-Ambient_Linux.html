@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en,pt-BR" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,18 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -30,11 +25,15 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Compilação Cruzada" href="3.2-CrossCompilation.html" />
@@ -52,7 +51,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> CoopRobo
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
           
 
           
@@ -75,7 +74,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -112,7 +110,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -151,7 +148,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
         
@@ -328,8 +325,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="o">&lt;</span><span class="n">OPÇÃO</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">PERMISSÕES</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">NOME</span> <span class="n">DO</span> <span class="n">ARQUIVO</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Se nenhuma opção for especificada, o <code class="docutils literal notranslate"><span class="pre">chmod</span></code> modifica as permissões do arquivo especificado pelo nome do arquivo para as permissões especificadas. Há duas maneiras de representar as permissões possíveis: com símbolos (caracteres alfanuméricos) ou com números octais (os dígitos de 0 a 7).</p>
-<p>O comando <code class="docutils literal notranslate"><span class="pre">chmod</span></code> permite configurar permissões de duas maneiras: simbolicamente e numericamente. Aqui iremos nos ater a explicar apenas o método simbólico.</p>
+<p>Se nenhuma opção for especificada, o <code class="docutils literal notranslate"><span class="pre">chmod</span></code> modifica as permissões do arquivo para as permissões especificadas. Há duas maneiras de representar as permissões possíveis: com símbolos (caracteres alfanuméricos) ou com números octais (os dígitos de 0 a 7). Aqui iremos nos ater a explicar apenas o método simbólico.</p>
 <p>Como visto anteriormente, os caracteres <strong>r, w e x</strong> representam três tipos de permissões: leitura, gravação e execução, respectivamente. Porém, para especificar o grupo de usuarios ao conceder ou remover uma permissão, o comando utiliza mais alguns simbolos. Para visualizar de forma mais clara, imagine que tais símbolos se encontram em duas listas, e a combinação deles gera a permissão:</p>
 <p><strong>Grupos de usuários:</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">:</span> <span class="n">usuário</span> <span class="n">dono</span> <span class="n">do</span> <span class="n">arquivo</span>
@@ -350,7 +346,7 @@
 <span class="o">=</span> <span class="p">:</span> <span class="n">define</span> <span class="n">permissão</span>
 </pre></div>
 </div>
-<p>Para mostrar como as combinações podem ser feitas, oberve os exemplos abaixo:</p>
+<p>Para mostrar como as combinações podem ser feitas, observe os exemplos abaixo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="n">u</span><span class="o">+</span><span class="n">w</span> <span class="n">teste</span><span class="o">.</span><span class="n">exe</span>     <span class="c1"># adiciona permissão de gravação no arquivo para um usuário</span>
 
 <span class="n">chmod</span> <span class="n">g</span><span class="o">+</span><span class="n">rw</span> <span class="n">teste</span><span class="o">.</span><span class="n">exe</span>     <span class="c1"># adiciona permissão de leitura e gravação ao seu grupo</span>
@@ -360,7 +356,7 @@
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Como esse comando é relativamente complicado, você obter mais informações em <a class="reference external" href="https://www.computerhope.com/unix/uchmod.htm">Linux chmod Command</a>.</p>
+<p>Como esse comando é relativamente complicado, mais informações podem ser obtidas em <a class="reference external" href="https://www.computerhope.com/unix/uchmod.htm">Linux chmod Command</a>.</p>
 </div>
 <ol class="arabic simple" start="14">
 <li><p><strong>Comando</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span></code></p></li>
@@ -374,11 +370,11 @@
 </div>
 <div class="section" id="explorando-os-arquivos-do-sistema">
 <h2>Explorando os Arquivos do Sistema<a class="headerlink" href="#explorando-os-arquivos-do-sistema" title="Permalink to this headline">¶</a></h2>
-<p>Passadas essas informações e estes comandos básicos, já somos capazes de explorar os arquivos do sistema. Portanto permita-nos migrar para o primeiro diretório do sistema executando &quot;cd ..&quot; duas vezes. E em seguida executar o comando &quot;ls -la&quot; para que possamos visualizar as pastas do sistema. Se tudo for executado como explicado devemos obter algo como mostrado na figura a seguir.</p>
+<p>Passadas essas informações e estes comandos básicos, já somos capazes de explorar os arquivos do sistema. Portanto, vamos migrar para o primeiro diretório do sistema executando <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">..</span></code> duas vezes. E em seguida executar o comando <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span></code> para que possamos visualizar as pastas do sistema. Se tudo for executado como explicado devemos obter algo como mostrado na figura a seguir.</p>
 <div class="figure align-center">
 <img alt="../../../_images/explore-ls.png" src="../../../_images/explore-ls.png" />
 </div>
-<p>Dos vários diretórios presentes na figura destacam-se os diretórios &quot;<strong>/bin</strong>&quot;, &quot;<strong>/boot</strong>&quot;, &quot;<strong>/dev</strong>&quot;, &quot;<strong>/lib</strong>&quot; e &quot;<strong>/sys</strong>&quot;.</p>
+<p>Dos vários diretórios presentes na figura, destacam-se os diretórios &quot;<strong>/bin</strong>&quot;, &quot;<strong>/boot</strong>&quot;, &quot;<strong>/dev</strong>&quot;, &quot;<strong>/lib</strong>&quot; e &quot;<strong>/sys</strong>&quot;.</p>
 <p>O diretório &quot;<strong>/bin</strong>&quot; é aonde ficam armazenados os binários dos comandos essenciais do Linux, como os comandos apresentados anteriormente, logo caso se faça necessário acrescentar ao microprocessador mais algum software que se faça necessário ele deve ser adicionado a esta pasta para que possa ser encontrado pelo sistema operacional quando requisitado.</p>
 <p>O diretório &quot;<strong>/boot</strong>&quot; já foi utilizado neste trabalho e é o local aonde devem ser armazenados os bootloaders e outros programas que fazem parte da inicialização do sistema.</p>
 <p>O diretório &quot;<strong>/dev</strong>&quot; é o diretório onde ficam armazenados os arquivos de dispositivos do sistema. Arquivo de dispositivo é uma maneira que o sistema Linux utiliza para gerar uma interface de comunicação com drivers de dispositivos. Ele será muito utilizado mais para a frente durante a comunicação serial, por exemplo.</p>
@@ -387,8 +383,14 @@
 <div class="section" id="referencias">
 <h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
 <blockquote>
+<div><blockquote>
 <div><ul class="simple">
 <li><p>PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.man7.org/linux/man-pages/index.html">Linux man pages online</a> - man7.org</p></li>
+<li><p><a class="reference external" href="https://www.hostinger.com.br/tutoriais/comandos-linux">30 Comandos Linux Que Todo Usuário Deve Conhecer</a> - hostinger.com.br</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -415,19 +417,11 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2019, Gabriel Araujo
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -438,6 +432,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

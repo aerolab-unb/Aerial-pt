@@ -1,5 +1,68 @@
 Modem e Computador Embarcado
 ============================
+
+A conexão do computador embarcado com o modem é uma configuração de fundamental importância. O computador embarcado possui um pino para transmissão e outro para recepção via UART enquanto o modem apresenta conexões por meio de uma interface elétrica do tipo "RS232" ou "RS485".
+
+Imagine, por exemplo, que o nosso computador embarcado fosse ligado diretamente a
+outro computador embarcado a 1 km de distância, nesse caso é razoável imaginar que a
+comunicação não iria funcionar, pois a tensão de 1,8 V e o excesso de ruído na linha de
+transmissão iriam maquiar os bits enviados. Para resolver problemas como isso surgiram as
+interfaces de comunicação, que definem apenas as características elétricas do processo de
+comunicação e não são o protocolos de comunicação.
+
+Interface RS-232
+~~~~~~~~~~~~~~~~
+
+A interface de comunicação RS-232 é a configuração padrão do modem é ela é um pouco mais complexa. Essa interface não tem o objetivo de transmitir o sinal a grandes distâncias, seu objetivo é, na verdade, além de diminuir as perdas causadas pelo ruído do sistema, organizar a informação enviada pelos dispositivos de modo que estes sinais possam ser trabalhados individualmente. Essa interface utiliza uma conexão com 9 pinos (ou fios) nomeados como "DCD", "RXD", "TXD", "DTR", "GND", "DSR", "RTS" e "CTS ". O ultimo pino da conexão não tem aplicação na interface RS-232.
+
+.. figure:: /img/Aerial/RS-232.png
+    :align: center 
+
+Na figura acima temos um exemplo de conector de um cabo para o formato RS-232, observe que nessa imagem o pino 9 possui uma finalidade, entretanto, em nosso caso, isso não se aplica.
+
+O "data carrier detect" (DTC) é simplesmente um sinal de alto e baixo enviado pelo modem ao microprocessador, esse sinal indica com o sinal "baixo" quando o modem estabeleceu a conexão com outro modem ou uma rede. Esse sinal pode ser configurado para funcionar de uma maneira mais específica dependendo do tipo de conexão realizado, para mais detalhes pode-se consultar o manual do microhard p900, página 99, comando "&C".
+
+A conexão "RXD" (receiver data) é o próprio canal de comunicação em si ele é a saída do modem que transmite ao dispositivo a mensagem recebida da rede. Em analogia a conexão "TXD" (Transmiter Data) é o canal de comunicação de entrada do modem, de onde o modem recebe a mensagem do computador embarcado.
+
+O "DTR" (data terminal ready) é um sinal que informa ao modem que o dispositivo conectado está pronto para receber dados, esse sinal é ativado no estado "baixo". Analogamente o "DSR" (Data Set Ready) é o sinal que informa ao computador embarcado quando o modem está pronto para receber dados.
+
+Os canais de "RTS" e "CTS" são canais para implementação de handshaking, mais detalhes podem ser encontrados no manual do microhard p900.
+
+O nível de tensão determinado por essa interface é de -15 V a 15 V, onde o nível de tensão de 3 V a 15 V significa o nível lógico "baixo" e o nível de tensão de -3 V a -15 V representa o nível lógico "alto".
+
+Para realizar a conversão da comunicação UART para RS-232 podemos usar um CI "MAX232" da Texas Instruments, por exemplo, esse dispositivo realiza toda a conversão de níveis de tensão e a única modificação que deveria ser feita é um ajuste de tensão "alto" do computador embarcado de 1,8 V para 3,3 V ou 5 V, esse ajuste pode ser feito por um divisor de tensão ou buffer. Mais detalhes sobre o MAX232 podem ser obtidos em seu manual disponível no link abaixo para download ou no site da fabricante (`Texas Instruments`_).
+
+.. _Texas Instruments: https://www.ti.com/lit/ds/symlink/max232.pdf
+
+:download:`Download do Manual MAX232 </aerial/vr01/4-modem/max232.pdf>`
+
+Interface RS-485
+~~~~~~~~~~~~~~~~
+
+A interface RS-485 é mais simples que a interface RS-232, o objetivo principal dessa interface é a transmissão de dados a longa distância e redução do impacto dos ruídos. Essa interface opera apenas com 5 pinos para a comunicação full duplex e 3 pinos para a comunicação half duplex. Como a comunicação em apenas um sentido (half duplex) não faz sentido em nossa aplicação ela será deixada de lado. Os 5 pinos do RS-485 são "RX+", "RX-", "TX+", "TX-" e "GND".
+
+Como podemos ver essa interface é muito mais simples, pois não divide a informação necessária para a comunicação em diversos canais. Nessa interface o alcance dos valores de tensão são de -7 V a 12 V, apesar de valores negativos não serem comuns. E os sinais lógicos são avaliados como a diferença entre o pino positivo e o pino negativo, se essa diferença for positiva, temos o nível lógico "alto" e se ela for negativa temos o nível lógico "baixo".
+
+Por exemplo, se durante um instante da transmissão de um sinal o canal "TX+" apresenta tensão de 6 V e o canal "TX-" apresenta o nível de tensão de 4 V, temos uma diferença de tensão de 2 V, logo o nível lógico será "alto". Invertendo-se os níveis de tensão do exemplo teremos uma diferença de tensão de - 2 V e, consequentemente, o nível lógico será "baixo".
+
+A figura abaixo ilustra o funcionamento da comunicação através da interface RS-485.
+
+.. figure:: /img/Aerial/Funcionamento-RS-485.png
+    :align: center 
+
+A conversão da comunicação UART para a interface RS-485 pode ser realizada por meio de um CI "MAX485" da Maxim Integrated, o datasheet deste dispositivo pode ser obtido no site da fabricante (`Maxim Integrated`_) ou no link para download abaixo. Esse dispositivo converte a comunicação UART para o padrão RS-485, novamente a única alteração adicional que deve ser feita durante a implementação deste hardware é o ajuste do nível de tensão originado e destinado ao computador embarcado.   
+
+.. _Maxim Integrated: https://datasheets.maximintegrated.com/en/ds/MAX1487-MAX491.pdf
+
+:download:`Download do Manual MAX485 </aerial/vr01/4-modem/MAX1487-MAX491.pdf>`
+
+Referências
+-----------
+
+* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+    
+
+
    
    
    
