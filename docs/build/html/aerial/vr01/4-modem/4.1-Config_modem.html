@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en,pt-BR" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,18 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -30,11 +25,15 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Modem e Computador Embarcado" href="4.2-Modem_e_Computador.html" />
@@ -52,7 +51,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> CoopRobo
+            <a href="../../../index.html" class="icon icon-home"> CoopRobo
           
 
           
@@ -75,7 +74,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -110,7 +108,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -149,7 +146,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
         
@@ -200,7 +197,7 @@ computador regular. A comunicação de um computador regular com o modem é feit
 <h2>Registradores<a class="headerlink" href="#registradores" title="Permalink to this headline">¶</a></h2>
 <p>O modem apresenta muitos registradores, não será relatado todos aqui, entretanto quase todas as características do modem podem ser alteradas, porém, para faze-las, recomenda-se consultar o manual para especificações detalhadas.</p>
 <p>O caractere para entrada no modo de configuração pode ser desabilitado/alterado no registrador &quot;2&quot;. A função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores &quot;101&quot;, &quot;102&quot; e &quot;103&quot;, respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registrador &quot;110&quot; e &quot;111&quot;, respectivamente. O tipo de modo de operação é determinado pelo registrador &quot;133&quot;. O modo de comunicação serial é determinado pelo registrador &quot;142&quot;. O modo de acesso ao canal de comunicação pode ser alterado no registrador &quot;244&quot;.</p>
-<p>A tabela a seguir mostra os principais valores que devem ser colocados nos respectivos registadores para que o modem funcione como desejado.</p>
+<p>A tabela a seguir mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação do tipo rede funcione para a nossa aplicação.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 26%" />
@@ -214,13 +211,12 @@ computador regular. A comunicação de um computador regular com o modem é feit
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>S81</p></td>
-<td><p>CS Threshold</p></td>
-<td><p>60</p></td>
+<tr class="row-even"><td><p>S80</p></td>
+<td><p>Transmit Profilescc</p></td>
+<td><p>0</p></td>
 </tr>
-<tr class="row-odd"><td><p>S101</p></td>
-<td><p>Operating Mode</p></td>
-<td><p>4</p></td>
+<tr class="row-odd"><td><p>S81</p></td>
+<td colspan="2"><p>CS Threshold             60</p></td>
 </tr>
 <tr class="row-even"><td><p>S102</p></td>
 <td><p>Serial Baud Rate</p></td>
@@ -234,40 +230,51 @@ computador regular. A comunicação de um computador regular com o modem é feit
 <td><p>Network Address</p></td>
 <td><p>1286608618</p></td>
 </tr>
-<tr class="row-odd"><td><p>S115</p></td>
+<tr class="row-odd"><td><p>S110</p></td>
+<td><p>Data Format</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>S115</p></td>
 <td><p>Repeat Interval</p></td>
 <td><p>5</p></td>
 </tr>
-<tr class="row-even"><td><p>S126</p></td>
+<tr class="row-odd"><td><p>S126</p></td>
 <td><p>Attempt Before Re-route</p></td>
 <td><p>9</p></td>
 </tr>
-<tr class="row-odd"><td><p>S133</p></td>
+<tr class="row-even"><td><p>S133</p></td>
 <td><p>Network Type</p></td>
 <td><p>2</p></td>
 </tr>
-<tr class="row-even"><td><p>S142</p></td>
+<tr class="row-odd"><td><p>S142</p></td>
 <td><p>Serial Channel Mode</p></td>
 <td><p>0</p></td>
 </tr>
-<tr class="row-odd"><td><p>S244</p></td>
+<tr class="row-even"><td><p>S244</p></td>
 <td><p>Channel Acess Mode</p></td>
 <td><p>1</p></td>
 </tr>
 </tbody>
 </table>
-<p>A figura a seguir mostra a resposta ao comando AT&amp;V do modem e como o modem foi configurado.</p>
-<div class="figure align-center">
-<img alt="../../../_images/Config_Modem.png" src="../../../_images/Config_Modem.png" />
-</div>
 </div>
 <div class="section" id="modos-de-operacao">
 <h2>Modos de Operação<a class="headerlink" href="#modos-de-operacao" title="Permalink to this headline">¶</a></h2>
 <p>O modem possui três modos de operação: modo de rede, modo ponto-a-ponto e modo ponto-a-multiponto.</p>
 <p>O modo de rede é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Em um modo de rede Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o coordenador primário, o coordenador secundário , o coordenador de espera e o remoto.</p>
+</div>
 <p>O modo de configuração ponto-a-ponto é um modo de operação em que a comunicação é apenas entre um modem &quot;mestre&quot; e um modem &quot;escravo&quot;. Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.</p>
 <p>E, por último, existe o modo ponto-a-multiponto onde um modem mestre se comunica com vários modens escravos, toda a informação originada dos escravos é direcionada ao mestre e, quando necessário ou desejável, cabe ao mestre repassar essa informação ao destino final, nessa topologia toda a informação passa pelo mestre, que controla a rede.</p>
 <p>Evidentemente, para a nossa aplicação, a topologia mais interessante é a topologia de rede. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.</p>
+</div>
+<div class="section" id="tipos-de-unidades-no-modo-rede-de-operacao">
+<h2>Tipos de unidades no modo rede de Operação<a class="headerlink" href="#tipos-de-unidades-no-modo-rede-de-operacao" title="Permalink to this headline">¶</a></h2>
+<p>O papel do <em>coordenador principal</em> é fornecer sincronização de rede para o sistema, o que garante que todos unidades estão ativas e capazes de se comunicar conforme necessário. Em qualquer modo de rede, só pode haver um único coordenador primário. Coordenadores adicionais podem ser implantados para redundância e/ou para ampliação da cobertura da rede para áreas não atendidas pelo coordenador primário. Para quaisquer unidades poderem comunicar em um modo de rede, eles devem ouvir dados de sincronização de um coordenador.</p>
+<p>Os <em>coordenadores secundários</em> são usados ​​para estender a cobertura do coordenador principal. Mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. Um coordenador secundário deve se comunicar com o coordenador principal e/ou outro coordenador secundário para garantir a sincronização adequada com as unidades que atende.</p>
+<p>Um <em>coordenador de espera</em> monitora o nível de sincronização da rede e, quando detecta que o coordenador principal fica offline ou não está realizando suas tarefas de sincronização de rede por qualquer motivo, o coordenador de espera pode assumir o controle.</p>
+<p>Um <em>remoto</em> (escravo) é qualquer unidade que não seja um coordenador. Um controle remoto geralmente está conectado a um dispositivo final, mas também pode ser implantado para fornecer caminhos redundantes para alcançar outros dispositivos na rede. Como em qualquer outro dispositivo da rede, o controle remoto pode ser usado para fornecer serviços de roteamento. Embora todas as unidades possam ser configuradas para fornecer serviços de roteamento, não é eficiente fazê-lo, pois haveria que lidar com uma grande sobrecarga de largura de banda da rede.</p>
 </div>
 <div class="section" id="modos-de-acesso-ao-canal">
 <h2>Modos de Acesso ao Canal<a class="headerlink" href="#modos-de-acesso-ao-canal" title="Permalink to this headline">¶</a></h2>
@@ -276,6 +283,89 @@ computador regular. A comunicação de um computador regular com o modem é feit
 <p>O modo &quot;RTS/CTS&quot; do inglês Request to Send / Clear to Send é um modo que tem o objetivo de diminuir a colisão de transferência de dados, inclusive devido ao problema do terminal escondido. Nesse modo cada modem escravo, quando possui dados para enviar, solicita permissão de envio para o modem mestre por um canal alternativo, o modem mestre verifica se o canal principal está ocupado e responde à solicitação permitindo ou não a transferência de dados. As mensagens de solicitação e liberação são endereçadas para garantir que dois modens distintos não entendam que estão liberados para enviar informações.</p>
 <p>Por último o modo &quot;TDMA&quot; do inglês Time Domain Multiple Access, nesse modo a cada modem é definido um intervalo de tempo ao qual o modem pode transmitir dados. Após o fim do intervalo de tempo de um modem se inicia o intervalo de tempo do modem seguinte e assim por diante, quando o intervalo de tempo do último modem acabar o processo se reinicia. Uma desvantagem desse modo é a necessidade de esperar um intervalo de tempo de um dispositivo mesmo que ele não possua dados para transmitir.</p>
 <p>Dos modos apresentados o modo RTS/CTS é o modo que, aparentemente, vai apresentar melhor resultado pois não é necessário esperar por dispositivos que não tem dados a enviar e apresenta pequenas chances de colisão de dados.</p>
+</div>
+<div class="section" id="configuracao-para-cada-tipo-de-unidade-no-modo-de-rede">
+<h2>Configuração para cada tipo de unidade no modo de rede<a class="headerlink" href="#configuracao-para-cada-tipo-de-unidade-no-modo-de-rede" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>O registrador que configura qual a função do modem a ser utilizada no modo rede é o S101.</p>
+</div>
+<p>A tabela a seguir mostra os valores que de devem ser colocados no registrador 101 para que o modem desempenhe o papel desejado.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Função</p></th>
+<th class="head"><p>Valor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Primário</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>Secundário</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>Espera</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>Remoto</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para auxiliar na configuração e implantação dos módulos da série Pico, as configurações padrão de fábrica podem ser usadas como um ponto de partida conhecido para cada tipo de unidade. O uso dos comandos padrão de fábrica define todos os valores dos registradores ​​para as configurações recomendadas de fábrica e permite a conectividade inicial entre as unidades. Para a nossa aplicação de rede, esses comandos são tudo o que é necessário para configurar e implantar uma rede de malha.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Função</p></th>
+<th class="head"><p>Comando</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Primário</p></td>
+<td><p>AT&amp;F1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Secundário</p></td>
+<td><p>AT&amp;F3</p></td>
+</tr>
+<tr class="row-even"><td><p>Remoto</p></td>
+<td><p>AT&amp;F2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Para a nossa aplicação é necessário um coordenador primário e dois remotos.</p>
+</div>
+<p>A seguir é apresentado os passos que devem ser digitados no terminal após a verificação da mensagem &quot;NO CARRIER OK&quot; para que a configuração seja realizada com sucesso.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Para o *coordenador primário*
+$ AT&amp;F1
+$ AT&amp;W
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Para o *remoto*
+$ AT&amp;F2
+$ AT&amp;W
+</pre></div>
+</div>
+<p>Após esses comandos, caso queira verificar se foram feitas corretamente as alterações nos registradores, use o comando abaixo e verifique se assemelha com as fotos a seguir.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ AT&amp;V
+</pre></div>
+</div>
+<p>Para o coordenador primário é retornado os seguintes valores nos registradores (Atenção ao S101):</p>
+<div class="figure align-center">
+<img alt="../../../_images/Primario.png" src="../../../_images/Primario.png" />
+</div>
+<p>Para o remoto é retornado os seguintes valores nos registradores (Atenção ao S101):</p>
+<div class="figure align-center">
+<img alt="../../../_images/Remoto.png" src="../../../_images/Remoto.png" />
+</div>
 <div class="section" id="referencias">
 <h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -305,19 +395,11 @@ computador regular. A comunicação de um computador regular com o modem é feit
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2019, Gabriel Araujo
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -328,6 +410,7 @@ computador regular. A comunicação de um computador regular com o modem é feit
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

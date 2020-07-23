@@ -35,14 +35,14 @@ O modem apresenta muitos registradores, não será relatado todos aqui, entretan
    
 O caractere para entrada no modo de configuração pode ser desabilitado/alterado no registrador "2". A função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores "101", "102" e "103", respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registrador "110" e "111", respectivamente. O tipo de modo de operação é determinado pelo registrador "133". O modo de comunicação serial é determinado pelo registrador "142". O modo de acesso ao canal de comunicação pode ser alterado no registrador "244".  
 
-A tabela a seguir mostra os principais valores que devem ser colocados nos respectivos registadores para que o modem funcione como desejado.
-
+A tabela a seguir mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação do tipo rede funcione para a nossa aplicação.
+   
 +-------------+-------------------------+------------+
 | Registrador |           Nome          |    Valor   |
 +=============+=========================+============+
-| S81         |       CS Threshold      |      60    |
+|  S80        |     Transmit Profilescc |      0     |
 +-------------+-------------------------+------------+
-| S101        |      Operating Mode     |      4     |
+|  S81        |      CS Threshold             60     |
 +-------------+-------------------------+------------+
 | S102        |     Serial Baud Rate    |      7     |
 +-------------+-------------------------+------------+          
@@ -50,6 +50,8 @@ A tabela a seguir mostra os principais valores que devem ser colocados nos respe
 +-------------+-------------------------+------------+
 | S104        |      Network Address    | 1286608618 |
 +-------------+-------------------------+------------+
+| S110        |       Data Format       |      1     |
++-------------+-------------------------+------------+ 
 | S115        |      Repeat Interval    |      5     |
 +-------------+-------------------------+------------+
 | S126        | Attempt Before Re-route |      9     |
@@ -61,11 +63,6 @@ A tabela a seguir mostra os principais valores que devem ser colocados nos respe
 | S244        |    Channel Acess Mode   |      1     |
 +-------------+-------------------------+------------+
 
-A figura a seguir mostra a resposta ao comando AT&V do modem e como o modem foi configurado.
-
-.. figure:: /img/Aerial/Config_Modem.png
-    :align: center 
-
 Modos de Operação
 ~~~~~~~~~~~~~~~~~
 
@@ -73,11 +70,26 @@ O modem possui três modos de operação: modo de rede, modo ponto-a-ponto e mod
 
 O modo de rede é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura.
 
+.. Tip::
+   Em um modo de rede Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o coordenador primário, o coordenador secundário , o coordenador de espera e o remoto.
+
 O modo de configuração ponto-a-ponto é um modo de operação em que a comunicação é apenas entre um modem "mestre" e um modem "escravo". Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.
  
 E, por último, existe o modo ponto-a-multiponto onde um modem mestre se comunica com vários modens escravos, toda a informação originada dos escravos é direcionada ao mestre e, quando necessário ou desejável, cabe ao mestre repassar essa informação ao destino final, nessa topologia toda a informação passa pelo mestre, que controla a rede.
 
 Evidentemente, para a nossa aplicação, a topologia mais interessante é a topologia de rede. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.
+
+Tipos de unidades no modo rede de Operação
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O papel do *coordenador principal* é fornecer sincronização de rede para o sistema, o que garante que todos unidades estão ativas e capazes de se comunicar conforme necessário. Em qualquer modo de rede, só pode haver um único coordenador primário. Coordenadores adicionais podem ser implantados para redundância e/ou para ampliação da cobertura da rede para áreas não atendidas pelo coordenador primário. Para quaisquer unidades poderem comunicar em um modo de rede, eles devem ouvir dados de sincronização de um coordenador.
+
+Os *coordenadores secundários* são usados ​​para estender a cobertura do coordenador principal. Mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. Um coordenador secundário deve se comunicar com o coordenador principal e/ou outro coordenador secundário para garantir a sincronização adequada com as unidades que atende.
+
+Um *coordenador de espera* monitora o nível de sincronização da rede e, quando detecta que o coordenador principal fica offline ou não está realizando suas tarefas de sincronização de rede por qualquer motivo, o coordenador de espera pode assumir o controle.
+
+Um *remoto* (escravo) é qualquer unidade que não seja um coordenador. Um controle remoto geralmente está conectado a um dispositivo final, mas também pode ser implantado para fornecer caminhos redundantes para alcançar outros dispositivos na rede. Como em qualquer outro dispositivo da rede, o controle remoto pode ser usado para fornecer serviços de roteamento. Embora todas as unidades possam ser configuradas para fornecer serviços de roteamento, não é eficiente fazê-lo, pois haveria que lidar com uma grande sobrecarga de largura de banda da rede.
+ 
 
 Modos de Acesso ao Canal
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -91,6 +103,73 @@ O modo "RTS/CTS" do inglês Request to Send / Clear to Send é um modo que tem o
 Por último o modo "TDMA" do inglês Time Domain Multiple Access, nesse modo a cada modem é definido um intervalo de tempo ao qual o modem pode transmitir dados. Após o fim do intervalo de tempo de um modem se inicia o intervalo de tempo do modem seguinte e assim por diante, quando o intervalo de tempo do último modem acabar o processo se reinicia. Uma desvantagem desse modo é a necessidade de esperar um intervalo de tempo de um dispositivo mesmo que ele não possua dados para transmitir.
 
 Dos modos apresentados o modo RTS/CTS é o modo que, aparentemente, vai apresentar melhor resultado pois não é necessário esperar por dispositivos que não tem dados a enviar e apresenta pequenas chances de colisão de dados.
+
+Configuração para cada tipo de unidade no modo de rede
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. Tip::
+   O registrador que configura qual a função do modem a ser utilizada no modo rede é o S101.
+   
+A tabela a seguir mostra os valores que de devem ser colocados no registrador 101 para que o modem desempenhe o papel desejado.   
+
++-------------+------------+
+| Função      |    Valor   |
++=============+============+
+| Primário    |      4     |
++-------------+------------+
+| Secundário  |      5     |
++-------------+------------+
+| Espera      |      6     |
++-------------+------------+
+| Remoto      |      2     |
++-------------+------------+
+
+Para auxiliar na configuração e implantação dos módulos da série Pico, as configurações padrão de fábrica podem ser usadas como um ponto de partida conhecido para cada tipo de unidade. O uso dos comandos padrão de fábrica define todos os valores dos registradores ​​para as configurações recomendadas de fábrica e permite a conectividade inicial entre as unidades. Para a nossa aplicação de rede, esses comandos são tudo o que é necessário para configurar e implantar uma rede de malha.
+
++-------------+------------+
+| Função      |   Comando  |
++=============+============+
+| Primário    |    AT&F1   |
++-------------+------------+
+| Secundário  |    AT&F3   |
++-------------+------------+
+| Remoto      |    AT&F2   |
++-------------+------------+
+
+.. Tip::
+   Para a nossa aplicação é necessário um coordenador primário e dois remotos.
+
+.. ATENÇÃO ATENÇÃO: CONFERIR SE ESSE TIP ACIMA SERÁ CORRETO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+A seguir é apresentado os passos que devem ser digitados no terminal após a verificação da mensagem "NO CARRIER OK" para que a configuração seja realizada com sucesso.
+
+:: 
+  
+  Para o *coordenador primário*
+  $ AT&F1
+  $ AT&W
+  
+::
+  
+  Para o *remoto*
+  $ AT&F2
+  $ AT&W
+    
+Após esses comandos, caso queira verificar se foram feitas corretamente as alterações nos registradores, use o comando abaixo e verifique se assemelha com as fotos a seguir.  
+
+:: 
+  
+  $ AT&V
+  
+Para o coordenador primário é retornado os seguintes valores nos registradores (Atenção ao S101):
+
+.. figure:: /img/Aerial/Primario.png
+    :align: center
+
+Para o remoto é retornado os seguintes valores nos registradores (Atenção ao S101):   
+
+.. figure:: /img/Aerial/Remoto.png
+    :align: center
 
 Referências
 -----------
