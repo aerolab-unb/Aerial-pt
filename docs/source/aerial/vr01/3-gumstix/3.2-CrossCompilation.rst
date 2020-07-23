@@ -56,7 +56,7 @@ Para adicionar a permissão para execução, basta executar o comando ``chmod +x
 
 3. **Instalação**
 
-Execute o arquivo *sdk.sh*. Assim que solicitado, digite o diretório que deseja instalar o SDK (recomendamos a criação de um repositório chamado *sdk*) e confirme. 
+Para iniciar a instalação, execute o arquivo *sdk.sh*. Assim que solicitado, digite o diretório que deseja instalar o SDK (recomendamos a criação de um repositório chamado *sdk*) e confirme.
 
 ::
 
@@ -106,9 +106,7 @@ Agora podemos executar o comando ``make <nome_do_código>`` para criar um arquiv
 	:align: center
 
 .. Note::
-    O comando "make" é na verdade a simplificação de uma extensa linha de comando que chama um compilador **arm-poky-Linux-gnueabi-gcc** e dá a ele os parâmetros contidos na pasta SDK. Tudo isso graças ao comando "source" utilizado 
-    anteriormente.
-
+    O comando "make" é na verdade a simplificação de uma extensa linha de comando que chama um compilador **arm-poky-Linux-gnueabi-gcc** e dá a ele os parâmetros contidos na pasta SDK. Tudo isso graças ao comando "source" utilizado anteriormente.
 
 Uma vez obtido o executável do código basta copiá-lo para uma das pastas do cartão de memória transferi-lo para o Overo e executá-lo. Lembre-se que o diretório principal é o diretório ``/home/root/``, então se o arquivo for colocado dentro deste diretório será bem fácil encontra-lo.
 
