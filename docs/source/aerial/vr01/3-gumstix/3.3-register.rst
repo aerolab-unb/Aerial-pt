@@ -131,11 +131,11 @@ Como é explicado na seção **25** do TRM do processador DM3730, a partir da p�
 
 Neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.
 
-O registrador "**GPIO_OE**" é o registrador que define a direção do pino que está sendo configurado. A abreviação "OE" vem de *output enable*. Esse registrador possui um offset de endereço igual a "0x034", ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo "Read/White", ou assim, se o pino correspondente à porta GPIO estiver armazenando o valor **0**, essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor **1** a porta estará configurada como input.
+O registrador **GPIO_OE** é o registrador que define a direção do pino que está sendo configurado. A abreviação "OE" vem de *output enable*. Esse registrador possui um offset de endereço igual a "0x034", ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo "Read/White", ou assim, se o pino correspondente à porta GPIO estiver armazenando o valor **0**, essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor **1** a porta estará configurada como input.
 
-O registrador "**GPIO_SETDATAOUT**" é o registrador que tem a função de colocar o bit correspondente ao registrador "**GPIO_DATAOUT**" em 1. Ou seja, se tudo estiver configurado corretamente, surgirá no pino físico o valor de tensão equivalente ao bit 1. Esse registrador possui endereço de offset igual a "0x094". Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo "RW". A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em **GPIO_DATAOUT**".
+O registrador **GPIO_SETDATAOUT** é o registrador que tem a função de colocar o bit correspondente ao registrador **GPIO_DATAOUT** em 1. Ou seja, se tudo estiver configurado corretamente, surgirá no pino físico o valor de tensão equivalente ao bit 1. Esse registrador possui endereço de offset igual a "0x094". Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo "RW". A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em **GPIO_DATAOUT**.
 
-Além dos registradores apresentados na seção 25 do *Technical Reference Manual*, também é necessário configurar um registrador do *System Control Module* (**SCM**). O SCM é um módulo que permite o Controle através de *software* de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo *pullup* ou *pulldown*, por exemplo.
+Além dos registradores apresentados na seção 25 do *Technical Reference Manual*, também é necessário configurar um registrador do *System Control Module* (**SCM**). O SCM é um módulo que permite o controle através de *software* de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo *pullup* ou *pulldown*, por exemplo.
 
 Os registradores do SCM são divididos em cinco classes. Entretanto, para nossa aplicação iremos utilizar apenas uma, o bloco de registradores de configuração e multiplexação. Esse bloco é um conjunto de registradores de 32 bits, que configura 2 pinos e define, além dos dois parâmetros mencionados anteriormente, a função de *wakeup*. Aos registradores pertencentes a esse bloco é dado o nome de *Configuration Register Functionality*.
 
@@ -157,7 +157,7 @@ Vamos supor que queremos mapear o espaço de memória físico de "**0x45000000**
 
 Com essas informações, temos tudo o que é necessário para implementar testes acerca deste modo de operação. A seguir temos um código que aplica o método descrito nesta seção para alternar o nível de tensão do pino "186". Esse código foi implementado para se realizar o mesmo teste da seção "Controle do GPIO via terminal".
 
-..Note::
+.. Note::
     O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram realizadas pequenas alterações para evitar o excesso de informação e facilitar sua compreensão.
 
 .. _Fórum de Discussões da Gumstix: http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html
@@ -288,7 +288,7 @@ Dessa forma, foi possível apenas alterar o clock do bloco do **GPIO_1**, como p
 .. figure:: /img/Aerial/register-clock.png
     :align: center
 
-Não sabemos por quais motivos esses fenômenos estão ocorrendo com os blocos de 2 a 6, porém suspeitasse que alguns processos do sistema operacional estejam impedindo que o clock de tais blocos seja alterados, provavelmente por algum circuito interno ou operação depender de tais valores pré-definidos ou até por alguma restrição no consumo de energia. 
+Não sabemos por quais motivos esses fenômenos estão ocorrendo com os blocos de 2 a 6, porém suspeitasse que alguns processos do sistema operacional estejam impedindo que o clock de tais blocos seja alterados, provavelmente por algum circuito interno ou operação depende de tais valores pré-definidos ou até por alguma restrição no consumo de energia. 
 
 
 
