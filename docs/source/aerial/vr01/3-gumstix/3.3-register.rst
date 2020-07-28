@@ -291,7 +291,6 @@ Dessa forma, foi possível apenas alterar o clock do bloco do **GPIO_1**, como p
 Não sabemos por quais motivos esses fenômenos estão ocorrendo com os blocos de 2 a 6, porém suspeitasse que alguns processos do sistema operacional estejam impedindo que o clock de tais blocos seja alterados, provavelmente por algum circuito interno ou operação depende de tais valores pré-definidos ou até por alguma restrição no consumo de energia. 
 
 
-
 Referências
 -----------
 
