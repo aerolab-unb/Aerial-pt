@@ -6,9 +6,9 @@ Registradores
 
 Seguindo os procedimentos das seções anteriores somos capazes de iniciar o sistema e gerar programas a serem executados pelo sistema operacional. O próximo passo é, portanto, controlar os sinais que podem ser enviados a outros dispositivos pelo computador embarcado para estabelecer a comunicação entre os dispositivos.
 
-A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a **espaços de memória do sistema** e quando alteramos o bit armazenado neste espaço de memória alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.
+A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a **espaços de memória do sistema** e, quando alteramos o bit armazenado neste espaço de memória, alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.
 
-Posteriormente, a comunicação entre dispositivos será mais bem discutida, mas neste momento o que mais nos importa são os "**espaços de memória**" citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de **registrador**. Os registradores estão no topo da hierarquia de memória, sendo assim o tipo de memória mais rápida de uma unidade central de processamento.
+Posteriormente, a comunicação entre dispositivos será mais discutida, mas neste momento o que mais nos importa são os **espaços de memória**, citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de **registrador**. Os registradores estão no topo da hierarquia de memória, sendo assim o tipo de memória mais rápida de uma unidade central de processamento.
 
 Dessa forma, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de **ON/OFF** de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de `General Purpose Input/Output`_ (**GPIO**).
 
@@ -131,11 +131,11 @@ Como é explicado na seção **25** do TRM do processador DM3730, a partir da p�
 
 Neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.
 
-O registrador "**GPIO_OE**" é o registrador que define a direção do pino que está sendo configurado. A abreviação "OE" vem de *output enable*. Esse registrador possui um offset de endereço igual a "0x034", ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo "Read/White", ou assim, se o pino correspondente à porta GPIO estiver armazenando o valor **0**, essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor **1** a porta estará configurada como input.
+O registrador **GPIO_OE** é o registrador que define a direção do pino que está sendo configurado. A abreviação "OE" vem de *output enable*. Esse registrador possui um offset de endereço igual a "0x034", ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo "Read/White", ou assim, se o pino correspondente à porta GPIO estiver armazenando o valor **0**, essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor **1** a porta estará configurada como input.
 
-O registrador "**GPIO_SETDATAOUT**" é o registrador que tem a função de colocar o bit correspondente ao registrador "**GPIO_DATAOUT**" em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a "0x094". Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo "RW". A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em **GPIO_DATAOUT**".
+O registrador **GPIO_SETDATAOUT** é o registrador que tem a função de colocar o bit correspondente ao registrador **GPIO_DATAOUT** em 1. Ou seja, se tudo estiver configurado corretamente, surgirá no pino físico o valor de tensão equivalente ao bit 1. Esse registrador possui endereço de offset igual a "0x094". Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo "RW". A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em **GPIO_DATAOUT**.
 
-Além dos registradores apresentados na seção 25 do *Technical Reference Manual*, também é necessário configurar um registrador do *System Control Module* (**SCM**). O SCM é um módulo que permite o Controle através de *software* de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo *pullup* ou *pulldown*, por exemplo.
+Além dos registradores apresentados na seção 25 do *Technical Reference Manual*, também é necessário configurar um registrador do *System Control Module* (**SCM**). O SCM é um módulo que permite o controle através de *software* de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo *pullup* ou *pulldown*, por exemplo.
 
 Os registradores do SCM são divididos em cinco classes. Entretanto, para nossa aplicação iremos utilizar apenas uma, o bloco de registradores de configuração e multiplexação. Esse bloco é um conjunto de registradores de 32 bits, que configura 2 pinos e define, além dos dois parâmetros mencionados anteriormente, a função de *wakeup*. Aos registradores pertencentes a esse bloco é dado o nome de *Configuration Register Functionality*.
 
@@ -157,7 +157,7 @@ Vamos supor que queremos mapear o espaço de memória físico de "**0x45000000**
 
 Com essas informações, temos tudo o que é necessário para implementar testes acerca deste modo de operação. A seguir temos um código que aplica o método descrito nesta seção para alternar o nível de tensão do pino "186". Esse código foi implementado para se realizar o mesmo teste da seção "Controle do GPIO via terminal".
 
-..Note::
+.. Note::
     O código abaixo foi obtido no `Fórum de Discussões da Gumstix`_ e foram realizadas pequenas alterações para evitar o excesso de informação e facilitar sua compreensão.
 
 .. _Fórum de Discussões da Gumstix: http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html
@@ -276,9 +276,9 @@ Tal modificação deveria realizar uma redução na velocidade do clock dividind
 .. figure:: /img/Aerial/GPIO_CTRL.png
     :align: center
 
-Porém, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando, executado instantes depois no modo de leitura, retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado. Vale ressaltar que este problema não ocorre para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário.
+Porém, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando, executado instantes depois no modo de leitura, sempre retorna ao valor anteriormente armazenado, o valor existente no registrador antes da modificação. Vale ressaltar que este problema não ocorre para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário.
 
-O segundo problema encontrado ocorre quando tentamos alterar o valor dos registradores **0x49052030** e **0x49054030**, responsáveis por controlar o clock de todo o bloco do **GPIO_3** e do **GPIO_4**, respectivamente. Nesses registradores em específico, ao tentar executar o comando ``devmem2`` para alterar o clock de um determinado bloco de GPIO ou apenas realizar uma leitura, o sistema retorna o erro "*bus error*" como apresentado na figura abaixo, onde executamos o mesmo comando no registrador **0x**. 
+O segundo problema encontrado ocorre quando tentamos alterar o valor dos registradores **0x49052030** e **0x49054030**, responsáveis por controlar o clock de todo o bloco do **GPIO_3** e do **GPIO_4**, respectivamente. Nesses registradores em específico, ao tentar executar o comando ``devmem2`` para alterar o clock de um determinado bloco de GPIO ou apenas realizar uma leitura, o sistema retorna o erro "*bus error*" como apresentado na figura abaixo, onde executamos o mesmo comando no registrador **0x49054030**. 
 
 .. figure:: /img/Aerial/register-bus_erro.png
     :align: center
@@ -288,7 +288,7 @@ Dessa forma, foi possível apenas alterar o clock do bloco do **GPIO_1**, como p
 .. figure:: /img/Aerial/register-clock.png
     :align: center
 
-Não sabemos por quais motivos esses fenômenos estão ocorrendo com os blocos de 2 a 6, porém suspeitasse que alguns processos do sistema operacional estejam impedindo que o clock de tais blocos seja alterados, provavelmente por algum circuito interno ou operação depender de tais valores pré-definidos ou até por alguma restrição no consumo de energia. 
+Não sabemos por quais motivos esses fenômenos estão ocorrendo com os blocos de 2 a 6, porém suspeitasse que alguns processos do sistema operacional estejam impedindo que o clock de tais blocos seja alterados, provavelmente por algum circuito interno ou operação depende de tais valores pré-definidos ou até por alguma restrição no consumo de energia. 
 
 
 

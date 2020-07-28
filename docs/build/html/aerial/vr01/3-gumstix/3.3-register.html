@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en,pt-BR" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en,pt-BR" > <!--<![endif]-->
+<html class="writer-html5" lang="en,pt-BR" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -25,15 +30,11 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Comunicação Serial" href="3.4-Serial.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> CoopRobo
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> CoopRobo
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -110,6 +112,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -148,7 +151,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../aerial.html">Aerial Robots</a> &raquo;</li>
         
@@ -182,8 +185,8 @@
 <p>Este tópico precisa ser testado e reeditado.</p>
 </div>
 <p>Seguindo os procedimentos das seções anteriores somos capazes de iniciar o sistema e gerar programas a serem executados pelo sistema operacional. O próximo passo é, portanto, controlar os sinais que podem ser enviados a outros dispositivos pelo computador embarcado para estabelecer a comunicação entre os dispositivos.</p>
-<p>A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a <strong>espaços de memória do sistema</strong> e quando alteramos o bit armazenado neste espaço de memória alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.</p>
-<p>Posteriormente, a comunicação entre dispositivos será mais bem discutida, mas neste momento o que mais nos importa são os &quot;<strong>espaços de memória</strong>&quot; citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de <strong>registrador</strong>. Os registradores estão no topo da hierarquia de memória, sendo assim o tipo de memória mais rápida de uma unidade central de processamento.</p>
+<p>A comunicação entre dispositivos é feita pela alteração dos níveis de tensão dos pinos do computador embarcado. Esses pinos estão, de uma maneira resumida, conectados a <strong>espaços de memória do sistema</strong> e, quando alteramos o bit armazenado neste espaço de memória, alteramos também o nível de tensão do pino, permitindo a codificação de uma mensagem e sua transmissão a outro dispositivo.</p>
+<p>Posteriormente, a comunicação entre dispositivos será mais discutida, mas neste momento o que mais nos importa são os <strong>espaços de memória</strong>, citados no parágrafo anterior. Esses espaços de memória são na verdade circuitos digitais voláteis que são capazes de armazenar níveis de tensão, o acesso ao conteúdo desses espaços de memória é extremamente rápido e a estes espaços de memória é dado o nome de <strong>registrador</strong>. Os registradores estão no topo da hierarquia de memória, sendo assim o tipo de memória mais rápida de uma unidade central de processamento.</p>
 <p>Dessa forma, para que possamos implementar a comunicação entre dois dispositivos, um modem e o computador embarcado por exemplo, precisamos, primeiro, executar uma tarefa mais simples de alterar os níveis de tensão de um pino. Esse processo de alterar os níveis de tensão de um pino possui diversas aplicações que vão desde o simples controle de <strong>ON/OFF</strong> de um LED até comunicação serial entre dispositivos. Aos pinos com esse propósito é dado o nome de <a class="reference external" href="https://en.wikipedia.org/wiki/General-purpose_input/output">General Purpose Input/Output</a> (<strong>GPIO</strong>).</p>
 <p><em>General Purpose Input/Output</em> (<strong>GPIO</strong>) são, basicamente, pinos de  comunicação de entrada e saída de sinais digitais, de um circuito integrado ou placa de circuito eletrônico, sem finalidade pré-definida, podendo assim ter funções definidas pelo projetista ou usuário para prover uma interface entre outros dispositivos (periféricos, modens, microcontroladores, microprocessadores etc.).</p>
 <p>Como comentado anteriormente, estamos utilizando o computador embarcado Overo junto a uma placa de expansão Tobi. Uma das funções desta placa é fornecer acesso ao usuário aos pinos do computador embarcado, portanto os pinos do computador embarcado que podemos acessar fisicamente são os pinos da placa de expansão Tobi. Na figura abaixo podemos visualizar um diagrama que contém, de maneira resumida, quais funções ou pinos do computador embarcado estão conectadas a cada pino da placa de expansão Tobi. Observe que alguns desses pinos possuem mais de uma função.</p>
@@ -276,9 +279,9 @@
 <p>A figura foi retirada do <em>Technical Reference Manual</em> do processador DM3730 e mostra um pouco mais detalhadamente como esses pinos estão distribuídos entre os módulos dos GPIO. A explicação detalhada de cada um desses registradores pode ser encontrada no manual do processador DM3730.</p>
 </div>
 <p>Neste trabalho apenas dois dos registradores serão comentados de forma a ilustrar o funcionamento desses registradores.</p>
-<p>O registrador &quot;<strong>GPIO_OE</strong>&quot; é o registrador que define a direção do pino que está sendo configurado. A abreviação &quot;OE&quot; vem de <em>output enable</em>. Esse registrador possui um offset de endereço igual a &quot;0x034&quot;, ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo &quot;Read/White&quot;, ou assim, se o pino correspondente à porta GPIO estiver armazenando o valor <strong>0</strong>, essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor <strong>1</strong> a porta estará configurada como input.</p>
-<p>O registrador &quot;<strong>GPIO_SETDATAOUT</strong>&quot; é o registrador que tem a função de colocar o bit correspondente ao registrador &quot;<strong>GPIO_DATAOUT</strong>&quot; em 1, se tudo estiver configurado corretamente, surgirá no pino físico correspondente o valor de tensão correspondente ao valor 1. Esse registrador possui endereço de offset igual a &quot;0x094&quot;. Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo &quot;RW&quot;. A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em <strong>GPIO_DATAOUT</strong>&quot;.</p>
-<p>Além dos registradores apresentados na seção 25 do <em>Technical Reference Manual</em>, também é necessário configurar um registrador do <em>System Control Module</em> (<strong>SCM</strong>). O SCM é um módulo que permite o Controle através de <em>software</em> de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo <em>pullup</em> ou <em>pulldown</em>, por exemplo.</p>
+<p>O registrador <strong>GPIO_OE</strong> é o registrador que define a direção do pino que está sendo configurado. A abreviação &quot;OE&quot; vem de <em>output enable</em>. Esse registrador possui um offset de endereço igual a &quot;0x034&quot;, ou seja, seu endereço será o endereço de base do modulo do GPIO mais 34 em hexadecimal. Esse registrador possui 32 bits do tipo &quot;Read/White&quot;, ou assim, se o pino correspondente à porta GPIO estiver armazenando o valor <strong>0</strong>, essa porta GPIO estará configurada para operar como output, caso neste pino esteja o valor <strong>1</strong> a porta estará configurada como input.</p>
+<p>O registrador <strong>GPIO_SETDATAOUT</strong> é o registrador que tem a função de colocar o bit correspondente ao registrador <strong>GPIO_DATAOUT</strong> em 1. Ou seja, se tudo estiver configurado corretamente, surgirá no pino físico o valor de tensão equivalente ao bit 1. Esse registrador possui endereço de offset igual a &quot;0x094&quot;. Assim como o registrador comentado anteriormente este registrador é constituído por 32 bits do tipo &quot;RW&quot;. A leitura de qualquer um dos bits deste registrador retorna o valor do bit correspondente em <strong>GPIO_DATAOUT</strong>.</p>
+<p>Além dos registradores apresentados na seção 25 do <em>Technical Reference Manual</em>, também é necessário configurar um registrador do <em>System Control Module</em> (<strong>SCM</strong>). O SCM é um módulo que permite o controle através de <em>software</em> de várias funções do dispositivo. Para nossa aplicação, o SCM é o ponto primário de controle da função de GPIO e é nele onde vamos realizar a multiplexação, que determina se o pino irá operar na função de GPIO ou em sua função específica, e definiremos se o GPIO será do tipo <em>pullup</em> ou <em>pulldown</em>, por exemplo.</p>
 <p>Os registradores do SCM são divididos em cinco classes. Entretanto, para nossa aplicação iremos utilizar apenas uma, o bloco de registradores de configuração e multiplexação. Esse bloco é um conjunto de registradores de 32 bits, que configura 2 pinos e define, além dos dois parâmetros mencionados anteriormente, a função de <em>wakeup</em>. Aos registradores pertencentes a esse bloco é dado o nome de <em>Configuration Register Functionality</em>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -293,10 +296,10 @@
 </div>
 <p>Vamos supor que queremos mapear o espaço de memória físico de &quot;<strong>0x45000000</strong>&quot; até &quot;<strong>0x45001000</strong>&quot; e para isso decidimos usar a função <code class="docutils literal notranslate"><span class="pre">mmap()</span></code>. Portanto, chamamos a função da seguinte maneira, por exemplo, <code class="docutils literal notranslate"><span class="pre">mmap(NULL,0x1000,PROT_WRITE</span> <span class="pre">||</span> <span class="pre">PROT_READ,MAP_SHARED,fd,0x45000000)</span></code>, executando isso a função irá retornar um ponteiro que aponta para um endereço de memória virtual endereçado no endereço de memória física &quot;<strong>0x45000000</strong>&quot;. Em que, para ter acesso à memória física do dispositivo, &quot;<strong>fd</strong>&quot; é o <em>file descriptor</em> direcionado para &quot;/dev/mem&quot;.</p>
 <p>Com essas informações, temos tudo o que é necessário para implementar testes acerca deste modo de operação. A seguir temos um código que aplica o método descrito nesta seção para alternar o nível de tensão do pino &quot;186&quot;. Esse código foi implementado para se realizar o mesmo teste da seção &quot;Controle do GPIO via terminal&quot;.</p>
-<dl class="simple">
-<dt>..Note::</dt><dd><p>O código abaixo foi obtido no <a class="reference external" href="http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html">Fórum de Discussões da Gumstix</a> e foram realizadas pequenas alterações para evitar o excesso de informação e facilitar sua compreensão.</p>
-</dd>
-</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>O código abaixo foi obtido no <a class="reference external" href="http://gumstix.8.x6.nabble.com/Direct-register-access-control-of-GPIO-ARM-interface-on-Overo-Water-TOBI-SOLVED-td4965117.html">Fórum de Discussões da Gumstix</a> e foram realizadas pequenas alterações para evitar o excesso de informação e facilitar sua compreensão.</p>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Local</span> <span class="n">includes</span> <span class="n">definition</span>
 <span class="c1">#include &lt;stdio.h&gt;    // for lprint instruction</span>
 <span class="c1">#include &lt;stdlib.h&gt;</span>
@@ -393,8 +396,8 @@
 <div class="figure align-center">
 <img alt="../../../_images/GPIO_CTRL.png" src="../../../_images/GPIO_CTRL.png" />
 </div>
-<p>Porém, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando, executado instantes depois no modo de leitura, retorna um valor nulo no registrador. No caso o valor existente no registrador antes da modificação era nulo, porém o registrador sempre retorna ao valor anteriormente armazenado. Vale ressaltar que este problema não ocorre para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário.</p>
-<p>O segundo problema encontrado ocorre quando tentamos alterar o valor dos registradores <strong>0x49052030</strong> e <strong>0x49054030</strong>, responsáveis por controlar o clock de todo o bloco do <strong>GPIO_3</strong> e do <strong>GPIO_4</strong>, respectivamente. Nesses registradores em específico, ao tentar executar o comando <code class="docutils literal notranslate"><span class="pre">devmem2</span></code> para alterar o clock de um determinado bloco de GPIO ou apenas realizar uma leitura, o sistema retorna o erro &quot;<em>bus error</em>&quot; como apresentado na figura abaixo, onde executamos o mesmo comando no registrador <strong>0x</strong>.</p>
+<p>Porém, logo após a execução do comando é realizado um procedimento de leitura que garante que tudo foi escrito no registrador como o esperado. No entanto, o mesmo comando, executado instantes depois no modo de leitura, sempre retorna ao valor anteriormente armazenado, o valor existente no registrador antes da modificação. Vale ressaltar que este problema não ocorre para o método de controle do GPIO via terminal, este método opera até que receba uma ordem de parada do usuário.</p>
+<p>O segundo problema encontrado ocorre quando tentamos alterar o valor dos registradores <strong>0x49052030</strong> e <strong>0x49054030</strong>, responsáveis por controlar o clock de todo o bloco do <strong>GPIO_3</strong> e do <strong>GPIO_4</strong>, respectivamente. Nesses registradores em específico, ao tentar executar o comando <code class="docutils literal notranslate"><span class="pre">devmem2</span></code> para alterar o clock de um determinado bloco de GPIO ou apenas realizar uma leitura, o sistema retorna o erro &quot;<em>bus error</em>&quot; como apresentado na figura abaixo, onde executamos o mesmo comando no registrador <strong>0x49054030</strong>.</p>
 <div class="figure align-center">
 <img alt="../../../_images/register-bus_erro.png" src="../../../_images/register-bus_erro.png" />
 </div>
@@ -402,7 +405,7 @@
 <div class="figure align-center">
 <img alt="../../../_images/register-clock.png" src="../../../_images/register-clock.png" />
 </div>
-<p>Não sabemos por quais motivos esses fenômenos estão ocorrendo com os blocos de 2 a 6, porém suspeitasse que alguns processos do sistema operacional estejam impedindo que o clock de tais blocos seja alterados, provavelmente por algum circuito interno ou operação depender de tais valores pré-definidos ou até por alguma restrição no consumo de energia.</p>
+<p>Não sabemos por quais motivos esses fenômenos estão ocorrendo com os blocos de 2 a 6, porém suspeitasse que alguns processos do sistema operacional estejam impedindo que o clock de tais blocos seja alterados, provavelmente por algum circuito interno ou operação depende de tais valores pré-definidos ou até por alguma restrição no consumo de energia.</p>
 </div>
 <div class="section" id="referencias">
 <h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
@@ -435,11 +438,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019, Gabriel Araujo
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -450,7 +461,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
