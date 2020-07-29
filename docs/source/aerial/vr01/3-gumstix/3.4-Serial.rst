@@ -5,7 +5,7 @@ A principal característica da comunicação serial é o processo de enviar dado
 
 Com a finalidade de possibilitar a conversão, transmissão e recepção de dados de forma serial, sendo estes originalmente dispostos de maneira paralela, surge o formato **UART**, acrônimo de *Universal Asynchrounous Receiver/Transmiter* ou Receptor/Transmissor Universal Assíncrono.
 
-O termo "Universal" refere-se a característica do formato dos dados e velocidade serem configuráveis, enquanto "Assíncrono" diz respeito a forma de comunicação em série ocorre, em que as interfaces dos pontos de extremidade que comunicam não estão continuamente sincronizadas por um sinal de clock comum.
+O termo "Universal" refere-se a característica do formato dos dados e velocidade serem configuráveis, enquanto "Assíncrono" diz respeito a forma de comunicação em série ocorre, em que os dispositivos não estão continuamente sincronizadas por um sinal de clock comum.
 
 .. Note::
     Mais detalhes sobre a comunicação UART podem ser vistos em `Introduction to UART Communication - microcontrollerslab.com`_.
