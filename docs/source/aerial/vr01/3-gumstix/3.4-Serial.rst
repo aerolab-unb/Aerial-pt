@@ -23,7 +23,7 @@ Podemos analisar a situação da comunicação a nível de bit. Por exemplo, par
 
 É importante destacar que a função do bit de parada é realizar uma pausa na transmissão para algum processamento interno dos dispositivos, não é necessário, portanto, nenhum tempo adicional entre os dados transmitidos.
 
-Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em Baud rate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.
+Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade geralmente é dada em Baud rate, uma unidade de medida para a quantidade de unidades de sinal enviadas por segundo.
 
 .. 30 O QUE?????????
 
