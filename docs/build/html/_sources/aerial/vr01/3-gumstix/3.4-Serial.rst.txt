@@ -5,7 +5,7 @@ A principal característica da comunicação serial é o processo de enviar dado
 
 Com a finalidade de possibilitar a conversão, transmissão e recepção de dados de forma serial, sendo estes originalmente dispostos de maneira paralela, surge o formato **UART**, acrônimo de *Universal Asynchrounous Receiver/Transmiter* ou Receptor/Transmissor Universal Assíncrono.
 
-O termo "Universal" refere-se a característica do formato dos dados e velocidade serem configuráveis, enquanto "Assíncrono" diz respeito a forma de comunicação em série ocorre, em que as interfaces dos pontos de extremidade que comunicam não estão continuamente sincronizadas por um sinal de clock comum.
+O termo "Universal" refere-se a característica do formato dos dados e velocidade serem configuráveis, enquanto "Assíncrono" diz respeito a forma de comunicação em série ocorre, em que os dispositivos não estão continuamente sincronizadas por um sinal de clock comum.
 
 .. Note::
     Mais detalhes sobre a comunicação UART podem ser vistos em `Introduction to UART Communication - microcontrollerslab.com`_.
@@ -23,9 +23,7 @@ Podemos analisar a situação da comunicação a nível de bit. Por exemplo, par
 
 É importante destacar que a função do bit de parada é realizar uma pausa na transmissão para algum processamento interno dos dispositivos, não é necessário, portanto, nenhum tempo adicional entre os dados transmitidos.
 
-Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em Baud rate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.
-
-.. 30 O QUE?????????
+Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade geralmente é dada em Baud rate, uma unidade de medida para a quantidade de unidades de sinal enviadas por segundo.
 
 .. Note::
     O termo "Baud rate" é utilizado como medida de velocidade de transmissão de dados entre dispositivos. Um baud é uma medida de velocidade de sinalização e representa o número de mudanças na linha de transmissão (seja em frequência, amplitude, fase etc...) ou eventos por segundo.
@@ -78,16 +76,17 @@ Se, por exemplo, for executada a linha de comando ``stty -F /dev/ttyO0 -a`` ser�
 
 A figura abaixo apresenta um exemplo de configuração da UART1 por meio do terminal de comandos Linux.
 
-.. imagem
+.. figure:: /img/Aerial/config_uart1.png
+    :align: center
 
 A outra maneira de configurar a comunicação serial feita por esses drivers sem alterar manualmente o conteúdo do endereço físico da memória é com o auxílio da biblioteca "**termios.h**". Essa biblioteca possui uma ampla variedade de funções que configuram a comunicação serial com base nos parâmetros de uma estrutura "**termios**", também definida nesta biblioteca.
 
 .. Note::
-    Mais informações sobre a biblioteca "**termios.h**" podem ser encontrados em `termios.h — Linux manual page`_.
+    Mais informações sobre a biblioteca "**termios.h**" podem ser encontrados em `termios.h - Linux manual page`_.
 
-.. _termios.h — Linux manual page: https://man7.org/linux/man-pages/man0/termios.h.0p.html
+.. _termios.h - Linux manual page: https://man7.org/linux/man-pages/man0/termios.h.0p.html
 
-São dois os parâmetros da comunicação UART, além dos mencionados anteriormente, que se destacam, sendo eles o número mínimo de bits que se espera ler em cada tentativa de leitura e o tempo máximo de espera por um novo caractere após a transmissão do último caractere após o número mínimo de caracteres ser atingido.
+São dois os parâmetros da comunicação UART, além dos mencionados anteriormente, que se destacam, o número mínimo de bits que se espera ler em cada tentativa de leitura e o tempo máximo de espera por um novo caractere após a transmissão do último caractere e após o número mínimo de caracteres ser atingido.
 
 O número mínimo de bits que se espera ser lido e o tempo máximo de espera pelo próximo bit em décimos de segundo podem ser configurados com os seguintes comandos ``termios.c_cc[VMIN] =`` e ``termios.c_cc[VTIME] =``, em que ``termios`` é o nome de sua estrutura. Para a configuração de velocidade recomenda-se usar a função ``cfsetspeed()``.Já a função ``cfmakeraw()`` configura, além de outros parâmetros, o funcionamento sem bit de paridade e com 8 bits de dados. Após realizados os ajustes na estrutura é necessário ainda executar a função ``cfsetattr()`` para que as alterações sejam feitas na UART.
 
@@ -121,6 +120,11 @@ Abaixo encontra-se o código utilizado para configurar a comunicação serial do
     }
 
 :download:`Download do código comentado <UART/config_UART.c>`
+
+A figura a seguir apresenta um exemplo de configuração da UART1 por meio do codigo de configuração acima.
+
+.. figure:: /img/Aerial/config_uart1.png
+    :align: center
 
 .. Note::
     Com a finalidade simplificar a configuração do UART dentro de um outro código, foram efetuadas algumas modificações no código anterior para converte-lo em uma função para configuração de comunicação serial, como pode ser visto abaixo:

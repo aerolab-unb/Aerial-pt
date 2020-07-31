@@ -76,14 +76,15 @@ Se, por exemplo, for executada a linha de comando ``stty -F /dev/ttyO0 -a`` ser�
 
 A figura abaixo apresenta um exemplo de configuração da UART1 por meio do terminal de comandos Linux.
 
-.. imagem
+.. figure:: /img/Aerial/config_uart1.png
+    :align: center
 
 A outra maneira de configurar a comunicação serial feita por esses drivers sem alterar manualmente o conteúdo do endereço físico da memória é com o auxílio da biblioteca "**termios.h**". Essa biblioteca possui uma ampla variedade de funções que configuram a comunicação serial com base nos parâmetros de uma estrutura "**termios**", também definida nesta biblioteca.
 
 .. Note::
-    Mais informações sobre a biblioteca "**termios.h**" podem ser encontrados em `termios.h — Linux manual page`_.
+    Mais informações sobre a biblioteca "**termios.h**" podem ser encontrados em `termios.h - Linux manual page`_.
 
-.. _termios.h — Linux manual page: https://man7.org/linux/man-pages/man0/termios.h.0p.html
+.. _termios.h - Linux manual page: https://man7.org/linux/man-pages/man0/termios.h.0p.html
 
 São dois os parâmetros da comunicação UART, além dos mencionados anteriormente, que se destacam, o número mínimo de bits que se espera ler em cada tentativa de leitura e o tempo máximo de espera por um novo caractere após a transmissão do último caractere e após o número mínimo de caracteres ser atingido.
 
@@ -119,6 +120,11 @@ Abaixo encontra-se o código utilizado para configurar a comunicação serial do
     }
 
 :download:`Download do código comentado <UART/config_UART.c>`
+
+A figura a seguir apresenta um exemplo de configuração da UART1 por meio do codigo de configuração acima.
+
+.. figure:: /img/Aerial/config_uart1.png
+    :align: center
 
 .. Note::
     Com a finalidade simplificar a configuração do UART dentro de um outro código, foram efetuadas algumas modificações no código anterior para converte-lo em uma função para configuração de comunicação serial, como pode ser visto abaixo:

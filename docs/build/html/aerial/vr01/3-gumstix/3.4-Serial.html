@@ -182,7 +182,7 @@
 <h1>Comunicação Serial<a class="headerlink" href="#comunicacao-serial" title="Permalink to this headline">¶</a></h1>
 <p>A principal característica da comunicação serial é o processo de enviar dados um bit de cada vez, de forma sequencial, através de um canal de comunicação ou barramento. Diferente da comunicação paralela, em que todos os bits de cada símbolo são enviados juntos.</p>
 <p>Com a finalidade de possibilitar a conversão, transmissão e recepção de dados de forma serial, sendo estes originalmente dispostos de maneira paralela, surge o formato <strong>UART</strong>, acrônimo de <em>Universal Asynchrounous Receiver/Transmiter</em> ou Receptor/Transmissor Universal Assíncrono.</p>
-<p>O termo &quot;Universal&quot; refere-se a característica do formato dos dados e velocidade serem configuráveis, enquanto &quot;Assíncrono&quot; diz respeito a forma de comunicação em série ocorre, em que as interfaces dos pontos de extremidade que comunicam não estão continuamente sincronizadas por um sinal de clock comum.</p>
+<p>O termo &quot;Universal&quot; refere-se a característica do formato dos dados e velocidade serem configuráveis, enquanto &quot;Assíncrono&quot; diz respeito a forma de comunicação em série ocorre, em que os dispositivos não estão continuamente sincronizadas por um sinal de clock comum.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Mais detalhes sobre a comunicação UART podem ser vistos em <a class="reference external" href="https://microcontrollerslab.com/uart-communication-working-applications/">Introduction to UART Communication - microcontrollerslab.com</a>.</p>
@@ -194,7 +194,7 @@
 </div>
 <p>Podemos analisar a situação da comunicação a nível de bit. Por exemplo, para uma comunicação UART do tipo &quot;8N1&quot; (8 bits de dados, 0 bits de paridade e 1 bit de parada) teremos o canal em estado <em>IDLE</em>, que significa &quot;não operando&quot;, representado pelo nível de tensão estático em alto. Logo, quando pretende-se iniciar a comunicação é enviado um pulso de nível baixo e em seguida são enviados os oito bits de dados que será acompanhado de um bit de parada em estado alto.</p>
 <p>É importante destacar que a função do bit de parada é realizar uma pausa na transmissão para algum processamento interno dos dispositivos, não é necessário, portanto, nenhum tempo adicional entre os dados transmitidos.</p>
-<p>Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade é geralmente dada em Baud rate e, em nosso caso, 30 será essencialmente o tempo de duração de cada bit.</p>
+<p>Como essa é uma comunicação assíncrona, é essencial que a velocidade da comunicação seja pré-determinada. Essa velocidade geralmente é dada em Baud rate, uma unidade de medida para a quantidade de unidades de sinal enviadas por segundo.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>O termo &quot;Baud rate&quot; é utilizado como medida de velocidade de transmissão de dados entre dispositivos. Um baud é uma medida de velocidade de sinalização e representa o número de mudanças na linha de transmissão (seja em frequência, amplitude, fase etc...) ou eventos por segundo.</p>
@@ -227,12 +227,15 @@
 </div>
 <p>Se, por exemplo, for executada a linha de comando <code class="docutils literal notranslate"><span class="pre">stty</span> <span class="pre">-F</span> <span class="pre">/dev/ttyO0</span> <span class="pre">-a</span></code> serão impressas todas as configurações da comunicação serial <strong>UART1</strong> do dispositivo. Para imprimir apenas as principais configurações, deve-se suprimir o <code class="docutils literal notranslate"><span class="pre">-a</span></code>, a última opção do comando. Caso a alteração da velocidade seja desejável, ela pode ser alterada simplesmente acrescentando a velocidade desejada ao final da linha de comando.</p>
 <p>A figura abaixo apresenta um exemplo de configuração da UART1 por meio do terminal de comandos Linux.</p>
+<div class="figure align-center">
+<img alt="../../../_images/config_uart1.png" src="../../../_images/config_uart1.png" />
+</div>
 <p>A outra maneira de configurar a comunicação serial feita por esses drivers sem alterar manualmente o conteúdo do endereço físico da memória é com o auxílio da biblioteca &quot;<strong>termios.h</strong>&quot;. Essa biblioteca possui uma ampla variedade de funções que configuram a comunicação serial com base nos parâmetros de uma estrutura &quot;<strong>termios</strong>&quot;, também definida nesta biblioteca.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Mais informações sobre a biblioteca &quot;<strong>termios.h</strong>&quot; podem ser encontrados em <a class="reference external" href="https://man7.org/linux/man-pages/man0/termios.h.0p.html">termios.h — Linux manual page</a>.</p>
+<p>Mais informações sobre a biblioteca &quot;<strong>termios.h</strong>&quot; podem ser encontrados em <a class="reference external" href="https://man7.org/linux/man-pages/man0/termios.h.0p.html">termios.h - Linux manual page</a>.</p>
 </div>
-<p>São dois os parâmetros da comunicação UART, além dos mencionados anteriormente, que se destacam, sendo eles o número mínimo de bits que se espera ler em cada tentativa de leitura e o tempo máximo de espera por um novo caractere após a transmissão do último caractere após o número mínimo de caracteres ser atingido.</p>
+<p>São dois os parâmetros da comunicação UART, além dos mencionados anteriormente, que se destacam, o número mínimo de bits que se espera ler em cada tentativa de leitura e o tempo máximo de espera por um novo caractere após a transmissão do último caractere e após o número mínimo de caracteres ser atingido.</p>
 <p>O número mínimo de bits que se espera ser lido e o tempo máximo de espera pelo próximo bit em décimos de segundo podem ser configurados com os seguintes comandos <code class="docutils literal notranslate"><span class="pre">termios.c_cc[VMIN]</span> <span class="pre">=</span></code> e <code class="docutils literal notranslate"><span class="pre">termios.c_cc[VTIME]</span> <span class="pre">=</span></code>, em que <code class="docutils literal notranslate"><span class="pre">termios</span></code> é o nome de sua estrutura. Para a configuração de velocidade recomenda-se usar a função <code class="docutils literal notranslate"><span class="pre">cfsetspeed()</span></code>.Já a função <code class="docutils literal notranslate"><span class="pre">cfmakeraw()</span></code> configura, além de outros parâmetros, o funcionamento sem bit de paridade e com 8 bits de dados. Após realizados os ajustes na estrutura é necessário ainda executar a função <code class="docutils literal notranslate"><span class="pre">cfsetattr()</span></code> para que as alterações sejam feitas na UART.</p>
 <p>Abaixo encontra-se o código utilizado para configurar a comunicação serial dos computadores Overo. Observe que nessa função de configuração não foi utilizada a flag &quot;O_NONBLOCK&quot; na função &quot;open()&quot; e foi definido como 1 o número mínimo de caracteres a serem retornados após uma tentativa de leitura, portanto caso o código seja executado e nenhuma informação seja enviada para este canal o processador aguardará eternamente por esse caractere. A contagem de tempo, definida como 0,1 segundo, só inicia após o número mínimo de caracteres ser atingido.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;</span>
@@ -261,6 +264,10 @@
 </pre></div>
 </div>
 <p><a class="reference download internal" download="" href="../../../_downloads/cc6e101fc26f2c3c635ddf31698cc5a9/config_UART.c"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">código</span> <span class="pre">comentado</span></code></a></p>
+<p>A figura a seguir apresenta um exemplo de configuração da UART1 por meio do codigo de configuração acima.</p>
+<div class="figure align-center">
+<img alt="../../../_images/config_uart1.png" src="../../../_images/config_uart1.png" />
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Com a finalidade simplificar a configuração do UART dentro de um outro código, foram efetuadas algumas modificações no código anterior para converte-lo em uma função para configuração de comunicação serial, como pode ser visto abaixo:</p>
