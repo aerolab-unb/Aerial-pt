@@ -5,7 +5,7 @@ Para que seja feita a configuração dos modens é necessário que este seja con
 
 Logo, para conectar um computador regular ao modem é necessário, primeiro, um cabo conversor de **USB para RS-232**, similar ao apresentado na imagem a seguir. Assim como na comunicação com o computador embarcado, recomenda-se a utilização de um computador Linux com o programa "**screen**"para a configuração dos modens.
 
-.. figure:: /img/Aerial/USBtoRS.png
+.. figure:: /img/Aerial/USBtoRS.jpg
     :align: center
 
 A configuração do modem só pode ser feita utilizando as configurações padrões do modem, ou seja, sempre que o modo configuração for ativado o modem retorna, temporariamente, para as configurações descritas no parágrafo anterior, após sair do modo de configuração o modem volta a operar de acordo com as configurações determinadas em seus registradores.

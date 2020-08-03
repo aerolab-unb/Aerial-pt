@@ -18,6 +18,8 @@ A figura abaixo contém uma foto do modem estudado neste capítulo e utilizado d
 
 .. figure:: /img/Aerial/p900.png
     :align: center
+    :width: 450px
+
 
 .. toctree::
    :maxdepth: 2

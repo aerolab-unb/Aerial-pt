@@ -1,19 +1,25 @@
 Comunicação Via Modem
 =====================
 
-Como explicado no capítulo 1 o computador embarcado será conectado a um modem
-para comunicar-se com as outras aeronaves e a estação terra. Neste capítulo será analisado
-mais detalhadamente a comunicação computador embarcado-modem e a comunicação entre
-os modens.
+Como explicado anteriormente, o computador embarcado será conectado a um modem para comunicar-se com as outras aeronaves e a estação terra. Nessa seção será analisado detalhadamente a comunicação entre o computador embarcado e o modem, assim como a comunicação entre os modens.
 
-O modem que será utilizado é o modem P900 da microhard cujo manual de referência pode ser obtido no link abaixo ou no próprio `site da fabricante`_. A figura abaixo contém uma foto do modem estudado neste capítulo e utilizado durante o trabalho.
+O modem que será utilizado é o modelo P900 da Microhard, cujo mais informações podem ser encontradas diretamente no site da `Microhard Corp`_. 
 
-.. _site da fabricante: http://www.microhardcorp.com/
+.. _Microhard Corp: http://www.microhardcorp.com/
 
-:download:`Download do Manual </aerial/vr01/4-modem/p900.pdf>`
+.. Note::
+    As especificações completas do modem P900, assim como instruções de utilização e configuração podem ser encontradas no Manual de Instruções (link abaixo).
+
+    * :download:`Download do Manual </aerial/vr01/4-modem/p900.pdf>`
+
+A figura abaixo contém uma foto do modem estudado neste capítulo e utilizado durante o trabalho.
+
+.. \ :sup:`|reg|`
 
 .. figure:: /img/Aerial/p900.png
     :align: center
+    :width: 450px
+
 
 .. toctree::
    :maxdepth: 2

@@ -179,12 +179,7 @@
   <div class="section" id="modem-e-computador-embarcado">
 <h1>Modem e Computador Embarcado<a class="headerlink" href="#modem-e-computador-embarcado" title="Permalink to this headline">¶</a></h1>
 <p>A conexão do computador embarcado com o modem é uma configuração de fundamental importância. O computador embarcado possui um pino para transmissão e outro para recepção via UART enquanto o modem apresenta conexões por meio de uma interface elétrica do tipo &quot;RS232&quot; ou &quot;RS485&quot;.</p>
-<p>Imagine, por exemplo, que o nosso computador embarcado fosse ligado diretamente a
-outro computador embarcado a 1 km de distância, nesse caso é razoável imaginar que a
-comunicação não iria funcionar, pois a tensão de 1,8 V e o excesso de ruído na linha de
-transmissão iriam maquiar os bits enviados. Para resolver problemas como isso surgiram as
-interfaces de comunicação, que definem apenas as características elétricas do processo de
-comunicação e não são o protocolos de comunicação.</p>
+<p>Imagine, por exemplo, que o nosso computador embarcado fosse ligado diretamente a outro computador embarcado a 1 km de distância, nesse caso é razoável imaginar que a comunicação não iria funcionar, pois a tensão de 1,8 V e o excesso de ruído na linha de transmissão iriam maquiar os bits enviados. Para resolver problemas como isso surgiram as interfaces de comunicação, que definem apenas as características elétricas do processo de comunicação e não são o protocolos de comunicação.</p>
 <div class="section" id="interface-rs-232">
 <h2>Interface RS-232<a class="headerlink" href="#interface-rs-232" title="Permalink to this headline">¶</a></h2>
 <p>A interface de comunicação RS-232 é a configuração padrão do modem é ela é um pouco mais complexa. Essa interface não tem o objetivo de transmitir o sinal a grandes distâncias, seu objetivo é, na verdade, além de diminuir as perdas causadas pelo ruído do sistema, organizar a informação enviada pelos dispositivos de modo que estes sinais possam ser trabalhados individualmente. Essa interface utiliza uma conexão com 9 pinos (ou fios) nomeados como &quot;DCD&quot;, &quot;RXD&quot;, &quot;TXD&quot;, &quot;DTR&quot;, &quot;GND&quot;, &quot;DSR&quot;, &quot;RTS&quot; e &quot;CTS &quot;. O ultimo pino da conexão não tem aplicação na interface RS-232.</p>

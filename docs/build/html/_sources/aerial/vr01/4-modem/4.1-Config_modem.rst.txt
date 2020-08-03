@@ -1,22 +1,24 @@
 Configuração do Modem
 =====================
 
-Para que seja feita a configuração dos modens é necessário que este seja conectado a um
-computador regular. A comunicação de um computador regular com o modem é feita, da mesma maneira que a comunicação de um computador regular com o computador embarcado, ou seja, por uma comunicação serial. Por padrão a comunicação serial do modem é feita por uma comunicação UART de 9600 baud/s, 8 bits de dados, sem bit de paridade e 1 bit de parada, além dessas configurações da comunicação UART é adotado o padrão físico de conexão serial RS-232.
+Para que seja feita a configuração dos modens é necessário que este seja conectado a um computador regular. A comunicação de um computador regular com o modem é feita da mesma maneira que a comunicação de um computador regular com o computador embarcado, ou seja, por uma comunicação serial. Por padrão a comunicação serial do modem é feita por uma comunicação UART de 9600 baud/s, 8 bits de dados, sem bit de paridade e 1 bit de parada. Além dessas configurações da comunicação UART, é adotado ainda o padrão físico de conexão serial RS-232.
 
-Logo para conectar um computador regular ao modem é necessário, primeiro, um cabo conversor de USB para RS-232. Assim como na comunicação com o computador embarcado recomenda-se a utilização de um computador linux com o programa "screen"para a configuração dos modens.
+Logo, para conectar um computador regular ao modem é necessário, primeiro, um cabo conversor de **USB para RS-232**, similar ao apresentado na imagem a seguir. Assim como na comunicação com o computador embarcado, recomenda-se a utilização de um computador Linux com o programa "**screen**"para a configuração dos modens.
 
-A configuração do modem só pode ser feita utilizando as configurações padrões do modem, ou seja, sempre que o modo configuração for ativado o modem retorna, temporariamente, para as configurações descritas no parágrafo anterior, após sair do modo de configuração o modem volta a operar de acordo com as configurações determinada em seus registradores.
+.. figure:: /img/Aerial/USBtoRS.jpg
+    :align: center
 
-O modo de configuração pode ser iniciado de duas maneiras. Em ambos os casos é necessário, primeiro, conectar o computador regular ao modem, iniciar o terminal do computador regular e executar o programa "screen".
+A configuração do modem só pode ser feita utilizando as configurações padrões do modem, ou seja, sempre que o modo configuração for ativado o modem retorna, temporariamente, para as configurações descritas no parágrafo anterior, após sair do modo de configuração o modem volta a operar de acordo com as configurações determinadas em seus registradores.
+
+O modo de configuração pode ser iniciado de duas maneiras. Em ambos os casos é necessário, primeiro, conectar o computador regular ao modem, iniciar o terminal do computador regular e executar o programa "screen", por exemplo:
 
 ::
- 
-  $ sudo screen /dev/<Nome do dispositivo USB> 9600
+
+  $ sudo screen /dev/ttyUSB0 9600
   
-No caso da linha de comando do exemplo apresentada anteriormente, o termo ``ttyUSB0`` foi a porta encontrada ao utilizar o comando ``dmesg`` e "9600" é a velocidade de comunicação em *baud*. Nesse momento a comunicação entre o modem e o computador deve ser estabelecida e assim que o modem for ligado os caracteres devem começar a ser impressos na tela do computador.  
+No caso da linha de comando do exemplo apresentada anteriormente, o termo ``ttyUSB0`` foi a porta encontrada ao utilizar o comando ``dmesg`` e "**9600**" é a velocidade de comunicação em *baud*. Nesse momento a comunicação entre o modem e o computador deve ser estabelecida e assim que o modem for ligado os caracteres devem começar a ser impressos na tela do computador.  
  
-A primeira maneira de acessar o modo de configuração é pressionar e segurar o botão "CONFIG", energizar o modem e só depois soltar o botão, a outra opção consiste em ligar o modem normalmente e, depois que este estiver no modo de dados (modo de operação regular) enviar a sequência de caracteres "+++" e esperar 1 segundo. Realizado qualquer um dos dois métodos a mensagem "NO CARRIER OK" deve aparecer no monitor indicando a entrada no modo de configuração. 
+A primeira maneira de acessar o modo de configuração é pressionar e segurar o botão "**CONFIG**", energizar o modem e só depois soltar o botão, a outra opção consiste em ligar o modem normalmente e, depois que este estiver no modo de dados (modo de operação regular) enviar a sequência de caracteres "**+++**" e esperar 1 segundo. Realizado qualquer um dos dois métodos a mensagem "NO CARRIER OK" deve aparecer no monitor indicando a entrada no modo de configuração. 
   
 .. figure:: /img/Aerial/NOCARRIER.png
     :align: center  
@@ -24,9 +26,9 @@ A primeira maneira de acessar o modo de configuração é pressionar e segurar o
 Comandos Básicos
 ~~~~~~~~~~~~~~~~
 
-Uma vez acessado o modo de configuração, podemos começar a dar comandos ao modem. Todos os comandos do modem possuem um prefixo de dois caracteres "AT", logo depois desses dois caracteres deve ser inserido o comando propriamente dito. Por exemplo, o comando que retorna para o modo de transmissão de dados é o comando "A", portanto para retornar ao modo de dados deve-se digitar "ATA".  
+Uma vez acessado o modo de configuração, podemos começar a dar comandos ao modem. Todos os comandos do modem possuem um prefixo de dois caracteres "**AT**", logo depois desses dois caracteres deve ser inserido o comando propriamente dito. Por exemplo, o comando que retorna para o modo de transmissão de dados é o comando "**A**", portanto para retornar ao modo de dados deve-se digitar ``ATA``.  
 
-O comando "I" retorna informações sobre o modem P900. O comando "login" protege o modo de configuração por uma senha a ser definida pelo usuário. O comando "M" ativa um menu do modo de operação rede, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. O comando "&Fn" configura o modem com alguma das configurações padrão de fábrica. O comando "&V" imprime os registradores do modem e seus valores. O comando "Sn=<value>" altera o valor do registrador "n". Por último o comando "&W" escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.  
+O comando "**I**" retorna informações sobre o modem P900. O comando "**login**" protege o modo de configuração por uma senha a ser definida pelo usuário. O comando "**M**" ativa um menu do modo de operação rede, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. O comando "**&Fn**" configura o modem com alguma das configurações padrão de fábrica. O comando "**&V**" imprime os registradores do modem e seus valores. O comando "**Sn=<value>**" altera o valor do registrador "**n**". Por último o comando "**&W**" escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.  
 
 Registradores
 ~~~~~~~~~~~~~
