@@ -3,12 +3,7 @@ Modem e Computador Embarcado
 
 A conexão do computador embarcado com o modem é uma configuração de fundamental importância. O computador embarcado possui um pino para transmissão e outro para recepção via UART enquanto o modem apresenta conexões por meio de uma interface elétrica do tipo "RS232" ou "RS485".
 
-Imagine, por exemplo, que o nosso computador embarcado fosse ligado diretamente a
-outro computador embarcado a 1 km de distância, nesse caso é razoável imaginar que a
-comunicação não iria funcionar, pois a tensão de 1,8 V e o excesso de ruído na linha de
-transmissão iriam maquiar os bits enviados. Para resolver problemas como isso surgiram as
-interfaces de comunicação, que definem apenas as características elétricas do processo de
-comunicação e não são o protocolos de comunicação.
+Imagine, por exemplo, que o nosso computador embarcado fosse ligado diretamente a outro computador embarcado a 1 km de distância, nesse caso é razoável imaginar que a comunicação não iria funcionar, pois a tensão de 1,8 V e o excesso de ruído na linha de transmissão iriam maquiar os bits enviados. Para resolver problemas como isso surgiram as interfaces de comunicação, que definem apenas as características elétricas do processo de comunicação e não são o protocolos de comunicação.
 
 Interface RS-232
 ~~~~~~~~~~~~~~~~
