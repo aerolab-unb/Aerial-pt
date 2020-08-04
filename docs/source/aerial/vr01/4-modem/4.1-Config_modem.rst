@@ -1,7 +1,9 @@
 Configuração do Modem
 =====================
 
-Para que seja feita a configuração dos modens é necessário que este seja conectado a um computador regular. A comunicação de um computador regular com o modem é feita da mesma maneira que a comunicação de um computador regular com o computador embarcado, ou seja, por uma comunicação serial. Por padrão a comunicação serial do modem é feita por uma comunicação UART de 9600 baud/s, 8 bits de dados, sem bit de paridade e 1 bit de parada. Além dessas configurações da comunicação UART, é adotado ainda o padrão físico de conexão serial RS-232.
+.. PX4 and P900 connection https://discuss.px4.io/t/issue-connecting-px4-to-qgroundcontrol-with-microhard-p900/17545
+
+Para que seja feita a configuração dos modens é necessário que este seja conectado a um computador regular. A comunicação de um computador regular com o modem é feita da mesma maneira que a comunicação de um computador regular com o computador embarcado, ou seja, por uma comunicação serial. Por padrão a comunicação serial do modem é feita por uma comunicação UART de 9600 baud/s, 8 bits de dados, sem bit de paridade e 1 bit de parada (**8N1**). Além dessas configurações da comunicação UART, é adotado ainda o padrão físico de conexão serial RS-232.
 
 Logo, para conectar um computador regular ao modem é necessário, primeiro, um cabo conversor de **USB para RS-232**, similar ao apresentado na imagem a seguir. Assim como na comunicação com o computador embarcado, recomenda-se a utilização de um computador Linux com o programa "**screen**"para a configuração dos modens.
 
