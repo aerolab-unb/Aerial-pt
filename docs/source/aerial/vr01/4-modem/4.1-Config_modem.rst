@@ -3,6 +3,7 @@ Configuração do Modem
 
 .. PX4 and P900 connection https://discuss.px4.io/t/issue-connecting-px4-to-qgroundcontrol-with-microhard-p900/17545
 
+
 Para que seja feita a configuração dos modens é necessário que este seja conectado a um computador regular. A comunicação de um computador regular com o modem é feita da mesma maneira que a comunicação de um computador regular com o computador embarcado, ou seja, por uma comunicação serial. Por padrão a comunicação serial do modem é feita por uma comunicação UART de 9600 baud/s, 8 bits de dados, sem bit de paridade e 1 bit de parada (**8N1**). Além dessas configurações da comunicação UART, é adotado ainda o padrão físico de conexão serial RS-232.
 
 Logo, para conectar um computador regular ao modem é necessário, primeiro, um cabo conversor de **USB para RS-232**, similar ao apresentado na imagem a seguir. Assim como na comunicação com o computador embarcado, recomenda-se a utilização de um computador Linux com o programa "**screen**"para a configuração dos modens.
@@ -30,7 +31,20 @@ Comandos Básicos
 
 Uma vez acessado o modo de configuração, podemos começar a dar comandos ao modem. Todos os comandos do modem possuem um prefixo de dois caracteres "**AT**", logo depois desses dois caracteres deve ser inserido o comando propriamente dito. Por exemplo, o comando que retorna para o modo de transmissão de dados é o comando "**A**", portanto para retornar ao modo de dados deve-se digitar ``ATA``.  
 
-O comando "**I**" retorna informações sobre o modem P900. O comando "**login**" protege o modo de configuração por uma senha a ser definida pelo usuário. O comando "**M**" ativa um menu do modo de operação rede, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. O comando "**&Fn**" configura o modem com alguma das configurações padrão de fábrica. O comando "**&V**" imprime os registradores do modem e seus valores. O comando "**Sn=<value>**" altera o valor do registrador "**n**". Por último o comando "**&W**" escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.  
+O comando ``ATI`` retorna informações sobre o modem P900. O comando ``ATlogin`` protege as configurações e o acesso ao modo de comando por uma senha a ser definida pelo usuário. O comando ``ATM`` ativa um menu do modo de operação rede, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. Já o comando ``AT&V`` imprime os nomes e valores atuais dos registradores **S**, enquanto o comando ``AT&V1`` exibe um conjunto completo de parâmetros avançados do usuário. Vale destacar também o comando ``AT&W``, ele escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.  
+
+.. A maior parte das configurações do modem são feitas atraves da configuração dos Registradores (**S**). O comando "**Sn=<value>**" altera o valor do registrador "**n**". 
+
+.. figure:: /img/Aerial/P900_Fn.png
+    :align: right  
+    :width: 180px
+
+Por ultimo, o comando ``AT&Fn``, em *n* é o valor que representa os perfis de configuração (imagem a direita), permite a configuração rapida do sistema, definindo configurações de fabrica recomendadas para cada modo de operação. Tais configurações de fábrica alteram todas as configurações necessárias para iniciar a comunicação padrão com outros tipos de unidades. Este comando e os modos de operação seram explicados de forma detalhada adiante.
+
+
+
+.. Note::
+  A seção 6.1 (pagina 80) do manual de instruções do modem P900 apresenta mais detalhes a respeito dos comandos AT. 
 
 Registradores
 ~~~~~~~~~~~~~
