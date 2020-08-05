@@ -276,7 +276,8 @@ Por último, o diretório "**/sys**" é o diretório que contém informações d
 Referências
 -----------
 
-   	* PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+    * PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
 
     * `Linux man pages online`_ - man7.org
 

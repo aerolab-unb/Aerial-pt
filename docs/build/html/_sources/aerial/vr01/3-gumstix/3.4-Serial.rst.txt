@@ -183,7 +183,8 @@ Como os dois dispositivos são idênticos, será necessário conectar o pino 10 
 
 A figura a seguir apresenta o resultado do teste dos códigos apresentados. Nessa figura podemos ver dois terminais do Linux, cada um vinculado a um computador embarcado, e ambos chamam a mesma função, logo em seguida vemos a mensagem lida por cada um dos dispositivos.
 
-.. figura
+.. figure:: /img/Aerial/UART_com.png
+    :align: center
 
 Referências
 -----------

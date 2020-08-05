@@ -208,8 +208,16 @@
 </div>
 <div class="section" id="registradores">
 <h2>Registradores<a class="headerlink" href="#registradores" title="Permalink to this headline">¶</a></h2>
-<p>O modem apresenta muitos registradores, não será relatado todos aqui, entretanto quase todas as características do modem podem ser alteradas, porém, para faze-las, recomenda-se consultar o manual para especificações detalhadas.</p>
-<p>O caractere para entrada no modo de configuração pode ser desabilitado/alterado no registrador &quot;2&quot;. A função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores &quot;101&quot;, &quot;102&quot; e &quot;103&quot;, respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registrador &quot;110&quot; e &quot;111&quot;, respectivamente. O tipo de modo de operação é determinado pelo registrador &quot;133&quot;. O modo de comunicação serial é determinado pelo registrador &quot;142&quot;. O modo de acesso ao canal de comunicação pode ser alterado no registrador &quot;244&quot;.</p>
+<p>A maior parte das configurações do modem são feitas atraves da configuração dos Registradores (<strong>S</strong>). Para isso, deve-se utilizar o comando <code class="docutils literal notranslate"><span class="pre">ATSn=&lt;value&gt;</span></code>, no qual a letra &quot;<em>n</em>&quot; deve ser trocada pelo valor do registrador desejado. Destacasse  ainda os comandos <code class="docutils literal notranslate"><span class="pre">ATSn?</span></code>, consulta o valor atual do registrador <em>n</em>, e <code class="docutils literal notranslate"><span class="pre">ATSn/?</span></code>, disponibiliza mais informações sobre o registrador <em>n</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>O modem apresenta muitos registradores, portanto nem todos seram relatados aqui. Mais informações sobre a configuração dos registradores estão disponiveis na seção 6.2 (pagina 83) do manual de instruções do modem P900.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Quase todas as características do modem podem ser alteradas atraves dos registradores, todavia, para faze-las, recomenda-se consultar o manual para especificações detalhadas.</p>
+</div>
+<p>O registrador &quot;<strong>S0</strong>&quot; é usado para selecionar o modo no qual o dispositivo é ligado, podendo ser configurado para iniciar no modo de comando ou no modo de dados (padrão). O caractere de escape (0-255) usado na detecção de escape para colocar o modem offline pode ser desabilitado/alterado no registrador &quot;<strong>S2</strong>&quot;. Já a função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores &quot;<strong>S101</strong>&quot;, &quot;<strong>S102</strong>&quot; e &quot;<strong>S103</strong>&quot;, respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registrador &quot;<strong>S110</strong>&quot; e &quot;<strong>S111</strong>&quot;, respectivamente. O tipo de modo de operação é determinado pelo registrador &quot;<strong>S133</strong>&quot;. Enquanto o modo de comunicação serial é determinado pelo registrador &quot;<strong>142</strong>&quot;. Por ultimo, o modo de acesso ao canal de comunicação pode ser alterado no registrador &quot;<strong>244</strong>&quot;.</p>
 <p>A tabela a seguir mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação do tipo rede funcione para a nossa aplicação.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -272,22 +280,33 @@
 </div>
 <div class="section" id="modos-de-operacao">
 <h2>Modos de Operação<a class="headerlink" href="#modos-de-operacao" title="Permalink to this headline">¶</a></h2>
-<p>O modem possui três modos de operação: modo de rede, modo ponto-a-ponto e modo ponto-a-multiponto.</p>
-<p>O modo de rede é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Em um modo de rede Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o coordenador primário, o coordenador secundário , o coordenador de espera e o remoto.</p>
+<p>O modem possui três modos de operação: <strong>modo de rede</strong>, <strong>modo ponto-a-ponto</strong> e <strong>modo ponto-a-multiponto</strong>.</p>
+<div class="section" id="modo-malha">
+<h3>Modo malha<a class="headerlink" href="#modo-malha" title="Permalink to this headline">¶</a></h3>
+<p>O modo rede ou malha (<em>Mesh Network</em>) é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura. Os rádios podem se comunicar diretamente ou, se necessário, por meio de outro nó da malha.</p>
+<p>Nas situações em que um caminho direto entre os dispositivos de origem e de destino não está disponível, o roteamento pode encontrar rotas para assegurar que os dados sejam entregues ao destino necessário. O modo rede pode ainda ser configurado de forma que caminhos redundantes estejam disponíveis para transferência de dados, rotas desconhecidas podem ser descobertas automaticamente e o melhor caminho é usado para alcançar o destino pretendido.</p>
+<p>O modo de operação malha é ativada configurando o registrador <strong>S133</strong> como &quot;2&quot; ou &quot;3&quot;. A imagem abaixo exemplifica o funcionamento do modo de operação rede, onde existem varios caminhos que os dados podem seguir.</p>
+<div class="figure align-center">
+<img alt="../../../_images/Mesh_Network.png" src="../../../_images/Mesh_Network.png" />
 </div>
-<p>O modo de configuração ponto-a-ponto é um modo de operação em que a comunicação é apenas entre um modem &quot;mestre&quot; e um modem &quot;escravo&quot;. Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.</p>
-<p>E, por último, existe o modo ponto-a-multiponto onde um modem mestre se comunica com vários modens escravos, toda a informação originada dos escravos é direcionada ao mestre e, quando necessário ou desejável, cabe ao mestre repassar essa informação ao destino final, nessa topologia toda a informação passa pelo mestre, que controla a rede.</p>
-<p>Evidentemente, para a nossa aplicação, a topologia mais interessante é a topologia de rede. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.</p>
-</div>
-<div class="section" id="tipos-de-unidades-no-modo-rede-de-operacao">
-<h2>Tipos de unidades no modo rede de Operação<a class="headerlink" href="#tipos-de-unidades-no-modo-rede-de-operacao" title="Permalink to this headline">¶</a></h2>
+<p>No modo de rede da Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o <strong>coordenador primário</strong>, o <strong>coordenador secundário</strong>, o <strong>coordenador de espera</strong> e o remoto.</p>
 <p>O papel do <em>coordenador principal</em> é fornecer sincronização de rede para o sistema, o que garante que todos unidades estão ativas e capazes de se comunicar conforme necessário. Em qualquer modo de rede, só pode haver um único coordenador primário. Coordenadores adicionais podem ser implantados para redundância e/ou para ampliação da cobertura da rede para áreas não atendidas pelo coordenador primário. Para quaisquer unidades poderem comunicar em um modo de rede, eles devem ouvir dados de sincronização de um coordenador.</p>
 <p>Os <em>coordenadores secundários</em> são usados ​​para estender a cobertura do coordenador principal. Mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. Um coordenador secundário deve se comunicar com o coordenador principal e/ou outro coordenador secundário para garantir a sincronização adequada com as unidades que atende.</p>
 <p>Um <em>coordenador de espera</em> monitora o nível de sincronização da rede e, quando detecta que o coordenador principal fica offline ou não está realizando suas tarefas de sincronização de rede por qualquer motivo, o coordenador de espera pode assumir o controle.</p>
 <p>Um <em>remoto</em> (escravo) é qualquer unidade que não seja um coordenador. Um controle remoto geralmente está conectado a um dispositivo final, mas também pode ser implantado para fornecer caminhos redundantes para alcançar outros dispositivos na rede. Como em qualquer outro dispositivo da rede, o controle remoto pode ser usado para fornecer serviços de roteamento. Embora todas as unidades possam ser configuradas para fornecer serviços de roteamento, não é eficiente fazê-lo, pois haveria que lidar com uma grande sobrecarga de largura de banda da rede.</p>
+</div>
+<div class="section" id="modo-ponto-a-ponto">
+<h3>Modo ponto-a-ponto<a class="headerlink" href="#modo-ponto-a-ponto" title="Permalink to this headline">¶</a></h3>
+<p>O modo de configuração ponto-a-ponto é um modo de operação em que a comunicação é apenas entre um modem &quot;mestre&quot; e um modem &quot;escravo&quot;. Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.</p>
+</div>
+<div class="section" id="modo-ponto-a-multiponto">
+<h3>Modo ponto-a-multiponto<a class="headerlink" href="#modo-ponto-a-multiponto" title="Permalink to this headline">¶</a></h3>
+<p>E, por último, existe o modo ponto-a-multiponto onde um modem mestre se comunica com vários modens escravos, toda a informação originada dos escravos é direcionada ao mestre e, quando necessário ou desejável, cabe ao mestre repassar essa informação ao destino final, nessa topologia toda a informação passa pelo mestre, que controla a rede.</p>
+</div>
+<div class="section" id="conclusao">
+<h3>Conclusão<a class="headerlink" href="#conclusao" title="Permalink to this headline">¶</a></h3>
+<p>Evidentemente, para a nossa aplicação, a topologia mais interessante é a topologia de rede. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.</p>
+</div>
 </div>
 <div class="section" id="modos-de-acesso-ao-canal">
 <h2>Modos de Acesso ao Canal<a class="headerlink" href="#modos-de-acesso-ao-canal" title="Permalink to this headline">¶</a></h2>
