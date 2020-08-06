@@ -196,7 +196,7 @@
 <div class="section" id="comandos-basicos">
 <h2>Comandos Básicos<a class="headerlink" href="#comandos-basicos" title="Permalink to this headline">¶</a></h2>
 <p>Uma vez acessado o modo de configuração, podemos começar a dar comandos ao modem. Todos os comandos do modem possuem um prefixo de dois caracteres &quot;<strong>AT</strong>&quot;, logo depois desses dois caracteres deve ser inserido o comando propriamente dito. Por exemplo, o comando que retorna para o modo de transmissão de dados é o comando &quot;<strong>A</strong>&quot;, portanto para retornar ao modo de dados deve-se digitar <code class="docutils literal notranslate"><span class="pre">ATA</span></code>.</p>
-<p>O comando <code class="docutils literal notranslate"><span class="pre">ATI</span></code> retorna informações sobre o modem P900. O comando <code class="docutils literal notranslate"><span class="pre">ATlogin</span></code> protege as configurações e o acesso ao modo de comando por uma senha a ser definida pelo usuário. O comando <code class="docutils literal notranslate"><span class="pre">ATM</span></code> ativa um menu do modo de operação rede, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. Já o comando <code class="docutils literal notranslate"><span class="pre">AT&amp;V</span></code> imprime os nomes e valores atuais dos registradores <strong>S</strong>, enquanto o comando <code class="docutils literal notranslate"><span class="pre">AT&amp;V1</span></code> exibe um conjunto completo de parâmetros avançados do usuário. Vale destacar também o comando <code class="docutils literal notranslate"><span class="pre">AT&amp;W</span></code>, ele escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.</p>
+<p>O comando <code class="docutils literal notranslate"><span class="pre">ATI</span></code> retorna informações sobre o modem P900. O comando <code class="docutils literal notranslate"><span class="pre">ATlogin</span></code> protege as configurações e o acesso ao modo de comando por uma senha a ser definida pelo usuário. O comando <code class="docutils literal notranslate"><span class="pre">ATM</span></code> ativa um menu do modo de operação de rede malha, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. Já o comando <code class="docutils literal notranslate"><span class="pre">AT&amp;V</span></code> imprime os nomes e valores atuais dos registradores <strong>S</strong>, enquanto o comando <code class="docutils literal notranslate"><span class="pre">AT&amp;V1</span></code> exibe um conjunto completo de parâmetros avançados do usuário. Vale destacar também o comando <code class="docutils literal notranslate"><span class="pre">AT&amp;W</span></code>, ele escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.</p>
 <div class="figure align-right">
 <a class="reference internal image-reference" href="../../../_images/P900_Fn.png"><img alt="../../../_images/P900_Fn.png" src="../../../_images/P900_Fn.png" style="width: 180px;" /></a>
 </div>
@@ -218,7 +218,7 @@
 <p>Quase todas as características do modem podem ser alteradas atraves dos registradores, todavia, para faze-las, recomenda-se consultar o manual para especificações detalhadas.</p>
 </div>
 <p>O registrador &quot;<strong>S0</strong>&quot; é usado para selecionar o modo no qual o dispositivo é ligado, podendo ser configurado para iniciar no modo de comando ou no modo de dados (padrão). O caractere de escape (0-255) usado na detecção de escape para colocar o modem offline pode ser desabilitado/alterado no registrador &quot;<strong>S2</strong>&quot;. Já a função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores &quot;<strong>S101</strong>&quot;, &quot;<strong>S102</strong>&quot; e &quot;<strong>S103</strong>&quot;, respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registrador &quot;<strong>S110</strong>&quot; e &quot;<strong>S111</strong>&quot;, respectivamente. O tipo de modo de operação é determinado pelo registrador &quot;<strong>S133</strong>&quot;. Enquanto o modo de comunicação serial é determinado pelo registrador &quot;<strong>142</strong>&quot;. Por ultimo, o modo de acesso ao canal de comunicação pode ser alterado no registrador &quot;<strong>244</strong>&quot;.</p>
-<p>A tabela a seguir mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação do tipo rede funcione para a nossa aplicação.</p>
+<p>A tabela a seguir mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação do tipo de rede malha funcione para a nossa aplicação.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 26%" />
@@ -278,49 +278,121 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="modos-de-operacao">
-<h2>Modos de Operação<a class="headerlink" href="#modos-de-operacao" title="Permalink to this headline">¶</a></h2>
-<p>O modem possui três modos de operação: <strong>modo de rede</strong>, <strong>modo ponto-a-ponto</strong> e <strong>modo ponto-a-multiponto</strong>.</p>
-<div class="section" id="modo-malha">
-<h3>Modo malha<a class="headerlink" href="#modo-malha" title="Permalink to this headline">¶</a></h3>
-<p>O modo rede ou malha (<em>Mesh Network</em>) é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura. Os rádios podem se comunicar diretamente ou, se necessário, por meio de outro nó da malha.</p>
-<p>Nas situações em que um caminho direto entre os dispositivos de origem e de destino não está disponível, o roteamento pode encontrar rotas para assegurar que os dados sejam entregues ao destino necessário. O modo rede pode ainda ser configurado de forma que caminhos redundantes estejam disponíveis para transferência de dados, rotas desconhecidas podem ser descobertas automaticamente e o melhor caminho é usado para alcançar o destino pretendido.</p>
-<p>O modo de operação malha é ativada configurando o registrador <strong>S133</strong> como &quot;2&quot; ou &quot;3&quot;. A imagem abaixo exemplifica o funcionamento do modo de operação rede, onde existem varios caminhos que os dados podem seguir.</p>
+<div class="section" id="topologia-da-transmissao-de-dados">
+<h2>Topologia da transmissão de dados<a class="headerlink" href="#topologia-da-transmissao-de-dados" title="Permalink to this headline">¶</a></h2>
+<p>O modem Microhard P900 pode ser configurado para operar em três topologias de transmissão de dados: <strong>configuração de malha</strong>, <strong>configuração ponto-a-ponto</strong> e <strong>configuração ponto-a-multiponto</strong>.</p>
+<div class="section" id="configuracao-de-malha">
+<h3>Configuração de malha<a class="headerlink" href="#configuracao-de-malha" title="Permalink to this headline">¶</a></h3>
+<p>A <strong>configuração de malha</strong> (<em>Mesh Network</em>) é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura. Os rádios podem se comunicar diretamente ou, se necessário, por meio de outro nó da malha.</p>
+<p>Nas situações em que um caminho direto entre os dispositivos de origem e de destino não está disponível, o roteamento pode encontrar rotas para assegurar que os dados sejam entregues ao destino necessário. A rede de malha pode ainda ser configurado de forma que caminhos redundantes estejam disponíveis para transferência de dados, rotas desconhecidas podem ser descobertas automaticamente e o melhor caminho é usado para alcançar o destino pretendido.</p>
+<p>A configuração de malha é ativada configurando o registrador <strong>S133</strong> como &quot;2&quot; ou &quot;3&quot;. A imagem abaixo exemplifica o funcionamento do modo de operação da malha, onde existem varios caminhos que os dados podem seguir.</p>
 <div class="figure align-center">
 <img alt="../../../_images/Mesh_Network.png" src="../../../_images/Mesh_Network.png" />
 </div>
-<p>No modo de rede da Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o <strong>coordenador primário</strong>, o <strong>coordenador secundário</strong>, o <strong>coordenador de espera</strong> e o remoto.</p>
-<p>O papel do <em>coordenador principal</em> é fornecer sincronização de rede para o sistema, o que garante que todos unidades estão ativas e capazes de se comunicar conforme necessário. Em qualquer modo de rede, só pode haver um único coordenador primário. Coordenadores adicionais podem ser implantados para redundância e/ou para ampliação da cobertura da rede para áreas não atendidas pelo coordenador primário. Para quaisquer unidades poderem comunicar em um modo de rede, eles devem ouvir dados de sincronização de um coordenador.</p>
-<p>Os <em>coordenadores secundários</em> são usados ​​para estender a cobertura do coordenador principal. Mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. Um coordenador secundário deve se comunicar com o coordenador principal e/ou outro coordenador secundário para garantir a sincronização adequada com as unidades que atende.</p>
-<p>Um <em>coordenador de espera</em> monitora o nível de sincronização da rede e, quando detecta que o coordenador principal fica offline ou não está realizando suas tarefas de sincronização de rede por qualquer motivo, o coordenador de espera pode assumir o controle.</p>
-<p>Um <em>remoto</em> (escravo) é qualquer unidade que não seja um coordenador. Um controle remoto geralmente está conectado a um dispositivo final, mas também pode ser implantado para fornecer caminhos redundantes para alcançar outros dispositivos na rede. Como em qualquer outro dispositivo da rede, o controle remoto pode ser usado para fornecer serviços de roteamento. Embora todas as unidades possam ser configuradas para fornecer serviços de roteamento, não é eficiente fazê-lo, pois haveria que lidar com uma grande sobrecarga de largura de banda da rede.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mais informações sobre a Configuração de Malha podem ser encontradas no capitulo 3.0 - <em>Mesh Configuration</em> (pagina 33) do manual de instruções do modem P900.</p>
 </div>
-<div class="section" id="modo-ponto-a-ponto">
-<h3>Modo ponto-a-ponto<a class="headerlink" href="#modo-ponto-a-ponto" title="Permalink to this headline">¶</a></h3>
-<p>O modo de configuração ponto-a-ponto é um modo de operação em que a comunicação é apenas entre um modem &quot;mestre&quot; e um modem &quot;escravo&quot;. Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.</p>
 </div>
-<div class="section" id="modo-ponto-a-multiponto">
-<h3>Modo ponto-a-multiponto<a class="headerlink" href="#modo-ponto-a-multiponto" title="Permalink to this headline">¶</a></h3>
-<p>E, por último, existe o modo ponto-a-multiponto onde um modem mestre se comunica com vários modens escravos, toda a informação originada dos escravos é direcionada ao mestre e, quando necessário ou desejável, cabe ao mestre repassar essa informação ao destino final, nessa topologia toda a informação passa pelo mestre, que controla a rede.</p>
+<div class="section" id="configuracao-ponto-a-ponto">
+<h3>Configuração ponto-a-ponto<a class="headerlink" href="#configuracao-ponto-a-ponto" title="Permalink to this headline">¶</a></h3>
+<p>Uma rede ponto-a-ponto (PTP) é um modo de operação em que a comunicação é apenas entre um modem &quot;mestre&quot; e um modem &quot;escravo&quot;. Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.</p>
+<p>Uma rede ponto-a-ponto (PTP) é um modo de operação em que a rede cria um caminho para transferir dados entre o ponto A e o ponto B, onde o ponto A pode ser chamado de modem mestre e o ponto B de modem escravo. Essa rede PTP também pode envolver um ou mais repetidores (com capacidade de armazenar e encaminhar), caso necessario.</p>
+<p>Uma configuração de PTP pode ainda atuar de uma forma mais dinâmico, podendo haver muitos escravos (e repetidores) dentro de uma rede, todavia, o mestre pode ter seu &quot;Endereço de destino&quot; (registrador S140) alterado quando necessário para se comunicar com um escravo específico. A configuração ponto a ponto é ativada configurando o registro S133 como 1 (ATS133 = 1, Tipo de rede.</p>
+<p>A figura a seguir ilustra o funcionamento do modo de operação Ponto-a-Ponto, com e sem a intermediação de um repetidor.</p>
+<div class="figure align-center">
+<img alt="../../../_images/PTP_Network.png" src="../../../_images/PTP_Network.png" />
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mais informações sobre a Configuração de Ponto-a-Ponto podem ser encontradas no capitulo 4.0 - <em>Point to Point Configuration</em> (pagina 57) do manual de instruções do modem P900.</p>
+</div>
+</div>
+<div class="section" id="configuracao-ponto-a-multiponto">
+<h3>Configuração ponto-a-multiponto<a class="headerlink" href="#configuracao-ponto-a-multiponto" title="Permalink to this headline">¶</a></h3>
+<p>E, por último, existe a rede ponto-a-multiponto (PTM), onde o modem mestre cria um caminho para transferir dados a vários modems remotos. Os modems remotos podem ser simplesmente escravos com os quais o mestre se comunica diretamente e/ou repetidores usados para se comunicar com modens escravos. Todo e qualquer repetidor pode, também, atuar como escravos neste tipo de rede, ou seja, os repetidores não estão apenas armazenando e encaminhando dados, mas também agindo como Escravos. Esses repetidores podem ser referidos como &quot;Repetidores/Escravos&quot;. A configuração ponto-a-multiponto é ativado configurando o registro S133 como 0 (ATS133 = 0, Tipo de rede).</p>
+<p>O diagrama abaixo demonstra o funcionamento da topologia Ponto-a-Multiponto.</p>
+<div class="figure align-center">
+<img alt="../../../_images/PTM_Network.png" src="../../../_images/PTM_Network.png" />
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mais informações sobre a Configuração de Ponto-a-Multiponto podem ser encontradas no capitulo 5.0 - <em>Point to Multipoint Configuration</em> (pagina 68) do manual de instruções do modem P900.</p>
+</div>
 </div>
 <div class="section" id="conclusao">
 <h3>Conclusão<a class="headerlink" href="#conclusao" title="Permalink to this headline">¶</a></h3>
-<p>Evidentemente, para a nossa aplicação, a topologia mais interessante é a topologia de rede. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.</p>
+<p>Para a nossa aplicação, a topologia mais interessante é a topologia de malha. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.</p>
 </div>
+</div>
+<div class="section" id="explorando-a-configuracao-de-malha">
+<h2>Explorando a configuração de malha<a class="headerlink" href="#explorando-a-configuracao-de-malha" title="Permalink to this headline">¶</a></h2>
+<p>Dado que utilizaremos a topologia de malha para a transmissão de dados no projeto, nessa seção iremos examinar e detalhar as principais características e funcionalidades dessa topologia em especifico.</p>
+<div class="section" id="modos-de-operacao-tipos-de-unidades">
+<h3>Modos de operação/tipos de unidades<a class="headerlink" href="#modos-de-operacao-tipos-de-unidades" title="Permalink to this headline">¶</a></h3>
+<p>No modo de malha da Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o <strong>coordenador primário</strong>, o <strong>coordenador secundário</strong>, o <strong>coordenador de espera</strong> e o <strong>remoto</strong>.</p>
+<p>O papel do <strong>coordenador principal</strong> é prover sincronização de rede para o sistema, o que garante que todas as unidades estejam ativas e preparados para se comunicar conforme necessário. Em qualquer modo de malha, só pode haver um único coordenador primário. Coordenadores adicionais podem ser estabelecidos para redundância e/ou para estender a cobertura da rede a áreas não atendidas pelo coordenador principal. Para quaisquer unidades poderem se comunicar em uma malha, elas devem ser capazes de captar os dados de sincronização de um coordenador.</p>
+<p>O diagrama abaixo simboliza uma unidade configurada como coordenador principal. Qualquer outra unidade de malha que possa receber os dados do coordenador principal, pode participar da rede de malha.</p>
+<div class="figure align-center">
+<img alt="../../../_images/Primary_Coordinator.png" src="../../../_images/Primary_Coordinator.png" />
+</div>
+<p>Os <strong>coordenadores secundários</strong> são utilizados para estender a cobertura do coordenador principal. Aliás, mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. O Coordenador Secundário deve se comunicar com o Coordenador Primário e/ou outro Coordenador Secundário para fornecer a sincronização adequada as unidades que atende.</p>
+<p>Embora, toda e qualquer unidade em uma rede malha possa ser designada como coordenadora secundária, o número e o posicionamento dos coordenadores implementados devem ser levados em consideração. A razão para tal é que a sincronização de rede é obtida enviando ocasionalmente pacotes de sincronização, logo, quanto maior o número de coordenadores implantados, mais dados de sincronização serão transmitidos na rede e maior o potencial de colisões. Ou seja, adicionar um número excessivo de coordenadores pode não ser a melhor prática de design.</p>
+<p>Coordenadores secundários são candidatos ideais para atuarem no roteamento. Como eles geralmente estão posicionados para fornecer cobertura para várias unidades, mais de uma unidade pode ser configurada para roteamento e, caso uma unidade fique offline, outra com o roteamento também ativado poderá continuar a fornecer os serviços de roteamento.</p>
+<p>A ilustração a seguir mostra a cobertura da rede sendo estendida adicionando um coordenador secundário.</p>
+<div class="figure align-center">
+<img alt="../../../_images/Secondary_Coordinator.png" src="../../../_images/Secondary_Coordinator.png" />
+</div>
+<p>Um <strong>coordenador de espera</strong> atua monitorando o nível de sincronização da rede e, quando detecta que o coordenador principal está offline ou não está realizando suas tarefas de sincronização de rede, o coordenador de espera assume o controle. Vale ressaltar que somente um coordenador de espera pode ser usado em uma rede de malha.</p>
+<p>O Coordenador de espera monitora a integridade do coordenador principal, analisandp os pacotes de sincronização. Quando um número definido de <em>frames</em> já passou e nenhum dado de sincronização é recebido, o coordenador de espera pode intervir e começar a enviar dados de sincronização antes que a rede fique offline. Isso permite uma transição direta para o coordenador de espera, já que esperar que a rede perca a sincronização afetaria significativamente a rede, pois todo o processo de sincronização precisaria ser reiniciado.</p>
+<p>Os coordenadores principal e de reserva devem estar localizados em um local que ofereça a maior cobertura de rede, um local físico seguro para evitar violações e próximo a uma fonte de energia adequada e confiável.</p>
+<p>O diagrama abaixo mostra a rede de malha com a adição do coordenador de espera para fornecer um backup, caso o coordenador principal apresente falhas.</p>
+<div class="figure align-center">
+<img alt="../../../_images/Standby_Coordinator.png" src="../../../_images/Standby_Coordinator.png" />
+</div>
+<p>Um <em>remoto</em> (escravo) é qualquer unidade que não seja um coordenador. Um controle remoto geralmente está conectado a um dispositivo final, mas também pode ser implantado para fornecer caminhos redundantes para alcançar outros dispositivos na rede. Como em qualquer outro dispositivo da rede, o controle remoto pode ser usado para fornecer serviços de roteamento. Embora todas as unidades possam ser configuradas para fornecer serviços de roteamento, não é eficiente fazê-lo, pois haveria que lidar com uma grande sobrecarga de largura de banda da rede.</p>
+<div class="figure align-center">
+<img alt="../../../_images/Remote.png" src="../../../_images/Remote.png" />
+</div>
+<p>As unidades podem ser configuradas para desempenhar as várias funções apresentadas configurando o registro S101 da seguinte maneira:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 66%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Command</p></td>
+<td><p>Setting</p></td>
+</tr>
+<tr class="row-even"><td><p>ATS101 = 2</p></td>
+<td><p>Remote (Slave)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ATS101 = 4</p></td>
+<td><p>Primary coordinator</p></td>
+</tr>
+<tr class="row-even"><td><p>ATS101 = 5</p></td>
+<td><p>Secondary coordinator</p></td>
+</tr>
+<tr class="row-odd"><td><p>ATS101 = 6</p></td>
+<td><p>Standby Coordinator</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="modos-de-acesso-ao-canal">
-<h2>Modos de Acesso ao Canal<a class="headerlink" href="#modos-de-acesso-ao-canal" title="Permalink to this headline">¶</a></h2>
+<h3>Modos de Acesso ao Canal<a class="headerlink" href="#modos-de-acesso-ao-canal" title="Permalink to this headline">¶</a></h3>
 <p>Existem, também, três modos de acesso ao canal, &quot;Aloha&quot;, &quot;RTS/CTS&quot; e &quot;TDMA&quot;.</p>
 <p>O modo &quot;Aloha&quot; é um protocolo de acesso ao meio no qual sempre que um dispositivos possui dados a serem enviados esse dispositivo aguarda um período aleatório e tenta enviar esse dado. Caso, nessa tentativa, seja recebido pelo dispositivo algum outro sinal é assumido que houve colisão de dados e portanto a transmissão de dados é abortada, aguardam-se, novamente, um período de tempo aleatório até que a mensagem seja novamente enviada. O processo se repete até que o dado tenha sido inteiramente enviado sem que haja colisão.</p>
-<p>O modo &quot;RTS/CTS&quot; do inglês Request to Send / Clear to Send é um modo que tem o objetivo de diminuir a colisão de transferência de dados, inclusive devido ao problema do terminal escondido. Nesse modo cada modem escravo, quando possui dados para enviar, solicita permissão de envio para o modem mestre por um canal alternativo, o modem mestre verifica se o canal principal está ocupado e responde à solicitação permitindo ou não a transferência de dados. As mensagens de solicitação e liberação são endereçadas para garantir que dois modens distintos não entendam que estão liberados para enviar informações.</p>
+<p>O modo &quot;RTS/CTS&quot; do inglês Request to Send/Clear to Send é um modo que tem o objetivo de diminuir a colisão de transferência de dados, inclusive devido ao problema do terminal escondido. Nesse modo cada modem escravo, quando possui dados para enviar, solicita permissão de envio para o modem mestre por um canal alternativo, o modem mestre verifica se o canal principal está ocupado e responde à solicitação permitindo ou não a transferência de dados. As mensagens de solicitação e liberação são endereçadas para garantir que dois modens distintos não entendam que estão liberados para enviar informações.</p>
 <p>Por último o modo &quot;TDMA&quot; do inglês Time Domain Multiple Access, nesse modo a cada modem é definido um intervalo de tempo ao qual o modem pode transmitir dados. Após o fim do intervalo de tempo de um modem se inicia o intervalo de tempo do modem seguinte e assim por diante, quando o intervalo de tempo do último modem acabar o processo se reinicia. Uma desvantagem desse modo é a necessidade de esperar um intervalo de tempo de um dispositivo mesmo que ele não possua dados para transmitir.</p>
 <p>Dos modos apresentados o modo RTS/CTS é o modo que, aparentemente, vai apresentar melhor resultado pois não é necessário esperar por dispositivos que não tem dados a enviar e apresenta pequenas chances de colisão de dados.</p>
 </div>
-<div class="section" id="configuracao-para-cada-tipo-de-unidade-no-modo-de-rede">
-<h2>Configuração para cada tipo de unidade no modo de rede<a class="headerlink" href="#configuracao-para-cada-tipo-de-unidade-no-modo-de-rede" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="configuracao-para-cada-tipo-de-unidade-no-modo-de-malha">
+<h2>Configuração para cada tipo de unidade no modo de malha<a class="headerlink" href="#configuracao-para-cada-tipo-de-unidade-no-modo-de-malha" title="Permalink to this headline">¶</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>O registrador que configura qual a função do modem a ser utilizada no modo rede é o S101.</p>
+<p>O registrador que configura qual a função do modem a ser utilizada no modo malha é o S101.</p>
 </div>
 <p>A tabela a seguir mostra os valores que de devem ser colocados no registrador 101 para que o modem desempenhe o papel desejado.</p>
 <table class="docutils align-default">

@@ -31,7 +31,7 @@ Comandos Básicos
 
 Uma vez acessado o modo de configuração, podemos começar a dar comandos ao modem. Todos os comandos do modem possuem um prefixo de dois caracteres "**AT**", logo depois desses dois caracteres deve ser inserido o comando propriamente dito. Por exemplo, o comando que retorna para o modo de transmissão de dados é o comando "**A**", portanto para retornar ao modo de dados deve-se digitar ``ATA``.  
 
-O comando ``ATI`` retorna informações sobre o modem P900. O comando ``ATlogin`` protege as configurações e o acesso ao modo de comando por uma senha a ser definida pelo usuário. O comando ``ATM`` ativa um menu do modo de operação rede, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. Já o comando ``AT&V`` imprime os nomes e valores atuais dos registradores **S**, enquanto o comando ``AT&V1`` exibe um conjunto completo de parâmetros avançados do usuário. Vale destacar também o comando ``AT&W``, ele escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.  
+O comando ``ATI`` retorna informações sobre o modem P900. O comando ``ATlogin`` protege as configurações e o acesso ao modo de comando por uma senha a ser definida pelo usuário. O comando ``ATM`` ativa um menu do modo de operação de rede malha, que será explicado mais a frente, útil para identificação de erros e obtenção de logs. Já o comando ``AT&V`` imprime os nomes e valores atuais dos registradores **S**, enquanto o comando ``AT&V1`` exibe um conjunto completo de parâmetros avançados do usuário. Vale destacar também o comando ``AT&W``, ele escreve as alterações feitas nos registradores do modem, se esse último comando não for executado antes de sair do modo de configuração todas as alterações serão descartadas.  
 
 .. figure:: /img/Aerial/P900_Fn.png
     :align: right  
@@ -57,7 +57,7 @@ A maior parte das configurações do modem são feitas atraves da configuração
    
 O registrador "**S0**" é usado para selecionar o modo no qual o dispositivo é ligado, podendo ser configurado para iniciar no modo de comando ou no modo de dados (padrão). O caractere de escape (0-255) usado na detecção de escape para colocar o modem offline pode ser desabilitado/alterado no registrador "**S2**". Já a função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores "**S101**", "**S102**" e "**S103**", respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registrador "**S110**" e "**S111**", respectivamente. O tipo de modo de operação é determinado pelo registrador "**S133**". Enquanto o modo de comunicação serial é determinado pelo registrador "**142**". Por ultimo, o modo de acesso ao canal de comunicação pode ser alterado no registrador "**244**".  
 
-A tabela a seguir mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação do tipo rede funcione para a nossa aplicação.
+A tabela a seguir mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação do tipo de rede malha funcione para a nossa aplicação.
    
 +-------------+-------------------------+------------+
 | Registrador |           Nome          |    Valor   |
@@ -97,7 +97,7 @@ A **configuração de malha** (*Mesh Network*) é um modo de operação onde tod
 
 Nas situações em que um caminho direto entre os dispositivos de origem e de destino não está disponível, o roteamento pode encontrar rotas para assegurar que os dados sejam entregues ao destino necessário. A rede de malha pode ainda ser configurado de forma que caminhos redundantes estejam disponíveis para transferência de dados, rotas desconhecidas podem ser descobertas automaticamente e o melhor caminho é usado para alcançar o destino pretendido.
 
-A configuração de malha é ativada configurando o registrador **S133** como "2" ou "3". A imagem abaixo exemplifica o funcionamento do modo de operação rede malha, onde existem varios caminhos que os dados podem seguir. 
+A configuração de malha é ativada configurando o registrador **S133** como "2" ou "3". A imagem abaixo exemplifica o funcionamento do modo de operação da malha, onde existem varios caminhos que os dados podem seguir. 
 
 .. figure:: /img/Aerial/Mesh_Network.png
     :align: center
@@ -138,7 +138,7 @@ O diagrama abaixo demonstra o funcionamento da topologia Ponto-a-Multiponto.
 Conclusão
 ---------
 
-Evidentemente, para a nossa aplicação, a topologia mais interessante é a topologia de rede. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.
+Para a nossa aplicação, a topologia mais interessante é a topologia de malha. Nessa topologia todos os modens receberão a informação simultaneamente, sendo mais rápida que outras topologias, além disso a maior parte da informação gerada em nosso caso tem mesmo o objetivo de ser transmitida a todos os outros dispositivos.
 
 Explorando a configuração de malha
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -148,7 +148,7 @@ Dado que utilizaremos a topologia de malha para a transmissão de dados no proje
 Modos de operação/tipos de unidades
 -------------------------------------
 
-No modo de rede da Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o **coordenador primário**, o **coordenador secundário**, o **coordenador de espera** e o **remoto**.
+No modo de malha da Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o **coordenador primário**, o **coordenador secundário**, o **coordenador de espera** e o **remoto**.
 
 O papel do **coordenador principal** é prover sincronização de rede para o sistema, o que garante que todas as unidades estejam ativas e preparados para se comunicar conforme necessário. Em qualquer modo de malha, só pode haver um único coordenador primário. Coordenadores adicionais podem ser estabelecidos para redundância e/ou para estender a cobertura da rede a áreas não atendidas pelo coordenador principal. Para quaisquer unidades poderem se comunicar em uma malha, elas devem ser capazes de captar os dados de sincronização de um coordenador.
 
@@ -159,13 +159,13 @@ O diagrama abaixo simboliza uma unidade configurada como coordenador principal. 
 
 Os **coordenadores secundários** são utilizados para estender a cobertura do coordenador principal. Aliás, mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. O Coordenador Secundário deve se comunicar com o Coordenador Primário e/ou outro Coordenador Secundário para fornecer a sincronização adequada as unidades que atende.
 
-Embora, toda e qualquer unidade em uma rede malha possa ser designada como coordenadora secundária, o número e o posicionamento dos coordenadores implementados devem ser levados em consideração. A razão para tal é que a sincronização de rede é obtida enviando ocasionalmente pacotes de sincronização. Quanto maior o número de coordenadores implantados, mais dados de sincronização serão transmitidos na rede e maior o potencial de colisões. Ou seja, adicionar um número excessivo de coordenadores pode não ser a melhor prática de design.
+Embora, toda e qualquer unidade em uma rede malha possa ser designada como coordenadora secundária, o número e o posicionamento dos coordenadores implementados devem ser levados em consideração. A razão para tal é que a sincronização de rede é obtida enviando ocasionalmente pacotes de sincronização, logo, quanto maior o número de coordenadores implantados, mais dados de sincronização serão transmitidos na rede e maior o potencial de colisões. Ou seja, adicionar um número excessivo de coordenadores pode não ser a melhor prática de design.
 
 Coordenadores secundários são candidatos ideais para atuarem no roteamento. Como eles geralmente estão posicionados para fornecer cobertura para várias unidades, mais de uma unidade pode ser configurada para roteamento e, caso uma unidade fique offline, outra com o roteamento também ativado poderá continuar a fornecer os serviços de roteamento.
 
 A ilustração a seguir mostra a cobertura da rede sendo estendida adicionando um coordenador secundário.
 
-.. figure:: /img/Aerial/Secundary_Coordinator.png
+.. figure:: /img/Aerial/Secondary_Coordinator.png
     :align: center
 
 Um **coordenador de espera** atua monitorando o nível de sincronização da rede e, quando detecta que o coordenador principal está offline ou não está realizando suas tarefas de sincronização de rede, o coordenador de espera assume o controle. Vale ressaltar que somente um coordenador de espera pode ser usado em uma rede de malha.
@@ -213,11 +213,11 @@ Por último o modo "TDMA" do inglês Time Domain Multiple Access, nesse modo a c
 
 Dos modos apresentados o modo RTS/CTS é o modo que, aparentemente, vai apresentar melhor resultado pois não é necessário esperar por dispositivos que não tem dados a enviar e apresenta pequenas chances de colisão de dados.
 
-Configuração para cada tipo de unidade no modo de rede
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuração para cada tipo de unidade no modo de malha
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. Tip::
-   O registrador que configura qual a função do modem a ser utilizada no modo rede é o S101.
+   O registrador que configura qual a função do modem a ser utilizada no modo malha é o S101.
    
 A tabela a seguir mostra os valores que de devem ser colocados no registrador 101 para que o modem desempenhe o papel desejado.   
 
