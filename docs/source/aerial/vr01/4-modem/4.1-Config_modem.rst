@@ -93,28 +93,47 @@ O modem Microhard P900 pode ser configurado para operar em três topologias de t
 Configuração de malha
 ---------------------
 
-A configuração de rede ou malha (*Mesh Network*) é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura. Os rádios podem se comunicar diretamente ou, se necessário, por meio de outro nó da malha.
+A **configuração de malha** (*Mesh Network*) é um modo de operação onde todos os dispositivos conectados à rede comunicam-se entre si, a mensagem enviada por um modem é recebida simultaneamente por todos os outros modens com a mesma configuração, que estejam dentro da área de cobertura. Os rádios podem se comunicar diretamente ou, se necessário, por meio de outro nó da malha.
 
-Nas situações em que um caminho direto entre os dispositivos de origem e de destino não está disponível, o roteamento pode encontrar rotas para assegurar que os dados sejam entregues ao destino necessário. O modo rede pode ainda ser configurado de forma que caminhos redundantes estejam disponíveis para transferência de dados, rotas desconhecidas podem ser descobertas automaticamente e o melhor caminho é usado para alcançar o destino pretendido.
+Nas situações em que um caminho direto entre os dispositivos de origem e de destino não está disponível, o roteamento pode encontrar rotas para assegurar que os dados sejam entregues ao destino necessário. A rede de malha pode ainda ser configurado de forma que caminhos redundantes estejam disponíveis para transferência de dados, rotas desconhecidas podem ser descobertas automaticamente e o melhor caminho é usado para alcançar o destino pretendido.
 
-A configuração de malha é ativada configurando o registrador **S133** como "2" ou "3". A imagem abaixo exemplifica o funcionamento do modo de operação rede, onde existem varios caminhos que os dados podem seguir. 
+A configuração de malha é ativada configurando o registrador **S133** como "2" ou "3". A imagem abaixo exemplifica o funcionamento do modo de operação rede malha, onde existem varios caminhos que os dados podem seguir. 
 
 .. figure:: /img/Aerial/Mesh_Network.png
     :align: center
 
-Modo ponto-a-ponto
-------------------
+.. Note::
+  Mais informações sobre a Configuração de Malha podem ser encontradas no capitulo 3.0 - *Mesh Configuration* (pagina 33) do manual de instruções do modem P900.
 
-O modo de configuração ponto-a-ponto é um modo de operação em que a comunicação é apenas entre um modem "mestre" e um modem "escravo". Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.
+Configuração ponto-a-ponto
+--------------------------
 
-.. editando
+Uma rede ponto-a-ponto (PTP) é um modo de operação em que a comunicação é apenas entre um modem "mestre" e um modem "escravo". Podem haver repetidores de sinal entre eles, porém a mensagem enviada por um é recebida apenas pelo seu correspondente.
 
-Modo ponto-a-multiponto
------------------------
+Uma rede ponto-a-ponto (PTP) é um modo de operação em que a rede cria um caminho para transferir dados entre o ponto A e o ponto B, onde o ponto A pode ser chamado de modem mestre e o ponto B de modem escravo. Essa rede PTP também pode envolver um ou mais repetidores (com capacidade de armazenar e encaminhar), caso necessario. 
 
-E, por último, existe o modo ponto-a-multiponto onde um modem mestre se comunica com vários modens escravos, toda a informação originada dos escravos é direcionada ao mestre e, quando necessário ou desejável, cabe ao mestre repassar essa informação ao destino final, nessa topologia toda a informação passa pelo mestre, que controla a rede.
+Uma configuração de PTP pode ainda atuar de uma forma mais dinâmico, podendo haver muitos escravos (e repetidores) dentro de uma rede, todavia, o mestre pode ter seu "Endereço de destino" (registrador S140) alterado quando necessário para se comunicar com um escravo específico. A configuração ponto a ponto é ativada configurando o registro S133 como 1 (ATS133 = 1, Tipo de rede.
 
-.. editando
+A figura a seguir ilustra o funcionamento do modo de operação Ponto-a-Ponto, com e sem a intermediação de um repetidor. 
+
+.. figure:: /img/Aerial/PTP_Network.png
+    :align: center
+
+.. Note::
+  Mais informações sobre a Configuração de Ponto-a-Ponto podem ser encontradas no capitulo 4.0 - *Point to Point Configuration* (pagina 57) do manual de instruções do modem P900.
+
+Configuração ponto-a-multiponto
+-------------------------------
+
+E, por último, existe a rede ponto-a-multiponto (PTM), onde o modem mestre cria um caminho para transferir dados a vários modems remotos. Os modems remotos podem ser simplesmente escravos com os quais o mestre se comunica diretamente e/ou repetidores usados para se comunicar com modens escravos. Todo e qualquer repetidor pode, também, atuar como escravos neste tipo de rede, ou seja, os repetidores não estão apenas armazenando e encaminhando dados, mas também agindo como Escravos. Esses repetidores podem ser referidos como "Repetidores/Escravos". A configuração ponto-a-multiponto é ativado configurando o registro S133 como 0 (ATS133 = 0, Tipo de rede).
+
+O diagrama abaixo demonstra o funcionamento da topologia Ponto-a-Multiponto. 
+
+.. figure:: /img/Aerial/PTM_Network.png
+    :align: center
+
+.. Note::
+  Mais informações sobre a Configuração de Ponto-a-Multiponto podem ser encontradas no capitulo 5.0 - *Point to Multipoint Configuration* (pagina 68) do manual de instruções do modem P900.
 
 Conclusão
 ---------
@@ -131,34 +150,55 @@ Modos de operação/tipos de unidades
 
 No modo de rede da Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o **coordenador primário**, o **coordenador secundário**, o **coordenador de espera** e o **remoto**.
 
-O papel do *coordenador principal* é prover sincronização de rede para o sistema, o que garante que todas as unidades estejam ativas e preparados para se comunicar conforme necessário. Em qualquer modo de malha, só pode haver um único coordenador primário. Coordenadores adicionais podem ser estabelecidos para redundância e/ou para estender a cobertura da rede a áreas não atendidas pelo coordenador principal. Para quaisquer unidades poderem se comunicar em uma malha, elas devem ser capazes de captar os dados de sincronização de um coordenador.
+O papel do **coordenador principal** é prover sincronização de rede para o sistema, o que garante que todas as unidades estejam ativas e preparados para se comunicar conforme necessário. Em qualquer modo de malha, só pode haver um único coordenador primário. Coordenadores adicionais podem ser estabelecidos para redundância e/ou para estender a cobertura da rede a áreas não atendidas pelo coordenador principal. Para quaisquer unidades poderem se comunicar em uma malha, elas devem ser capazes de captar os dados de sincronização de um coordenador.
 
 O diagrama abaixo simboliza uma unidade configurada como coordenador principal. Qualquer outra unidade de malha que possa receber os dados do coordenador principal, pode participar da rede de malha.
 
 .. figure:: /img/Aerial/Primary_Coordinator.png
     :align: center
 
-Os *coordenadores secundários* são usados ​​para estender a cobertura do coordenador principal. Mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. Um coordenador secundário deve se comunicar com o coordenador principal e/ou outro coordenador secundário para garantir a sincronização adequada com as unidades que atende.
+Os **coordenadores secundários** são utilizados para estender a cobertura do coordenador principal. Aliás, mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. O Coordenador Secundário deve se comunicar com o Coordenador Primário e/ou outro Coordenador Secundário para fornecer a sincronização adequada as unidades que atende.
 
-.. editando
+Embora, toda e qualquer unidade em uma rede malha possa ser designada como coordenadora secundária, o número e o posicionamento dos coordenadores implementados devem ser levados em consideração. A razão para tal é que a sincronização de rede é obtida enviando ocasionalmente pacotes de sincronização. Quanto maior o número de coordenadores implantados, mais dados de sincronização serão transmitidos na rede e maior o potencial de colisões. Ou seja, adicionar um número excessivo de coordenadores pode não ser a melhor prática de design.
+
+Coordenadores secundários são candidatos ideais para atuarem no roteamento. Como eles geralmente estão posicionados para fornecer cobertura para várias unidades, mais de uma unidade pode ser configurada para roteamento e, caso uma unidade fique offline, outra com o roteamento também ativado poderá continuar a fornecer os serviços de roteamento.
+
+A ilustração a seguir mostra a cobertura da rede sendo estendida adicionando um coordenador secundário.
 
 .. figure:: /img/Aerial/Secundary_Coordinator.png
     :align: center
 
-Um *coordenador de espera* monitora o nível de sincronização da rede e, quando detecta que o coordenador principal fica offline ou não está realizando suas tarefas de sincronização de rede por qualquer motivo, o coordenador de espera pode assumir o controle.
+Um **coordenador de espera** atua monitorando o nível de sincronização da rede e, quando detecta que o coordenador principal está offline ou não está realizando suas tarefas de sincronização de rede, o coordenador de espera assume o controle. Vale ressaltar que somente um coordenador de espera pode ser usado em uma rede de malha.
 
-.. editando
+O Coordenador de espera monitora a integridade do coordenador principal, analisandp os pacotes de sincronização. Quando um número definido de *frames* já passou e nenhum dado de sincronização é recebido, o coordenador de espera pode intervir e começar a enviar dados de sincronização antes que a rede fique offline. Isso permite uma transição direta para o coordenador de espera, já que esperar que a rede perca a sincronização afetaria significativamente a rede, pois todo o processo de sincronização precisaria ser reiniciado.
+
+Os coordenadores principal e de reserva devem estar localizados em um local que ofereça a maior cobertura de rede, um local físico seguro para evitar violações e próximo a uma fonte de energia adequada e confiável.
+
+O diagrama abaixo mostra a rede de malha com a adição do coordenador de espera para fornecer um backup, caso o coordenador principal apresente falhas.
+
 
 .. figure:: /img/Aerial/Standby_Coordinator.png
     :align: center
 
 Um *remoto* (escravo) é qualquer unidade que não seja um coordenador. Um controle remoto geralmente está conectado a um dispositivo final, mas também pode ser implantado para fornecer caminhos redundantes para alcançar outros dispositivos na rede. Como em qualquer outro dispositivo da rede, o controle remoto pode ser usado para fornecer serviços de roteamento. Embora todas as unidades possam ser configuradas para fornecer serviços de roteamento, não é eficiente fazê-lo, pois haveria que lidar com uma grande sobrecarga de largura de banda da rede.
 
-.. editando
 
 .. figure:: /img/Aerial/Remote.png
     :align: center
 
+As unidades podem ser configuradas para desempenhar as várias funções apresentadas configurando o registro S101 da seguinte maneira:
+
++------------+-----------------------+
+| Command    | Setting               |
++------------+-----------------------+
+| ATS101 = 2 | Remote (Slave)        |
++------------+-----------------------+
+| ATS101 = 4 | Primary coordinator   |
++------------+-----------------------+
+| ATS101 = 5 | Secondary coordinator |
++------------+-----------------------+
+| ATS101 = 6 | Standby Coordinator   |
++------------+-----------------------+
 
 Modos de Acesso ao Canal
 ------------------------
