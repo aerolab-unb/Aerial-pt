@@ -233,8 +233,9 @@ Para auxiliar na configuração e implantação dos módulos da série Pico, as 
 +-------------------------+---------+
 
 .. Warning::
-  Caso utilize as configurações padrão de fábrica, é sempre fundamental que as configurações do dispositivo sejam conferidas com cautela. A tabela abaixo mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação de rede malha funcione corretamente para a nossa aplicação:
-
+  Caso utilize as configurações padrão de fábrica, é sempre fundamental que as configurações do dispositivo sejam conferidas com cautela. 
+  
+.. A tabela abaixo mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação de rede malha funcione corretamente para a nossa aplicação:
     +-------------+-------------------------+------------+
     | Registrador |           Nome          |    Valor   |
     +=============+=========================+============+
@@ -304,9 +305,7 @@ Referências
 
 * PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
 
-* MICROHARD SYSTEMS INC. Pico Series P900 Operating Manual. 150 Country
-Hills Landing NW, Calgary, AB T3K 5P3, Canadá, 2016. v1.8.7. Disponível em: `microhardcorp.com`_
+* MICROHARD SYSTEMS INC. Pico Series P900 Operating Manual. 150 Country Hills Landing NW, Calgary, AB T3K 5P3, Canadá, 2016. v1.8.7. Disponível em: `microhardcorp.com`_
 
 
 .. _microhardcorp.com: http://www.microhardcorp.com/
-

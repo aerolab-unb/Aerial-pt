@@ -57,33 +57,7 @@ A maior parte das configurações do modem são feitas atraves da configuração
    
 O registrador "**S0**" é usado para selecionar o modo no qual o dispositivo é ligado, podendo ser configurado para iniciar no modo de comando ou no modo de dados (padrão). O caractere de escape (0-255) usado na detecção de escape para colocar o modem offline pode ser desabilitado/alterado no registrador "**S2**". Já a função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores "**S101**", "**S102**" e "**S103**", respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registrador "**S110**" e "**S111**", respectivamente. O tipo de modo de operação é determinado pelo registrador "**S133**". Enquanto o modo de comunicação serial é determinado pelo registrador "**142**". Por ultimo, o modo de acesso ao canal de comunicação pode ser alterado no registrador "**244**".  
 
-A tabela a seguir mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação do tipo de rede malha funcione para a nossa aplicação.
-   
-+-------------+-------------------------+------------+
-| Registrador |           Nome          |    Valor   |
-+=============+=========================+============+
-|  S80        |     Transmit Profilescc |      0     |
-+-------------+-------------------------+------------+
-|  S81        |      CS Threshold             60     |
-+-------------+-------------------------+------------+
-| S102        |     Serial Baud Rate    |      7     |
-+-------------+-------------------------+------------+          
-| S103        |     Wireless Link Rate  |      0     |
-+-------------+-------------------------+------------+
-| S104        |      Network Address    | 1286608618 |
-+-------------+-------------------------+------------+
-| S110        |       Data Format       |      1     |
-+-------------+-------------------------+------------+ 
-| S115        |      Repeat Interval    |      5     |
-+-------------+-------------------------+------------+
-| S126        | Attempt Before Re-route |      9     |
-+-------------+-------------------------+------------+
-| S133        |       Network Type      |      2     |
-+-------------+-------------------------+------------+
-| S142        |   Serial Channel Mode   |      0     |
-+-------------+-------------------------+------------+
-| S244        |    Channel Acess Mode   |      1     |
-+-------------+-------------------------+------------+
+
 
 Topologia da transmissão de dados
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,7 +86,7 @@ Uma rede ponto-a-ponto (PTP) é um modo de operação em que a comunicação é 
 
 Uma rede ponto-a-ponto (PTP) é um modo de operação em que a rede cria um caminho para transferir dados entre o ponto A e o ponto B, onde o ponto A pode ser chamado de modem mestre e o ponto B de modem escravo. Essa rede PTP também pode envolver um ou mais repetidores (com capacidade de armazenar e encaminhar), caso necessario. 
 
-Uma configuração de PTP pode ainda atuar de uma forma mais dinâmico, podendo haver muitos escravos (e repetidores) dentro de uma rede, todavia, o mestre pode ter seu "Endereço de destino" (registrador S140) alterado quando necessário para se comunicar com um escravo específico. A configuração ponto a ponto é ativada configurando o registro S133 como 1 (ATS133 = 1, Tipo de rede.
+Uma configuração de PTP pode ainda atuar de uma forma mais dinâmico, podendo haver muitos escravos (e repetidores) dentro de uma rede, todavia, o mestre pode ter seu "Endereço de destino" (registrador S140) alterado quando necessário para se comunicar com um escravo específico. A configuração ponto a ponto é ativada configurando o registro S133 como 1 (ATS133 = 1).
 
 A figura a seguir ilustra o funcionamento do modo de operação Ponto-a-Ponto, com e sem a intermediação de um repetidor. 
 
@@ -125,7 +99,7 @@ A figura a seguir ilustra o funcionamento do modo de operação Ponto-a-Ponto, c
 Configuração ponto-a-multiponto
 -------------------------------
 
-E, por último, existe a rede ponto-a-multiponto (PTM), onde o modem mestre cria um caminho para transferir dados a vários modems remotos. Os modems remotos podem ser simplesmente escravos com os quais o mestre se comunica diretamente e/ou repetidores usados para se comunicar com modens escravos. Todo e qualquer repetidor pode, também, atuar como escravos neste tipo de rede, ou seja, os repetidores não estão apenas armazenando e encaminhando dados, mas também agindo como Escravos. Esses repetidores podem ser referidos como "Repetidores/Escravos". A configuração ponto-a-multiponto é ativado configurando o registro S133 como 0 (ATS133 = 0, Tipo de rede).
+E, por último, existe a rede ponto-a-multiponto (PTM), onde o modem mestre cria um caminho para transferir dados a vários modems remotos. Os modems remotos podem ser simplesmente escravos com os quais o mestre se comunica diretamente e/ou repetidores usados para se comunicar com modens escravos. Todo e qualquer repetidor pode, também, atuar como escravos neste tipo de rede, ou seja, os repetidores não estão apenas armazenando e encaminhando dados, mas também agindo como Escravos. Esses repetidores podem ser referidos como "Repetidores/Escravos". A configuração ponto-a-multiponto é ativado configurando o registro S133 como 0 (ATS133 = 0).
 
 O diagrama abaixo demonstra o funcionamento da topologia Ponto-a-Multiponto. 
 
@@ -150,14 +124,14 @@ Modos de operação/tipos de unidades
 
 No modo de malha da Microhard, existem quatro tipos de unidades ou modos de operação disponíveis: o **coordenador primário**, o **coordenador secundário**, o **coordenador de espera** e o **remoto**.
 
-O papel do **coordenador principal** é prover sincronização de rede para o sistema, o que garante que todas as unidades estejam ativas e preparados para se comunicar conforme necessário. Em qualquer modo de malha, só pode haver um único coordenador primário. Coordenadores adicionais podem ser estabelecidos para redundância e/ou para estender a cobertura da rede a áreas não atendidas pelo coordenador principal. Para quaisquer unidades poderem se comunicar em uma malha, elas devem ser capazes de captar os dados de sincronização de um coordenador.
+O papel do **coordenador principal** (*primary coordinator*) é prover sincronização de rede para o sistema, o que garante que todas as unidades estejam ativas e preparados para se comunicar conforme necessário. Em qualquer modo de malha, só pode haver um único coordenador primário. Coordenadores adicionais podem ser estabelecidos para redundância e/ou para estender a cobertura da rede a áreas não atendidas pelo coordenador principal. Para quaisquer unidades poderem se comunicar em uma malha, elas devem ser capazes de captar os dados de sincronização de um coordenador.
 
 O diagrama abaixo simboliza uma unidade configurada como coordenador principal. Qualquer outra unidade de malha que possa receber os dados do coordenador principal, pode participar da rede de malha.
 
 .. figure:: /img/Aerial/Primary_Coordinator.png
     :align: center
 
-Os **coordenadores secundários** são utilizados para estender a cobertura do coordenador principal. Aliás, mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. O Coordenador Secundário deve se comunicar com o Coordenador Primário e/ou outro Coordenador Secundário para fornecer a sincronização adequada as unidades que atende.
+Os **coordenadores secundários** (*secondary coordinator*) são utilizados para estender a cobertura do coordenador principal. Aliás, mais de um coordenador secundário pode ser usado para redundância ou para garantir uma cobertura de rede adequada. O Coordenador Secundário deve se comunicar com o Coordenador Primário e/ou outro Coordenador Secundário para fornecer a sincronização adequada as unidades que atende.
 
 Embora, toda e qualquer unidade em uma rede malha possa ser designada como coordenadora secundária, o número e o posicionamento dos coordenadores implementados devem ser levados em consideração. A razão para tal é que a sincronização de rede é obtida enviando ocasionalmente pacotes de sincronização, logo, quanto maior o número de coordenadores implantados, mais dados de sincronização serão transmitidos na rede e maior o potencial de colisões. Ou seja, adicionar um número excessivo de coordenadores pode não ser a melhor prática de design.
 
@@ -168,7 +142,7 @@ A ilustração a seguir mostra a cobertura da rede sendo estendida adicionando u
 .. figure:: /img/Aerial/Secondary_Coordinator.png
     :align: center
 
-Um **coordenador de espera** atua monitorando o nível de sincronização da rede e, quando detecta que o coordenador principal está offline ou não está realizando suas tarefas de sincronização de rede, o coordenador de espera assume o controle. Vale ressaltar que somente um coordenador de espera pode ser usado em uma rede de malha.
+Um **coordenador de espera** (*standby coordinator*) atua monitorando o nível de sincronização da rede e, quando detecta que o coordenador principal está offline ou não está realizando suas tarefas de sincronização de rede, o coordenador de espera assume o controle. Vale ressaltar que somente um coordenador de espera pode ser usado em uma rede de malha.
 
 O Coordenador de espera monitora a integridade do coordenador principal, analisandp os pacotes de sincronização. Quando um número definido de *frames* já passou e nenhum dado de sincronização é recebido, o coordenador de espera pode intervir e começar a enviar dados de sincronização antes que a rede fique offline. Isso permite uma transição direta para o coordenador de espera, já que esperar que a rede perca a sincronização afetaria significativamente a rede, pois todo o processo de sincronização precisaria ser reiniciado.
 
@@ -180,7 +154,7 @@ O diagrama abaixo mostra a rede de malha com a adição do coordenador de espera
 .. figure:: /img/Aerial/Standby_Coordinator.png
     :align: center
 
-Um *remoto* (escravo) é qualquer unidade que não seja um coordenador. Um controle remoto geralmente está conectado a um dispositivo final, mas também pode ser implantado para fornecer caminhos redundantes para alcançar outros dispositivos na rede. Como em qualquer outro dispositivo da rede, o controle remoto pode ser usado para fornecer serviços de roteamento. Embora todas as unidades possam ser configuradas para fornecer serviços de roteamento, não é eficiente fazê-lo, pois haveria que lidar com uma grande sobrecarga de largura de banda da rede.
+Um **remoto** ou escravo (*remote* ou *slave*) é qualquer unidade que não seja um coordenador. Um controle remoto geralmente está conectado a um dispositivo final, mas também pode ser implantado para fornecer caminhos redundantes para alcançar outros dispositivos na rede. Como em qualquer outro dispositivo da rede, o controle remoto pode ser usado para fornecer serviços de roteamento. Embora todas as unidades possam ser configuradas para fornecer serviços de roteamento, não é eficiente fazê-lo, pois haveria que lidar com uma grande sobrecarga de largura de banda da rede.
 
 
 .. figure:: /img/Aerial/Remote.png
@@ -197,60 +171,106 @@ As unidades podem ser configuradas para desempenhar as várias funções apresen
 +------------+-----------------------+
 | ATS101 = 5 | Secondary coordinator |
 +------------+-----------------------+
-| ATS101 = 6 | Standby Coordinator   |
+| ATS101 = 6 | Standby coordinator   |
 +------------+-----------------------+
 
 Modos de Acesso ao Canal
 ------------------------
 
-Existem, também, três modos de acesso ao canal, "Aloha", "RTS/CTS" e "TDMA".
+Para gerenciar as transmissões de diversos dispositivos e minimizar as colisões de dados, os dispositivos da Série Pico também utilizam três modos de acesso de canal diferentes. Os três modos são **Aloha**, **RTS/CTS** e **TDMA**, que são configurados usando o registro **S244**. 
 
-O modo "Aloha" é um protocolo de acesso ao meio no qual sempre que um dispositivos possui dados a serem enviados esse dispositivo aguarda um período aleatório e tenta enviar esse dado. Caso, nessa tentativa, seja recebido pelo dispositivo algum outro sinal é assumido que houve colisão de dados e portanto a transmissão de dados é abortada, aguardam-se, novamente, um período de tempo aleatório até que a mensagem seja novamente enviada. O processo se repete até que o dado tenha sido inteiramente enviado sem que haja colisão.
++----------+--------------------------------+
+| Command  | Setting                        |
++----------+--------------------------------+
+| S244 = 0 | Aloha                          |
++----------+--------------------------------+
+| S244 = 1 | RTS/CTS                        |
++----------+--------------------------------+
+| S244 = 2 | TDMA (transmit on slot number) |
++----------+--------------------------------+
 
-O modo "RTS/CTS" do inglês Request to Send/Clear to Send é um modo que tem o objetivo de diminuir a colisão de transferência de dados, inclusive devido ao problema do terminal escondido. Nesse modo cada modem escravo, quando possui dados para enviar, solicita permissão de envio para o modem mestre por um canal alternativo, o modem mestre verifica se o canal principal está ocupado e responde à solicitação permitindo ou não a transferência de dados. As mensagens de solicitação e liberação são endereçadas para garantir que dois modens distintos não entendam que estão liberados para enviar informações.
+.. Em sistemas que enviam pequenos pacotes de dados e não desejam contabilizar a sobrecarga de CTS/RTS, o modo Aloha pode ser a melhor solução. Para sistemas que enviam grandes pacotes de dados com baixa tolerância para perda de dados ou colisões, RTS/CTS pode ser o melhor.
 
-Por último o modo "TDMA" do inglês Time Domain Multiple Access, nesse modo a cada modem é definido um intervalo de tempo ao qual o modem pode transmitir dados. Após o fim do intervalo de tempo de um modem se inicia o intervalo de tempo do modem seguinte e assim por diante, quando o intervalo de tempo do último modem acabar o processo se reinicia. Uma desvantagem desse modo é a necessidade de esperar um intervalo de tempo de um dispositivo mesmo que ele não possua dados para transmitir.
+O modo **Aloha** é um protocolo de acesso ao meio no qual sempre que um dispositivos possui dados a serem enviados, esse dispositivo aguarda um período aleatório e tenta enviar esse dado. Caso, nessa tentativa, seja recebido algum outro sinal pelo dispositivo, é assumido que houve colisão de dados e portanto a transmissão de dados é abortada, aguardam-se, novamente, um período de tempo aleatório até que a mensagem seja novamente enviada. O processo se repete até que o dado tenha sido inteiramente enviado sem que haja colisão.
 
-Dos modos apresentados o modo RTS/CTS é o modo que, aparentemente, vai apresentar melhor resultado pois não é necessário esperar por dispositivos que não tem dados a enviar e apresenta pequenas chances de colisão de dados.
+O modo **RTS/CTS**, do inglês *Request to Send/Clear to Send*, é um modo que tem o objetivo de diminuir a colisão de transferência de dados, inclusive devido ao problema do terminal escondido. Nesse modo cada modem escravo, quando possui dados para enviar, solicita permissão de envio para o modem mestre por um canal alternativo, o modem mestre verifica se o canal principal está ocupado e responde à solicitação permitindo ou não a transferência de dados. As mensagens de solicitação e liberação são endereçadas para garantir que dois modens distintos não entendam que estão liberados para enviar informações.
+
+Por último, o modo **TDMA**, do inglês *Time Domain Multiple Access*, nesse modo a cada modem é definido um intervalo de tempo ao qual o modem pode transmitir dados. Após o fim do intervalo de tempo de um modem se inicia o intervalo de tempo do modem seguinte e assim por diante, quando o intervalo de tempo do último modem acabar o processo se reinicia. Uma desvantagem desse modo é a necessidade de esperar um intervalo de tempo de um dispositivo mesmo que ele não possua dados para transmitir.
+
+Dos modos apresentados o modo RTS/CTS é o modo que, aparentemente, vai apresentar melhor resultado, pois não é necessário esperar por dispositivos que não tem dados a enviar e apresenta pequenas chances de colisão de dados.
 
 Configuração para cada tipo de unidade no modo de malha
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. Tip::
-   O registrador que configura qual a função do modem a ser utilizada no modo malha é o S101.
-   
-A tabela a seguir mostra os valores que de devem ser colocados no registrador 101 para que o modem desempenhe o papel desejado.   
+.. Verificar como cada modem será configurado
 
-+-------------+------------+
-| Função      |    Valor   |
-+=============+============+
-| Primário    |      4     |
-+-------------+------------+
-| Secundário  |      5     |
-+-------------+------------+
-| Espera      |      6     |
-+-------------+------------+
-| Remoto      |      2     |
-+-------------+------------+
+Em nossa aplicação, serão utilizados, no minimo, quatro modens do modelo Microhard P900, sendo que um deve ser ligado ao computador da Estação de Controle em Solo (ECS) e cada aeronave deve possuir um fixado ao chassi da aeronave. Já preparação do P900 consiste, principalmente, em configurar os registradores de cada dispositivo de acordo com as tarefas que o mesmo deve realizar.
 
-Para auxiliar na configuração e implantação dos módulos da série Pico, as configurações padrão de fábrica podem ser usadas como um ponto de partida conhecido para cada tipo de unidade. O uso dos comandos padrão de fábrica define todos os valores dos registradores ​​para as configurações recomendadas de fábrica e permite a conectividade inicial entre as unidades. Para a nossa aplicação de rede, esses comandos são tudo o que é necessário para configurar e implantar uma rede de malha.
+Começando pela configuração da topologia da transmissão de dados, o modo de transmissão de malha é habilitada definindo o registro **S133** para 2 ou 3. Quanto ao modo de operação, o registrador que configura qual a função do modem a ser utilizada no modo malha é o **S101**. Observe a tabela a seguir, nela são mostrados os valores que de devem ser colocados no registrador **S101** para que o modem desempenhe o papel desejado.   
 
-+-------------+------------+
-| Função      |   Comando  |
-+=============+============+
-| Primário    |    AT&F1   |
-+-------------+------------+
-| Secundário  |    AT&F3   |
-+-------------+------------+
-| Remoto      |    AT&F2   |
-+-------------+------------+
++------------------------+-------+
+|         Função         | Valor |
++------------------------+-------+
+|    Remoto (Escravo)    |   2   |
++------------------------+-------+
+|  Coordenador Primario  |   4   |
++------------------------+-------+
+| Coordenador Secundario |   5   |
++------------------------+-------+
+|  Coordenador de Espera |   6   |
++------------------------+-------+
 
-.. Tip::
-   Para a nossa aplicação é necessário um coordenador primário e dois remotos.
+Para auxiliar na configuração e implantação dos módulos da série Pico, as configurações padrão de fábrica podem ser usadas como um ponto de partida conhecido para cada tipo de unidade. O uso dos comandos padrão de fábrica define todos os valores dos registradores ​​para as configurações recomendadas de fábrica e permite a conectividade inicial entre as unidades. Dessa forma, para a nossa aplicação de rede, podem ser necessarios apenas pequenos ajustes para configurar e implantar uma rede de malha.
+
++-------------------------+---------+
+| Configuração de fabrica | Comando |
++-------------------------+---------+
+|   Coordenador Primario  |  AT&F1  |
++-------------------------+---------+
+|  Coordenador Secundario |  AT&F3  |
++-------------------------+---------+
+|     Remoto (Escravo)    |  AT&F2  |
++-------------------------+---------+
+
+.. Warning::
+  Caso utilize as configurações padrão de fábrica, é sempre fundamental que as configurações do dispositivo sejam conferidas com cautela. 
+  
+.. A tabela abaixo mostra os principais valores que devem ser observados nos respectivos registadores para que o modo de operação de rede malha funcione corretamente para a nossa aplicação:
+    +-------------+-------------------------+------------+
+    | Registrador |           Nome          |    Valor   |
+    +=============+=========================+============+
+    |  S80        |     Transmit Profilescc |      0     |
+    +-------------+-------------------------+------------+
+    |  S81        |      CS Threshold       |     60     |
+    +-------------+-------------------------+------------+
+    | S102        |     Serial Baud Rate    |      7     |
+    +-------------+-------------------------+------------+
+    | S103        |     Wireless Link Rate  |      0     |
+    +-------------+-------------------------+------------+
+    | S104        |      Network Address    | 1286608618 |
+    +-------------+-------------------------+------------+
+    | S110        |       Data Format       |      1     |
+    +-------------+-------------------------+------------+
+    | S115        |      Repeat Interval    |      5     |
+    +-------------+-------------------------+------------+
+    | S126        | Attempt Before Re-route |      9     |
+    +-------------+-------------------------+------------+
+    | S133        |       Network Type      |      2     |
+    +-------------+-------------------------+------------+
+    | S142        |   Serial Channel Mode   |      0     |
+    +-------------+-------------------------+------------+
+    | S244        |    Channel Acess Mode   |      1     |
+    +-------------+-------------------------+------------+
+
+
 
 .. ATENÇÃO ATENÇÃO: CONFERIR SE ESSE TIP ACIMA SERÁ CORRETO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+.. Tip: Para a nossa aplicação é necessário um coordenador primário e dois remotos.
 
-A seguir é apresentado os passos que devem ser digitados no terminal após a verificação da mensagem "NO CARRIER OK" para que a configuração seja realizada com sucesso.
+Comandos de configuração
+------------------------
+
+A seguir, é apresentado os comandos que devem ser digitados no terminal após a verificação da mensagem "NO CARRIER OK" para que a configuração seja realizada com sucesso.
 
 :: 
   
@@ -285,5 +305,8 @@ Referências
 
 * PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
 
+* MICROHARD SYSTEMS INC. Pico Series P900 Operating Manual. 150 Country Hills Landing NW, Calgary, AB T3K 5P3, Canadá, 2016. v1.8.7. Disponível em: `microhardcorp.com`_
 
+
+.. _microhardcorp.com: http://www.microhardcorp.com/
 
