@@ -75,5 +75,9 @@ Referências
 
 * Datasheet Maxim Integrated MAX491 RS-485/RS-422 Transceivers. Disponível em `maximintegrated.com`_.
 
+
 .. _ti.com: https://www.ti.com/lit/ds/symlink/max232.pdf
-.. _maximintegrated.com: https://datasheets.maximintegrated.com/en/ds/MAX1487-MAX491.pdf   
+
+.. _microhardcorp.com: http://www.microhardcorp.com/
+
+.. _maximintegrated.com: https://datasheets.maximintegrated.com/en/ds/MAX1487-MAX491.pdf

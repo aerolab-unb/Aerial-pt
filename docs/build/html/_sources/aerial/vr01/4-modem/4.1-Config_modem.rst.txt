@@ -56,8 +56,6 @@ A maior parte das configurações do modem são feitas através da configuraçã
    
 O registrador "**S0**" é usado para selecionar o modo no qual o dispositivo é ligado, podendo ser configurado para iniciar no modo de comando ou no modo de dados (padrão). O caractere de escape (0-255) usado na detecção de escape para colocar o modem offline pode ser desabilitado/alterado no registrador "**S2**". Já a função do modem dentro do modo de operação, a velocidade da comunicação serial com o dispositivo conectado ao modem e a velocidade da comunicação com os outros modens via propagação de ondas eletromagnéticas podem ser modificadas nos registradores "**S101**", "**S102**" e "**S103**", respectivamente. O formato da comunicação serial com o dispositivo e o número mínimo de bytes a serem transmitidos podem ser alterados nos registradores "**S110**" e "**S111**", respectivamente. O tipo de modo de operação é determinado pelo registrador "**S133**". Enquanto o modo de comunicação serial é determinado pelo registrador "**142**". Por último, o modo de acesso ao canal de comunicação pode ser alterado no registrador "**244**".  
 
-
-
 Topologia da transmissão de dados
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -305,6 +303,5 @@ Referências
 * PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
 
 * MICROHARD SYSTEMS INC. Pico Series P900 Operating Manual. 150 Country Hills Landing NW, Calgary, AB T3K 5P3, Canadá, 2016. v1.8.7. Disponível em: `microhardcorp.com`_
-
 
 .. _microhardcorp.com: http://www.microhardcorp.com/
