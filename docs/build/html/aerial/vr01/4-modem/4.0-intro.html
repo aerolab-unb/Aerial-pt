@@ -96,6 +96,7 @@
 <li class="toctree-l4"><a class="reference internal" href="4.2-Modem_e_Computador.html">Modem e Computador Embarcado</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../5-hardware/5.0-intro.html">Desenvolvimento do Hardware Central</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../vr01.html#referencias">Referências</a></li>
 </ul>
 </li>
@@ -177,18 +178,50 @@
   <div class="section" id="comunicacao-via-modem">
 <h1>Comunicação Via Modem<a class="headerlink" href="#comunicacao-via-modem" title="Permalink to this headline">¶</a></h1>
 <p>Como explicado anteriormente, o computador embarcado será conectado a um modem para comunicar-se com as outras aeronaves e a estação terra. Nessa seção será analisado detalhadamente a comunicação entre o computador embarcado e o modem, assim como a comunicação entre os modens.</p>
-<p>O modem que será utilizado é o modelo P900 da Microhard, cujo mais informações podem ser encontradas diretamente no site da <a class="reference external" href="http://www.microhardcorp.com/">Microhard Corp</a>.</p>
+<p>O modem que será utilizado é o modelo P900 da Microhard, capaz de fornecer comunicação em série sem fio de alto desempenho em topologias robustas de ponto a ponto, em malha ou ponto a multiponto. Esses rádios são capazes de realizar comunicação de longo alcance e podem atingir velocidades de transmissão muito rápidas.</p>
+<p>Módulos dessa linha operam dentro da banda de frequências 902-928 MHz usando tecnologia FHSS, provendo comunicação assíncrona e sem fio entre equipamentos com interface de comunicação serial.</p>
+<p>Por serem pequenos e com excelente performance, esses rádios são ideais para esse projeto, pois eles devem estar embarcados em todas as aeronaves.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As especificações completas do modem P900, assim como instruções de utilização e configuração podem ser encontradas no Manual de Instruções (link abaixo).</p>
+<p>As especificações completas do modem P900, assim como instruções de utilização e configuração podem ser encontradas no site do fabricante, <a class="reference external" href="http://www.microhardcorp.com/.">microhardcorp.com</a>, ou no Manual de Instruções (link abaixo).</p>
 <ul class="simple">
 <li><p><a class="reference download internal" download="" href="../../../_downloads/faa24084f6ad71d807f5a68dac2c6066/p900.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">do</span> <span class="pre">Manual</span></code></a></p></li>
 </ul>
 </div>
-<p>A figura abaixo contém uma foto do modem estudado neste capítulo e utilizado durante o trabalho.</p>
+<p>O módulo utilizado pode ser visto na figura abaixo, onde à esquerda encontra-se a versão utilizada, que é encapsulada.</p>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../../../_images/p900.png"><img alt="../../../_images/p900.png" src="../../../_images/p900.png" style="width: 450px;" /></a>
 </div>
+<p>A tabela a seguir mostra algumas das especificações mais importantes a serem levadas em consideração no modelo P900:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 54%" />
+<col style="width: 46%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Frequência de operação</p></td>
+<td><p>902 - 928 MHz</p></td>
+</tr>
+<tr class="row-even"><td><p>Detecção de erro</p></td>
+<td><p>32 bits de CRC, ARQ</p></td>
+</tr>
+<tr class="row-odd"><td><p>Alcance</p></td>
+<td><p>40 milhas (≈ 64 km)</p></td>
+</tr>
+<tr class="row-even"><td><p>Potência de saída</p></td>
+<td><p>de 100mW a 1W</p></td>
+</tr>
+<tr class="row-odd"><td><p>Velocidade de comunicação</p></td>
+<td><p>até 230,4 kbps assíncrono</p></td>
+</tr>
+<tr class="row-even"><td><p>Temperatura de operação máxima</p></td>
+<td><p>até 85ºC</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tensão de entrada (Vin)</p></td>
+<td><p>8 - 30Vdc</p></td>
+</tr>
+</tbody>
+</table>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="4.1-Config_modem.html">Configuração do Modem</a><ul>

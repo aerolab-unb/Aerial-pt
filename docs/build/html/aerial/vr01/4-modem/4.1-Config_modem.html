@@ -96,6 +96,7 @@
 <li class="toctree-l4"><a class="reference internal" href="4.2-Modem_e_Computador.html">Modem e Computador Embarcado</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../5-hardware/5.0-intro.html">Desenvolvimento do Hardware Central</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../vr01.html#referencias">Referências</a></li>
 </ul>
 </li>
@@ -193,6 +194,32 @@
 <div class="figure align-center">
 <img alt="../../../_images/NOCARRIER.png" src="../../../_images/NOCARRIER.png" />
 </div>
+<p>O módulo P900 encapsulado possui LEDs que podem auxiliar na determinação de seu estado atual. A tabela abaixo descreve o significado de cada LED.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>PWR (azul)</p></td>
+<td><p>Aceso quando o módulo está conectado a uma fonte de energia.</p></td>
+</tr>
+<tr class="row-even"><td><p>485 (azul)</p></td>
+<td><p>Aceso quando a porta de dados do módulo está configurada
+como uma porta RS485.</p></td>
+</tr>
+<tr class="row-odd"><td><p>TX LED (vermelho)</p></td>
+<td><p>Aceso quando o modem está transmitindo dados.</p></td>
+</tr>
+<tr class="row-even"><td><p>RX LED (verde)</p></td>
+<td><p>Quando aceso, significa que o módulo está sincronizado e
+recebeu pacotes válidos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RSSI (3x Green)</p></td>
+<td><p>O número de LEDs acesos indica a força do sinal.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="comandos-basicos">
 <h2>Comandos Básicos<a class="headerlink" href="#comandos-basicos" title="Permalink to this headline">¶</a></h2>
 <p>Uma vez acessado o modo de configuração, podemos começar a dar comandos ao modem. Todos os comandos do modem possuem um prefixo de dois caracteres &quot;<strong>AT</strong>&quot;, logo depois desses dois caracteres deve ser inserido o comando propriamente dito. Por exemplo, o comando que retorna para o modo de transmissão de dados é o comando &quot;<strong>A</strong>&quot;, portanto para retornar ao modo de dados deve-se digitar <code class="docutils literal notranslate"><span class="pre">ATA</span></code>.</p>
@@ -319,6 +346,7 @@
 </tr>
 </tbody>
 </table>
+<p>Por se tratar de uma rede pequena, decidiu-se por adotar apenas um coordenador primário e 3 módulos remotos.</p>
 </div>
 <div class="section" id="modos-de-acesso-ao-canal">
 <h3>Modos de Acesso ao Canal<a class="headerlink" href="#modos-de-acesso-ao-canal" title="Permalink to this headline">¶</a></h3>
@@ -351,7 +379,8 @@
 </div>
 <div class="section" id="configuracao-para-cada-tipo-de-unidade-no-modo-de-malha">
 <h2>Configuração para cada tipo de unidade no modo de malha<a class="headerlink" href="#configuracao-para-cada-tipo-de-unidade-no-modo-de-malha" title="Permalink to this headline">¶</a></h2>
-<p>Em nossa aplicação, serão utilizados, no mínimo, quatro modens do modelo Microhard P900, sendo que um deve ser ligado ao computador da Estação de Controle em Solo (ECS) e cada aeronave deve possuir um fixado ao chassi da aeronave. Já preparação do P900 consiste, principalmente, em configurar os registradores de cada dispositivo de acordo com as tarefas que o mesmo deve realizar.</p>
+<p>Em nossa aplicação, serão utilizados, quatro modens do modelo Microhard P900, sendo que um deve ser ligado ao computador da Estação de Controle em Solo (ECS) e cada aeronave deve possuir um fixado ao chassi da aeronave. Já preparação do P900 consiste, principalmente, em configurar os registradores de cada dispositivo de acordo com as tarefas que o mesmo deve realizar.</p>
+<p>Recapitulando, optou-se por utilizar a topologia em malha. Assim, o emissor pode enviar um pacote de dados para todos os receptores ao mesmo tempo. E por ser uma rede pequena, decidiu-se também definir apenas um coordenador primário e 3 módulos remotos.</p>
 <p>Começando pela configuração da topologia da transmissão de dados, o modo de transmissão de malha é habilitado definindo o registro <strong>S133</strong> para 2 ou 3. Quanto ao modo de operação, o registrador que configura qual a função do modem a ser utilizada no modo malha é o <strong>S101</strong>. Observe a tabela a seguir, nela são mostrados os valores que de devem ser colocados no registrador <strong>S101</strong> para que o modem desempenhe o papel desejado.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -431,6 +460,7 @@ $ AT&amp;W
 <h3>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.</p></li>
+<li><p>Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.</p></li>
 <li><p>MICROHARD SYSTEMS INC. Pico Series P900 Operating Manual. 150 Country Hills Landing NW, Calgary, AB T3K 5P3, Canadá, 2016. v1.8.7. Disponível em: <a class="reference external" href="http://www.microhardcorp.com/">microhardcorp.com</a></p></li>
 </ul>
 </div>

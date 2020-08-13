@@ -3,16 +3,20 @@ Comunicação Via Modem
 
 Como explicado anteriormente, o computador embarcado será conectado a um modem para comunicar-se com as outras aeronaves e a estação terra. Nessa seção será analisado detalhadamente a comunicação entre o computador embarcado e o modem, assim como a comunicação entre os modens.
 
-O modem que será utilizado é o modelo P900 da Microhard, cujo mais informações podem ser encontradas diretamente no site da `Microhard Corp`_. 
+O modem que será utilizado é o modelo P900 da Microhard, capaz de fornecer comunicação em série sem fio de alto desempenho em topologias robustas de ponto a ponto, em malha ou ponto a multiponto. Esses rádios são capazes de realizar comunicação de longo alcance e podem atingir velocidades de transmissão muito rápidas.
 
-.. _Microhard Corp: http://www.microhardcorp.com/
+Módulos dessa linha operam dentro da banda de frequências 902-928 MHz usando tecnologia FHSS, provendo comunicação assíncrona e sem fio entre equipamentos com interface de comunicação serial.
+
+Por serem pequenos e com excelente performance, esses rádios são ideais para esse projeto, pois eles devem estar embarcados em todas as aeronaves.
 
 .. Note::
-    As especificações completas do modem P900, assim como instruções de utilização e configuração podem ser encontradas no Manual de Instruções (link abaixo).
+    As especificações completas do modem P900, assim como instruções de utilização e configuração podem ser encontradas no site do fabricante, `microhardcorp.com`_, ou no Manual de Instruções (link abaixo). 
 
     * :download:`Download do Manual </aerial/vr01/4-modem/p900.pdf>`
 
-A figura abaixo contém uma foto do modem estudado neste capítulo e utilizado durante o trabalho.
+.. _microhardcorp.com: http://www.microhardcorp.com/.
+
+O módulo utilizado pode ser visto na figura abaixo, onde à esquerda encontra-se a versão utilizada, que é encapsulada.
 
 .. \ :sup:`|reg|`
 
@@ -20,6 +24,23 @@ A figura abaixo contém uma foto do modem estudado neste capítulo e utilizado d
     :align: center
     :width: 450px
 
+A tabela a seguir mostra algumas das especificações mais importantes a serem levadas em consideração no modelo P900:
+
++--------------------------------+---------------------------+
+| Frequência de operação         |       902 - 928 MHz       |
++--------------------------------+---------------------------+
+| Detecção de erro               |    32 bits de CRC, ARQ    |
++--------------------------------+---------------------------+
+| Alcance                        |    40 milhas (≈ 64 km)    |
++--------------------------------+---------------------------+
+| Potência de saída              |       de 100mW a 1W       |
++--------------------------------+---------------------------+
+| Velocidade de comunicação      | até 230,4 kbps assíncrono |
++--------------------------------+---------------------------+
+| Temperatura de operação máxima |          até 85ºC         |
++--------------------------------+---------------------------+
+| Tensão de entrada (Vin)        |         8 - 30Vdc         |
++--------------------------------+---------------------------+
 
 .. toctree::
    :maxdepth: 2

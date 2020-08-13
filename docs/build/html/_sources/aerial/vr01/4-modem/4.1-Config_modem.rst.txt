@@ -24,7 +24,24 @@ A primeira maneira de acessar o modo de configuração é pressionar e segurar o
   
 .. figure:: /img/Aerial/NOCARRIER.png
     :align: center  
-    
+
+O módulo P900 encapsulado possui LEDs que podem auxiliar na determinação de seu estado atual. A tabela abaixo descreve o significado de cada LED.
+
++-------------------+--------------------------------------------------------------+
+| PWR (azul)        | Aceso quando o módulo está conectado a uma fonte de energia. |
++-------------------+--------------------------------------------------------------+
+| 485 (azul)        | Aceso quando a porta de dados do módulo está configurada     |
+|                   | como uma porta RS485.                                        |
++-------------------+--------------------------------------------------------------+
+| TX LED (vermelho) | Aceso quando o modem está transmitindo dados.                |
++-------------------+--------------------------------------------------------------+
+| RX LED (verde)    | Quando aceso, significa que o módulo está sincronizado e     |
+|                   | recebeu pacotes válidos.                                     |
++-------------------+--------------------------------------------------------------+
+| RSSI (3x Green)   | O número de LEDs acesos indica a força do sinal.             |
++-------------------+--------------------------------------------------------------+
+
+
 Comandos Básicos
 ~~~~~~~~~~~~~~~~
 
@@ -171,6 +188,8 @@ As unidades podem ser configuradas para desempenhar as várias funções apresen
 | ATS101 = 6 | Standby coordinator   |
 +------------+-----------------------+
 
+Por se tratar de uma rede pequena, decidiu-se por adotar apenas um coordenador primário e 3 módulos remotos.
+
 Modos de Acesso ao Canal
 ------------------------
 
@@ -201,7 +220,9 @@ Configuração para cada tipo de unidade no modo de malha
 
 .. Verificar como cada modem será configurado
 
-Em nossa aplicação, serão utilizados, no mínimo, quatro modens do modelo Microhard P900, sendo que um deve ser ligado ao computador da Estação de Controle em Solo (ECS) e cada aeronave deve possuir um fixado ao chassi da aeronave. Já preparação do P900 consiste, principalmente, em configurar os registradores de cada dispositivo de acordo com as tarefas que o mesmo deve realizar.
+Em nossa aplicação, serão utilizados, quatro modens do modelo Microhard P900, sendo que um deve ser ligado ao computador da Estação de Controle em Solo (ECS) e cada aeronave deve possuir um fixado ao chassi da aeronave. Já preparação do P900 consiste, principalmente, em configurar os registradores de cada dispositivo de acordo com as tarefas que o mesmo deve realizar.
+
+Recapitulando, optou-se por utilizar a topologia em malha. Assim, o emissor pode enviar um pacote de dados para todos os receptores ao mesmo tempo. E por ser uma rede pequena, decidiu-se também definir apenas um coordenador primário e 3 módulos remotos.
 
 Começando pela configuração da topologia da transmissão de dados, o modo de transmissão de malha é habilitado definindo o registro **S133** para 2 ou 3. Quanto ao modo de operação, o registrador que configura qual a função do modem a ser utilizada no modo malha é o **S101**. Observe a tabela a seguir, nela são mostrados os valores que de devem ser colocados no registrador **S101** para que o modem desempenhe o papel desejado.   
 
@@ -301,6 +322,8 @@ Referências
 -----------
 
 * PITA, H. C. Desenvolvimento de sistema de comunicação multiplataforma para veículos aéreos de asa fixa. Faculdade de Tecnologia, Universidade de Brasília, 2018.
+
+* Eduardo Moura Cirilo Rocha. 2017. Desenvolvimento de um sistema com veículos aéreos não-tripulados autônomos, Universidade de Brasília, Brasil.
 
 * MICROHARD SYSTEMS INC. Pico Series P900 Operating Manual. 150 Country Hills Landing NW, Calgary, AB T3K 5P3, Canadá, 2016. v1.8.7. Disponível em: `microhardcorp.com`_
 
