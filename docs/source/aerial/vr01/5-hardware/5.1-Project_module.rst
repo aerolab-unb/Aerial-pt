@@ -1,0 +1,6 @@
+Projeto do Módulo
+=================
+
+Para projetarmos o hardware de nosso sistema precisamos, primeiro, determinar quais tarefas o hardware deve ser capaz de realizar e esses serão seus requisitos. Duas dessas tarefas, a alimentação e a conexão dos dispositivos são básicas, já terceira, por sua vez, merece um pouco mais de atenção.
+
+A terceira função a ser realizada pelo hardware seria a de sistema de segurança. Para evitar falhas ou desconexões do computador embarcado seria interessante que o hardware funcionasse como um cão de guarda que verificasse um pulso periódico vindo do computador embarcado e, caso ocorresse a interrupção deste pulso, o sistema tomasse alguma medida de segurança como conectar diretamente a Pixhawk ao modem de modo que esta possa receber comandos de outro sistema em caso de algum problema com o computador embarcado.

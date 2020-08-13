@@ -1,0 +1,13 @@
+Desenvolvimento do Hardware do Módulo Central do VANT
+=====================================================
+
+Neste ponto do projeto temos o computador embarcado funcionando bem e o modem corretamente configurado. Portanto, para progredirmos precisamos montar um hardware ou uma "estação de trabalho" que alimente e faça a conexão entre todos os dispositivos. Essa etapa resolve um problema que costuma estar presente quando trabalhamos dispositivos variados e independentes, que é: como vamos fazer a conexão entre a Pixhawk, que opera em 3,3V, com o computador embarcado, que opera em 1,8V, e com o modem, que utiliza uma interface RS-232?
+
+Parte da solução já foi apresentada no final do capítulo anterior com a sugestão de se utilizar os CIs MAX232 ou MAX485. Entretanto, existem outros aspectos que também devem ser avaliados como a alimentação destes dispositivos, o posicionamento e a firmeza dos dispositivos no hardware. Outro ponto importante é que para o funcionamento do Hardware, como inicialmente projetado, é essencial que o protocolo de comunicação das aeronaves, ou seja, entre os modens, seja o mesmo protocolo de comunicação usado pela Pixhawk, que é o protocolo Mavlink. 
+
+O protocolo MAVLink (Micro Air Vehicle Communication Protocol) é um protocolo de comunicação leve feito para o uso em veículos aéreos pequenos. Ele capaz de enviar estruturas de dados em canais seriais com alta eficiência e enviar esses pacotes para a estação de controle de terra ou computador embarcado. Ele é amplamente usado na plataforma Pixhawk, o piloto automático escolhido para esse projeto. Apesar de seu nome, o uso deste protocolo tem se expandido muito nos últimos anos e ele é usado também para a comunicação com robôs terrestres. O protocolo MAVLink será melhor detalhado no proximo capítulo.
+
+.. toctree::
+   :maxdepth: 2
+
+   5.1-Project_module

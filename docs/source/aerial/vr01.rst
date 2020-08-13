@@ -54,6 +54,12 @@ Cada aeronave possui dois componentes principais que merecem destaque. Um deles 
 
    vr01/4-modem/4.0-intro
    
+.. toctree::
+   :maxdepth: 2
+   :caption: Desenvolvimento do Hardware do Módulo Central do VANT 
+
+   vr01/5-hardware/5.0-intro
+
 
 Referências
 -----------
