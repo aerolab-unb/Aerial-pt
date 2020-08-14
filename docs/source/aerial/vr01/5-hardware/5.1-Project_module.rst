@@ -3,7 +3,7 @@ Projeto do Módulo Central do VANT
 
 Para projetarmos o hardware de nosso sistema precisamos, primeiro, determinar quais tarefas o hardware deve ser capaz de realizar e esses serão seus requisitos. Duas dessas tarefas, a alimentação e a conexão dos dispositivos são básicas, já terceira, por sua vez, merece um pouco mais de atenção.
 
-A terceira função a ser realizada pelo hardware seria a de sistema de segurança. Para evitar falhas ou desconexões do computador embarcado seria interessante que o hardware funcionasse como um cão de guarda (`Watchdog timer`_) que verificasse um pulso periódico vindo do computador embarcado e, caso ocorresse a interrupção deste pulso, o sistema tomasse alguma medida de segurança como conectar diretamente a Pixhawk ao modem de modo que esta possa receber comandos de outro sistema em caso de algum problema com o computador embarcado.
+A terceira função a ser realizada pelo hardware seria a de sistema de segurança. Para evitar falhas ou desconexões do computador embarcado seria interessante que o hardware funcionasse como um cão de guarda (`Watchdog timer`_), verificando a operação do sistema atraves de um pulso periódico vindo do computador embarcado e, caso ocorresse a interrupção deste pulso, o sistema tomasse alguma medida de segurança como conectar diretamente a Pixhawk ao modem de modo que esta possa receber comandos de outro sistema, em caso de algum problema com o computador embarcado.
 
 .. _Watchdog timer: https://en.wikipedia.org/wiki/Watchdog_timer
 
@@ -12,7 +12,7 @@ A terceira função a ser realizada pelo hardware seria a de sistema de seguran�
 
     Diagrama de blocos da função de cão de guarda do módulo.
 
-O diagrama de blocos acima ilustra as conexões fundamentais do módulo. Neste diagrama de blocos o computador embarcado e a Pixhawk são conectados ao modem por meio de uma chave e essa chave é controlada pelo cão de guarda que recebe um sinal do computador embarcado. Caso o computador embarcado pare de enviar o sinal periódico ao cão de guarda este altera o estado da chave realizando uma conexão direta entre modem e Pixhawk. Outro ponto importante é a existência de conexão direta entre Pixhawk e computador embarcado que permite a comunicação entre estes dois dispositivos. Por último esta plataforma deve fornecer firmeza ao sistema, é importante que nenhum dos componentes se solte durante o voo e, portanto, todos eles devem ser soldados ou parafusados ao módulo, observe, no entanto, que essa última característica não está explicita na figura. 
+O diagrama de blocos acima ilustra as conexões fundamentais do módulo. Neste diagrama de blocos o computador embarcado e a Pixhawk são conectados ao modem por meio de uma chave e essa chave é controlada pelo cão de guarda que recebe um sinal do computador embarcado. Caso o computador embarcado pare de enviar o sinal periódico ao cão de guarda este altera o estado da chave realizando uma conexão direta entre modem e Pixhawk. Outro ponto importante é a existência de conexão direta entre Pixhawk e computador embarcado, permitindo a comunicação entre estes dois dispositivos. Por último esta plataforma deve fornecer firmeza ao sistema, é importante que nenhum dos componentes se solte durante o voo e, portanto, todos eles devem ser soldados ou parafusados ao módulo, observe, no entanto, que essa última característica não está explicita na figura. 
 
 Para nosso sistema seriam necessários, portanto, conversores de nível lógico de 1,8V para 5V e de 3,3V para 5V, um CI MAX232 ou equivalente, um multiplexador e um monoestável redisparável. Esses dois últimos seriam os componentes necessários para o cão de guarda.
 
@@ -36,7 +36,9 @@ A figura a seguir contém o esquemático de como seriam feitas as conexões do h
 
     Esquemático completo do hardware a ser implementado.
 
-Por fim, temos o projeto da placa PCB, apresentado abaixo. O lado inferior, ilustrado em azul, contém um barramento GND e foi coberto com um plano terra para redução da interferência na placa, o lado superior, ilustrado em vermelho, possui o barramento de alimentação e as trilhas de sinais. Além disso foram colocados oito furos na placa, quatro para que o computador embarcado possa ser parafusada a ela e quatro para prender a PCB ao veículo aéreo. A ideia é que o computador embarcado seja posicionada sobre a placa e paralela a esta de modo que se apoie sobre os conectores, de maneira semelhante ao mostrado na figura 5.8, portanto a PCB é ligeiramente maior que a placa de expansão tobi. As informações de dimensões e posições dos dispositivos do computador embarcado foram obtidos no endereço eletrônico da loja disponível no capítulo 2.
+Por fim, temos o projeto da placa PCB, apresentado abaixo. O lado inferior, ilustrado em azul, contém um barramento GND e foi coberto com um plano terra para redução da interferência na placa, o lado superior, ilustrado em vermelho, possui o barramento de alimentação e as trilhas de sinais. Além disso foram colocados oito furos na placa, quatro para que o computador embarcado possa ser parafusada a ela e quatro para prender a PCB ao veículo aéreo. A ideia é que o computador embarcado seja posicionada sobre a placa e paralela a esta de modo que se apoie sobre os conectores, de maneira semelhante ao mostrado na figura 5.8, portanto a PCB é ligeiramente maior que a placa de expansão tobi. As informações de dimensões e posições dos dispositivos do computador embarcado foram obtidos no site da loja `Gumstix Store`_.
+
+.. _Gumstix Store: https://store.gumstix.com/overo-waterstorm-com.html
 
 .. figure:: /img/Aerial/PCB_modulo.png
     :align: center
