@@ -6,3 +6,41 @@ Para projetarmos o hardware de nosso sistema precisamos, primeiro, determinar qu
 A terceira função a ser realizada pelo hardware seria a de sistema de segurança. Para evitar falhas ou desconexões do computador embarcado seria interessante que o hardware funcionasse como um cão de guarda (`Watchdog timer`_) que verificasse um pulso periódico vindo do computador embarcado e, caso ocorresse a interrupção deste pulso, o sistema tomasse alguma medida de segurança como conectar diretamente a Pixhawk ao modem de modo que esta possa receber comandos de outro sistema em caso de algum problema com o computador embarcado.
 
 .. _Watchdog timer: https://en.wikipedia.org/wiki/Watchdog_timer
+
+.. figure:: /img/Aerial/blocos_modulo.png
+    :align: center
+
+    Diagrama de blocos da função de cão de guarda do módulo.
+
+O diagrama de blocos acima ilustra as conexões fundamentais do módulo. Neste diagrama de blocos o computador embarcado e a Pixhawk são conectados ao modem por meio de uma chave e essa chave é controlada pelo cão de guarda que recebe um sinal do computador embarcado. Caso o computador embarcado pare de enviar o sinal periódico ao cão de guarda este altera o estado da chave realizando uma conexão direta entre modem e Pixhawk. Outro ponto importante é a existência de conexão direta entre Pixhawk e computador embarcado que permite a comunicação entre estes dois dispositivos. Por último esta plataforma deve fornecer firmeza ao sistema, é importante que nenhum dos componentes se solte durante o voo e, portanto, todos eles devem ser soldados ou parafusados ao módulo, observe, no entanto, que essa última característica não está explicita na figura. 
+
+Para nosso sistema seriam necessários, portanto, conversores de nível lógico de 1,8V para 5V e de 3,3V para 5V, um CI MAX232 ou equivalente, um multiplexador e um monoestável redisparável. Esses dois últimos seriam os componentes necessários para o cão de guarda.
+
+.. Warning::
+    É importante destacar que o wacthdog timer ainda não foi implementado devido a problemas com a obtenção dos componentes, contudo, além de ter sido projetado, foi reservado espaço no protótipo do hardware para implementação deste sistema futuramente.
+
+.. Ao final deste trabalho foi realizado o projeto de uma PCB que inclui essa terceira função do hardware.
+
+A bateria que teremos a disposição no VANT é uma bateria LiPo de 14,8V, ou seja, a bateria não pode alimentar diretamente o computador embarcado, portanto optamos por alimentar todo o hardware pela Pixhawk que possui uma saída de 5V. O computador embarcado pode ser alimentada por 5V no pino 40, como mostrado no diagrama da placa Tobi (imagem abaixo). Por último a alimentação do modem pode ser feita de forma direta com a bateria já que a sua tensão de alimentação é de 9V a 30V.
+
+
+.. figure:: /img/Aerial/Pinos_Tobi.png
+    :align: center
+
+    Diagrama dos pinos da placa de expansão tobi.
+
+A figura a seguir contém o esquemático de como seriam feitas as conexões do hardware. Esse esquemático aprofunda o que foi apresentado no diagrama de blocos da função de cão de guarda do módulo. Observe que os valores dos resistores "R1" e "R2" e do capacitor "C5" do esquemático, dependeriam do intervalo de tempo desejado para o monoestável. Já os outros capacitores ou auxiliam o MAX232 a atingir tensões de saída superiores à sua alimentação ou são capacitores para desacoplamento DC que realizam filtragem e estabilização da alimentação, para ambos os casos foram utilizados capacitores de 100 nF. Por último os resistores "R3", "R4" e "R5" são resistores de "pull-up" que tem a função de evitar oscilações nos pinos de RX quando houver comutação nos circuitos do multiplexador.
+
+.. figure:: /img/Aerial/hardware_modulo.png
+    :align: center
+
+    Esquemático completo do hardware a ser implementado.
+
+Por fim, temos o projeto da placa PCB, apresentado abaixo. O lado inferior, ilustrado em azul, contém um barramento GND e foi coberto com um plano terra para redução da interferência na placa, o lado superior, ilustrado em vermelho, possui o barramento de alimentação e as trilhas de sinais. Além disso foram colocados oito furos na placa, quatro para que o computador embarcado possa ser parafusada a ela e quatro para prender a PCB ao veículo aéreo. A ideia é que o computador embarcado seja posicionada sobre a placa e paralela a esta de modo que se apoie sobre os conectores, de maneira semelhante ao mostrado na figura 5.8, portanto a PCB é ligeiramente maior que a placa de expansão tobi. As informações de dimensões e posições dos dispositivos do computador embarcado foram obtidos no endereço eletrônico da loja disponível no capítulo 2.
+
+.. figure:: /img/Aerial/PCB_modulo.png
+    :align: center
+
+    Projeto da PCB do hardware.
+
+É importante destacar que os dois CIs ao centro da placa PCB, o 4052N e o 74LS122N, são responsáveis pelo cão de guarda e são o multiplexador e o monoestável redisparável, respectivamente. No canto mais a direita próximo à conexão do modem temos o CI MAX232 responsável pela conversão da comunicação UART para RS232. Por último, no canto mais a esquerda, temos dois conversores de níveis lógicos.
