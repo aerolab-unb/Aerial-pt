@@ -36,7 +36,7 @@ A figura a seguir contém o esquemático de como seriam feitas as conexões do h
 
     Esquemático completo do hardware a ser implementado.
 
-Por fim, temos o projeto da placa PCB, apresentado abaixo. O lado inferior, ilustrado em azul, contém um barramento GND e foi coberto com um plano terra para redução da interferência na placa, o lado superior, ilustrado em vermelho, possui o barramento de alimentação e as trilhas de sinais. Além disso foram colocados oito furos na placa, quatro para que o computador embarcado possa ser parafusada a ela e quatro para prender a PCB ao veículo aéreo. A ideia é que o computador embarcado seja posicionada sobre a placa e paralela a esta de modo que se apoie sobre os conectores, de maneira semelhante ao mostrado na figura 5.8, portanto a PCB é ligeiramente maior que a placa de expansão tobi. As informações de dimensões e posições dos dispositivos do computador embarcado foram obtidos no site da loja `Gumstix Store`_.
+Por fim, temos o projeto da placa PCB, apresentado abaixo. O lado inferior, ilustrado em azul, contém um barramento GND e foi coberto com um plano terra para redução da interferência na placa, o lado superior, ilustrado em vermelho, possui o barramento de alimentação e as trilhas de sinais. Além disso foram colocados oito furos na placa, quatro para que o computador embarcado possa ser parafusada a ela e quatro para prender a PCB ao veículo aéreo. A ideia é que o computador embarcado seja posicionada sobre a placa e de modo que se apoie sobre os conectores e compartilhem os mesmos parafusos quando fixados ao chassi da aeronave, portanto a PCB é ligeiramente maior que a placa de expansão Tobi. As informações de dimensões e posições dos dispositivos do computador embarcado foram obtidos no site da loja `Gumstix Store`_.
 
 .. _Gumstix Store: https://store.gumstix.com/overo-waterstorm-com.html
 
@@ -46,3 +46,36 @@ Por fim, temos o projeto da placa PCB, apresentado abaixo. O lado inferior, ilus
     Projeto da PCB do hardware.
 
 É importante destacar que os dois CIs ao centro da placa PCB, o 4052N e o 74LS122N, são responsáveis pelo cão de guarda e são o multiplexador e o monoestável redisparável, respectivamente. No canto mais a direita próximo à conexão do modem temos o CI MAX232 responsável pela conversão da comunicação UART para RS232. Por último, no canto mais a esquerda, temos dois conversores de níveis lógicos.
+
+Cão de Guarda
+~~~~~~~~~~~~~
+
+O cão de guarda ou Watchdog é um temporizador que realiza alguma ação de proteção emergencial, como por exemplo reiniciar um sistema, quando esse tempo se esgota. Assim podemos enviar um pulso que reinicia a contagem do cão de guarda em um período inferior ao do temporizador e, deste modo, a contagem do cão de guarda só será encerrada quando houver algum problema com o dispositivo que envia o pulso.
+
+Em nosso caso idealizamos o pulso como um sinal de PWM ou GPIO enviado pelo computador embarcado periodicamente. Caso esse sinal não seja enviado por algum motivo, como algum problema na alimentação do computador embarcado ou travamento no software o cão de guarda transfere a comunicação com o modem para a Pixhawk.
+
+Como podemos ver na figura do esquemático do hardware, o cão de guarda seria implementado por um CI 74LS122N1 e um multiplexador duplo 4052N. Na entrada do 74LS122N teríamos um pulso PWM do computador embarcado e a saída do CI estaria ligada à entrada de controle menos significativa do multiplexador que determina qual dispositivo estaria conectado ao RS-232.
+
+.. Note::
+    Mais detalhes sobre o CI 74LS122N1 estão disponiveis em seu datasheet, encontrado no link abaixo para download ou na pagina `uni-kl.de`_.
+
+    - :download:`Download do Manual MAX485 </aerial/vr01/5-hardware/Datasheet-74LS122N.pdf>`
+
+.. _Maxim Integrated: https://www.uni-kl.de/elektronik-lager/417682
+
+Para entender melhor o funcionamento de um monoestável redispáravel, função realizada pelo 74LS122N, podemos observar o esquematico abaixo de um monoestável redisparável implementado com flip-flop R-S.
+
+.. _Gumstix Store: https://store.gumstix.com/overo-waterstorm-com.html
+
+.. figure:: /img/Aerial/monoestavel_redisparavel.png
+    :align: center
+
+    Esquemático de monoestável redisparável implementado com flip-flop RS.
+
+Inicialmente todos os níveis de tensão, com exceção da entrada, são 0, quando surge um pulso de valor 0 na entrada a saída assume valor alto e o circuito RC começa a carregar o capacitor. Quando a tensão no capacitor atinge o valor mínimo para ativar o reset a saída Q é zerada. Caso antes do capacitor ser carregado o suficiente para que o reset seja acionado ocorra outro pulso na entrada o diodo entra na região ativa e o capacitor irá descarregar, zerando a contagem de tempo.
+
+Conversor lógico
+~~~~~~~~~~~~~~~~
+
+.. figure:: /img/Aerial/conversor_logico.png
+    :align: center
