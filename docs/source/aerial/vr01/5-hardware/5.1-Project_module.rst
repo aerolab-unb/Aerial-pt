@@ -61,7 +61,7 @@ Como podemos ver na figura do esquemático do hardware, o cão de guarda seria i
 
     - :download:`Download do Manual MAX485 </aerial/vr01/5-hardware/Datasheet-74LS122N.pdf>`
 
-.. _Maxim Integrated: https://www.uni-kl.de/elektronik-lager/417682
+.. _uni-kl.de: https://www.uni-kl.de/elektronik-lager/417682
 
 Para entender melhor o funcionamento de um monoestável redispáravel, função realizada pelo 74LS122N, podemos observar o esquematico abaixo de um monoestável redisparável implementado com flip-flop R-S.
 
