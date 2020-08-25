@@ -63,6 +63,15 @@ Como podemos ver na figura do esquemático do hardware, o cão de guarda seria i
 
 .. _uni-kl.de: https://www.uni-kl.de/elektronik-lager/417682
 
+
+.. Note::
+     - Um capacitor de temporização externo pode ser conectado entre Cext e Rext/Cext.
+     - Para usar o resistor de temporização interno do LS122, conecte Rint ao VCC.
+     - Para maior precisão e repetibilidade da duração do pulso, conecte um resistor externo entre Rext/Cext e Vcc com Rint em circuito aberto.
+     - Para obter a duração do pulso variável, conecte uma resistência variável externa entre Rint ou Rext / Cext e Vcc.
+     
+     
+      
 Para entender melhor o funcionamento de um monoestável redispáravel, função realizada pelo 74LS122N, podemos observar o esquematico abaixo de um monoestável redisparável implementado com flip-flop R-S.
 
 .. _Gumstix Store: https://store.gumstix.com/overo-waterstorm-com.html
